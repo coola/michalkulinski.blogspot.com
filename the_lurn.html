@@ -1,0 +1,155 @@
+<div style="text-align: left;">
+Zawsze powtarzałem, że profesjonalny twórca oprogramowania nie przestaje się uczyć nigdy.</div>
+
+<a href="http://helion.pl/ksiazki/pragmatyczny-programista-od-czeladnika-do-mistrza-andrew-hunt-david-thomas,pragpr.htm">Pragmatyczny programista</a> mówi:
+<ul>
+<li>Naucz się jednego języka na rok</li>
+<li>Przeczytaj branżową książkę raz na kwartał</li>
+<li>Czytaj także niebranżowe książki</li>
+<li>Korzystaj z kursów</li>
+<li>Uczestnicz w spotkaniach lokalnych społeczności</li>
+<li>Eksperymentuj z różnymi środowiskami</li>
+<li>Bądź na bieżąco</li>
+<li>Interesuj się (blogi, wykop, HackerNews, itp.)</li>
+</ul>
+<div>
+Generalnie to fajne pomysły, ale jak to koreluje się z tym, co napisałem ostatnio we wpisie: <a href="http://blog.cleancoder.com/uncle-bob/2016/07/27/TheChurn.html">The Churn</a>&nbsp;gdzie twierdzę, że można niewiele zyskać z nauki nowego języka czy frameworku, ponieważ nasza branża zbliża się do pewnego rodzaju asymptoty technologii i frameworków. To znaczy, czy powinniśmy się uczyć nowego języka każdego roku, skoro niewiele można na tym zyskać?</div>
+<div>
+
+</div>
+<div>
+Tak, oczywiście. Powinieneś uczyć się jednego nowego języka każdego roku. Kiedy to robisz, okazuje się, że pewne aspekty języków programowania stają się powtarzalne.
+Kiedy uczysz się Lua okazuje się, że to po prostu JavaScript (i odwrotnie). Kiedy uczysz się Ruby, okazuje się, że to tak naprawdę Python, tylko w innych ciuszkach. Kiedy uczysz się Swifta odkrywasz, że to odgrzewana Java, która przeszła zapachem Pascala. Uczysz się języka GO i dochodzisz do wniosku, że to mieszanina C, Javy i Erlanga.
+
+Zaczynasz widzieć pewne wzorce, które stoją za tymi językami i uświadamiasz sobie, że jest ich niewiele. Powoli dochodzisz do wniosku, że istnieją lepsze rzeczy do robienia w życiu niż odkrywanie niekończonych się kombinacji tych wzorców.
+
+A więc, tak. Naucz się jednego nowego języka każdego roku, aby dojść do wniosku, że całkiem dobrze wyeksplorowaliśmy domenę języków programowania.
+
+To samo odnosi się do frameworków. Naucz się jednego nowego frameworku rocznie, a zaczniesz uświadamiać sobie, że żaden z nich nie jest tak naprawdę nowy. Zaczniesz uświadamiać sobie, że, tak jak w przypadku języków, pod spodem jest lista powtarzalnych patternów, i jest to liczba ograniczona, i jak bezsensowne jest miksowanie tych patternów we wszystkich możliwych kombinacjach.
+
+Czy ten punkt widzenia napawa Cię pesymizmem?<i> Nie powinien. F</i>akt, że przeszliśmy wzdłuż i wszerz jakiś kawałek naszej profesji nie oznacza, że inne części są poznane. O kurka! Okazuje się, że lista, rzeczy do nauczenia się i poprawienia biegłości jest dosyć duża. Co więcej, podczas naszej niekończącej się krucjaty poznawania nowych języków i frameworków zaniedbaliśmy te rzeczy.
+
+A więc, dla przykładu, porozmawiajmy o <i>współbieżności</i>. Jest to dziedzina, w której naprawdę leżymy i kwiczymy. Czy nie nadszedł już najwyższy czas, aby to zmienić? Czy nie byłoby dobrym pomysłem poznanie domeny współbieżności w stopniu, w jakim poznaliśmy domenę języków. Czy nie jest to szczególnie prawdziwe w czasach, gdy nasze aplikacje są coraz bardziej uzależnione od wieloprocesorowych środowisk? Czy gwałtowny wzrost liczby aplikacji hostowanych w chmurze oznacza, że możemy poszczycić się coraz lepszym zrozumieniem współbieżności?
+
+No dobra, pozwól mi przetestować trochę Twoją wiedzę:
+<ul>
+<li>Czy znasz <a href="https://pl.wikipedia.org/wiki/Problem_ucztuj%C4%85cych_filozof%C3%B3w">problem ucztująch filozofów</a> i czego uczy?</li>
+<li>Czy potrafisz zdefiniować problem <a href="https://pl.wikipedia.org/wiki/Zakleszczenie">zakleszczenia</a> i opisać, jak go uniknąć?</li>
+<li>Czy wiesz co to jest <a href="https://en.wikipedia.org/wiki/Actor_model">model aktorów</a>?</li>
+<li>Czy jesteś zaznajomiony z&nbsp;<i>run-to-completion threads</i>?</li>
+<li>Czy kiedykolwiek napisałeś <a href="https://pl.wikipedia.org/wiki/Bufor_cykliczny">bufor cykliczny</a> do obsługi przerwań w aplikacji głównej i działającej w tle?</li>
+<li>Czy wiesz co to jest <a href="https://pl.wikipedia.org/wiki/Semafor_(informatyka)">semafor</a>, kiedy go wymyślili i po co?</li>
+<li>Czy jesteś zaznajomiony z racjami stojącymi za&nbsp;<a href="https://pl.wikipedia.org/wiki/Blokada_z_podw%C3%B3jnym_zatwierdzeniem_(wzorzec_projektowy)">blokadą z podwójnym zatwierdzeniem</a>?</li>
+<li>Co to jest <a href="https://pl.wikipedia.org/wiki/Inwersja_priorytet%C3%B3w">inwersja priorytetów</a>?</li>
+</ul>
+Jeśli nie możesz odpowiedzieć kompetentnie na większość z tych pytań to masz przed sobą kilka wspaniałych lat eksploracji i radzę Ci z nich skorzystać.</div>
+<div>
+
+</div>
+<div>
+A jak tam protokoły komunikacyjne? Czy odkryliśmy wystarczająco to królestwo? Czy znasz tę domenę?</div>
+<div>
+<ul>
+<li>Czy wiesz, w jaki sposób połączenia, na których nie można polegać używane są do komunikacji, na której <a href="https://pl.wikipedia.org/wiki/Model_TCP/IP">można polegać</a>?</li>
+<li>Czy wiesz, co to jest <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol">mechanizm okna przesuwnego</a>?</li>
+<li>A co z <a href="https://pl.wikipedia.org/wiki/Cykliczny_kod_nadmiarowy">CRC</a>?</li>
+<li>Dlaczego wykrywanie <a href="https://pl.wikipedia.org/wiki/Kolizja_pakiet%C3%B3w_w_sieci">kolizji </a>jest tak ważne w Ethernecie.</li>
+<li>Czy znasz algorytm&nbsp;<a href="http://exponential%20backoff/">Exponential backoff</a>?</li>
+<li>Jakie jest 7 warstw modelu <a href="https://pl.wikipedia.org/wiki/Model_OSI">OSI </a>i dlaczego one są tak ważne?</li>
+<li>Jaka jest różnica pomiędzy <a href="https://en.wikipedia.org/wiki/Bit_rate">BPS i BAUD</a>?</li>
+</ul>
+</div>
+<div>
+Jak daleko jesteś wyedukowany w klasykach naszej branży? Czy przeczytałeś i zrozumiałeś (wspominam tylko kilka):
+<ul>
+<li><a href="https://pl.wikipedia.org/wiki/Sztuka_programowania">Sztuka programowania</a> : Knuth</li>
+<li><a href="http://helion.pl/ksiazki/sieci-komputerowe-wydanie-v-andrew-s-tanenbaum-david-j-wetherall,sieci5.htm">Sieci komputerowe</a> : Tanenbaum</li>
+<li><a href="http://helion.pl/ksiazki/struktura-i-interpretacja-programow-komputerowych-klasyka-informatyki-abelson-harold-sussman-gerald-jay-sussman-julie,a_000m.htm">Struktura i interpretacja programów komputerowych</a> : Abelson and Sussman and&nbsp;Sussman&nbsp;</li>
+<li><a href="https://www.amazon.com/Structured-Analysis-System-Specification-DeMarco/dp/0138543801/ref=la_B000AP7OPO_1_6?s=books&amp;ie=UTF8&amp;qid=1474619129&amp;sr=1-6">Structured Analysis and System Specification</a>: DeMarco</li>
+<li><a href="http://helion.pl/ksiazki/wzorce-projektowe-elementy-oprogramowania-obiektowego-wielokrotnego-uzytku-erich-gamma-richard-helm-ralph-johnson-john-m,wzoele.htm">Wzorce projektowe</a> :&nbsp;Gamma, Helm, Johnson, Vlissides</li>
+<li><a href="https://www.amazon.com/gp/product/0201895420/ref=x_gr_w_glide_bb_sout?ie=UTF8&amp;tag=x_gr_w_glide_bb_sout-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0201895420&amp;SubscriptionId=1MGPYB6YW3HWK55XCGG2">Analysis Patterns: Reusable Object Models</a> : Fowler</li>
+<li><a href="https://www.amazon.com/exec/obidos/ASIN/0122005503/xp123com/">Structured Programming</a>: Dijkstra, Dahl, Hoare</li>
+<li style="box-sizing: border-box;"><a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554">Object Oriented Software Construction</a> :<i>&nbsp;</i>Meyer</li>
+</ul>
+<div>
+Czy rozumiesz różnicę pomiędzy <a href="https://en.wikipedia.org/wiki/Discrete_event_simulation">dyskretną symulacją zdarzeń</a> a <a href="https://en.wikipedia.org/wiki/Continuous_simulation">symulacją ciągłą</a>? Kiedy byś użył każdej z nich?</div>
+<div>
+<span style="font-family: FrescoSansPlusPro-Normal-Italic;">
+</span></div>
+<div>
+Jak u Ciebie z <a href="https://pl.wikipedia.org/wiki/Teoria_kolejek">teorią kolejek</a>?
+
+Czy rozumiesz jak zorganizować zestaw bramek i kolejek, aby zmaksymalizować przepływ w różnych środowiskach?
+
+</div>
+<div>
+</div>
+<div>
+Czy jesteś zaznajomiony z <a href="https://pl.wikipedia.org/wiki/Teoria_graf%C3%B3w">algorytmami grafów</a>?
+
+Jak byś podszedł do&nbsp;znalezienia&nbsp;najkrótszej drogi pomiędzy dwoma miastami? A jak do znalezienia najszybszej?
+
+</div>
+<div>
+</div>
+<div>
+Czy potrafisz napisać algorytm quicksort na żądanie, bez szukania w książkach / Googlach?
+
+</div>
+<div>
+</div>
+<div>
+Czym są <a href="https://pl.wikipedia.org/wiki/Prawa_De_Morgana">prawa De Morgana</a> i do czego mogą Ci się przydać?</div>
+<div>
+
+</div>
+<div>
+Jaka jest różnica pomiędzy automatami&nbsp;<a href="https://pl.wikipedia.org/wiki/Automat_Mealy%E2%80%99ego">Mealy'ego</a>&nbsp;a <a href="https://pl.wikipedia.org/wiki/Automat_Moore%E2%80%99a">Moore'a</a>?</div>
+<div>
+
+</div>
+<div>
+Jak tam z Twoją <a href="https://pl.wikipedia.org/wiki/Geometria_obliczeniowa">geometrią obliczeniową</a>? Jak obliczyłbyś pole dowolnego wielokąta?</div>
+<div>
+
+</div>
+<div>
+Czy kiedykolwiek napisałeś <a href="https://pl.wikipedia.org/wiki/Algorytm_genetyczny">algorytm genetyczny</a>? Czy pracowałeś z <a href="https://pl.wikipedia.org/wiki/Sie%C4%87_neuronowa">siecią neuronową</a>? Co wiesz o Big Data? Jak byś napisał bibliotekę do liczb zmiennoprzecionkowych? Czy kiedykolwiek napisałeś sterownik wejścia - wyjścia? Czy napisałeś system plików? Czy napisałeś wielozadaniowe jądro? Czy napisałeś kompilator?
+
+Są jeszcze języki. Czy nauczyłeś się naprawdę ważnych - tych które <i>naprawdę </i>były innowacyjne, które były stopniami w drabinie, dzięki którym jesteśmy tu, gdzie jesteśmy? Czy nauczyłeś się Fortrana? Czy nauczyłeś się Cobola? Czy znasz Snobol i Forth i Lisp i Prolog i C?
+
+Czy kiedykolwiek pisałeś w języku maszynowym, ręcznie łącząc swój kod w kod binarny?
+Czy czytałeś oryginalny artykuł Alana Turinga : <a href="https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf">On computable numbers</a>&nbsp;...?
+
+</div>
+<div>
+
+</div>
+<div>
+<span style="background-color: #f8fff8; color: #29323c; font-family: monospace , serif;">*~~~*</span>
+<span style="background-color: #f8fff8; color: #29323c; font-family: monospace , serif;">
+</span> 
+No więc, tak. Naucz się jednego języka na rok. Być może, że ten język będzie nowy -- dla Ciebie; ewentualnie będzie stary i znaczący dla naszej branży. Być może podczas nauki tego języka, nauczysz się czegoś z listy, którą tutaj przedstawiłem.
+
+Pole uprawne naszej branży jest ogromne. Ledwo zadrapaliśmy powierzchnię. Jest wiele ważkich rzeczy do nauki o obliczeniach komputerowych i o oprogramowaniu. Byłoby szkoda, gdybyśmy nigdy nie odkryli tych głębi, ponieważ byliśmy rozproszeni błyskotkami.&nbsp;</div>
+<div>
+
+</div>
+</div>
+<div>
+Wujek Bob
+
+<div style="text-align: center;">
+<span style="color: #999999; font-size: x-small;">Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</span></div>
+<div style="text-align: center;">
+<span style="color: #999999; font-size: x-small;"><a href="http://blog.cleancoder.com/uncle-bob/2016/09/01/TheLurn.html">http://blog.cleancoder.com/uncle-bob/2016/09/01/TheLurn.html</a></span>
+<span style="color: #999999; font-size: x-small;">
+</span></div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://lh3.googleusercontent.com/-tuSofwOXs-4/V-QOGqt8bLI/AAAAAAAAUIo/FNI6-qJSvpA/s1600/1474563593526.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"> <img border="0" src="https://lh3.googleusercontent.com/-tuSofwOXs-4/V-QOGqt8bLI/AAAAAAAAUIo/FNI6-qJSvpA/s640/1474563593526.jpg" /> </a> </div>
