@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<style type="text/css" scoped="scoped">
+    .lastParagraphDiv {
+        margin-bottom: 2em;
+    }
+
+    .header{
+        font-size: 1.7em;
+        margin-bottom: 0.2em;
+    }
+
+    .smallGreyText{
+        text-align: center;
+        color: #999999;
+        font-size: 0.6em;
+        line-height: 0.9em;
+    }
+
+    .quote{
+        color: rgba(102, 102, 94, 0.85);
+        padding: 1em; margin: 1em; font-size: 1.5em;
+        border-left: solid;
+    }
+
+    .i{
+        font-style: italic;
+    }
+
+</style>
+<div >
+    <div style="padding-bottom: 0.5em;">Jak skalujesz system komputerowy?</div>
+    Jedna rzecz powinna być oczywista: w którymś momencie potrzebujesz mieć więcej niż jeden komputer. Był taki czas, i to było całkiem niedawno, kiedy skalowanie mogło być osiągnięte przez czekanie. Po prostu czekałeś, aż komputery staną się szybsze i potężniejsze. Po każdych kilku miesiącach miałeś automatycznie wzrost na skali.
+</div>
+<div class="smallGreyText">
+    <hr />
+    <div>Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+    <br/>
+    <div><a href="http://blog.cleancoder.com/uncle-bob/2014/10/01/CleanMicroserviceArchitecture.html">http://blog.cleancoder.com/uncle-bob/2014/10/01/CleanMicroserviceArchitecture.html</a></div>
+    <br/>
+    <div>Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+    <hr />
+</div>
+<div>
+    Pomijając, czy była to dobra strategia czy nie; to już tak nie działa. Wraz z nadejściem nowego tysiąclecia, projektanci sprzętu przestali próbować podnosić częstotliwość taktowania zegara i zamiast tego zaczęli rozmnażać rdzenie. Faktem jest, że aby osiągnąć to rozmnożenie - projektanci sprzętu usuwali pamięć podręczną i potoki, których zwykli używać do zwiększania prędkości maszyn jednordzeniowych.
+</div>
+<div class="lastParagraphDiv" >
+    Więc dzisiaj, skalowanie systemów komputerowych oznacza dodawanie więcej rdzeni, i dodawanie więcej serwerów. Nie ma drogi na około. No więc, jak to robisz? Jak rozdzielasz swoją aplikację, aby mogła być uruchamiania na wielu rdzeniach i wielu serwerach?
+</div>
+<div class="header">
+    Jak skalujesz?
+</div>
+<div >
+    Twoja karta graficzna używa jednego podejścia. Posiada wiele procesorów, które działają w strategii <a href="https://en.wikipedia.org/wiki/Lockstep_(computing)">lockstep</a>; robią te same operacje w innych obszarach pamięci wewnętrznej. Ta forma obliczeń równoległych na masową skalę jest idealna dla kart graficznych odkąd szybką wydajność grafiki można osiągnąć przez te same przekształcenia&nbsp;na dużych macierzach tych samych danych. W rzeczywistości, superkomputery używały tego podejścia przez dziesięciolecia żeby przewidywać pogodę lub symulować wybuchy jądrowe.
+</div>
+
+<div class="lastParagraphDiv" >
+    Inną techniką jest tradycyjne podejście trzywarstwowe. Dzielisz swój system na GUI, warstwę pośrednią i bazę danych. Przyporządkowujesz serwery do GUI, kilka do warstwy pośredniej, i jeszcze kilka do bazy danych. Tworzysz zestaw wiadomości (zwykle zawierający zserializowane obiekty), które mogą być przesyłane pomiędzy warstwami. I <span ><a href="https://pl.wiktionary.org/wiki/voil%C3%A0" style="text-decoration: none;">voilà</a></span>! Skalowanie.
+</div>
+<div class="header">
+    Mikroserwisy
+</div>
+<div >
+    Ostatnio widzimy jeszcze inną strategię skalowania. Mikroserwisy. Pisałem o nich <a href="http://blog.cleancoder.com/uncle-bob/2014/09/19/MicroServicesAndJars.html" >tu</a> i <a href="http://blog.cleancoder.com/uncle-bob/2014/09/18/TheMoreThingsChange.html">tu</a>. Jest sławny artykuł od Martina Fowlera i Jamesa Lewisa <a href="http://martinfowler.com/articles/microservices.html">tu</a>.
+</div>
+<div >
+    Mikroserwis jest małym programem wykonywanym gdzieś na serwerze. Odpowiada na asynchroniczne wiadomości. Zwykle te wiadomości są dostarczane przez HTTP w formacie REST; chociaż to szczegół, a nie wymaganie.
+</div>
+<div class="lastParagraphDiv">System posiada architekturę mikroserwisów wtedy kiedy jest ułożony z wielu współpracujących mikroserwisów; zwykle bez centralnej kontroli.</div>
+
+<div class="header">
+    Czysta Architektura i Mikroserwisy
+</div>
+<div >
+    Teraz rozważ tak zwaną <a href="http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html" style="text-decoration: none;">Czystą Architekturę</a>. Zauważ, że używa ona wiele elementów, włączając Przypadki Użycia, Prezenterów, Bramki. Te komponenty otrzymują żądania w postaci podstawowych struktur danych (<a href="https://pl.wikipedia.org/wiki/Plain_Old_Java_Object" ><span >POJO</span></a>), które przychodzą ze źródła, oddzielonego od komponentu przez polimorficzną granicę wejściową.
+</div>
+<div >
+    Zauważ, że komponenty odpowiadają na te żądania poprzez tworzenie podstawowych struktur danych i wysyłanie ich na wyjście, które jest oddzielone od komponentu przez polimorficzną granicę wyjściową. <div>Czy ten układ może być użyty do stworzenia architektury mikroserwisów?</div>
+</div>
+<div class="quote">Oczywiście.</div>
+
+<div >
+    Nic w Czystej Architekturze nie żąda, aby wiadomości były synchroniczne czy asynchroniczne. Nic nie stoi na przeszkodzie, by te żądania i odpowiedzi były przesyłane do innego serwera. Nic w architekturze nie przeszkadza, żeby komponenty były małymi programami komunikującymi się przez HTTP przy użyciu REST.
+</div>
+
+<div class="lastParagraphDiv" >
+    Więc, architektura mikroserwisów może łatwo dopasować się do Czystej Architektury. W rzeczywistości, gdybym tylko budował system używając mikroserwisów, z całkowitą pewnością podążałbym tą ścieżką.
+</div>
+
+<div class="header">
+    Miara skalowalności komponentów
+</div>
+<div >
+    Mikroserwis jest tylko sposobem do wdrażania komponentów oprogramowania. Są inne;
+</div>
+<div >
+    i mają różne skalowalności. Oto lista kilku innych opcji wdrażania, w kolejności poziomu skalowalności.
+</div>
+<b style="font-weight: normal;">
+</b>
+<ol >
+    <li  >
+        <div >
+            Mikroserwisy wdrożone na wiele serwerów.
+        </div>
+    </li>
+    <li  >
+        <div >
+            Mniejsza liczba serwerów, każdy odpala więcej niż jeden mikroserwis.
+        </div>
+    </li>
+    <li >
+        <div >
+            Tylko jeden serwer z grupą mikroserwisów uruchamianych jako proste programy.
+        </div>
+    </li>
+    <li >
+        <div >
+            Usługi odpalane jako wątki w pojedynczej maszynie wirtualnej komunikujące się poprzez kolejki komunikatów.
+        </div>
+    </li>
+    <li >
+        <div >
+            Dynamicznie linkowane komponenty (JARki albo DLLki) przesyłające wiadomości ze strukturą danych poprzez wywołania funkcji.
+        </div>
+    </li>
+</ol>
+
+<div >
+    Znowu, to powinno być oczywiste, że Czysta Architektura działa tak samo w każdym przypadku z tej listy. Powód tego jest taki, że Czysta Architektura <span class="i">nie przykłada wagi</span> do tego jak komponenty są wdrażane. W rzeczywistości system z dobrą Czystą Architekturą <span class="i">nie wie </span><span class="i">jakiego sposobu wdrażania używa</span>.
+</div>
+
+<div >
+    Jeszcze raz powtarzam. Kod w środku komponentów Czystej Architektury nie ma pojęcia, że:
+</div>
+
+<ul>
+    <li>
+        <div >
+            to jest działający mikroserwis na niezależnym serwerze komunikującym się z innymi niezależnymi serwerami przez internet,
+        </div>
+    </li>
+    <li >
+        <div >
+            albo to jest mały program pośród wielu odpalonych na pojedynczej maszynie komunikujący się na prostych socketach,
+        </div>
+    </li>
+    <li>
+        <div >
+            albo to jest lekki wątek komunikujący się z innymi lekkimi wątkami na tej samej maszynie wirtualnej używając skrzynek pocztowych czy kolejek,
+        </div>
+    </li>
+    <li>
+        <div >
+            albo to prosty JAR czy DLL komunikujący się z innymi komponentami przy użyciu polimorficznych wywołań funkcji.
+        </div>
+    </li>
+</ul>
+
+<div class="lastParagraphDiv">
+    I to powinno naprowadzić Cię o czym tak naprawdę jest ten artykuł.
+</div>
+
+<div >
+    <span class="header">Model Wdrożenia jest Szczegółem.</span>
+</div>
+<div >
+    Jeżeli kod komponentów może być tak napisany, aby mechanizmy komunikacyjne i mechanizmy rozdzielenia procesów były nieistotne, wtedy te mechanizmy są szczegółami. A szczegóły nigdy nie są częścią architektury.
+    <div class="separator" style="clear: both; text-align: center; margin:0.5em;">
+        <a href="https://4.bp.blogspot.com/-5RNzVJFmGe0/WNpiq2qbr1I/AAAAAAAAbps/B0gameE9chgJmGdUR1iQ1OQutbDUQmiCgCLcB/s1600/b3c46f84a80b16b0f5f44d55638d1d32.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="213" src="https://4.bp.blogspot.com/-5RNzVJFmGe0/WNpiq2qbr1I/AAAAAAAAbps/B0gameE9chgJmGdUR1iQ1OQutbDUQmiCgCLcB/s320/b3c46f84a80b16b0f5f44d55638d1d32.jpg" width="320" /></a>
+    </div>
+</div>
+<b style="font-weight: normal;">
+</b>
+<div class="lastParagraphDiv">
+    To oznacza, że nie ma czegoś takiego jak architektura mikroserwisów. Mikroserwisy są <span class="i">opcją wdrożenia</span>, a nie architekturą. Dobra architektura wszystkie opcjonalne kwestie utrzymuje otwartymi tak długo, jak to tylko możliwe. Dobra architektura odkłada decyzję, w jaki sposób system będzie wdrożony, aż do ostatniego możliwego momentu.
+</div>
+
+<div >
+    <span class="header">Zamierzona ignorancja.</span>
+</div>
+<div >
+    Wiele osób z pewnością będzie narzekać na przedstawiony punkt widzenia, że jeżeli nie zaprojektujesz swojego systemu dla mikroserwisów na początku, nie będziesz mógł ich podmienić na końcu.
+</div>
+
+<div class="quote">Tere - fere. Przecież to <a href="https://en.wikipedia.org/wiki/Big_Design_Up_Front" >BDUF</a></div>
+
+<div >
+    Dobrzy architekci systemów tworzą struktury, których komponenty systemu - czy to przypadki użycia, komponenty widoku, bazy danych, czy czego tam chcesz - nie mają pojęcia w jaki sposób są wdrażane i w jaki sposób komunikują się z innymi komponentami systemu. Zamierzona ignorancja pozwala architektom wybrać właściwy model wdrożeń, który działa w <span class="i">aktualnej </span>sytuacji i pozwala dopasowywać ten model do zmian. Jeżeli system musi się szeroko skalować wdrażasz to na mikroserwisach. Jeżeli system potrzebuje dwóch, trzech serwerów, wdrażasz to na mieszance procesów, wątków i JARów/DLLów. Jeżeli nigdy nie potrzebowałeś więcej niż jednego serwera, możesz wdrożyć to na jednym JAR/DLL.
+</div>
+
+<div class="lastParagraphDiv">
+    Łamanie tej zamierzonej ignorancji jest dobrą drogą do przekombinowania projektu systemu. Za często widziałem systemy, które przyjęły trzywarstwowe architektury licząc na skalowalność, tylko po to żeby odkryć, że te systemy nigdy nie będą musiały być wdrażane na więcej niż na jednej maszynie. Jak dużo prostsze mogłoby być to oprogramowanie, gdyby tylko projektanci na początku spróbowali opcji z jednym serwerem i zachowali niezależność komponentów od modelu wdrażania.
+</div>
+
+<div >
+    <span class="header">Inne sprawy</span>
+</div>
+<div >
+    Oczywiście są inne sprawy do rozważenia. Po pierwsze, jeżeli wdrażasz na mikroserwisach, masz wolną rękę co do wyboru Twojego ulubionego języka. Możesz pisać swoje mikroserwisy w Ruby, Clojure, Javie, C#, C++, C, Assemblerze, Pascalu, Delphi, PHP, Javascriptcie lub nawet w COBOLu. Po drugie, możesz wybrać dowolny framework jaki tylko Ci się podoba. Jeden mikroserwis może używać Ralisów, inny może używać springa, jeszcze inny może używać <a href="http://www.boost.org/">BOOST</a>a. Podobnie, każdy mikroserwis może używać innej bazy danych. Jeden może użyć Couch-a, podczas gdy inny może używać SQLServer i jeszcze inny może używać MySQL czy <a href="http://www.datomic.com/">Datomic</a>. Na koniec, mikroserwisy zapewniają duży poziom izolacji. Granice mikroserwisów są ostateczną formą rozdzielenia.
+</div>
+
+<div class="lastParagraphDiv">
+    Ten ostatni punkt wymaga uwypuklenia. Jeżeli dwa komponenty komunikują się ze sobą przez HTTP używając REST są bardzo mocno rozdzielone. Jedyną rzeczą łączącą te dwa komponenty razem jest schemat wiadomości REST; innymi słowy interfejs. Nie tylko są rozłączone przez interfejs, są rozłączone także w czasie wdrożenia. Te dwa serwisy nie muszą być odpalone w tym samym czasie; tak samo nie muszą być wyłączane w tym samym czasie. Jest oczywiście możliwość przeładowania mikroserwisu bez przeładowywania tych, które od niego zależą. To oznacza ogromne rozdzielenie.
+</div>
+
+<div >
+    <span class="header">Ograniczenia idąc w dół skali. </span>
+</div>
+<div >
+    Jak idziesz w dół skali, od mikroserwisów do procesów, do wątków, do JARków zaczynasz tracić niektóre z tych możliwości. Im bliżej jesteś JARków, tym mniej dowolności masz w wyborze języka. Masz także mniej dowolności co do frameworków i baz danych. Jest także większe ryzyko, że interfejsy pomiędzy komponentami będą z czasem coraz bardziej powiązane. I oczywiście ciężko przeładować komponenty, które żyją w jednym skompilowanym programie.
+</div>
+
+<div >
+    Ale czy na pewno? Właściwie <a href="https://en.wikipedia.org/wiki/OSGi">OSGi </a>istnieje w świecie Javy już od jakiegoś czasu. OSGi pozwala Ci przeładować pliki JAR w locie. Nie jest to tak wygodne jak kopnąć mikroserwis, ale nie jest też daleko od tego.
+</div>
+
+<div >
+    Jeżeli chodzi o języki, prawdą jest, że w ramach pojedynczej maszyny wirtualnej będziesz ograniczony. Z drugiej strony, JVM pozwoli Ci pisać w Javie, Clojure, Scali i JRuby, a to tylko niektóre wymienione.
+</div>
+
+<div >
+    Więc, tak, jeżeli pójdziesz w dół skali ograniczenia wzrosną; ale być może nie tak bardzo.
+</div>
+
+<div >
+    Jeżeli chodzi o frameworki i bazy danych, czy to naprawdę coś złego, zwłaszcza we wczesnej fazie rozwoju aplikacji, aby ograniczyć ich liczbę? Czy chcemy naprawdę zacząć z jednym zespołem używającym JPA, a drugim używającym Hibernate? Czy naprawdę chcemy, aby jeden komponent używał bazy Datomic, a drugi używał Oracla? I czy jeżeli pozwolimy na to, to czy nie tworzymy mnóstwa złożoności konfiguracyjnej?
+</div>
+
+<div class="lastParagraphDiv">
+    I, na koniec, łączenie przy użyciu interfejsów jest sprawą dyscypliny i dobrego projektowania. Nade wszystko, zwykły obiekt Java (POJO) przesłany przez polimorficzny interfejs nie jest bardziej powiązany niż REST. Trochę troski podczas projektowania komponentów sprawi, że będziemy mieli JARki, których interfejsy są tak luźno rozłączone jak mikroserwis.
+</div>
+<div class="header">
+    <a href="https://pl.wikipedia.org/wiki/TANSTAAFL">TANSTAAFL</a>
+</div>
+<div class="lastParagraphDiv">
+    Kiedy poruszasz się w górę skali, te ograniczenia odpadają, ale nowe problemy zaczynają się pojawiać. W jakim porządku startujesz system? W jakim porządku go wyłączasz? Jak radzisz sobie z konfiguracją i kontrolą tych wszystkich usług? Co z powielonym kodem? Co z wersjonowaniem formatów wiadomości? Ale zamiast mnie wyliczającego kwestie tutaj, możesz przeczytać o niektórych z nich <a href="http://eugenedvorkin.com/seven-micro-services-architecture-problems-and-solutions/">tu</a> i <a href="http://highscalability.com/blog/2014/4/8/microservices-not-a-free-lunch.html">tu</a>. Wystarczy w tym miejscu powiedzieć, że decyzja, aby użyć mikroserwisów jest decyzją typu "coś za coś" i nie jest przysłowiowym darmowym lunchem.
+</div>
+
+<div class="header">
+   Monolity i Marketerzy.
+</div>
+<div >
+    Na koniec słówko o nazewnictwie. Niektórzy obrońcy mikroserwisów lubią szufladkować inne podejście jako <span class="i">monolityczne</span>. To ujmujące pojęcie wybrane po to, aby zasugerować: “To jest złe”. Słowo <span class="i">monolit </span>oznacza “jedną skałę”. W domyśle oznacza to, że jeżeli nie używasz mikroserwisów, to musisz mieć wielkiego, zbitego potwora.
+</div>
+
+    <div class="quote">To są byzydury marketingowe.</div>
+
+<div class="lastParagraphDiv">
+    Dobrze zaprojektowany system podążający za Czystą Architekturą jest tak daleko od monolitu jak tylko się da. Wszak, jest to zestaw niezależnych dynamicznie wdrażanych komponentów (JARek albo DLLek), które są luźno połączone ze sobą, mogą być utrzymywane przez różne zespoły, mogą być pisane w ogromie różnych języków i mogą być podmieniane w locie używając narzędzi podobnych do OSGi. Trudno to nazwać monolitycznym.
+</div>
+
+<div class="header">
+   Podsumowanie i Rada [1]
+</div>
+<div >
+    Z tego wszystkiego mógłbyś sobie pomyśleć, że uważam mikroserwisy za zły pomysł; i że nie powinieneś ich używać. To nie tak. Mikroserwisy są doskonałym modelem wdrożeniowym, jeżeli tylko postarasz się, żeby pasował do Twoich rozwiązań. Jeżeli nie możesz wdrażać na mikroserwisy, to oznacza, że powiązałeś swoją architekturę z konkretnym modelem wdrożenia.
+</div>
+
+<div >
+    Z tego samego powodu, jeżeli możesz wdrożyć Twój system <span class="i">jedynie </span>na mikroserwisy, wtedy masz powiązaną architekturę z <span class="i">tym </span>konkretnym modelem wdrożenia; i to jest tak samo złe.
+</div>
+
+<div >
+    To, do czego chcę Cię przekonać, to abyś pomijał każdy konkretny model wdrożenia. Traktuj model wdrożenia jako szczegół, i zostaw sobie otwarty wybór. Zbuduj swój system tak, abyś mógł go wdrażać albo na JARki, albo na mikroserwisy, albo na cokolwiek pomiędzy.
+</div>
+
+<div >
+    Rozpocznij wdrażanie Twojego systemu na dynamicznie linkowane komponenty (JARki lub DLLki), i stopniowo idź w górę skali jak będzie potrzeba. Nie skacz na górę skali przewidując masową skalowalność. Zostaw sobie tę opcję otwartą zgodnie z Czystą Architekturą.
+</div>
+
+<div >
+    [1] Kimże jestem żeby dawać takie rady? Przecież jak napisałem w <a href="http://blog.cleancoder.com/uncle-bob/2014/09/19/MicroServicesAndJars.html" style="text-decoration: none;"><span >poprzednim artykule</span></a>, spotkałem się z pojęciem “Mikroserwisy” kilka tygodni temu.
+</div>
+
+<div >
+    Niedawno odkryłem <span class="i">pojęcie</span>; ale w ciągu ostatnich 40 lat mojej kariery miałem wielokrotnie możliwość projektowania i budowania systemów, które wdrażały komponenty jako niezależne programy dogadujące się ze sobą przez komunikaty. Mikroserwisy mogą być nowym pojęciem; ale ciężko powiedzieć, że to nowy pomysł.
+</div>
+<div class="smallGreyText">
+        <hr />
+        <div>Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+        <div><a href="http://blog.cleancoder.com/uncle-bob/2014/10/01/CleanMicroserviceArchitecture.html">http://blog.cleancoder.com/uncle-bob/2014/10/01/CleanMicroserviceArchitecture.html</a></div>
+        <div>Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+        <hr />
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+    <a href="https://4.bp.blogspot.com/-rik90e2sSAQ/WNpggW43OpI/AAAAAAAAbpg/6Fmgh6KmfpkVWA1KkHutrFWVs2h2CIlDwCLcB/s1600/mrCleanCode.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="https://4.bp.blogspot.com/-rik90e2sSAQ/WNpggW43OpI/AAAAAAAAbpg/6Fmgh6KmfpkVWA1KkHutrFWVs2h2CIlDwCLcB/s640/mrCleanCode.png" width="640" /></a>
+</div>
+
+</body>
+</html>
