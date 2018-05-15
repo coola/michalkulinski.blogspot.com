@@ -1,5 +1,5 @@
 <style type="text/css" scoped="scoped">
-    .lastParagraphDiv {
+    .paragraphDiv {
         margin-bottom: 2em;
     }
     .i {
@@ -18,8 +18,10 @@
 
 <meta charset="UTF-8">
 
-<div class="lastParagraphDiv">
-    Podobieństwa pomiędzy regułą podwójnego zapisu a Test-Driven Development są głębokie i jest ich dużo. 
+<h1>Wymówki</h1>
+
+<div class="paragraphDiv">
+    Podobieństwa pomiędzy <a href ="https://pl.wikipedia.org/wiki/Regu%C5%82a_podw%C3%B3jnego_zapisu">regułą podwójnego zapisu</a> a <a href="https://pl.wikipedia.org/wiki/Test-driven_development">Test-Driven Development</a> są głębokie i jest ich dużo. 
     <ul>
         <li>
             Obie są dyscyplinami używanymi przez ekspertów, którzy ostrożnie manipulują złożonymi dokumentami pełnymi tajemnych symboli, które muszą być pod groźbą okropnych konsekwencji, poprawne co do typu i położenia. 
@@ -33,7 +35,9 @@
     </ul>
 </div>
 
-
+<div class="paragraphDiv">
+	Ubierając to w bardziej konkretne definicje:
+</div>
 
 <div class="smallGreyText">
     <hr />
@@ -43,4 +47,73 @@
     <br/>
     <div>Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
     <hr />
+</div>
+
+<div class="paragraphDiv">
+<ul>
+	<li> 
+		Księgowi wprowadzają transakcje do dwóch różnych kont. Jedno jest konto Zobowiązania. Drugie jest konto Aktywa lub Udziały. Te konta są sumowane w bilansie i następująca zależność musi być spełniona: Aktywa + Udziały = Zobowiązania.
+    </li>
+	<li> 
+		Księgowi są uczeni księgować jedną transakcję na raz, sprawdzajac bilans po każdej takiej operacji.
+    </li>
+	<li> 
+		Programiści, którzy praktykują TDD wprowadzają podstawowe jednostki zachowania w dwa różne programy. Jeden w program testowy. Drugi w pożądany program produkcyjny. Te dwa powinny być wykonywane w natychmiastowy sposób pokazując czy produkcyjny kod działa tak jak go opisuje testowy kod. 
+    </li>
+	<li> 
+		Programiści, są uczeni dodawać tylko jedną podstawową jednostkę na raz do każdego z programów i uruchamiać testy po każdym takim dodaniu. 
+    </li>
+</ul>
+</div>
+<div class="paragraphDiv">
+	Tak, jak powiedziałem równoważność pomiędzy tymi dwiema dyscyplinami jest wyraźna. One mają w zasadzie identyczne podejście.
+</div>
+<div class="paragraphDiv">
+	I nic dziwnego. Obie dyscypliny służą temu samemu celowi. Obie pozwalają tym z nas, którzy ostrożnie manipulują złożonymi dokumentami pełnymi tajemnych symboli, które muszą być poprawne pod groźbą okropnych konsekwencji, być pewnym, że te konsekwencje nie będą napotkane. 
+</div>
+<div class="paragraphDiv">
+	Czy księgowi mają deadline'y? Czy menedżerowie naciskają na nich aby skończyli swoje księgowanie do konkretnej daty? Oczywiście! Nie ma różnicy w temacie ciśnienia. Księgowi czują presję tak samo jak czują ją programisci.
+</div>
+<div class="paragraphDiv">
+	Czy programy programistów są w jakiś sposób mniej ważne od kont księgowych? Oczywiście, że nie! Te programy są instrumentami, które pozwalają zarabiać albo oszczędzać pieniądze przedsiębiorstwa. One są krytcznie ważne. Po prostu są tak ważne, jak konta kięgowych. 
+</div>
+<div class="paragraphDiv">
+	Więc dlaczego księgowi są zdolni zachować swoją dyscyplinę tak całkowicie i tak wytrwale? Czy potrafisz wyobrazić sobie grupę księgowych rozmawiających między sobą: "Chłopaki, jesteśmy pod ścianą. Musimy skończyć te konta do Piątku. Więc róbcie wszystkie Aktywa i Udziały. Wrócimy do tego i zrobimy Zobowiązania później."
+</div>
+<div class="paragraphDiv">
+	Nie. Nie <i>możesz</i> sobie tego wyobrazić. No i przynajmniej nie powinienieś. Księgowi mogą iść do więzienia za takie rzeczy.
+</div>
+<div class="paragraphDiv">
+	No więc jak to jest, że tak dużo programistów jęczy i kwiczy skonfrontowana z dyscypliną TDD? Dlaczego pokazują tak wiele powodów, że TDD jest niepraktyczne, albo bezsensowne, albo...
+</div>
+<div class="paragraphDiv">
+	Czy potrafisz sobie wyobrazić księgowego robiącego wymóki takie jak:(Wszystko wzięte z artykułów o TDD)
+</div>
+<div class="paragraphDiv">
+	<ul>
+		<li>
+			Nigdy nie stosuję reguły podwójnego zapisu ponieważ śledzenie tych wszystkich kont zabiera zbyt wiele czasu.
+		</li>
+		<li>
+			Konta nie muszą być perfekcyjne, one muszę byc tylko wystarczająco dobre. Reguła podwójnego zapisu to przesada.
+		</li>
+		<li>
+			Wszyscy Ci księgowi, którzy praktykują regułę podwójnego zapisu są są po prostu zbyt fanatyczni. Podążają za niepotrzebnym dogmatem. 
+		</li>
+		<li>
+			Balansowanie Aktywów i Udziałów z Zobowiązaniami w zasadzie nie dowodzi, że konta są poprawne. Więc reguła podwójnego zapisu jest zbyt dużą pracą za zbyt mały zysk. 
+		</li>
+		<li>
+			Reguła podwójnego zapisu to brednie promowane przez konsultantów, którzy chcą po prostu zrobić pieniądze sprzedając książki, kursy i filmy. 
+		</li>
+		<li>
+			Reguła podwójnego zapisu jest martwa. Kolesie z Andersen Consulting napisali o tym na blogu.
+		</li>
+		<li>
+			Jestem przeciwko regule podwójnego, ponieważ doświadczenie pokazuje, że zapobiega ona pojawianiu się wysokiej jakości designu kont.
+		</li>
+		<li>
+			
+		</li>
+	</ul>
 </div>
