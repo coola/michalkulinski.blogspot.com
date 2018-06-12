@@ -1039,6 +1039,8 @@
                                                                         &lt;div class=&quot;date-posts&quot;&gt;
                                                                     </b:if>
                                                                     <div class='post-outer'>
+
+
                                                                         <b:include data='post' name='post'/>
                                                                         <b:include cond='data:blog.pageType in {&quot;static_page&quot;,&quot;item&quot;}' data='post' name='comment_picker'/>
                                                                     </div>
@@ -1393,6 +1395,7 @@
                                                                 <div class='post-outer'>
 
                                                                     <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+
                                                                         <b:if cond='data:post.thumbnailUrl'>
                                                                             <meta expr:content='data:post.thumbnailUrl' itemprop='image_url'/>
                                                                         </b:if>
@@ -1501,13 +1504,21 @@
                                                     </b:includable>
                                                     <b:includable id='post' var='post'>
                                                         <div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+
                                                             <b:if cond='data:post.firstImageUrl'>
                                                                 <meta expr:content='data:post.firstImageUrl' itemprop='image_url'/>
                                                             </b:if>
+
+
+
                                                             <meta expr:content='data:blog.blogId' itemprop='blogId'/>
                                                             <meta expr:content='data:post.id' itemprop='postId'/>
 
                                                             <a expr:name='data:post.id'/>
+
+
+
+
                                                             <b:if cond='data:post.title'>
                                                                 <h3 class='post-title entry-title' itemprop='name'>
                                                                     <b:if cond='data:post.link or (data:post.url and data:blog.url != data:post.url)'>
@@ -1524,6 +1535,16 @@
 
                                                             <!-- Then use the post body as the schema.org description, for good G+/FB snippeting. -->
                                                             <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' expr:itemprop='(data:blog.metaDescription ? &quot;&quot; : &quot;description &quot;) + &quot;articleBody&quot;'>
+
+                                                                <b:if cond='data:post.labels'>
+                                                                    <b:loop values='data:post.labels' var='label'>
+                                                                        <b:if cond='data:label.name == "wujek-bob"'>
+                                                                            <img style="float: right; width: 100px; height: 100px;" src="https://2.bp.blogspot.com/-VA3aoorvfUc/Wx-RKuvUwNI/AAAAAAAA2zE/x0RE6a9D8qccG_YbI85IBlru4M0-GoMNwCLcBGAs/s1600/uncleBob.png"
+                                                                                 alt="uncle bob label image" />
+                                                                        </b:if>
+                                                                    </b:loop>
+                                                                </b:if>
+
                                                                 <data:post.body/>
                                                                 <div style='clear: both;'/> <!-- clear for photos floats -->
                                                             </div>
@@ -2211,7 +2232,11 @@
                 <b:include name='quickedit'/>
             </div>
         </b:includable>
+
     </b:widget>
+
+
+
 </b:section-contents><b:section-contents id='footer-1'/><b:section-contents id='footer-2-1'>
     <b:widget id='Profile1' locked='false' title='O mnie' type='Profile'>
         <b:widget-settings>
