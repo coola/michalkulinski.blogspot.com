@@ -11,6 +11,15 @@
         font-size: 0.6em;
         margin:0 0.1em 0 0.1em;
     }
+    .cite {
+        padding: 1em;
+        margin: 1em;
+        border-left: solid;
+        border-color: #eef2f5;
+    }
+    .code{
+        font-family: monospace;
+    }
 
 </style>
 
@@ -19,12 +28,8 @@
 <h1>OO kontra FP</h1>
 
 <div class="paragraphDiv">
-    Przez kilka ostatnich lat programowałem w parach z ludźmi ucząc się Programowania Funkcyjnego, którzy manifestowali
+    Przez kilka ostatnich lat programowałem w parach z ludźmi uczącymi się Programowania Funkcyjnego, którzy manifestowali
     swoją niechęć do OO. To zwykle sprowadzało się do stwierdzenia pokroju: "Ooo, to za bardzo przypomina Obiekt".
-</div>
-
-<div class="paragraphDiv">
-    
 </div>
 
 <div class="smallGreyText">
@@ -39,7 +44,48 @@
 <br/>
 
 <div class="paragraphDiv">
+    Myślę, że to wynika z przekonania, że FP i OO są jakoś wzajemnie rozłączne. Wydaje mi się, że wiele osób myśli, że jeżeli program
+    jest funkcyjny w całości, to <i>nie jest</i> już zorientowany obiektowo. Przypuszczam, że ta opinia wynika z naturalnej
+    konsekwencji uczenia się czegoś nowego.
+</div>
 
+<div class="paragraphDiv">
+    Wtedy, kiedy zajmujemy się nową techniką, często mamy tendencję do odrzucania starych technik używanych przez nas wcześniej.
+    To jest naturalne, ponieważ wierzymy, że ta nowa technika będzie "lepsza" i stąd ta ta stara technika musi byś "gorsza".
+</div>
+
+<div class="paragraphDiv">
+    W tym wpisie stawiam tezę, że ponieważ OO i FP mają punkty wspólne, nie mogą być wzajemnie rozłączne. Dobry program funkcyjny może (i powinien)
+    być zorientowany obiektowo. I dalej, dobry program zorientowany obiektowo może (i powinien) być funkcyjny. Ale żeby osiągnąć ten cel musimy
+    bardzo ostrożnie zdefiniować nasze pojęcia.
+</div>
+
+<h3>Co to jest OO?</h3>
+
+<div class="paragraphDiv">
+    Zamierzam tutaj przyjąć abrdzo <a href="https://sjp.pwn.pl/sjp/redukcjonizm;2573615.html">redukcjonistyczną</a> postawę.
+    Jest wiele poprawnych definicji OO które obejmują bogaty zestaw pomysłów, zasad, technik, wzorców i filozofii. Zamierzam ominąć to wszystko
+    i skupić się na podstawach. Powód dla takiego redukcjonizmu jest taki, że te wszystkie bogactwa otaczające OO nie są
+    dla niego specyficzne; ale są częścia bogactwa tworzenia oprogramowania w ogólności. Tutaj, skupię się tylko na tej części OO,
+    która jest ostateczne i nierozerwalna.
+</div>
+
+<div class="paragraphDiv">
+    Rozważ te dwa wyrażenia:
+</div>
+
+<div class="paragraphDiv cite code">
+    <b>1</b>: f(o);
+    <br/>
+    <b>2</b>: o.f();
+</div>
+
+<div class="paragraphDiv">
+    Jaka jest różnica?
+</div>
+
+<div class="paragraphDiv">
+    
 </div>
 
 <div class="smallGreyText">
