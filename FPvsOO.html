@@ -85,25 +85,33 @@
 </div>
 
 <div class="paragraphDiv">
-    Jasne jest to, że właściwie nie ma różnicy w znaczeniu. Cała różnica siedzi w składni. Ale jedno wyrażenie wygląda proceduralnie, a drugie wygląda na
-    zorientowane obiektowo. A to z takiego powodu, że wnioskujemy dodatkowe zachowanie z wyrażenia 2., którego nie znajdujemy
-    w wyrażeniu 1. Tym dodatkowym zachowaniem w wyrażeniu jest: polimorfizm.
+    Jasne jest to, że właściwie nie ma różnicy w znaczeniu. Cała różnica siedzi w składni. Ale jedno wyrażenie wygląda proceduralnie, a drugie wygląda na zorientowane obiektowo. A to z takiego powodu, że wnioskujemy dodatkowe zachowanie z wyrażenia 2., którego nie znajdujemy w wyrażeniu 1. Tym dodatkowym zachowaniem w wyrażeniu jest: polimorfizm.
 </div>
 
 <div class="paragraphDiv">
-    Kiedy widzimy wyrażenie 1. widzimy 
-funkcję f wołaną na rzecz obiektu o. 
-Wnioskujemy, że jest tylko jedna taka 
-funkcja o nazwie f i że nie jest jedną ze 
-standardowych funkcji otaczających o.    
+    Kiedy widzimy wyrażenie 1. widzimy funkcję nazwaną <span class="code">f</span> wołaną na obiekcie o nazwie <span class="code">o</span>. Wnioskujemy, że jest tylko jedna taka funkcja o nazwie <span class="code">f</span> i że nie jest jedną z grupy standardowych funkcji otaczających <span class="code">o</span>.
 </div>
 
 <div class="paragraphDiv">
-    Z drugiej strony, kiedy patrzymy na 
-wyrażenie 2. widzimy obiekt o nazwie o, 
-któremu wysyłana jest wiadomość o nazwie 
-f.	
+    Z drugiej strony, kiedy patrzymy na wyrażenie 2. widzimy obiekt o nazwie <span class="code">o</span>, któremu wysyłana jest wiadomość o nazwie <span class="code">f</span>. Wnioskujemy, że tam mogą być inne rodzaje obiektów, które akceptują wiadomość nazwaną <span class="code">f</span> i z tego powodu nie wiemy która szczególna funkcja <span class="code">f</span> właściwie zostanie wywołana. <i>Zachowanie jest zależne od typu obiektu <span class="code">o</span></i> tzn. <span class="code">f</span> jest polimorficzna.
+
 </div>
+
+<div class="paragraphDiv">
+    To spodziewanie sie polimorfizmu jest istotą programowania OO. To jest definicja redukcjonistyczna; i jest nierozerwalnie związana z OO. OO bez polimorfizmu nie jest OO. Wszystkie inne cechy 00 takie, jak:
+    <a href="https://pl.wikipedia.org/wiki/Hermetyzacja_(informatyka)">enkapsulacja danych</a>, i metody łączenia się z tymi danymi, i nawet dziedziczenie jest bardziej powiązane z wyrażeniem 1. niż z wyrażeniem 2.
+</div>
+
+<div class="paragraphDiv">
+    Programiści C i Pascala (i do pewnego stopnia nawet programiści Fortrana i Cobola) od zawsze tworzyli systemy złożone z enkapsulowanych funkcji i struktur danych. Nie wymaga to więc języka
+    <a href="https://pl.wikipedia.org/wiki/Obiektowy_j%C4%99zyk_programowania">OOPL</a> żeby tworzyć i używać takich enkapsulowanych struktur. Enkapsulacja i nawet proste dziedziczenie jest oczywiste i naturalne w tego typu językach. (Nawet bardziej naturalne w C i Pascal niż w innych.)
+</div>
+
+
+
+
+
+
 
 <div class="smallGreyText">
     <hr />
