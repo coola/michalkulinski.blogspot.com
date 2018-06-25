@@ -107,10 +107,55 @@
     <a href="https://pl.wikipedia.org/wiki/Obiektowy_j%C4%99zyk_programowania">OOPL</a> żeby tworzyć i używać takich enkapsulowanych struktur. Enkapsulacja i nawet proste dziedziczenie jest oczywiste i naturalne w tego typu językach. (Nawet bardziej naturalne w C i Pascal niż w innych.)
 </div>
 
+<div class="paragraphDiv">
+    A więc tą rzeczą, która prawdziwie odróżnia programy OO od programów nie-OO jest polimorfizm.
+</div>
 
+<div class="paragraphDiv">
+    Mógłbyś poskarżyć się mówiąc, że przecież polimorfizm może być osiągnięty poprzez użycie instrukcji switch lub długich łańcuchów if/else w środku <span class="code">f</span>. To prawda, więc muszę dodać jeszcze jedno ograniczenie do OO.
+</div>
 
+<div class="paragraphDiv cite">
+    Mechanizm polimorfizmu nie może stworzyć zależności w kodzie od wołającego do wołanego.
+</div>
 
+<div class="paragraphDiv">
+    Dla wyjaśnienia, spójrz jeszcze raz na te dwa wyrażenia. Wyrażenie 1: <span class="code">f(o)</span>, wydaje się posiadać zależność w kodzie do funkcji <span class="code">f</span>. Wnioskujemy to z tego, co już wcześniej wywnioskowaliśmy, że tam jest tylko jedna funkcja <span class="code">f</span> i dlatego wołający musi coś wiedzieć o wołanym.
+</div>
 
+<div class="paragraphDiv">
+    Natomiast, gdy patrzymy na Wyrażenie 2. <span class="code">o.f()</span> wnioskujemy coś całkiem innego. Wiemy, że może tam być wiele implementacji <span class="code">f</span>, i nie wiemy, która z tych funkcji <span class="code">f</span> zostanie tak naprawdę zawołana. Zatem kod źródłowy, który zawiera Wyrażenie 2. <i>nie ma</i> zależności kodu źródłowego funkcji, która jest wołana.
+</div>
+
+<div class="paragraphDiv">
+    W bardziej konkretnych pojęciach oznacza to, że moduły (pliki źródłowe), które zawierają polimorficzne wywołania do funkcji nie mogą zależeć, w jakikolwiek sposób, od modułów (plików źródłowych), które zawierają implementacje tych funkcji. Nie może tam być żadnego <span class="code">include</span> czy <span class="code">use</span> czy <span class="code">require</span> ani żadnej innej deklaracji tego typu, która powodowałaby, że jeden plik źródłowy zależy od drugiego.
+</div>
+
+<div class="paragraphDiv">
+    A więc naszą redukcjonistyczną definicją OO będzie:
+</div>
+
+<div class="paragraphDiv cite">
+    Technika wywoływania funkcji przy użyciu dynamicznego polimorfizmu, w której kod źródłowy wołający nie zależy od kodu źródłowego wołanego.
+</div>
+
+<h3>Co to jest FP?</h3>
+
+<div class="paragraphDiv">
+    Znowu, zamierzam być bardzo redukcjonistyczny. FP ma bogatą historię i tradycję, która sięga daleko poza oprogramowanie. Są zasady, techniki, teorie, filozofie i pomysły, które władają tym paradygmatem. Zamierzam zignorować je wszystkie i od razu przejść do sedna, do nierozerwalnego atrybutu, który odgradza FP od każdego innego stylu. I to jest, najprościej, to:
+</div>
+
+<div class="paragraphDiv cite">
+    <span class="code">f(a) == f(b) kiedy a == b.</span>
+</div>
+
+<div class="paragraphDiv">
+    W programie funkcyjnym, każdorazowo, gdy konkretną funkcję z konkretną wartością, otrzymujesz ten sam rezultat; nie ważne jak długo będzie działał program. To jest czasami nazywane <a href="https://en.wikipedia.org/wiki/Referential_transparency">"przejrzystością referencyjną"</a>.
+</div>
+
+<div class="paragraphDiv">
+    Konsekwencje tego są takie, że funnkcja <span class="code">f</span> nie może zmienić żadnego globalnego stanu, który wpływałby na zachowanie funkcji <span class="code">f</span>. Co wiecej, jeżeli założymy, że ta funkcja <span class="code">f</span> reprezentuje wszystkie funkcje w systemie, to
+</div>
 
 
 <div class="smallGreyText">
