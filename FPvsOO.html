@@ -150,13 +150,58 @@
 </div>
 
 <div class="paragraphDiv">
-    W programie funkcyjnym, każdorazowo, gdy konkretną funkcję z konkretną wartością, otrzymujesz ten sam rezultat; nie ważne jak długo będzie działał program. To jest czasami nazywane <a href="https://en.wikipedia.org/wiki/Referential_transparency">"przejrzystością referencyjną"</a>.
+    W programie funkcyjnym, każdorazowo, gdy konkretną funkcję z konkretną wartością, otrzymujesz ten sam rezultat; nie ważne jak długo będzie działał program. To jest czasami nazywane "<a href="https://en.wikipedia.org/wiki/Referential_transparency">przejrzystością referencyjną</a>".
 </div>
 
 <div class="paragraphDiv">
-    Konsekwencje tego są takie, że funnkcja <span class="code">f</span> nie może zmienić żadnego globalnego stanu, który wpływałby na zachowanie funkcji <span class="code">f</span>. Co wiecej, jeżeli założymy, że ta funkcja <span class="code">f</span> reprezentuje wszystkie funkcje w systemie, to
+    Konsekwencje tego są takie, że funkcja <span class="code">f</span> nie może zmienić żadnego globalnego stanu, który wpływałby na zachowanie funkcji <span class="code">f</span>. Co wiecej, jeżeli założymy, że ta funkcja <span class="code">f</span> reprezentuje wszystkie funkcje w systemie - wtedy wszystkie funkcje w systemie powinny być przejrzyste referencyjnie - wtedy żadna funkcja w systemie nie powinna w ogóle zmienić żadnego globalnego stanu. Żadna funkcja w systemie nie może zrobić niczego co powodowałoby to, że inna funkcja w systemie zwraca różne wartości dla tych samych wejść.
 </div>
 
+<div class="paragraphDiv">
+    Głębsza konsekwencja tego jest taka, że żadna nazwana wartość nie może być kiedykolwiek zmieniona. Co znaczy, <i>nie może być żadnego operatora przypisania.</i>
+</div>
+
+<div class="paragraphDiv">
+I kiedy pomyślisz o tym bardzo ostrożnie możesz dojść do wniosku, że program ułożony z niczego innego niż referencyjnie przejrzystych funkcji nie może w ogóle nic zrobić - no bo przecież każdy użyteczny program zmienia stan <i>czegoś</i>; nawet, gdy to jest tylko stan drukarki czy ekranu. Jednak, gdy wyłączymy sprzęt, i jakikolwiek element zewnętrznego świata, z naszego założenia o referencyjnej przejrzystości, wtedy wychodzi zamiast tego, że możemy stworzyć całkiem użyteczne systemy.
+</div>
+
+<div class="paragraphDiv">
+Tym trikiem jest, oczywiście, <a href="https://pl.wikipedia.org/wiki/Rekurencja">rekurencja</a>. Rozważ funkcję, która przyjmuje
+    <span class="code">stanową</span> strukturę danych jako argument. Argument zawiera całą informację o stanie, jaką funkcja używa do swojego działania. Kiedy robota jest zrobiona funkcja tworzy nową <span class="code">stanową</span> strukturę danych z uaktualnionymi wartościami. Jak ostatni krok, funkcja woła siebie samą z nową <span class="code">stanową</span> strukturą.
+</div>
+
+<div class="paragraphDiv">
+    To jest tylko jeden z tych prostych trików, których program funkcyjny może używać do śledzenia zmian w stanie zewnętrznym, które wydają się właściwie nie zmieniać żadnego wewnętrznego stanu[1].
+</div>
+
+<div class="paragraphDiv">
+    A więc, redukcjonistyczna definicja programowania funkcyjnego brzmi:
+</div>
+
+<div class="paragraphDiv cite">
+    Przejrzystość referencyjna - żadnych ponownych przypisań wartości.
+</div>
+
+<h3>FP kontra OO</h3>
+
+<div class="paragraphDiv">
+    Do tej chwili już obie społeczności OO i FP zdążyły na mnie skierować swoje pistolety. Redukcjonizm nie jest dobrą drogą do zdobycia przyjaciół. Ale czasami jest użyteczny. W tym przypadku, myślę, przydaje się do rzucenia nieco światła na ikonę FP kontra OO, która wydaje się kręcić w kółko.
+</div>
+
+<div class="paragraphDiv">
+Wydaje się, że te dwie redukcjonistyczne definicje, które wybrałem, są do siebie kompletnie <a href="https://pl.wikipedia.org/wiki/Ortogonalno%C5%9B%C4%87">ortogonalne</a>. Polimorfizm i przejrzystość referencyjna nie mają ze sobą nic wspólnego. Nie ma między nimi zbieżności.
+</div>
+
+<div class="paragraphDiv">
+    Ale ortogonalność nie znaczy znaczy <a href="https://pl.wikipedia.org/wiki/Problem_wzajemnego_wykluczania">wzajemnego wykluczenia</a> (tylko spójrz na <a href="https://pl.wikipedia.org/wiki/James_Clerk_Maxwell">Jamesa Clerka Maxwella</a>). Jest całkowicie możliwe zbudowanie systemu, który zawiera te oba: dynamiczny polimorfizm i referencyjną przejrzystość. To nie tylko jest możliwe, to jest <i>pożądane</i>!
+</div>
+
+<div class="paragraphDiv">
+    Dlaczego to jest pożądane? Dokładnie z tych samych powodów, dla których te oba aspekty są pożądane w pojedynkę. Pożądamy systemów zbudowanych z użyciem dynamicznego polimorfizmu, ponieważ mają
+    <a href="https://pl.wikipedia.org/wiki/Zale%C5%BCno%C5%9B%C4%87_oprogramowania">niską zależność</a>.
+    Zależności mogą być odwracane poprzez granice architektoniczne. Są testowalne poprzez Mocki, Fake'i i inne rodzaje
+    <a href="http://xunitpatterns.com/Test%20Double.html">Dublerów Testowych</a>. Jedne moduły mogą być zmieniane bez potrzeby zmieniania na siłę innych modułów. To sprawia, że takie systemy łatwiej zmieniać i ulepszać.
+</div>
 
 <div class="smallGreyText">
     <hr />
