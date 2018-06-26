@@ -203,6 +203,30 @@ Wydaje się, że te dwie redukcjonistyczne definicje, które wybrałem, są do s
     <a href="http://xunitpatterns.com/Test%20Double.html">Dublerów Testowych</a>. Jedne moduły mogą być zmieniane bez potrzeby zmieniania na siłę innych modułów. To sprawia, że takie systemy łatwiej zmieniać i ulepszać.
 </div>
 
+<div class="paragraphDiv">
+    Pożądamy takze systemów które, są zbudowane przy użyciu referencyjnej przejrzystości, ponieważ są one przewidywalne. Niezdolność systemu do zmiany wewnetrznego stanu czyni system łątwiejszym do zrozumienia, zmiany i poprawy. To znacznie zminiejsza szanse wystąpienia
+    <a href="https://en.wikipedia.org/wiki/Race_condition#Software">sytuacji wyścigu</a> i innych problemów współbieżnej aktualizacji.
+</div>
+
+<div class="paragraphDiv">
+    Podsumowanie jest następujące:
+</div>
+
+<div class="paragraphDiv cite">
+    Nie ma czegoś takiego jak FP kontra OO.
+</div>
+
+<div class="paragraphDiv">
+    FP i OO świetnie współpracują razem. Oba elementy są pożądanymi częściami współczesnych systemów. system, który jest zbudowany na zasadach obu OO i FP będzie maksymalizował elastyczność, utrzymywalność, testowalność, prostotę i stabilność. Wyrzucając jedną na korzyść drugiej tylko osłabi się strukturę systemu.
+</div>
+
+<hr/>
+
+<div class="paragraphDiv">
+    [1] Odkąd używamy maszyn z <a href="https://pl.wikipedia.org/wiki/Architektura_von_Neumanna">architekturą Von Neumanna</a>, musimy założyć, że istnieją komórki pamięci, które faktycznie zmieniają stan. W przypadku rekurencyjnego algorytmu, który opisałem; optymalizacja
+    <a href="https://pl.wikipedia.org/wiki/Rekurencja_ogonowa">rekurencji ogonowej</a> zapobiegnie tworzeniu się nowych ramek stosu, i spowoduje  zamaist tego ponowne użycie oryginalnej ramki stosu. Ale to naruszenie referencyjnej przejrzystości jest (zwykle) w całości ukryte i nieistotne.
+</div>
+
 <div class="smallGreyText">
     <hr />
     <div>Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
