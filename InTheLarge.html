@@ -31,12 +31,23 @@
     Od pierwszych chwil rewolucji Agile zastanawialiśmy się nad pytaniem o <i>Agile w Dużej Skali</i>. Jak możemy wziąć zasady lekkiego, częstego, przyrostowego, o wysokim poziomie informacji zwrotnej rozwoju oprogramowania  i zastosować je do naprawdę <i>ogromnych</i> projektów?
 </div>
 
+<div class="smallGreyText">
+    <hr />
+    <div>Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+    <br/>
+    <div><a href="https://blog.cleancoder.com/uncle-bob/2018/04/02/InTheLarge.html">https://blog.cleancoder.com/uncle-bob/2018/04/02/InTheLarge.html</a></div>
+    <br/>
+    <div>Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+    <hr />
+</div>
+<br/>
+
 <div class="paragraphDiv">
     Pierwszymi odpowiedziami były takie rzeczy jak <i>Scrum Scrumów</i>. Pomysł był taki, żeby rekurencyjnie zastosować zasady rozwoju oprogramowania Agile na coraz wyższych poziomach skali. Projekt, który wymagał więcej niż jednego zespołu składającego się z 5-12 developerów mogłby być zbudowany z dwóch takich zespołów z zespołem wyższego poziomu do "doglądania?" ich.
 </div>
 
 <div class="paragraphDiv">
-    Zauważ znak zapytania. Jak tylko zaczynamy rozważać większe projekty, nie udaje nam się uniknąć hierarchii; ale hierarchia wydaje się być herezją w Agile. Poza tym Agile jest o <a href="https://pl.wikipedia.org/wiki/Egalitaryzm">egalitaryźmie</a>. Jest o odrzucieniu rozkazów i kontroli. Jest o odrzucieniu planów i harmonogramów i...
+    Zauważ znak zapytania. Jak tylko zaczynamy rozważać większe projekty, nie udaje nam się uniknąć hierarchii; ale hierarchia wydaje się być herezją w Agile. Poza tym Agile jest o <a href="https://pl.wikipedia.org/wiki/Egalitaryzm">egalitaryźmie</a>. Jest o odrzuceniu zarządzania i kontroli. Jest o odrzucieniu planów i harmonogramów i...
 </div>
 
 <div class="paragraphDiv cite">
@@ -89,17 +100,102 @@
     Agile było rewolucją w tym, w jaki sposób stosunkowo <i>małe</i> zespoły mogą rozwijać stosunkowo <i>małe</i> projekty oprogramowania. Zauważ nacisk na słowo <i>mały</i>.
 </div>
 
-<div class="smallGreyText">
-    <hr />
-    <div>Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
-    <br/>
-    <div><a href="https://blog.cleancoder.com/uncle-bob/2018/04/02/InTheLarge.html">https://blog.cleancoder.com/uncle-bob/2018/04/02/InTheLarge.html</a></div>
-    <br/>
-    <div>Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
-    <hr />
+<div class="paragraphDiv">
+  Zespół Agile jest świetny do stworzenia systemu oprogramowania o około 100'000 liniach kodu. I te 100'000 linii kodu może zrobić naprawdę wiele. Więc dla wielu przedsiębiorstw jeden lub dwa zespoły Agile są wystarczające dla zrobienia czegokolwiek, co tylko te przedsiębiorstwa chcą zrobić.
 </div>
-<br/>
 
+
+<div class="paragraphDiv">
+    Z drugiej strony, jęśli potrzebujesz stworzyć system na dziesięć milion linii, jeden zespół Agile nie da rady. Potrzebujesz ojkołe setki zespołów żeby zbudować system z dziesięciu milionów linii kodu.
+</div>
+
+<div class="paragraphDiv">
+    Ale jak zarządzisz setką zespołów agile'owych? W jaki sposób podasz im historyjki użytkownika. Jak skoordynujesz interjesy pomiędzy nimi? Jak posegregujesz te dziesięć milionów linii kodu w sposób, dzięki któremu te zespoły będą mogły pracować niezależnie od siebie?
+</div>
+
+<div class="paragraphDiv">
+    I jak (i to było prawdziwe pytanie) zrobisz to w sposób "Agile"?
+</div>
+
+<div class="paragraphDiv cite">
+    Odpowiedź brzmi: nie zrobisz!
+</div>
+
+<div class="paragraphDiv">
+    Sprawa jest taka. My, ludzie jesteśmy całkiem dobrzy w budowaniu wielkich projektów. Wiedzieliśmy jak to robić już od całkiem długiego okresu czasu.
+</div>
+
+[obrazek piramid]
+
+<div class="paragraphDiv">
+    Tylko pomyśl o <i>naprawdę dużych</i> projektach, które, my ludzie, ukończyliśmy.
+</div>
+
+<div class="paragraphDiv">
+    <ul>
+        <li>Apollo: wrzuciliśmy człowieka na księżyc!</li>
+        <li>D-Day: Zaatkowaliśmy Normandię z 156'000 żołnierzy w poprzek 50 milowej, ciężko ufortyfikowanej granicy.</li>
+        <li>Mamy światową ekonomię utrzymującą 8 miliardów ludzi.</li>
+        <li>Świat jest pokryty ogromną cyfrową siecią pozwalającą czytać Ci ten tekst na telefonie w chwili, kiedy łazisz po lesie!</li>
+        <li>Potrzebujesz <a href="https://pl.wiktionary.org/wiki/wihajster">wihajster</a>? Będziesz go miał dostarczony jutro, albo nawet dziś, po kilka kliknięciach na Twoim telefonie.</li>
+    </ul>
+</div>
+
+<div class="paragraphDiv">
+    Nie potrzebuję iść dalej. My, ludzie, jesteśmy całkiem dobrzy w robieniu wielkich rzeczy. To jest to <i>kim</i> jesteśmy. To jest to <i>co</i> robimy. Wrzucamy czerwone, sportowe samochody na orbitę słońca. My robimy duże rzeczy.
+</div>
+
+<div class="paragraphDiv">
+    Więc po co w ogóle przejmujemy się wielkim oprogramowaniem? My już dawno wiemy jak budować wielkie oprogramowanie. Robimy to już od 50 lat lub więcej. "Wielka" część nigdy właściwie nie była problemem. Problem, który rozwiązaliśmy dzięki "Agile" to była <i>mała</i> część. To, czego <i>nie</i> widzieliśmy jak robić dobrze, to było prowadzenie <i>małych</i> projektów.
+</div>
+
+<div class="paragraphDiv">
+    Zawsze wiedzieliśmy jak robić wielkie projekty. Prowadzisz wielkie projekty w taki sposó, że dzielisz je na kilka <i>małych</i> projektów. Agile załatwiło tę "małą" część. Agile tak naprawdę nie ma nic wspólnego z tą dużą częścią.
+</div>
+
+<div class="paragraphDiv">
+    Ale, ale, ale, ale... Egalitaryzm! Odrzucenie planów i Zarządzania i Kontroli! Agile!
+</div>
+
+<div class="paragraphDiv cite">
+    Byzydury!
+</div>
+
+<div class="paragraphDiv">
+    Agile nigdy nie był o egalitaryźmie. Agile nigdy nie był o odrzuceniu planów, albo o odrzuceniu zarządzania i kontroli. W rzeczy samej, Agile było wcieleniem komórki najmniejszego poziomu zarządzania i kontroli: Zespołu.
+</div>
+
+<div class="paragraphDiv">
+    Tak, w pewnym momencie na drodzę w dół hierarchii zarządzanie i kontrola przestaje być efektywna. Mały zespół osób może pracować razem w krótkich cyklach z dużym poziomem informacji zwrotnej i intensywnym porozumiewaniem się aby osiągnąć cel. To jest zespół Agile. Na tym poziomie ostre zarządzanie i kontrola są bardzo szkodliwe. Ale powyżej tego poziomu kontrola i zarządzania zaczynają być niezbędne. Im wyżej idziesz, tym bardziej konkretne i oczywiste to się staje. Nie projektujesz, budujesz, produkujesz i sprzedajesz setek milionów iPhone'ów bez strasznej ilości zarządzania i kontroli.
+</div>
+
+<div class="paragraphDiv">
+    Jest całkiem sporo strategii Agile W Dużej Skali tu i tam. Były na ten temat pisane książki i blogi. Całe przedsiębiorstwa doradcze było tworzone, aby wprowadzać podejście Agile W Dużej Skali do innych przedsiębiorstw. Nie ma w tym nic złego.
+</div>
+
+<div class="paragraphDiv">
+    Nie ma nic złego w tych strategiach i technikach opisanych przez te podejścia Agile W Dużej Skali. Oprócz jednej rzeczy. Nie są Agile. Nie mają nic wspólnego z Agile. Raczej, one są odmianą strategii i technik "w klimacie" Agile, których ludzie używali przez tysiąclecia do tworzenia wielkich rzeczy.
+</div>
+
+<div class="paragraphDiv">
+    Ten klimat wynika z użycia słownictwa i pomysłów z Agile. Nie ma nic złęgo w tym klimacie - jest ok. Jeżeli uważasz, że używanie słów i pomysłów Agile coś daje, idź w ten klimat. Ale nie przejmuj się nadmiernie rzeczywistą "Agile-nością" tego. W momencie, gdy robisz coś dużego, opuszczasz krainę Agile. Zapewne Twoje zespoły programistyczne używają dyscyplin Agile; ale całościowy projekt nie jest już Agile.
+</div>
+
+<div class="paragraphDiv">
+    Bo Agile jest o <i>małych</i> rzeczach.
+</div>
+
+<hr/>
+
+<div class="paragraphDiv">
+[1] W tych dniach, komputery miały przełączniki na przednim panel, co pozwalało Ci zatrzymać wykonywanie, i wtedy mogłeś uruchamiać poszczególne instrukcje programu krok za krokiem. Panel przedni miał światełka, które pokazywały zawartości różnych rejestrów. To pozwalało Ci obserować co się działo podczas wykonywania Twojego programu.
+</div>
+
+<div class="paragraphDiv">
+    Spójrz na przełączniki na po prawej na dole na obrazku poniżej. Zobaczysz przełączniki <i>Sing Step</i> i <i>Sing Inst</i>. Sing Step - jeden krok to był jeden cykl zegara. Instrukcja zawsze trwała kilka cykli zegara. Mogłeś więc obserwować jak uruchomienie instrukcji działa od wewnątrz.
+</div>
+
+[obrazke PDP 8]
 
 <div class="smallGreyText">
     <hr />
