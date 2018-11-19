@@ -1,0 +1,68 @@
+<div class="paragraphDiv">
+Skauci mają zasadę: "Zawsze zostawiaj obozowisko czystsze niż je zastałeś." Jeśli zastaniesz bałagan, posprzątaj go, niezależnie od tego, kto go zrobił. Celowo ulepszaj otoczenie dla następnych obozowiczów. W rzeczywistości, oryginalna forma tej zasady, zapisana przez Roberta Stephensona Smytha Badena-Powella, ojca skautingu, brzmi następująco: "Postaraj się zostawić świat choć trochę lepszym, niż go zastałeś."
+</div>
+<div class="smallGreyText">
+<hr />
+<div>
+Powyższy tekst jest tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+<br />
+<div>
+<a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule</a>
+</div>
+<br />
+<div>
+Bazowałem na tłumaczeniu jakie dokonał Rafał Legiędź. <a href="https://twitter.com/rafek">@rafek</a>.
+</div>
+<br />
+<div>
+na nieistnieącej już stronie 97rzeczy.devblogi.pl.
+</div>
+<br />
+<div>
+Archiwum na <a href="https://web.archive.org/web/20160328192052/http://97rzeczy.devblogi.pl/artykuly/8/zasada-skautow">Wayback Machine</a></div>
+<br />
+<div>
+Licencja oryginalnego tekstu: Creative Commons Attribution 3
+</div>
+<hr />
+</div>
+
+<br />
+<div class="paragraphDiv">
+Co byłoby gdybyśmy podążali według tej samej zasady podczas naszego kodowania: "Zawsze wysyłaj do repozytorium moduł czystszy niż go pobrałeś"? Co byłoby gdybybyśmy zawsze wkładali trochę wysiłku, nieważne jak małego, aby ulepszyć moduł, niezależnie od tego, kto był oryginalnym autorem? Jaki byłby rezultat?</div>
+<div class="paragraphDiv">
+Myślę, że jeżeli wszyscy pracowalibyśmy według tej zasady, to bylibyśmy świadkami końca nieustającego pogarszania się naszego oprogramowania. Zamiast tego, nasze systemy, ewoluując stawałyby się coraz lepsze. Dostrzeglibyśmy <i>zespoły,</i> które dbają o system jako całość, a nie tylko indywidualne jednostki dbające o swoje małe części.</div>
+<div class="paragraphDiv">
+Nie sądzę, aby ta zasada była prośbą o zbyt wiele. Nie musisz doprowadzać każdego modułu do perfekcji przed oddaniem go do repozytorium. Po prostu musisz tylko sprawić, aby stał się <i>odrobinę lepszy</i> niż go zastałeś. Oczywiście oznacza to, że każdy kod jaki oddajesz do modułu musi być czysty. Oznacza to również, że poprawisz chociaż jedną rzecz zanim skommitujesz moduł z powrotem do repozytorium. Mógłbyś po prostu poprawić nazwę zmiennej, albo podzielić długą funkcję na dwie mniejsze. Mógłbyś usunąć cykliczne zależności, albo wprowadzić interfejs, aby odłączyć kontrakt od detali.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://3.bp.blogspot.com/-JOCvxJCrxbU/W_J9nm-pShI/AAAAAAAA8A8/cgd64DOgeTwZj7I0yuPL7BqpkSz9F5YigCLcBGAs/s1600/harcerstwo.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="555" data-original-width="683" height="325" src="https://3.bp.blogspot.com/-JOCvxJCrxbU/W_J9nm-pShI/AAAAAAAA8A8/cgd64DOgeTwZj7I0yuPL7BqpkSz9F5YigCLcBGAs/s400/harcerstwo.png" width="400" /></a></div>
+<br />
+Szczerze mówiąc, to brzmi jak zwykły dobry nawyk - jak mycie rąk po skorzystaniu z ubikacji, bądź wrzucenie śmieci do kosza zamiast na ziemię. W rzeczy samej. Fakt zostawiania bałaganu w kodzie powinien być tak samo nieakceptowalny społecznie, jak <i>zaśmiecanie</i>. To powinno być coś, czego po prostu się nie robi.</div>
+<div class="paragraphDiv">
+Ale to coś wiecej niż to. Dbanie o własny kod to jedno. Dbanie o kod zespołu to co innego. Zespoły pomagają sobie i wzajemnie po sobie sprzątają. Pracują trzymając się Zasady Skautów, ponieważ jest dobra dla wszystkich, a nie tylko dla ich samych.</div>
+<div class="smallGreyText">
+<hr />
+<div>
+Powyższy tekst jest tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+<br />
+<div>
+<a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule</a>
+</div>
+<br />
+<div>
+Bazowałem na tłumaczeniu jakie dokonał Rafał Legiędź. <a href="https://twitter.com/rafek">@rafek</a>.
+</div>
+<br />
+<div>
+na nieistnieącej już stronie 97rzeczy.devblogi.pl.
+</div>
+<br />
+<div>
+Archiwum na <a href="https://web.archive.org/web/20160328192052/http://97rzeczy.devblogi.pl/artykuly/8/zasada-skautow">Wayback Machine</a></div>
+<br />
+<div>
+Licencja oryginalnego tekstu: Creative Commons Attribution 3
+</div>
+<hr />
+</div>
