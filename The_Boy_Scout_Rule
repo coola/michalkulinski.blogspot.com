@@ -1,5 +1,5 @@
 <div class="paragraphDiv">
-Skauci mają zasadę: "Zawsze zostawiaj obozowisko czystsze niż je zastałeś." Jeśli zastaniesz bałagan, posprzątaj go, niezależnie od tego, kto to zrobił. Celowo ulepszaj otoczenie dla następnych obozowiczów. W rzeczywistości, oryginalne brzmienie tej zasady, zapisanej przez Roberta Stephensona Smytha Baden-Powella, ojca skautingu, brzmi następująco: "Postaraj się zostawić świat choć trochę lepszym, niż go zastałeś."
+Skauci mają zasadę: "Zawsze zostawiaj obozowisko czystsze niż je zastałeś." Jeśli zastaniesz bałagan, posprzątaj go, niezależnie od tego, kto to zrobił. Celowo ulepszaj otoczenie dla następnych obozowiczów. W rzeczywistości, oryginalne brzmienie tej zasady, zapisanej przez Roberta Stephensona Smytha Baden-Powella, ojca skautingu, jest następujące: "Postaraj się zostawić świat choć trochę lepszym, niż go zastałeś."
 </div>
 <div class="smallGreyText">
 <hr />
@@ -31,16 +31,16 @@ Licencja oryginalnego tekstu: Creative Commons Attribution 3
 <div class="paragraphDiv">
 Co byłoby gdybyśmy podążali według tej samej zasady podczas naszego kodowania: "Zawsze wysyłaj do repozytorium moduł czystszy niż go pobrałeś"? Co byłoby gdybybyśmy zawsze wkładali trochę wysiłku, nieważne jak małego, aby ulepszyć moduł, niezależnie od tego, kto był oryginalnym autorem? Jaki byłby rezultat?</div>
 <div class="paragraphDiv">
-Myślę, że jeżeli wszyscy pracowalibyśmy według tej zasady, to bylibyśmy świadkami końca nieustającego pogarszania się naszego oprogramowania. Zamiast tego, nasze systemy, ewoluując stawałyby się coraz lepsze. Dostrzeglibyśmy <i>zespoły,</i> które dbają o system jako całość, a nie tylko indywidualne jednostki dbające o swoje małe części.</div>
+Myślę, że jeżeli wszyscy pracowalibyśmy według tej zasady, to doświadczylibyśmy końca nieustającego pogarszania się naszego oprogramowania. Zamiast tego, nasze systemy, ewoluując stawałyby się coraz lepsze. Dostrzeglibyśmy <i>zespoły,</i> które dbają o system jako całość, a nie tylko indywidualne jednostki dbające o swoje małe części.</div>
 <div class="paragraphDiv">
-Nie sądzę, aby ta zasada była prośbą o zbyt wiele. Nie musisz doprowadzać każdego modułu do perfekcji przed oddaniem go do repozytorium. Po prostu musisz tylko sprawić, aby stał się <i>odrobinę lepszy</i> niż go zastałeś. Oczywiście oznacza to, że jakikolwiek kod jaki <i>dodajesz</i> do modułu musi być czysty. Oznacza to również, że musisz poprawić chociaż jedną rzecz zanim skommitujesz moduł z powrotem do repozytorium. Mógłbyś po prostu poprawić nazwę zmiennej, albo podzielić długą funkcję na dwie mniejsze. Mógłbyś usunąć cykliczne zależności, albo wprowadzić interfejs, aby odłączyć kontrakt od detali.<br />
+Nie sądzę, aby ta zasada była prośbą o zbyt wiele. Nie musisz doprowadzać każdego modułu do perfekcji przed oddaniem go do repozytorium. Po prostu musisz tylko sprawić, aby stał się <i>odrobinę lepszy</i> niż go zastałeś. Oczywiście oznacza to, że jakikolwiek kod jaki <i>dodajesz</i> do modułu musi być czysty. Oznacza to również, że musisz poprawić chociaż jedną dodatkową rzecz zanim skomitujesz moduł do repozytorium. Mógłbyś po prostu poprawić nazwę zmiennej, albo podzielić długą funkcję na dwie mniejsze. Mógłbyś usunąć cykliczne zależności, albo wprowadzić interfejs, aby odłączyć kontrakt od detali.<br />
 <br />
 <div class="separator" style="clear: both; text-align: center;">
 <a href="https://3.bp.blogspot.com/-JOCvxJCrxbU/W_J9nm-pShI/AAAAAAAA8A8/cgd64DOgeTwZj7I0yuPL7BqpkSz9F5YigCLcBGAs/s1600/harcerstwo.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="555" data-original-width="683" height="325" src="https://3.bp.blogspot.com/-JOCvxJCrxbU/W_J9nm-pShI/AAAAAAAA8A8/cgd64DOgeTwZj7I0yuPL7BqpkSz9F5YigCLcBGAs/s400/harcerstwo.png" width="400" /></a></div>
 <br />
 Szczerze mówiąc, to brzmi jak zwykły dobry nawyk - jak mycie rąk po skorzystaniu z ubikacji, bądź wrzucenie śmieci do kosza zamiast na ziemię. W rzeczywistości fakt zostawiania bałaganu w kodzie powinien być tak samo nieakceptowalny społecznie, jak <i>śmiecenie</i>. To powinno być coś, czego po prostu się nie robi.</div>
 <div class="paragraphDiv">
-Ale to coś jeszcze wiecej. Dbanie o własny kod to jedno. Dbanie o kod <i>zespołu</i> to kolejna rzecz. Zespoły pomagają sobie i wzajemnie po sobie sprzątają. Pracują trzymając się Zasady Skautów, ponieważ jest dobra dla wszystkich, a nie tylko dobra dla ich samych.</div>
+Ale to coś jeszcze wiecej. Dbanie o własny kod to jedno. Dbanie o kod <i>zespołu</i> to kolejna rzecz. Zespoły pomagają sobie i wzajemnie po sobie sprzątają. Pracują trzymając się Zasady Skautów, ponieważ jest dobra dla wszystkich, a nie tylko dobra dla nich samych.</div>
 <div class="smallGreyText">
 <hr />
 <div>
