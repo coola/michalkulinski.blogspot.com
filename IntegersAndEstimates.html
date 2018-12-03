@@ -1,4 +1,4 @@
-<style type="text/css" scoped="scoped">
+<style scoped="scoped" type="text/css">
     .paragraphDiv {
         margin-bottom: 2em;
     }
@@ -23,392 +23,308 @@
 
 </style>
 
-<meta charset="UTF-8">
-
-<h1>Liczby Całkowite i Estymaty</h1>
-
+<br />
 <div class="paragraphDiv cite">
     Co to jest: a^2 + b^2 = c^2
 </div>
-
 <div class="paragraphDiv">
     Twierdzenie Pitagorasa
 </div>
-
 <div class="paragraphDiv cite">
     Dobrze. Czym jeszcze to jest?
 </div>
-
 <div class="paragraphDiv">
-   Równaniem z trzema niewiadomymi.
+    Równaniem z trzema niewiadomymi.
 </div>
-
 <div class="paragraphDiv cite">
     Znasz jakieś rozwiązania tego równania?
 </div>
-
 <div class="paragraphDiv">
-   Jasne. (3,4,5) i (5,12,13).
+    Jasne. (3,4,5) i (5,12,13).
 </div>
-
 <div class="smallGreyText">
     <hr />
-    <div>Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
-    <br/>
-    <div><a href="https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html">https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html</a></div>
-    <br/>
-    <div>Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+    <br />
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html">https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html</a></div>
+    <br />
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
     <hr />
 </div>
-<br/>
-
+<br />
 <div class="paragraphDiv cite">
     Dobrze. To są często spotykane <a href="https://pl.wikipedia.org/wiki/Tr%C3%B3jki_pitagorejskie">trójki pitagorejskie</a>. Znasz jakieś inne?
 </div>
-
 <div class="paragraphDiv">
     Cóż, Google jest moim przyjacielem, zobaczmy. (wpisuje) Wygląda na to, że (7,24,25) i (9,40, 41) spełniają to równanie.
 </div>
-
 <div class="paragraphDiv cite">
-    Zauważyłeś, że te rozwiązania, które podałeś zawieraja tylko <a
-        href="https://pl.wikipedia.org/wiki/Liczby_ca%C5%82kowite">
+    Zauważyłeś, że te rozwiązania, które podałeś zawieraja tylko <a href="https://pl.wikipedia.org/wiki/Liczby_ca%C5%82kowite">
     liczby całkowite</a>?
 </div>
-
 <div class="paragraphDiv">
-   Ooo, no tak. Przypuszczam, że jest całe mnóstwo niecałkowitoliczbowych rozwiązań.
+    Ooo, no tak. Przypuszczam, że jest całe mnóstwo niecałkowitoliczbowych rozwiązań.
 </div>
-
 <div class="paragraphDiv cite">
     Słyszałeś o <a href="https://pl.wikipedia.org/wiki/Diofantos">Diofantosie</a>?
 </div>
-
 <div class="paragraphDiv">
     Czy to nazwisko jakiegoś Greka?
 </div>
-
 <div class="paragraphDiv cite">
     Tak, Diofantos zainteresowany był równaniami, które mają rozwiązania złożone z liczb całkowitych. Nazywamy takie równania
     <a href="https://pl.wikipedia.org/wiki/R%C3%B3wnanie_diofantyczne">
         równaniami diofantycznymi</a>.
 </div>
-
 <div class="paragraphDiv">
     Więc a^2 + b^2 = c^2 jest równaniem diofantycznym?
 </div>
-
 <div class="paragraphDiv cite">
     Tak. I jest też wiele innych. Na przykład: a^3 + b^3 = c^3
 </div>
-
 <div class="paragraphDiv">
     Ok, spoko. I jakie są przykładowe rozwiązania?
 </div>
-
 <div class="paragraphDiv cite">
     Nie ma żadnych.
 </div>
-
 <div class="paragraphDiv">
     Naprawdę? Żadnych?
 </div>
-
 <div class="paragraphDiv cite">
-    Tak. Żadnych. To zostało udowodnione. W rzeczywistości zostało udowodnione, że każde równanie a^n + b^n = c^n nie ma całkowitoliczbowych rozwiązań dla n > 2. To jest znane jako
+    Tak. Żadnych. To zostało udowodnione. W rzeczywistości zostało udowodnione, że każde równanie a^n + b^n = c^n nie ma całkowitoliczbowych rozwiązań dla n &gt; 2. To jest znane jako
     <a href="https://pl.wikipedia.org/wiki/Wielkie_twierdzenie_Fermata">
         Wielkie Twierdzenie Fermata</a>
 </div>
-
 <div class="paragraphDiv">
-    Hmm. To mogło by być całkiem interesujące, ale dlaczego mam się tym przejmować w ogóle?
+    Hmm. To mogłoby być całkiem interesujące, ale dlaczego mam się tym przejmować w ogóle?
 </div>
-
 <div class="paragraphDiv cite">
     Co to jest komputer cyfrowy?
 </div>
-
 <div class="paragraphDiv">
     Co masz na myśli? Ta rzecz na której Ty i ja rozmawiamy jest komputerem cyfrowym.
 </div>
-
 <div class="paragraphDiv cite">
     Tak, ale co dokładnie robi komputer cyfrowy?
 </div>
-
 <div class="paragraphDiv">
     Yyy. Oblicza cyfrowo?
 </div>
-
 <div class="paragraphDiv cite">
     Dokładnie! I słowo cyfrowy oznacza ... ?
 </div>
-
 <div class="paragraphDiv">
     Hmm. Z użyciem cyfr?
 </div>
-
 <div class="paragraphDiv cite">
     Własnie! I czy liczba tych cyfr jest skończona?
 </div>
-
 <div class="paragraphDiv">
     Oczywiście, choć bardzo, bardzo duża w dzisiejszych czasach.
 </div>
-
 <div class="paragraphDiv cite">
-    ... i skończona liczba cyfr wynosi ...?
+    ... i skończona liczba cyfr to...?
 </div>
-
 <div class="paragraphDiv">
     Ooo, myślę, że wiem, do czego zmierzasz. Skończona liczba cyfr jest liczbą całkowitą.
 </div>
-
 <div class="paragraphDiv cite">
     Tak. Komputer cyfrowy to komputer, który oblicza przy użyciu liczb całkowitych. Przy użyciu tylko liczb całkowitych, niczego innego.
 </div>
-
 <div class="paragraphDiv">
     No cóż, chwileczkę. A co z <a href="https://pl.wikipedia.org/wiki/Liczba_zmiennoprzecinkowa">liczbami
     zmiennoprzecinkowymi</a> i <a href="https://pl.wikipedia.org/wiki/Liczby_wymierne">liczbami wymiernymi</a>.
 </div>
-
 <div class="paragraphDiv cite">
     Są reprezentowane w komputerze przez liczby całkowite. Komputer radzi sobie z liczbami całkowitymi - tylko z liczbami całkowitymi.
 </div>
-
 <div class="paragraphDiv">
     OK. Dobra. Liczby całkowite. Ale co to ma wspólnego z równaniami diofantycznymi?
 </div>
-
 <div class="paragraphDiv cite">
     Jakie są wejścia programu komputerowego?
 </div>
-
 <div class="paragraphDiv">
     Jest wiele różnych typów. Znaki z klawiatury, ruchy myszki, kliknięcia myszki, pakiety internetowe. Do wyboru, do koloru.
 </div>
-
 <div class="paragraphDiv cite">
     One są pod spodem liczbami całkowitymi, prawda?
 </div>
-
 <div class="paragraphDiv">
     Hmm. No tak. Wydaję mi się, że są. OK, czyli każde wejście do programu komputerowego to liczby całkowite.
 </div>
-
 <div class="paragraphDiv cite">
     A co z wyjściami?
 </div>
-
 <div class="paragraphDiv">
     No cóż, tak, piksele, znaki, pakiety sieciowe. One wszystkie też są złożone z liczb całkowitych.
 </div>
-
 <div class="paragraphDiv cite">
     Więc komuter cyfrowy pobiera liczby całkowite i zwraca liczby całkowite.
 </div>
-
 <div class="paragraphDiv">
     Prawda. Masz rację. To wszystko liczby całkowite.
 </div>
-
 <div class="paragraphDiv cite">
     Program komputera cyfrowego, zatem, reprezentuje równanie diofantyczne.
 </div>
-
 <div class="paragraphDiv">
     Czekaj. Co?
 </div>
-
 <div class="paragraphDiv cite">
     Liczby całkowite na wejściu. Liczby całkowite na wyjściu.
 </div>
-
 <div class="paragraphDiv">
-    Ok. Pewnie. Ale to całkiem duże skomplikowane równanie diofantyczne.
+    Ok. Pewnie. Ale to całkiem duże, skomplikowane równanie diofantyczne.
 </div>
-
 <div class="paragraphDiv cite">
     Właściwie, specyfikacja programu jest równaniem. Program znajduje rozwiązanie tego równania.
 </div>
-
 <div class="paragraphDiv">
     Tak, tak, OK. To prawda. Specyfikacja programu jest jednym wielkim równaniem diofantycznym z tryliolem niewiadomych i program spełnia tę specyfikację znajdując rozwiązanie tego ogromniastego równania. Czy ta wiedza jest do czegoś potrzebna?
 </div>
-
 <div class="paragraphDiv cite">
     Kto to jest <a href="https://en.wikipedia.org/wiki/David_Hilbert">David Hilbert</a>?
 </div>
-
 <div class="paragraphDiv">
-    Masz na myśli tego gościa, który zaprojektował tą śmieszną <a href="https://pl.wikipedia.org/wiki/Krzywa_Hilberta">rekurencyjną krzywą</a>, która wyglada jak siatka na owady?
+    Masz na myśli tego gościa, który zaprojektował tę śmieszną <a href="https://pl.wikipedia.org/wiki/Krzywa_Hilberta">rekurencyjną krzywą</a>, która wyglada jak siatka na owady?
 </div>
-
 <div class="paragraphDiv cite">
     (Yhy) To było jedno z jego osiągnięć, tak. On także pomógł Einsteinowi z <a href="https://pl.wikipedia.org/wiki/Og%C3%B3lna_teoria_wzgl%C4%99dno%C5%9Bci">Ogólną Teorią Względności</a>. Był wspaniałym matematykiem.
 </div>
-
 <div class="paragraphDiv">
     I zgaduję, że zrobił coś  w temacie równań diofantycznych
 </div>
-
 <div class="paragraphDiv cite">
     W rzeczy samej on robił wiele, wiele rzeczy. Pośród nich było słynne pytanie. Pytanie o "Entscheidung" - rozstrzygalność.
 </div>
-
 <div class="paragraphDiv">
     Co on chciał rozstrzygnąć?
 </div>
-
 <div class="paragraphDiv cite">
     Pamiętasz Wielkie Twierdzenie Fermata?
 </div>
-
 <div class="paragraphDiv">
-    Masz na myśli to równanie, które nie ma rozwiązań. a^n + b^n = c^n gdzie n > 2?
+    Masz na myśli to równanie, które nie ma rozwiązań. a^n + b^n = c^n gdzie n &gt; 2?
 </div>
-
 <div class="paragraphDiv cite">
     Tak, właśnie to. Przez długi czas nie było dowodu, że przy n = 2 równanie ma jedyne rozwiązanie. Jak możesz obalić przypuszczenie, jeżeli wydaje Ci się ono nieprawdą?
 </div>
-
 <div class="paragraphDiv">
     Mógłbym napisać program, który znajduje kontrprzykłady. Na przykład dla n=999999999 to mogłoby zadziałać.
 </div>
-
 <div class="paragraphDiv cite">
     Dobra. I gdybyś znalazł takie rozwiązanie to obaliłbyś Twierdzenie Fermata. Ale jak długo zajęłoby Ci DOWIEDZENIE tego twierdzenia przy użyciu tej metody?
 </div>
-
 <div class="paragraphDiv">
     Program wykonywałby się w nieskończoność. Nie mógłbym dowieść twierdzenia w ten sposób.
 </div>
-
 <div class="paragraphDiv cite">
     Dokładnie. To, czego Hilbert chciał, to skończony algorytm do sprawdzenia czy rozwiązanie istnieje, czy nie. Chciał sposobu "decydowania" czy poszukiwania, takie, jak Ty zaproponowałeś byłyby praktyczne.
 </div>
-
 <div class="paragraphDiv">
     Czekaj, zaraz. Co? Nie szukał rozwiązań. Szukał możliwości dowiedzenia się czy byłyby rozwiązania?
 </div>
-
 <div class="paragraphDiv cite">
     Tak. Chciał skończonego algorytmu, który powiedziałby, czy dane równanie diofantyczne ma rozwiązania czy nie. Ten algorytm nie dostarczałby rozwiązań; dostarczałby tylko rozstrzygnięcie.
 </div>
-
 <div class="paragraphDiv">
     To dlatego nazwał to "rozstrzygalnością"?
 </div>
-
 <div class="paragraphDiv cite">
     Entscheidung. Tak.
 </div>
-
 <div class="paragraphDiv">
-    Gesundheight!
+    <a href="https://en.wiktionary.org/wiki/gesundheit">Gesundheight</a>!
 </div>
-
 <div class="paragraphDiv cite">
-    Harumph! A teraz. Kto Twoim zdaniem rozwiązał problem rozstrzygalności?
+    <a href="https://en.wiktionary.org/wiki/harumph">Harumph</a>! A teraz. Kto Twoim zdaniem rozwiązał problem rozstrzygalności?
 </div>
-
 <div class="paragraphDiv">
     Sądzę, że zaraz mi powiesz.
 </div>
-
 <div class="paragraphDiv cite">
     Dwoje ludzi, o których już słyszałeś. Dwoje wielkich ojców współczesnej informatyki.
     <a href="https://en.wikipedia.org/wiki/Alonzo_Church">Alonzo Church</a> i <a href="https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing</a>.
 </div>
-
 <div class="paragraphDiv">
     Church! To ten gość, który wymyślił programowanie funkcyjne, tak?
 </div>
-
 <div class="paragraphDiv cite">
     W pewnym sensie tak.
 </div>
-
 <div class="paragraphDiv">
     I Turing! Wygrał II Wojnę Światową, prawda?
 </div>
-
 <div class="paragraphDiv cite">
     No, na pewno się dołożył. Oni oboje udowodnili, używając zupełnie innych sposobów, że nie istnieje ogólne i skończone rozwiązanie dla rozstrzygalności.
 </div>
-
 <div class="paragraphDiv">
     To musiało zawieść Hilberta.
 </div>
-
 <div class="paragraphDiv cite">
     Być może. Ale nie o to chodzi.
 </div>
-
 <div class="paragraphDiv">
     OK, no to o co chodzi?
 </div>
-
 <div class="paragraphDiv cite">
     Kiedy dają Ci specyfikację programu, to jest równania diofantycznego, to o co zwykle proszą Cię na początku?
 </div>
-
 <div class="paragraphDiv">
     O estymatę oczywiście. Goście chcą wiedzieć jak długo potrwa napisanie programu.
+    <br />
+    <br />
+    <div class="separator" style="clear: both; text-align: center;">
+        <a href="https://3.bp.blogspot.com/-feRoR-GIh_w/W_5Nv229BmI/AAAAAAAA8Eg/2lb_hqjWvykfW5_fyzIAjl0ZD4-mB0ORACLcBGAs/s1600/estimate-ruler.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="922" data-original-width="1000" height="295" src="https://3.bp.blogspot.com/-feRoR-GIh_w/W_5Nv229BmI/AAAAAAAA8Eg/2lb_hqjWvykfW5_fyzIAjl0ZD4-mB0ORACLcBGAs/s320/estimate-ruler.jpg" width="320" /></a></div>
+    <br />
 </div>
-
 <div class="paragraphDiv cite">
-    I jeszcze raz,  czym jest program w świetle równania diofantycznego?
-</div>
-
+    I jeszcze raz,  czym jest program w świetle równania diofantycznego?</div>
 <div class="paragraphDiv">
     Program jest ... rozwiązaniem ... dla ... AAA!
 </div>
-
 <div class="paragraphDiv cite">
     (uśmiech) Wydaje mi się, że zaczynasz rozumieć.
 </div>
-
 <div class="paragraphDiv">
     Taaa, że, oni proszą mnie abym ROZSTRZYGNĄŁ. Estymata jest rozstrzygnięciem.
 </div>
-
 <div class="paragraphDiv cite">
     I czy istnieje skończona metoda znalezienia rozstrzygnięcia w każdym przypadku?
 </div>
-
 <div class="paragraphDiv">
     Nie! O KURKA, to zabawne.
 </div>
-
 <div class="paragraphDiv cite">
     No właśnie. Fundamentalne podstawy informatyki dowodzą, że nie istnieje skończony mechanizm rozstrzygania czy program może być kiedykolwiek napisany. Fundamenty informatyki oparte są na dowodzie, że estymaty nie są gwarantowane.
 </div>
-
 <div class="paragraphDiv">
     No tak, ale nadal MOŻEMY estymować.
 </div>
-
 <div class="paragraphDiv cite">
     Tak, możemy. Ponieważ większość specyfikacji jest estymowalna.
 </div>
-
 <div class="paragraphDiv">
     A więc to była tylko mała matematyczna rozrywka bez żadnego użytecznego zastosowania.
 </div>
-
 <div class="paragraphDiv cite">
     Można tak powiedzieć. Ale podobało mi się to. Poza tym, to przepysznie ironiczne, że to właśnie dowód o NIEESTYMOWALNOŚCI stoi u podstaw dzisiejszej informatyki.
 </div>
-
 <div class="smallGreyText">
     <hr />
-    <div>Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
-    <br/>
-    <div><a href="https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html">https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html</a></div>
-    <br/>
-    <div>Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+    <div>
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+    <br />
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html">https://blog.cleancoder.com/uncle-bob/2018/06/21/IntegersAndEstimates.html</a></div>
+    <br />
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
     <hr />
 </div>
-<br/>
+<br />
