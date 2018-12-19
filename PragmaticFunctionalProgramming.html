@@ -37,6 +37,19 @@
     Przechodzenie do programowania funkcyjnego rozpoczęło się na dobre jakąś dekadę temu. Widzieliśmy jak języki Scala Clojure i F# zaczęły przyciągać uwagę. To przechodzenie było czymś więcej niz tylko zwykły entuzjazm typu: "O fajnie, nowy język!". Było w tym coś prawdziwego, coś, co to napędzało - przynajmniej tak myśleliśmy.
 </div>
 
+<div class="smallGreyText">
+    <hr />
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+    <br />
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2017/07/11/PragmaticFunctionalProgramming.html">https://blog.cleancoder.com/uncle-bob/2017/07/11/PragmaticFunctionalProgramming.html</a></div>
+    <br />
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+    <hr />
+</div>
+
 <div class="paragraphDiv">
     Prawo Moora mówiło, że prędkość komputerów będzie podwajać się każdorazowo co 18 miesięcy. To prawo sprawdzało się od lat 60-tych aż do roku 2000. I wtedy się zatrzymało. Na amen. Częstotliwości zegara osiągnęły 3ghz i krzywa wzrostu spłaszczyła się. Prędkość światło została osiągnięta. Sygnały nie mogły rozchodzić się po układzie elektronicznym z wystarczającą prędkością, aby zapewnić szybsze działanie.
 </div>
@@ -68,6 +81,56 @@
     Ale pociąg towarowy nigdy nie nadjechał. Sześć lat temu miałęm laptop z czterema rdzeniami. On tego czasu miałem ich jeszcze dwa. Wygląda na to, że mój następny laptop też będzie miał cztery rdzenie. Czy jesteśmy świadkami kolejnego spłaszczenia krzywej wzrostu?
 </div>
 
+<div class="paragraphDiv cite">
+    Tak na marginesie, oglądałem wczoraj wieczorem film z 2007 roku. Bohaterka używała laptopa, przeglądała strony używając wymyślnej przeglądarki, używała Google'a i odbierała SMSy na telefonie z klapką. To wszystko wyglądało bardzo znajomo. Ooo, jasne, że to było już jakiś czas temu - widziałem starszy model laptopa, starszą wersję przeglądarki i telefon z klapką był daleko dzisiajszych smartfonów. Nadal - zmiana ta nie była aż tak dramatyczna jak od roku 2000 do roku 2011. I nawet nie zbliżyła się do tej zmiany, jaka miała miejsce pomiędzy latami 1990 - 2000. Czy jesteśmy świadkami kolejnego spłaszczenia krzywej wzrostu w dziedzinie komputerów i technologii oprogramowania?
+</div>
+
+<div class="paragraphDiv">
+    Więc, być może PF nie było tak kluczową umiejętnością, jak myśleliśmy wtedy myśleliśmy. Może nie utoniemy pod zalewem rdzeni. Może nie musimy się martwić układami zawierającymi 32768 rdzeni. Może powinniśmy się odprężyć i wrócić do aktualizowania wartości zmiennych.
+</div>
+
+<div class="paragraphDiv">
+    Myślę, że to byłby błąd. Duży błąd. Myślę, że byłby to tak duży błąd, jak niepowstrzymane użycie <a class="code"
+        href="https://pl.wikipedia.org/wiki/Instrukcja_skoku">goto</a>. Myślę, że byłoby tak niebezpieczne, jak porzucenie dynamicznych, polimorficznych wywołań funkcji.
+</div>
+
+<div class="paragraphDiv">
+    Dlaczego? Możemy zacząć argumentować od tego, co nas najbardziej interesuje. PF sprawia, że współbieżność jest bezpiecziejsza. Jeżeli budujesz system z wieloma wątkami, lub procesami, wtedy użycie PF znacząco zmniejszy problemy, które mógłbyś mieć z sytacjami wyścigu i jednoczesną aktualizacją zmiennych.
+</div>
+
+<div class="paragraphDiv">
+    Co jeszcze? Cóż, PF jest łątwiejsze do pisania, łatwiejsze do czytania, łatwiejsze do testowania i łątwiejsze do zrozumienia. Wyobrażam sobie, że teraz kilku z was macha rękami i krzyczy do monitora. Spróbowałeś PF i stwierdziłeś, że nie znajdujesz w tym niczego łatwego. Wszystkie te operacje map i
+    <a href="https://pl.wikipedia.org/wiki/Fold">reduce</a>, i cała ta <a href="https://pl.wikipedia.org/wiki/Rekurencja">rekurencja</a> - szczególnie
+    <a href="https://pl.wikipedia.org/wiki/Rekurencja_ogonowa">rekurencja
+        <i>ogonowa</i></a> to nic <i>prostego</i>. Jasne. Rozumiem. Ale to tylko problem z zaznajomieniem się. Jak tylko obeznasz się z tymi pomysłami - aby rozwinąć taki stopień zaznajomienia nie trzeba dużo czasu - programowanie stanie się o
+    <i>wiele</i> prostsze.
+</div>
+
+<div class="paragraphDiv">
+    Dlaczego staje się prostsze? Ponieważ nie musisz śledzić stanu systemu. Stan zmiennych nie może się zmieniać; więc stan systemu pozostaje niezmieniony. I to nie tylko systemu nie musisz śledzić. Nie musisz śledzić żadnego stanu listy, czy stanu zbioru, czy stanu stosu, czy kolejki; bo te struktury danych nie moga być zmienione. Jeżeli wkładasz element na stos w języku PF, dostajesz nowy stos, nie zmieniasz starego. To oznacza, że programista może żąglowac większą ilością piłeczek w tym samym czasie. Jest mniej do zapamiętania. Mniej do śledzenia. I w ten sposób kod jest prostszy do napisania, czytania, rozumienia i testowania.
+</div>
+
+<div class="paragraphDiv">
+    Więc jakiego języka powinieneś używać? Moim ulubionym jest Clojure. Powód jest taki, że Clojure jest absolutnie prosty. To jest dialekt Lisp, który jest wspaniale protym językiem. Proszę bardzo, pozwól, że Ci zademonstruję.
+</div>
+
+<div class="paragraphDiv">
+    To jest funkcja w Javie: <span class="code">f(x)</span>;
+</div>
+
+<div class="paragraphDiv">
+    Teraz, aby zmienić ja w fukcję w Lispie, musisz po prostu przesunąć pierwszy nawias w lewo: <span class="code">(f x)</span>.
+</div>
+
+<div class="paragraphDiv">
+    Teraz znasz już 95% Lispa, i umiesz około 90% Clojure. Ten śmieszna, mała składnia dotyczy większości tego rodzaju języków. To jest
+    <i>absurdalnie</i> proste.
+</div>
+
+<div class="paragraphDiv">
+    OK, może już widziałeś kiedyś programy w Lispie i nie spodobały Ci się te wszystkie nawiasy. 
+</div>
+
 <!-- ------------>
 
 <div class="paragraphDiv">
@@ -76,18 +139,7 @@
 <div class="paragraphDiv cite">
 
 </div>
-<div class="smallGreyText">
-    <hr />
-    <div>
-        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
-    <br />
-    <div>
-        <a href="https://blog.cleancoder.com/uncle-bob/2017/07/11/PragmaticFunctionalProgramming.html">https://blog.cleancoder.com/uncle-bob/2017/07/11/PragmaticFunctionalProgramming.html</a></div>
-    <br />
-    <div>
-        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
-    <hr />
-</div>
+
 
 <div class="smallGreyText">
     <hr />
