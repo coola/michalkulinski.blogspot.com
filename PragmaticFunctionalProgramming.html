@@ -34,9 +34,8 @@
 
 <br />
 <div class="paragraphDiv">
-    Przechodzenie do programowania funkcyjnego rozpoczęło się na dobre jakąś dekadę temu. Widzieliśmy jak języki Scala Clojure i F# zaczęły przyciągać uwagę. To przechodzenie było czymś więcej niz tylko zwykły entuzjazm typu: "O fajnie, nowy język!". Było w tym coś prawdziwego, coś, co to napędzało - przynajmniej tak myśleliśmy.
+    Przechodzenie do programowania funkcyjnego rozpoczęło się na dobre jakąś dekadę temu. Widzieliśmy jak języki Scala, Clojure i F# zaczęły przyciągać uwagę. To przechodzenie było czymś więcej niż tylko zwykłym entuzjazmem w stylu: "O fajnie, nowy język!". Było w tym coś prawdziwego. Coś, co to napędzało - przynajmniej tak myśleliśmy.<br />
 </div>
-
 <div class="smallGreyText">
     <hr />
     <div>
@@ -49,98 +48,119 @@
         Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
     <hr />
 </div>
-
+<br />
 <div class="paragraphDiv">
     Prawo Moora mówiło, że prędkość komputerów będzie podwajać się każdorazowo co 18 miesięcy. To prawo sprawdzało się od lat 60-tych aż do roku 2000. I wtedy się zatrzymało. Na amen. Częstotliwości zegara osiągnęły 3ghz i krzywa wzrostu spłaszczyła się. Prędkość światło została osiągnięta. Sygnały nie mogły rozchodzić się po układzie elektronicznym z wystarczającą prędkością, aby zapewnić szybsze działanie.
 </div>
-
 <div class="paragraphDiv">
     Więc projektanci sprzętu zmienili swój plan działania. Aby zapewnić większą wydajność, dodali więcej procesorów (rdzeni). Żeby zrobić miejsce dla tych rdzeni usunęli wiele elementów
     <a href="https://pl.wikipedia.org/wiki/Pami%C4%99%C4%87_podr%C4%99czna_procesora">pamięci podręcznej</a> i
-    <a href="https://pl.wikipedia.org/wiki/Potokowo%C5%9B%C4%87">potokowości</a> z tych układów. Zatem procesory stały się odrobinę wolniejsze niż przedtem, ale za to było ich wiecej. Wydajność zwiększyła się.
+    <a href="https://pl.wikipedia.org/wiki/Potokowo%C5%9B%C4%87">potokowości</a> z tych układów. Zatem procesory stały się odrobinę wolniejsze niż przedtem, ale za to było ich więcej. Wydajność zwiększyła się.
 </div>
-
 <div class="paragraphDiv">
-    Miałem swoją pierwszą dwurdzeniową maszyną 8 lat temu. Dwa lata później miałem czterordzeniową maszynę. I tak zaczęło się rozmnażanie rdzeni. I wszyscy zrozumieliśmy, że to wpłynie na tworzenie oprogramowania w sposób, którego nie mogliśmy przewidzieć.
+    Miałem swoją pierwszą dwurdzeniową maszynę 8 lat temu. Dwa lata później miałem czterordzeniową maszynę. I tak zaczęło się rozmnażanie rdzeni. I wszyscy zrozumieliśmy, że to wpłynie na tworzenie oprogramowania w sposób, którego nie mogliśmy przewidzieć.
 </div>
-
 <div class="paragraphDiv">
-    Jedną z naszych reakcji na to było uczenie się <a href="https://pl.wikipedia.org/wiki/Programowanie_funkcyjne">Programowania Funkcyjnego</a> (PF). PF mocno zniechęca do zmiany stanu zmiennej raz zainicjalizowanej. Ma to zasadniczy wpływ na współbieżność. Jeżeli nie możesz zmienić stanu zmiennej, nie masz problemu
+    Jedną z naszych reakcji na to wszystko było uczenie się <a href="https://pl.wikipedia.org/wiki/Programowanie_funkcyjne">Programowania Funkcyjnego</a> (PF). PF mocno zniechęca do zmiany stanu zmiennej raz zainicjalizowanej. Ma to zasadniczy wpływ na współbieżność. Jeżeli nie możesz zmienić stanu zmiennej, nie masz problemu
     <a href="https://pl.wikipedia.org/wiki/Obliczenia_r%C3%B3wnoleg%C5%82e#Sytuacje_wy%C5%9Bcigu,_wzajemne_wykluczanie,_synchronizacja_i_spowolnienie_r%C3%B3wnoleg%C5%82e">sytuacji wyścigu</a>. Jeżeli nie możesz zaktualizować wartości zmiennej, nie masz problemu jej jednoczesnego nadpisania.
 </div>
-
 <div class="paragraphDiv">
-    Uważano to za rozwiązanie problemu wielu rdzeni. W momencie, gdy rdzenie rozmnażały się współbieżność, BA! <i>jednoczesność</i> stała się znaczącym problemem. PF miał więc zapewnić styl programowania, który łagodziłby problemy związane z obsługą 1024 rdzeni w procesorze.
+    Uważano to za rozwiązanie problemu wielu rdzeni. W momencie, gdy rdzenie rozmnażały się, współbieżność, BA! <i>jednoczesność</i> stała się znaczącym problemem. PF miało więc zapewnić styl programowania, który łagodziłby problemy związane z obsługą 1024 rdzeni w procesorze.
 </div>
-
 <div class="paragraphDiv">
-    Więc wszyscy zaczęli uczyć się Clojure, lub Scali, lub F# lub Haskella; ponieważ wiedzieli, że pociąg towarowy już pędził po torach i zmierzał w ich kierunku, a oni chcieli być przygotowani, kiedy nadjedzie.
+    Więc wszyscy zaczęli uczyć się Clojure, lub Scali, lub F# lub Haskella; ponieważ widzieli, że pociąg towarowy już pędził po torach i zmierzał w ich kierunku, a oni chcieli być przygotowani, kiedy nadjedzie.
 </div>
-
 <div class="paragraphDiv">
-    Ale pociąg towarowy nigdy nie nadjechał. Sześć lat temu miałęm laptop z czterema rdzeniami. On tego czasu miałem ich jeszcze dwa. Wygląda na to, że mój następny laptop też będzie miał cztery rdzenie. Czy jesteśmy świadkami kolejnego spłaszczenia krzywej wzrostu?
+    Ale pociąg towarowy nigdy nie nadjechał. Sześć lat temu miałem laptopa z czterema rdzeniami. On tego czasu miałem ich jeszcze dwa. Wygląda na to, że mój następny laptop też będzie miał cztery rdzenie. Czy jesteśmy świadkami kolejnego spłaszczenia krzywej wzrostu?
 </div>
-
 <div class="paragraphDiv cite">
-    Tak na marginesie, oglądałem wczoraj wieczorem film z 2007 roku. Bohaterka używała laptopa, przeglądała strony używając wymyślnej przeglądarki, używała Google'a i odbierała SMSy na telefonie z klapką. To wszystko wyglądało bardzo znajomo. Ooo, jasne, że to było już jakiś czas temu - widziałem starszy model laptopa, starszą wersję przeglądarki i telefon z klapką był daleko dzisiajszych smartfonów. Nadal - zmiana ta nie była aż tak dramatyczna jak od roku 2000 do roku 2011. I nawet nie zbliżyła się do tej zmiany, jaka miała miejsce pomiędzy latami 1990 - 2000. Czy jesteśmy świadkami kolejnego spłaszczenia krzywej wzrostu w dziedzinie komputerów i technologii oprogramowania?
+    Tak na marginesie, wczoraj wieczorem oglądałem film z 2007 roku. Bohaterka używała laptopa, przeglądała strony używając wymyślnej przeglądarki, używała Google'a i odbierała SMSy na telefonie z klapką. To wszystko wyglądało bardzo znajomo. Ooo, jasne, że minęło już trochę czasu - widziałem starszy model laptopa, starszą wersję przeglądarki i telefon z klapką nie przypominał dzisiejszych smartfonów. Nadal - zmiana ta nie była aż tak dramatyczna jak od roku 2000 do roku 2011. I nawet nie zbliżyła się do tej zmiany, jaka miała miejsce pomiędzy latami 1990 - 2000. Czy jesteśmy świadkami kolejnego spłaszczenia krzywej wzrostu w dziedzinie komputerów i technologii oprogramowania?
 </div>
-
 <div class="paragraphDiv">
-    Więc, być może PF nie było tak kluczową umiejętnością, jak myśleliśmy wtedy myśleliśmy. Może nie utoniemy pod zalewem rdzeni. Może nie musimy się martwić układami zawierającymi 32768 rdzeni. Może powinniśmy się odprężyć i wrócić do aktualizowania wartości zmiennych.
+    Więc, być może PF nie było tak kluczową umiejętnością, jak wtedy myśleliśmy. Może nie utoniemy pod zalewem rdzeni. Może nie musimy się martwić układami zawierającymi 32768 rdzeni. Może powinniśmy się odprężyć i wrócić do aktualizowania wartości zmiennych.
 </div>
-
 <div class="paragraphDiv">
-    Myślę, że to byłby błąd. Duży błąd. Myślę, że byłby to tak duży błąd, jak niepowstrzymane użycie <a class="code"
-        href="https://pl.wikipedia.org/wiki/Instrukcja_skoku">goto</a>. Myślę, że byłoby tak niebezpieczne, jak porzucenie dynamicznych, polimorficznych wywołań funkcji.
+    Myślę, że to byłby błąd. Duży błąd. Myślę, że to byłby błąd tak duży, jak niepowstrzymane użycie <a class="code" href="https://pl.wikipedia.org/wiki/Instrukcja_skoku">goto</a>. Myślę, że byłoby to tak niebezpieczne, jak porzucenie dynamicznych, polimorficznych wywołań funkcji.
 </div>
-
 <div class="paragraphDiv">
-    Dlaczego? Możemy zacząć argumentować od tego, co nas najbardziej interesuje. PF sprawia, że współbieżność jest bezpiecziejsza. Jeżeli budujesz system z wieloma wątkami, lub procesami, wtedy użycie PF znacząco zmniejszy problemy, które mógłbyś mieć z sytacjami wyścigu i jednoczesną aktualizacją zmiennych.
+    Dlaczego? Możemy zacząć argumentować od tego, co nas najbardziej interesuje. PF sprawia, że współbieżność jest bezpieczniejsza. Jeżeli budujesz system z wieloma wątkami, lub procesami, wtedy użycie PF znacząco zmniejszy problemy, które mógłbyś mieć z sytuacjami wyścigu i jednoczesną aktualizacją zmiennych.
 </div>
-
 <div class="paragraphDiv">
-    Co jeszcze? Cóż, PF jest łątwiejsze do pisania, łatwiejsze do czytania, łatwiejsze do testowania i łątwiejsze do zrozumienia. Wyobrażam sobie, że teraz kilku z was macha rękami i krzyczy do monitora. Spróbowałeś PF i stwierdziłeś, że nie znajdujesz w tym niczego łatwego. Wszystkie te operacje map i
+    Co jeszcze? Cóż, PF jest łatwiejsze do pisania, łatwiejsze do czytania, łatwiejsze do testowania i łatwiejsze do zrozumienia. Wyobrażam sobie, jak teraz część z was macha rękami i krzyczy do monitora. Spróbowałeś PF i stwierdziłeś, że nie znajdujesz w tym niczego łatwego. Wszystkie te operacje map i
     <a href="https://pl.wikipedia.org/wiki/Fold">reduce</a>, i cała ta <a href="https://pl.wikipedia.org/wiki/Rekurencja">rekurencja</a> - szczególnie
     <a href="https://pl.wikipedia.org/wiki/Rekurencja_ogonowa">rekurencja
         <i>ogonowa</i></a> to nic <i>prostego</i>. Jasne. Rozumiem. Ale to tylko problem z zaznajomieniem się. Jak tylko obeznasz się z tymi pomysłami - aby rozwinąć taki stopień zaznajomienia nie trzeba dużo czasu - programowanie stanie się o
     <i>wiele</i> prostsze.
 </div>
-
 <div class="paragraphDiv">
-    Dlaczego staje się prostsze? Ponieważ nie musisz śledzić stanu systemu. Stan zmiennych nie może się zmieniać; więc stan systemu pozostaje niezmieniony. I to nie tylko systemu nie musisz śledzić. Nie musisz śledzić żadnego stanu listy, czy stanu zbioru, czy stanu stosu, czy kolejki; bo te struktury danych nie moga być zmienione. Jeżeli wkładasz element na stos w języku PF, dostajesz nowy stos, nie zmieniasz starego. To oznacza, że programista może żąglowac większą ilością piłeczek w tym samym czasie. Jest mniej do zapamiętania. Mniej do śledzenia. I w ten sposób kod jest prostszy do napisania, czytania, rozumienia i testowania.
+    Dlaczego staje się prostsze? Ponieważ nie musisz śledzić stanu systemu. Stan zmiennych nie może się zmieniać; więc stan systemu pozostaje niezmieniony. I to nie tylko systemu nie musisz śledzić. Nie musisz śledzić żadnego stanu listy, czy stanu zbioru, czy stanu stosu, czy kolejki; bo te struktury danych nie moga być zmienione. Jeżeli wkładasz element na stos w języku PF, dostajesz nowy stos, nie zmieniając starego. To oznacza, że programista może żonglować większą ilością piłeczek w tym samym czasie. Jest mniej do zapamiętania. Mniej do śledzenia. I w ten sposób kod jest prostszy do napisania, czytania, rozumienia i testowania.
 </div>
-
 <div class="paragraphDiv">
-    Więc jakiego języka powinieneś używać? Moim ulubionym jest Clojure. Powód jest taki, że Clojure jest absolutnie prosty. To jest dialekt Lisp, który jest wspaniale protym językiem. Proszę bardzo, pozwól, że Ci zademonstruję.
+    Więc jakiego języka powinieneś używać? Moim ulubionym jest Clojure. Powód jest taki, że Clojure jest absolutnie prosty. To jest dialekt Lisp, który jest wspaniale prostym językiem. Proszę bardzo, pozwól, że Ci zademonstruję.
 </div>
-
 <div class="paragraphDiv">
     To jest funkcja w Javie: <span class="code">f(x)</span>;
 </div>
-
 <div class="paragraphDiv">
-    Teraz, aby zmienić ja w fukcję w Lispie, musisz po prostu przesunąć pierwszy nawias w lewo: <span class="code">(f x)</span>.
+    Teraz, aby zmienić ja w funkcję w Lispie, musisz po prostu przesunąć pierwszy nawias w lewo: <span class="code">(f x)</span>.
 </div>
-
 <div class="paragraphDiv">
-    Teraz znasz już 95% Lispa, i umiesz około 90% Clojure. Ten śmieszna, mała składnia dotyczy większości tego rodzaju języków. To jest
+    Teraz znasz już 95% Lispa, i umiesz około 90% Clojure. Ta śmieszna, mała składnia dotyczy większości tego rodzaju języków. To jest
     <i>absurdalnie</i> proste.
-</div>
-
+    <br />
+    <br />
+    <div class="separator" style="clear: both; text-align: center;">
+        <a href="https://4.bp.blogspot.com/-hNvuSu019hc/XBzFxlpyaBI/AAAAAAAA8Uk/BbSJEdpEbTgkVavasdJLVLqVQ_N1BL39wCLcBGAs/s1600/Clojure.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="454" data-original-width="803" height="225" src="https://4.bp.blogspot.com/-hNvuSu019hc/XBzFxlpyaBI/AAAAAAAA8Uk/BbSJEdpEbTgkVavasdJLVLqVQ_N1BL39wCLcBGAs/s400/Clojure.png" width="400" /></a></div>
+    <br />
+    OK, może już widziałeś kiedyś programy w Lispie i nie spodobały Ci się te wszystkie nawiasy. I może nie lubisz tych operacji
+    <a href="https://en.wikipedia.org/wiki/CAR_and_CDR">CAR i CDR</a> i CADR i innych. Nie martw się. Clojure ma trochę lepszą interpunkcję niż Lisp, więc będzie trochę mniej nawiasów. Clojure zamieniło CAR i CDR i CADR na
+    <span class="code">first</span> i <span class="code">rest</span> i <span class="code">second</span>. Co więcej, Clojure jest zbudowany na
+    <a href="https://pl.wikipedia.org/wiki/Wirtualna_maszyna_Javy">JVM</a>, co z kolei umożliwia kompletny dostęp do pełnej biblioteki Javy.
+    <a href="https://pl.wikipedia.org/wiki/Interoperacyjno%C5%9B%C4%87">Interoperacyjność</a> jest szybka i łatwa. I, jeszcze lepiej, Clojure pozwala na pełny dostęp do możliwości
+    <a href="https://pl.wikipedia.org/wiki/Programowanie_obiektowe">
+        OO</a> JVM-a.</div>
 <div class="paragraphDiv">
-    OK, może już widziałeś kiedyś programy w Lispie i nie spodobały Ci się te wszystkie nawiasy. 
+    "Ale zaraz, zaraz!". Słyszę, jak mówisz. "PF i OO się wzajemnie wykluczają!". Kto Ci to powiedział? To bzdury! Ooo, to prawda, że w PF nie możesz zmienić stanu obiektu; ale co z tego? Tak jak wrzucenie liczby całkowitej na stos daje w wyniku nowy stos - wtedy, kiedy wywołujesz metodę, która aktualizuje jakąś wartość z obiektu, dostajesz nowy obiekt, zamiast zmieniać stary. Łatwo to ogarnąć, szczególnie jak przywykniesz.
 </div>
-
-<!-- ------------>
-
 <div class="paragraphDiv">
+    Ale wracając do OO. Jedną z własności OO, którą uważam za najbardziej przydatną, w kontekście architektury oprogramowania, jest dynamiczny polimorfizm. I Clojure dostarcza całkowity dostęp do dynamicznego polimorfizmu Javy. Być może przykład wyjaśni to najlepiej.
 </div>
-
-<div class="paragraphDiv cite">
+<div class="paragraphDiv code">
+    (defprotocol Gateway<br />
+    &nbsp;&nbsp;(get-internal-episodes [this])<br />
+    &nbsp;&nbsp;(get-public-episodes [this]))
 
 </div>
-
-
+<div class="paragraphDiv">
+    Powyższy kod definiuje polimorficzny <span class="code">interfejs</span> dla JVM. W Javie ten interfejs wyglądałby tak:
+</div>
+<div class="paragraphDiv code">
+    public interface Gateway {<br />
+    &nbsp;&nbsp;List&lt;Episode&gt; getInternalEpisodes();<br />
+    &nbsp;&nbsp;List&lt;Episode&gt; getPublicEpisodes();<br />
+    }
+</div>
+<div class="paragraphDiv">
+    Na poziomie JVM wyprodukowany bajtkod jest identyczny. Dzięki tej samej cesze program w Clojure może implementować interfejs Javowy. W Clojure wygląda to tak:
+</div>
+<div class="paragraphDiv code">
+    (deftype Gateway-imp [db]<br />
+    &nbsp;&nbsp;Gateway<br />
+    &nbsp;&nbsp;(get-internal-episodes [this]<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;(internal-episodes db))<br />
+    &nbsp;&nbsp;(get-public-episodes [this]<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;(public-episodes db)))</div>
+<div class="paragraphDiv">
+    Zauważ ten argument konstruktora <span class="code">db</span>, i jak wszystkie metody mają dostęp do niego. W tym przypadku implementacje interfejsu po prostu przekazują go do funkcji lokalnych.
+</div>
+<div class="paragraphDiv">
+    Najlepszy z tego wszystkiego, być może, jest fakt, że Lisp, a co za tym idzie Clojure, jest (uwaga) <i><a href="https://pl.wikipedia.org/wiki/Homoikoniczno%C5%9B%C4%87">Homoikoniczny</a></i>, co oznacza, że kod jest danymi, na których program operuje. To łatwo zobaczyć. Ten kod:
+    <span class="code">(1 2 3)</span> reprezentuje listę trzech liczb całkowitych. Jeżeli pierwszy element listy będzie funkcją, tak jak w:
+    <span class="code">(f 2 3)</span> stanie się to wywołaniem funkcji. Z tego, wszystkie wywołania funkcji w Clojure są listami; a listy mogą być bezpośrednio manipulowane przez kod. Z tego wynika, że program potrafi stworzyć i uruchomić inne programy.
+</div>
+<div class="paragraphDiv">
+    Podsumowanie jest takie. Programowanie funkcyjne jest ważne. Powinieneś uczyć się go. I jeśli zastanawiasz się jakiego języka mógłbyś się uczyć, ja sugeruję Clojure.
+</div>
 <div class="smallGreyText">
     <hr />
     <div>
@@ -153,6 +173,7 @@
         Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
     <hr />
 </div>
+
 
 
 </body>
