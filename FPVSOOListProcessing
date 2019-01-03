@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <style scoped="scoped" type="text/css">
+        .paragraphDiv {
+            margin: 0 1em 0.5em 1em;
+        }
+        img {
+            margin: 10px;
+        }
+        .smallGreyText{
+            text-align: center;
+            color: #999999;
+            font-size: 0.6em;
+            margin: 1em 0.1em 1em 0.1em;
+        }
+        .cite {
+            padding: 0 1em 0 1em;
+            margin: 1em;
+            border-left: solid;
+            border-color: #eef2f5;
+        }
+        .code{
+            font-family: monospace;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<br />
+<div class="paragraphDiv">
+
+</div>
+<div class="smallGreyText">
+    <hr />
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+    <br />
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html">https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html</a></div>
+    <br />
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+    <hr />
+</div>
+<br />
+
+<div class="paragraphDiv">
+
+</div>
+
+<div class="smallGreyText">
+    <hr />
+    <div>
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :</div>
+    <br />
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html">https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html</a></div>
+    <br />
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.</div>
+    <hr />
+</div>
+
+
+
+</body>
+
+</html>
