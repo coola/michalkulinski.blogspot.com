@@ -180,11 +180,86 @@
 </div>
 
 <div class="paragraphDiv">
-    Na początku dostajemy wszystkie pasujące pociski. Są trzy rodzaje pocisków, które nasz statek może wystrzelić w cele Klingonów i Romulan. Nie zawarłem ich w kodzie Java wyżej, więc to jest po prostu dodatkowy kod.
+    <ul>
+        <li>Na początku dostajemy wszystkie pasujące pociski. Są trzy rodzaje pocisków, które nasz statek może
+            wystrzelić w cele Klingonów i Romulan. Nie zawarłem ich w kodzie Java wyżej, więc to jest po prostu
+            dodatkowy kod.
+        </li>
+    </ul></div>
+
+<div class="paragraphDiv">
+    <ul>
+        <li>Potem dostajemy nasze cele. W naszym przypadku to jest lista tylko samych Klingonów. Chociaż może to być
+            także lista wszystkich Romulan.
+        </li>
+    </ul>
+</div>
+
+
+<div class="paragraphDiv">
+    <ul>
+        <li>
+            Potem dostajemy pary celów i pocisków razem z ich odległością od siebie nawzajem.
+        </li>
+    </ul>
 </div>
 
 <div class="paragraphDiv">
-    Potem dostajemy nasze cele. W naszym przypadku to jest lista tylko samych Klingonów. Chociaż może to być także lista wszystkich Romulan.
+    <ul>
+        <li>
+            Potem filtrujemy te pary do tych, których odległości są mniejsze niż graniczne wartości zbliżeniowe broni. to są te pary, które reprezentują trafienia.
+        </li>
+    </ul>
+</div>
+
+<div class="paragraphDiv">
+    <ul>
+        <li>
+            Potem filtrujemy te pary w listę celów trafionych i pocisków, które trafiły.
+        </li>
+    </ul>
+</div>
+
+<div class="paragraphDiv">
+    <ul>
+        <li>
+            Potem, i to jest całkiem interesujące, dostajemy listę wszystkich Klingonów, którzy NIE zostali trafieni. Dostajemy także listę wszystkich pocisków, które NIE trafiły. Dlaczego ich potrzebujemy? Czytaj dalej.
+        </li>
+    </ul>
+</div>
+
+
+<div class="paragraphDiv">
+    <ul>
+        <li>
+            Następnie tworzymy hit-targets. To uaktualnia każdy trafiony cel jego konkretnym trafieniem.
+        </li>
+    </ul>
+</div>
+
+<div class="paragraphDiv">
+    <ul>
+        <li>
+           Potem tworzymy listę wszytkich nowych wybuchów dodanych do istniejących wybuchów w świecie gry.
+        </li>
+    </ul>
+</div>
+
+<div class="paragraphDiv">
+    <ul>
+        <li>
+           Na koniec tworzymy świat gry. Świat jest kopią [1] starego świat, ale z:
+            <ul style="list-style-type:circle">
+                <li>Klingonami zamienionymi na konkatenację trafionych Klingonów i nietrafionych Klingonów</li>
+                <li>pociskami zamienionymi tymi, które nie trafiły</li>
+                <li>wybuchami zamienionymi sumą starych i nowych wybuchów</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="paragraphDiv">
+    Teraz następuje część
 </div>
 
 <!---------- -->
