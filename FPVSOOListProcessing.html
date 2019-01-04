@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <style scoped="scoped" type="text/css">
+        .paragraphDiv {
+            margin: 0 1em 0.5em 1em;
+        }
+
+        img {
+            margin: 10px;
+        }
+
+        .smallGreyText {
+            text-align: center;
+            color: #999999;
+            font-size: 0.6em;
+            margin: 1em 0.1em 1em 0.1em;
+        }
+
+        .cite {
+            padding: 0 1em 0 1em;
+            margin: 1em;
+            border-left: solid;
+            border-color: #eef2f5;
+        }
+
+        .code {
+            font-family: monospace;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<br/>
+
+<div class="paragraphDiv">
+    Gdy pisałem <a href="https://github.com/unclebob/spacewar">spacewar</a> przez ostatnie kilka miesięcy, napotkałem
+    ciekawą różnicę pomiędzy programowaniem funkcyjnym, a programowaniem
+    <a href="https://pl.wikipedia.org/wiki/Programowanie_obiektowe">OO</a>.
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html">https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+<br/>
+
+<div class="paragraphDiv">
+    Wyobraźmy sobie, że mamy dwie listy. Lista statków Klingonów i lista pocisków poruszających się w przestrzeni.
+    Pociskami mogą być promienie fazera, torpedy fotonowe, lub kule żelaza zwane kinetykami. We wszystkich tych
+    przypadkach mają on położenie i prędkość. Tak samo każdy ze statków klingońskich.
+</div>
+
+<div class="paragraphDiv">
+    Mamy częstotliwość odświerzania liczą w <span class="code">f</span> klatek na sekundę. W każdej klatce patrzymy na
+    położenie pocisków i porównujemy je z położeniem statków klingońskich. Szukamy trafienia.
+</div>
+
+<div class="paragraphDiv">
+    Jeżeli znaleźliśmy trafienie, usuwamy pocisk z listy pocisków, dodajemy trafienie do statku Klingonów i dodajemy
+    wybuch do listy wybuchów w świecie gry.
+</div>
+
+<div class="paragraphDiv">
+    W Javie kod mógłby wyglądać tak:
+</div>
+
+<div class="paragraphDiv">
+
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">void</span> updateHits(World world){
+  nextShot:
+  <span style="font-weight: bold">for</span> (shot : world.shots) {
+    <span style="font-weight: bold">for</span> (klingon : world.klingons) {
+      <span style="font-weight: bold">if</span> (distance(shot, klingon) &lt;= type.proximity) {
+        world.shots.remove(shot);
+        world.explosions.add(<span style="font-weight: bold">new</span> Explosion(shot));
+        klingon.hits.add(<span style="font-weight: bold">new</span> Hit(shot));
+        <span style="font-weight: bold">break</span> nextShot;
+      }
+    }
+  }
+}
+    </pre>
+    </div>
+
+</div>
+
+<div class="paragraphDiv">
+    Zauważ break z etykietą. Po raz pierwszy w mojej historii pokusiłem się o użyć czegoś takiego.
+</div>
+
+<div class="paragraphDiv">
+    Pomijając to, kod jest całkiem oczywisty, nieprawdaż? Ale w żaden sposób nie jest funkcyjny poniewać zmienia zbiór trafień Klingonów i świat gry.
+</div>
+
+<div class="paragraphDiv">
+    Program funkcyjny, który ma robić to samo nie może zmieniać Klingonów i świata gry w żaden sposób. To, co musi robić zamiast tego, to tworzyć całkiem nowy świat, z nowymi Klingonami, nowymi pociskami, wybuchami i trafieniami. Pamiętaj, o tym właśnie jest całe programowanie funkcyjne. Nie możesz zmienić wartości jakiejkolwiek istniejącej zmiennej.
+</div>
+
+<div class="paragraphDiv">
+    Mógłbyś zapytać w jaki sposób możesz zmienić stan gry, jeżeli nie mozesz zmienić stanu żadnej ze zmiennych gry? Odpowiedź jest prosta: Używasz
+    <a href="https://pl.wikipedia.org/wiki/Rekurencja_ogonowa">rekurencji ogonowej</a>.
+</div>
+
+<div class="paragraphDiv">
+    Zasadniczo masz funkcję, która przekształca świat gry w jednym małym kroku. Wynikem tej funkcji jest całkowicie nowy świat. Wtedy wywołujesz tę funkcję w rekurencyjnej pętli tak, jak tu:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">void</span> updateWorld(World world) {
+  drawWorld(world);
+  updateWorld(transformWorld(world));
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Jeżeli jesteś programistą Javy, prawdopodobnie zwróciłbyś uwagę na potencjalne <a href="https://pl.wikipedia.org/wiki/Przepe%C5%82nienie_stosu">przepełnianie się
+    stosu</a>. Ale w językach funkcyjnych (i w innych współczesnych językach innych niż Java) jest cudowny sposób nazywany
+    <a href="http://wiki.c2.com/?TailCallOptimization">optymalizacja wywołań ogonowych</a>, która usuwa cały problem jeśli tylko rekurencyjne wywołanie jest ostatnią operacją w danej funkcji.
+</div>
+
+
+<div class="paragraphDiv">
+    A więc jak ktoś miałby napisać funkcję update-hits w języku funkcyjnym takim jak Clojure?
+</div>
+
+<div class="paragraphDiv">
+    Popatrz na to:
+</div>
+
+<div class="paragraphDiv">
+
+
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">update-hits</span> [<span style="color: #996633">target-tag</span> <span style="color: #996633">world</span>]
+  (<span style="color: #008800; font-weight: bold">let </span>[{<span style="color: #AA6600">:keys</span> [<span style="color: #996633">shots</span> <span style="color: #996633">explosions</span>]} <span style="color: #996633">world</span>
+        <span style="color: #996633">relevant-shots</span> (<span style="color: #007020">filter </span><span style="color: #333333">#</span>(<span style="color: #333333">#</span>{<span style="color: #AA6600">:kinetic</span> <span style="color: #AA6600">:torpedo</span> <span style="color: #AA6600">:phaser</span>} (<span style="color: #AA6600">:type</span> <span style="color: #996633">%</span>)) <span style="color: #996633">shots</span>)
+        <span style="color: #996633">targets</span> (<span style="color: #0066BB; font-weight: bold">target-tag</span> <span style="color: #996633">world</span>)
+        <span style="color: #996633">pairs</span> (<span style="color: #007020">for </span>[<span style="color: #996633">t</span> <span style="color: #996633">targets</span> <span style="color: #996633">s</span> <span style="color: #996633">relevant-shots</span>]
+                {<span style="color: #AA6600">:target</span> <span style="color: #996633">t</span>
+                 <span style="color: #AA6600">:shot</span> <span style="color: #996633">s</span>
+                 <span style="color: #AA6600">:distance</span> (<span style="color: #0066BB; font-weight: bold">geo/distance</span> (<span style="color: #0066BB; font-weight: bold">pos</span> <span style="color: #996633">s</span>) (<span style="color: #0066BB; font-weight: bold">pos</span> <span style="color: #996633">t</span>))})
+        <span style="color: #996633">hits</span> (<span style="color: #007020">filter </span><span style="color: #333333">#</span>(<span style="color: #007020">&gt;= </span>(<span style="color: #0066BB; font-weight: bold">shot-proximity</span> (<span style="color: #AA6600">:shot</span> <span style="color: #996633">%</span>)) (<span style="color: #AA6600">:distance</span> <span style="color: #996633">%</span>)) <span style="color: #996633">pairs</span>)
+        <span style="color: #996633">hit-targets</span> (<span style="color: #007020">set </span>(<span style="color: #007020">map </span><span style="color: #AA6600">:target</span> <span style="color: #996633">hits</span>))
+        <span style="color: #996633">hit-shots</span> (<span style="color: #007020">set </span>(<span style="color: #007020">map </span><span style="color: #AA6600">:shot</span> <span style="color: #996633">hits</span>))
+        <span style="color: #996633">un-hit-targets</span> (<span style="color: #0066BB; font-weight: bold">set/difference</span> (<span style="color: #007020">set </span><span style="color: #996633">targets</span>) <span style="color: #996633">hit-targets</span>)
+        <span style="color: #996633">un-hit-shots</span> (<span style="color: #0066BB; font-weight: bold">set/difference</span> (<span style="color: #007020">set </span><span style="color: #996633">shots</span>) <span style="color: #996633">hit-shots</span>)
+        <span style="color: #996633">hit-targets</span> (<span style="color: #007020">map </span><span style="color: #333333">#</span>(<span style="color: #0066BB; font-weight: bold">process-hit</span> <span style="color: #996633">hits</span> <span style="color: #996633">%</span>) <span style="color: #996633">hit-targets</span>)
+        <span style="color: #996633">explosions</span> (<span style="color: #007020">concat </span><span style="color: #996633">explosions</span> (<span style="color: #007020">map </span><span style="color: #333333">#</span>(<span style="color: #0066BB; font-weight: bold">explosions/shot-&gt;explosion</span> <span style="color: #996633">%</span>) <span style="color: #996633">hit-shots</span>))]
+    (<span style="color: #007020">assoc </span><span style="color: #996633">world</span> <span style="color: #996633">target-tag</span> (<span style="color: #007020">doall </span>(<span style="color: #007020">concat </span><span style="color: #996633">un-hit-targets</span> <span style="color: #996633">hit-targets</span>))
+                 <span style="color: #AA6600">:shots</span> (<span style="color: #007020">doall </span>(<span style="color: #007020">concat </span><span style="color: #996633">un-hit-shots</span>))
+                 <span style="color: #AA6600">:explosions</span> (<span style="color: #007020">doall </span><span style="color: #996633">explosions</span>))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    To wygląda trochę inaczej niż funkcja w Javie, prawda? Powinno. Robi o wiele więcej niż funkcja w Javie. A więc prześledźmy ten kod krok po kroku.
+</div>
+
+<div class="paragraphDiv">
+    Na początku dostajemy wszystkie pasujące pociski. Są trzy rodzaje pocisków, które nasz statek może wystrzelić w cele Klingonów i Romulan. Nie zawarłem ich w kodzie Java wyżej, więc to jest po prostu dodatkowy kod.
+</div>
+
+<div class="paragraphDiv">
+    Potem dostajemy nasze cele. W naszym przypadku to jest lista tylko samych Klingonów. Chociaż może to być także lista wszystkich Romulan.
+</div>
+
+<!---------- -->
+<div class="paragraphDiv">
+
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html">https://blog.cleancoder.com/uncle-bob/2018/12/17/FPvsOO-List-processing.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+
+
+</body>
+
+</html>
