@@ -47,7 +47,7 @@
 <div class="smallGreyText">
     <hr/>
     <div>
-        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony:
     </div>
     <br/>
 
@@ -66,11 +66,11 @@
 <div class="paragraphDiv">
     Wyobraźmy sobie, że mamy dwie listy. Lista statków Klingonów i lista pocisków poruszających się w przestrzeni.
     Pociskami mogą być promienie fazera, torpedy fotonowe, lub kule żelaza zwane kinetykami. We wszystkich tych
-    przypadkach mają on położenie i prędkość. Tak samo każdy ze statków klingońskich.
+    przypadkach mają one położenie i prędkość. Tak samo każdy ze statków klingońskich.
 </div>
 
 <div class="paragraphDiv">
-    Mamy częstotliwość odświerzania liczą w <span class="code">f</span> klatek na sekundę. W każdej klatce patrzymy na
+    Mamy częstotliwość odświeżania liczoną w <span class="code">f</span> klatek na sekundę. W każdej klatce patrzymy na
     położenie pocisków i porównujemy je z położeniem statków klingońskich. Szukamy trafienia.
 </div>
 
@@ -99,31 +99,30 @@
       }
     }
   }
-}
-    </pre>
+}    </pre>
     </div>
 
 </div>
 
 <div class="paragraphDiv">
-    Zauważ break z etykietą. Po raz pierwszy w mojej historii pokusiłem się o użyć czegoś takiego.
+    Zauważ break z etykietą. Po raz pierwszy w mojej historii pokusiłem się o użycie czegoś takiego.
 </div>
 
 <div class="paragraphDiv">
-    Pomijając to, kod jest całkiem oczywisty, nieprawdaż? Ale w żaden sposób nie jest funkcyjny poniewać zmienia zbiór trafień Klingonów i świat gry.
+    Pomijając to, kod jest całkiem oczywisty, nieprawdaż? Ale w żaden sposób nie jest funkcyjny, ponieważ zmienia zbiór trafień Klingonów i świat gry.
 </div>
 
 <div class="paragraphDiv">
-    Program funkcyjny, który ma robić to samo nie może zmieniać Klingonów i świata gry w żaden sposób. To, co musi robić zamiast tego, to tworzyć całkiem nowy świat, z nowymi Klingonami, nowymi pociskami, wybuchami i trafieniami. Pamiętaj, o tym właśnie jest całe programowanie funkcyjne. Nie możesz zmienić wartości jakiejkolwiek istniejącej zmiennej.
+    Program funkcyjny, który ma robić to samo, nie może zmieniać Klingonów i świata gry w żaden sposób. To, co musi robić zamiast tego, to tworzyć całkiem nowy świat, z nowymi Klingonami, nowymi pociskami, wybuchami i trafieniami. Pamiętaj, o tym właśnie jest całe programowanie funkcyjne. Nie możesz zmieniać wartości żadnej istniejącej zmiennej.
 </div>
 
 <div class="paragraphDiv">
-    Mógłbyś zapytać w jaki sposób możesz zmienić stan gry, jeżeli nie mozesz zmienić stanu żadnej ze zmiennych gry? Odpowiedź jest prosta: Używasz
+    Mógłbyś zapytać, w jaki sposób możesz zmienić stan gry, jeżeli nie możesz zmienić stanu żadnej ze zmiennych gry? Odpowiedź jest prosta: Używasz
     <a href="https://pl.wikipedia.org/wiki/Rekurencja_ogonowa">rekurencji ogonowej</a>.
 </div>
 
 <div class="paragraphDiv">
-    Zasadniczo masz funkcję, która przekształca świat gry w jednym małym kroku. Wynikem tej funkcji jest całkowicie nowy świat. Wtedy wywołujesz tę funkcję w rekurencyjnej pętli tak, jak tu:
+    Zasadniczo masz funkcję, która przekształca świat gry w jednym małym kroku. Wynikiem tej funkcji jest całkowicie nowy świat. Wtedy wywołujesz tę funkcję w rekurencyjnej pętli tak, jak tu:
 </div>
 
 <div class="paragraphDiv">
@@ -138,12 +137,12 @@
 <div class="paragraphDiv">
     Jeżeli jesteś programistą Javy, prawdopodobnie zwróciłbyś uwagę na potencjalne <a href="https://pl.wikipedia.org/wiki/Przepe%C5%82nienie_stosu">przepełnianie się
     stosu</a>. Ale w językach funkcyjnych (i w innych współczesnych językach innych niż Java) jest cudowny sposób nazywany
-    <a href="http://wiki.c2.com/?TailCallOptimization">optymalizacja wywołań ogonowych</a>, która usuwa cały problem jeśli tylko rekurencyjne wywołanie jest ostatnią operacją w danej funkcji.
+    <a href="http://wiki.c2.com/?TailCallOptimization">optymalizacja wywołań ogonowych</a>, która usuwa cały problem, jeśli tylko rekurencyjne wywołanie jest ostatnią operacją w danej funkcji.
 </div>
 
 
 <div class="paragraphDiv">
-    A więc jak ktoś miałby napisać funkcję update-hits w języku funkcyjnym takim jak Clojure?
+    A więc jak ktoś miałby napisać funkcję <span class="code">update-hits</span> w języku funkcyjnym takim jak Clojure?
 </div>
 
 <div class="paragraphDiv">
@@ -207,7 +206,7 @@
 <div class="paragraphDiv">
     <ul>
         <li>
-            Potem filtrujemy te pary do tych, których odległości są mniejsze niż graniczne wartości zbliżeniowe broni. to są te pary, które reprezentują trafienia.
+            Potem filtrujemy te pary do tych, których odległości są mniejsze niż graniczne wartości zbliżeniowe broni. To są te pary, które reprezentują trafienia.
         </li>
     </ul>
 </div>
@@ -232,7 +231,7 @@
 <div class="paragraphDiv">
     <ul>
         <li>
-            Następnie tworzymy hit-targets. To uaktualnia każdy trafiony cel jego konkretnym trafieniem.
+            Następnie tworzymy <span class="code">hit-targets</span>. To uaktualnia każdy trafiony cel jego konkretnym trafieniem.
         </li>
     </ul>
 </div>
@@ -240,7 +239,7 @@
 <div class="paragraphDiv">
     <ul>
         <li>
-           Potem tworzymy listę wszytkich nowych wybuchów dodanych do istniejących wybuchów w świecie gry.
+           Potem tworzymy listę wszystkich nowych wybuchów dodanych do istniejących wybuchów w świecie gry.
         </li>
     </ul>
 </div>
@@ -250,9 +249,9 @@
         <li>
            Na koniec tworzymy świat gry. Świat jest kopią [1] starego świata, ale z:
             <ul style="list-style-type:circle">
-                <li>Klingonami zamienionymi na konkatenację trafionych Klingonów i nietrafionych Klingonów</li>
+                <li>Klingonami zamienionymi na <a href="https://pl.wikipedia.org/wiki/Konkatenacja">konkatenację</a> trafionych Klingonów i nietrafionych Klingonów</li>
                 <li>pociskami zamienionymi tymi, które nie trafiły</li>
-                <li>wybuchami zamienionymi sumą starych i nowych wybuchów</li>
+                <li>wybuchami zamienionymi sumą starych i nowych wybuchów.</li>
             </ul>
         </li>
     </ul>
@@ -260,15 +259,15 @@
 
 <div class="paragraphDiv">
     Teraz następuje część, którą uważam za interesującą o tym, że aby stworzyć nową instancję świata, muszę śledzić te elementy świata, które się zmieniły, takie jak Klingonowie, pociski, i wybuchy,
-    <i>i wszystkie</i> te elementy, które się <i>nie zmieniły</i>. Muszę rozdzielić je. Poczynić zmiany. A potem złożyć je spowrotem w całość. Nie mogę po prostu dostać się do świata gry i zrobić zmiany.
+    <i>i wszystkie</i> te elementy, które się <i>nie zmieniły</i>. Muszę rozdzielić je. Poczynić zmiany. A potem złożyć je z powrotem w całość. Nie mogę po prostu dostać się do świata gry i zrobić zmiany.
 </div>
 
 <div class="paragraphDiv">
-    Na początku myślałem, że to będzie dodadtkowa robota. Wydawało mi się to stratą czasu, że muszę to rozdzielać i śledzić niezmienione elementy. Jednakże potem doznałem olśnienia.
+    Na początku myślałem, że to będzie dodatkowa robota. Wydawało mi się to stratą czasu, że muszę to rozdzielać i śledzić niezmienione elementy. Jednakże potem doznałem olśnienia.
 </div>
 
 <div class="paragraphDiv">
-    Wyobraź sobie, że mam tuzin rowerów w garażu. Ty i Twój kolega będziecie startowac w wyścigu, i potrzebujecie wybrać i przygotować dwa rowery. Musicie oddzielić te dwa rowery od reszty, przygotować je, ścigać się na naich i potem umieścić jes spowrotem w garażu z resztą rowerów.
+    Wyobraź sobie, że masz tuzin rowerów w garażu. Ty i Twój kolega będziecie startować w wyścigu, i potrzebujecie wybrać i przygotować dwa rowery. Musicie oddzielić te dwa rowery od reszty, przygotować je, ścigać się na nich i potem umieścić je z powrotem w garażu z resztą rowerów.
 </div>
 
 <div class="paragraphDiv">
@@ -281,7 +280,7 @@
 </div>
 
 <div class="paragraphDiv">
-    [2] Jest z jeden z punktów dyskusji o grze spacewar podczas <a href="https://cleancoders.com/videos/clean-code/functional-programming">Serii Czysty Kod Funkcjonalne
+    [2] Jest to jeden z punktów dyskusji o grze spacewar podczas <a href="https://cleancoders.com/videos/clean-code/functional-programming">Serii Czysty Kod Funkcjonalne
     Programowanie</a> na stronie <a href="http://cleancoders.com/">cleancoders.com</a>.
 </div>
 
@@ -293,7 +292,7 @@
 <div class="smallGreyText">
     <hr/>
     <div>
-        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony :
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony:
     </div>
     <br/>
 
