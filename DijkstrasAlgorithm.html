@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <style scoped="scoped" type="text/css">
+        .paragraphDiv {
+            margin: 0 1em 0.5em 1em;
+        }
+
+        img {
+            margin: 10px;
+        }
+
+        .smallGreyText {
+            text-align: center;
+            color: #999999;
+            font-size: 0.6em;
+            margin: 1em 0.1em 1em 0.1em;
+        }
+
+        .cite {
+            padding: 0 1em 0 1em;
+            margin: 1em;
+            border-left: solid;
+            border-color: #eef2f5;
+        }
+
+        .code {
+            font-family: monospace;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<br/>
+
+<div class="paragraphDiv">
+    Byłem jednego dnia na <a href="http://scna.softwarecraftsmanship.org/">SCNA</a>, i ktoś zagadał do mnie o TDD i <a
+        href="https://pl.wikipedia.org/wiki/Algorytm_Dijkstry">algorytmie Dijkstry</a>. Zastanawiał się, czy można znaleźć sekwencję testów, która zaprowadzi do algorytmu. To wyglądało mi na fajne, krótkie ćwiczenie, więc zdecydowałem się spróbować.
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2016/10/26/DijkstrasAlg.html">https://blog.cleancoder.com/uncle-bob/2016/10/26/DijkstrasAlg.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+<br/>
+
+<div class="paragraphDiv">
+    Zacząłem tak, jak zwykle z odpaleniem ograniczonego przypadku testowego.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">MinPathTest</span> {
+  @Test
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> nothing() <span style="font-weight: bold">throws</span> Exception {
+  }
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Algorytm Dijkstry jest prostym sposobem znajdowania najkrótszej drogi w grafie o krawedziach mających konkretną długość. Podając węzeł startowy i końcowy, algorytm wskaże jaka jest najkrótsza ścieżka i jaka jest jej długość.
+</div>
+
+<div class="paragraphDiv">
+    A więc już od samego początku są ciekawe decyzje do podjęcia. W jaki sposób powinienem przedstawiać wejściowy graf? Jak powinienem przedstawiać wyjście tego algorytmu? O większości tego możemy prawdopodobnie zadecydować później. Na teraz, powinniśmy skoncentrować się na najbardziej ograniczonym przypadku: pustym grafie.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> noGraph_NoPathZeroLength() <span style="font-weight: bold">throws</span> Exception {
+  Assert.assertEquals(<span style="font-style: italic">&quot;{}0&quot;</span>, minPath(<span style="font-style: italic">&quot;&quot;</span>));
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+
+</div>
+
+<!---------- -->
+<div class="paragraphDiv">
+
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2016/10/26/DijkstrasAlg.html">https://blog.cleancoder.com/uncle-bob/2016/10/26/DijkstrasAlg.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+
+
+</body>
+
+</html>
