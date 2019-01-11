@@ -93,10 +93,150 @@
 </div>
 
 <div class="paragraphDiv">
+   Ten pierwszy test zmusił mnie, aby podjąć jakieś decyzje o formacie wyjściowym. Będę prezentował wyjściową ścieżkę jako zbiór węzłów pomiędzy nawiasami klamrowymi. Długość ścieżki, to będzie liczba całkowita za nawiasami klamrowymi.
+</div>
+
+<div class="paragraphDiv">
+    Ta notacja jest tylko na potrzeby moich testów. Używam techniki, którą nazywam <i>skomponowanymi asercjami</i>. Lubię komponować moje asercje w zdania, które łatwo się czyta. To zwykle oznacza, że muszę pisać proste translatory, które zamieniają skomponowane asercje na rzeczywiste API systemu poddawanego testom.
+</div>
+
+<div class="paragraphDiv">
+    To jasne, że mogę sprawić, aby ten test przechodził nie używając niczego więcej niż tego:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">private</span> String minPath(String graph) {
+  <span style="font-weight: bold">return</span> <span style="font-style: italic">&quot;{}0&quot;</span>;
+}
+</pre></div>
 
 </div>
 
+<div class="paragraphDiv">
+    Popatrzmy wnikliwie na ten przypadek testowy. To wywołanie metody <span class="code">minPath</span> nie jest właściwe. Algorytm Dijkstry znajduje najkrótszą ścieżkę pomiędzy dwoma określonymi węzłami. Więc zakładając, że węzły mają nazwy, test powinien naprawdę wyglądać jakoś tak:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">Assert.assertEquals(<span style="font-style: italic">&quot;{}0&quot;</span>, minPath(<span style="font-style: italic">&quot;&quot;</span>, <span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    To brzydko wygląda. Możemy zrefaktorować to, aby było odrobinę ładniejsze:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> assertPath(String graph, String expected) {
+  assertEquals(expected, minPath(graph, <span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+}
+
+@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> noGraph_NoPathZeroLength() <span style="font-weight: bold">throws</span> Exception {
+  assertPath(<span style="font-style: italic">&quot;&quot;</span>, <span style="font-style: italic">&quot;{}0&quot;</span>);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Zauważ, że metoda <span class="code">assertPath</span> zakłada dla prostoty, że wszystkie przypadki testowe będą używać
+    <span class="code">"A"</span> i <span class="code">"Z"</span> jako ich pozycji startowych i końcowych.
+</div>
+
+<div class="paragraphDiv">
+    Jedna, ostatnia zmiana. Myślę, że ścieżka i jej długość powinny być oddzielone.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> assertMinPath(String graph,
+                           <span style="font-weight: bold">int</span> length, String path) {
+  assertEquals(length, minLength(graph, <span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+  assertEquals(path, minPath(graph, <span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+}
+
+@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> noGraph_NoPathZeroLength() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);
+}
+
+<span style="font-weight: bold">private</span> <span style="font-weight: bold">int</span> minLength(String graph, String begin, String end) {
+  <span style="font-weight: bold">return</span> 0;
+}
+
+<span style="font-weight: bold">private</span> String minPath(String graph, String begin, String end) {
+  <span style="font-weight: bold">return</span> <span style="font-style: italic">&quot;{}&quot;</span>;
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Ponieważ są dwie metody do sprawdzenia w mojej asercji, myślę, że sensownym byłoby założyć, że powinny one być metodami tej samej klasy uruchamiającej algorytm Dijkstry. Użyjmy więc refaktoringu typu
+    <i>wyciągnij delegata</i>, aby wyciągnąć to do nowej klasy.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">MinPathTest</span> {
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> assertMinPath(String graph,
+                             <span style="font-weight: bold">int</span> length, String path) {
+    PathFinder pf = <span style="font-weight: bold">new</span> PathFinder(graph);
+    assertEquals(length, pf.minLength(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+    assertEquals(path, pf.minPath(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+  }
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> noGraph_NoPathZeroLength() <span style="font-weight: bold">throws</span> Exception {
+    assertMinPath(<span style="font-style: italic">&quot;&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);
+  }
+}
+
+<span style="font-weight: bold">class</span> <span style="font-weight: bold">PathFinder</span> {
+  <span style="font-weight: bold">public</span> PathFinder(String graph) {
+  }
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">int</span> minLength(String begin, String end) {
+    <span style="font-weight: bold">return</span> 0;
+  }
+
+  <span style="font-weight: bold">public</span> String minPath(String begin, String end) {
+    <span style="font-weight: bold">return</span> <span style="font-style: italic">&quot;{}&quot;</span>;
+  }
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Myślę, że to interesujące, jak dużo namysłu i wysiłku zostało włożone w strukturę tego problemu; dla jednego tylko, ograniczonego przypadku testowego. Ale teraz myślę, że możemy dodać kilka innych ograniczonych przypadków:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> degenerateCases() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);   <span style="font-style: italic">//pusty graf</span>
+  assertMinPath(<span style="font-style: italic">&quot;A&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);  <span style="font-style: italic">//jeden węzeł</span>
+  assertMinPath(<span style="font-style: italic">&quot;B1C&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);<span style="font-style: italic">//nie ma ani początku ani końca</span>
+  assertMinPath(<span style="font-style: italic">&quot;A1C&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);<span style="font-style: italic">//nie ma końca</span>
+  assertMinPath(<span style="font-style: italic">&quot;B1Z&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);<span style="font-style: italic">//nie ma początku</span>
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Ten test zmusił mnie, aby podjąć kolejną decyzję o <i>skomponowanej asercji</i>. Dla naszych testów struktura krawędzi grafu będzie wyglądała tak:
+    <span class="code">&lt;nazwa&gtdługość&lt;nazwa&gt</span>. Więc <span class="code">B1C</span> jest krawędzią o długości 1, która łączy węzeł
+    <span class="code">B</span> i <span class="code">C</span>.
+</div>
+
+<div class="paragraphDiv">
+    Myślę, że wszystkie te przypadki testowe są dość ograniczone. Więc przykręćmy koło zębate skomplikowania o jeden ząbęk w górę i stwórzmy test, który zmusi nas do zrobienia czegoś choć trochę sprytnego.
+</div>
+
+
 <!---------- -->
+
 <div class="paragraphDiv">
 
 </div>
