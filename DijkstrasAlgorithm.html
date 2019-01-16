@@ -588,10 +588,222 @@
 </div>
 
 <div class="paragraphDiv">
+    OK, to działa, ale to jest naprawdę okropne. Nie tylko łamie zasadę <em>ogólności</em>; to jest po prostu ochydne. Co więcej, nie do końca poprawnie tworzy ścieżkę .Na przykład test: <span class="code">assertMinPath("A1B,B1Z", 2, "[A, B, Z]");</span> nie przechodzi poniważ tworzy <span class="code">[A, B, B, Z]</span>. Mógłbym to naprawić przez dodanie jeszcze jednej okropnej instrukcji
+    <span class="code">if</span>; ale mam lepszy pomysł. Przejdźmy graf od początku do końca.
+</div>
+
+<div class="paragraphDiv">
+
+</div>
+
+
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> findPath(String begin, String end) {
+  List&lt;String&gt; p = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+  <span style="font-weight: bold">int</span> l = 0;
+  p.add(begin);
+
+  <span style="font-weight: bold">for</span> (Edge e = findEdge(begin);
+       e != <span style="font-weight: bold">null</span>; e = findEdge(e.end)) {
+    p.add(e.end);
+    l += e.length;
+    <span style="font-weight: bold">if</span> (e.end.equals(end)) {
+      length = l;
+      path = p;
+      <span style="font-weight: bold">return</span>;
+    }
+  }
+}
+
+<span style="font-weight: bold">private</span> Edge findEdge(String begin) {
+  <span style="font-weight: bold">for</span> (Edge e : edges) {
+    <span style="font-weight: bold">if</span> (e.begin.equals(begin))
+      <span style="font-weight: bold">return</span> e;
+  }
+  <span style="font-weight: bold">return</span> <span style="font-weight: bold">null</span>;
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    OK, to działa. To dziwne, że musieliśmy użyć tymczasowych zmiennych <span class="code">length</span> i <span
+        class="code">path</span>; ale to jedyny sposób, jaki przychodzi mi na myśl, do ignorowania ścieżek, które nie istnieją. Myślę także, że to rozwiązanie pozbawia nas zależności od kolejności.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> twoEdges() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;A1B,B1Z&quot;</span>, 2, <span style="font-style: italic">&quot;[A, B, Z]&quot;</span>);
+  assertMinPath(<span style="font-style: italic">&quot;B1Z,A1B&quot;</span>, 2, <span style="font-style: italic">&quot;[A, B, Z]&quot;</span>);
+  assertMinPath(<span style="font-style: italic">&quot;A1X,Y1Z&quot;</span>, 0, <span style="font-style: italic">&quot;[]&quot;</span>);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Tak, wszystkie przechodzą. Myślę, że trzy i wiecej krawędzi też zadziała. I także grafy z jedną kompletną scieżką i innymi dyndającymi ścieżkami.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> threeEdges() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;A2B,B3C,C4Z&quot;</span>, 9, <span style="font-style: italic">&quot;[A, B, C, Z]&quot;</span>);
+  assertMinPath(<span style="font-style: italic">&quot;B3C,C4Z,A2B&quot;</span>, 9, <span style="font-style: italic">&quot;[A, B, C, Z]&quot;</span>);
+}
+
+@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> OnlyOnePath() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;A1B,B2C,C3Z,B4D,D6E&quot;</span>, 6, <span style="font-style: italic">&quot;[A, B, C, Z]&quot;</span>);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Ale to nie będzie przechodzić, ponieważ przejście przez graf pomija krawędź <span class="code">C3Z</span>.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">assertMinPath(<span style="font-style: italic">&quot;A1B,B2C,C3D,C3Z&quot;</span>, 6, <span style="font-style: italic">&quot;[A, B, C, Z]&quot;</span>);
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Ok. Więc nie możemy po prostu przejść grafu po kolei. To, co w zamian musimy zrobić, to sprawdzić każdą możliwą drogę, która wychodzi z wierzchołka startowego; i całą drogę musimy zapisywać nasze tymczasowe znaleziska, aż dojdziemy do końca.
+</div>
+
+<div class="paragraphDiv">
+    Jak zobaczysz poniżej, to wymaga odrobine więcej mrówczego wysiłku. Muszę śledzić wszystkie wierzchołki, i ścieżki i długości połączone z tymi wierzchołkami. Ale, poza tym, algorytm jest prawie taki sam jak do tej pory.
+</div>
+
+
+<div class="paragraphDiv">
+    Iteracja w pętli jest inna. Zaczyna się w początkowym wierzchołku, i potem przechodzi przez wszystkich <em>nieodwiedzonych</em> sąsiadów, i zapisuje dodane długości i ścieżki w tych sąsiadach.
+</div>
+
+<div class="paragraphDiv">
+    Zauważ, że użyłem <span class="code">Integer.MAX_VALUE</span> jako strażnika, który oznacza "Nieodwiedzony z odwiedzonego wierzchołka". Ograniczamy limit wyszukiwania do tylko tych wierzchołków, które były odwiedzone, ponieważ przecież idziemy od początku do końca. Każdy węzeł, który nie był odwiedzony, oczywiście, nie może być <em>następnym</em> w ścieżce.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">class</span> <span style="font-weight: bold">PathFinder</span> {
+  <span style="font-weight: bold">private</span> List&lt;Edge&gt; edges = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+  <span style="font-weight: bold">private</span> Set&lt;String&gt; nodeNames = <span style="font-weight: bold">new</span> HashSet&lt;&gt;();
+  <span style="font-weight: bold">private</span> Map&lt;String, Node&gt; nodes = <span style="font-weight: bold">new</span> HashMap&lt;&gt;();
+  <span style="font-weight: bold">private</span> Node endNode;
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> findPath(String begin, String end) {
+    List&lt;String&gt; unvisited = initializeSearch(begin, end);
+
+    <span style="font-weight: bold">for</span> (String node = begin;
+	     node != <span style="font-weight: bold">null</span>; node = getNext(unvisited)) {
+      unvisited.remove(node);
+      visit(node);
+    }
+
+    setupEndNode(end);
+  }
+
+  <span style="font-weight: bold">private</span> List&lt;String&gt; initializeSearch(String begin,
+	                                    String end) {
+    nodeNames.add(begin);
+    nodeNames.add(end);
+    List&lt;String&gt; unvisited = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;(nodeNames);
+    <span style="font-weight: bold">for</span> (String node : unvisited)
+      nodes.put(node, <span style="font-weight: bold">new</span> Node(Integer.MAX_VALUE));
+
+    nodes.get(begin).length = 0;
+    <span style="font-weight: bold">return</span> unvisited;
+  }
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> visit(String node) {
+    List&lt;Edge&gt; neighbors = findEdges(node);
+    Node curNode = nodes.get(node);
+    <span style="font-weight: bold">for</span> (Edge e : neighbors) {
+      Node nbr = nodes.get(e.end);
+      nbr.length = curNode.length + e.length;
+      nbr.path = <span style="font-weight: bold">new</span> ArrayList&lt;String&gt;();
+      nbr.path.addAll(curNode.path);
+      nbr.path.add(node);
+    }
+  }
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> setupEndNode(String end) {
+    endNode = nodes.get(end);
+    <span style="font-weight: bold">if</span> (endNode.length != Integer.MAX_VALUE)
+      endNode.path.add(end);
+    <span style="font-weight: bold">else</span>
+      endNode.length = 0;
+  }
+
+  <span style="font-weight: bold">private</span> String getNext(List&lt;String&gt; unvisited) {
+    <span style="font-weight: bold">for</span> (String name : unvisited) {
+      Node candidate = nodes.get(name);
+      <span style="font-weight: bold">if</span> (candidate.length != Integer.MAX_VALUE)
+        <span style="font-weight: bold">return</span> name;
+    }
+    <span style="font-weight: bold">return</span> <span style="font-weight: bold">null</span>;
+  }
+
+  <span style="font-weight: bold">private</span> List&lt;Edge&gt; findEdges(String begin) {
+    List&lt;Edge&gt; found = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+    <span style="font-weight: bold">for</span> (Edge e : edges) {
+      <span style="font-weight: bold">if</span> (e.begin.equals(begin))
+        found.add(e);
+    }
+    <span style="font-weight: bold">return</span> found;
+  }
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">int</span> getLength() {
+    <span style="font-weight: bold">return</span> endNode.length;
+  }
+
+  <span style="font-weight: bold">public</span> List&lt;String&gt; getPath() {
+    <span style="font-weight: bold">return</span> endNode.path;
+  }
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> addEdge(String start, String end, <span style="font-weight: bold">int</span> length) {
+    edges.add(<span style="font-weight: bold">new</span> Edge(start, end, length));
+    nodeNames.add(start);
+    nodeNames.add(end);
+  }
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">Edge</span> {
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> String begin;
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> String end;
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> <span style="font-weight: bold">int</span> length;
+
+    <span style="font-weight: bold">public</span> Edge(String begin, String end, <span style="font-weight: bold">int</span> length) {
+      <span style="font-weight: bold">this</span>.begin = begin;
+      <span style="font-weight: bold">this</span>.end = end;
+      <span style="font-weight: bold">this</span>.length = length;
+    }
+  }
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">Node</span> {
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">int</span> length;
+    <span style="font-weight: bold">public</span> List&lt;String&gt; path;
+
+    <span style="font-weight: bold">public</span> Node(<span style="font-weight: bold">int</span> l) {
+      <span style="font-weight: bold">this</span>.length = l;
+      <span style="font-weight: bold">this</span>.path = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+    }
+  }
+}
+</pre></div>
 
 </div>
 
 <!---------- -->
+
+<div class="paragraphDiv">
+
+</div>
+
 
 <div class="paragraphDiv">
 
