@@ -574,6 +574,23 @@
 
 </div>
 
+<div class="paragraphDiv">
+    Podoba C isię ta zmiana? <span class="code">&&</span> na <span class="code">||</span>. Taaak, całkiem sprytnie. To zadziała tylko dla dwóch kolejnych krawędzi. Założenia wznoszą się w niebiosa! I, tak czy inaczej, to nie działa.
+</div>
+
+<div class="paragraphDiv">
+    Ooo, przechodzą testy <span class="code">twoEdges</span>, i testy <span class="code">oneEdge</span>, ale nie przechodzą testy
+    <span class="code">degenerateCases</span>. I to nie dziwota, ponieważ tylko nasze dwa ostatnie ograniczone przypadki testowe pasują do założenia "A" pierwszy lub "Z" ostatni.
+</div>
+
+<div class="paragraphDiv">
+    Aby wszystkie te testy przechodziły, potrzebuję implementacji, która w wyniku daje zerową długość i pustą ścieżkę, jeżeli nie istnieje ścieżka pomiędzy A i Z. Ponieważ nie wiem ile będzie krawędzi (może być zero, jeden, dwie) nie mogą wziąć tylko dwóch. Zamiast tego, mógłbym zrobić analizę przypadków dla zero, jednej lub dwóch krawędzi; jak poniżej:
+</div>
+
+<div class="paragraphDiv">
+
+</div>
+
 <!---------- -->
 
 <div class="paragraphDiv">
