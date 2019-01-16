@@ -234,6 +234,345 @@
     Myślę, że wszystkie te przypadki testowe są dość ograniczone. Więc przykręćmy koło zębate skomplikowania o jeden ząbęk w górę i stwórzmy test, który zmusi nas do zrobienia czegoś choć trochę sprytnego.
 </div>
 
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> oneEdge() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;A1Z&quot;</span>, 1, <span style="font-style: italic">&quot;{AZ}&quot;</span>);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Ten test, oczywiście, nie przejdzie. Czuję się też trochę niewygodnie, ponieważ testuję dwie rzeczy na raz, długość i ścieżkę, które mogłyby być testowane oddzielnie. Wyjdę teraz na zrzędę, bo poświęciłem tyle czasu na wprowadzenie skomponowanej asercji; i teraz chciałbym ją rozbić znowu.
+    Ale myślę, że jest jeden "sprytny" sposób na obejście tego:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> String ANY = <span style="font-weight: bold">null</span>;
+
+<span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> assertMinPath(String graph,
+                           Integer length, String path) {
+  PathFinder pf = <span style="font-weight: bold">new</span> PathFinder(graph);
+  <span style="font-weight: bold">if</span> (length != <span style="font-weight: bold">null</span>)
+    assertEquals((<span style="font-weight: bold">int</span>)length, pf.minLength(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+  <span style="font-weight: bold">if</span> (path != <span style="font-weight: bold">null</span>)
+    assertEquals(path, pf.minPath(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+}
+...
+@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> oneEdge() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;A1Z&quot;</span>, 1, ANY);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    To pozostawia moją skomponowaną asercję nietkniętą, i pozwala mi pominąć dowolną z tych dwóch komponentów na życzenie. A teraz sprawmy, żeby ten test przchodził.
+</div>
+
+<div class="paragraphDiv">
+    Teraz, oczywiście, mógłbym zrobić coś tak ochydnego jak to:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">int</span> minLength(String begin, String end) {
+  <span style="font-weight: bold">if</span> (graph.equals(<span style="font-style: italic">&quot;A1Z&quot;</span>))
+    <span style="font-weight: bold">return</span> 1;
+  <span style="font-weight: bold">return</span> 0;
+}
+</pre></div>
+
+</div>
+
+
+<div class="paragraphDiv">
+    Ale to łamie kilka zasad. Po pierwsze, to łamie zasadę <em>ogólności</em>, która mówi: <em>W miarę, jak testy robią się
+    bardziej konkretne, kod robi się bardziej ogólny</em>. Innymi słowy, kod produkcyjny musi stać się bardziej ogólny, aby spełnić test, który nie przechodzi. Nie możesz dodać wyrażeń do produkcyjnego kodu, które są specificzne dla danego testu. (Mówię o tym dużo więcej w
+    <a href="https://cleancoders.com/episode/clean-code-episode-19-p1/show">Odcinku 19: Zaawansowane TDD</a>, na <a
+        href="https://cleancoders.com/">cleancoders.com</a>)
+</div>
+
+<div class="paragraphDiv">
+    Drugą złamaną zasadą jest <a href="https://pl.wikipedia.org/wiki/Zale%C5%BCno%C5%9B%C4%87_oprogramowania">zależność</a> testów. Nie chcemy, aby testy stały się mocno zależne od produkcyjnego kodu. Im więcej zależności, tym bardziej testy stają się kruche. Nie chcemy doprowadzić do sytuacji, gdy pojedyncza zmiana w produkcyjnym kodzie zepsuje dziesiątki czy setki testów.
+</div>
+
+<div class="paragraphDiv">
+    To oznacza, że nie powinienem przekazywać <span class="code">String graph</span> do konstruktora klasy <span
+        class="code">PathFinder</span>. To też oznacza, że funkcja <span class="code">minPath</span> nie powinna zwracać
+    <span class="code">String</span> używanego przez skomponowaną asercję.
+</div>
+
+<div class="paragraphDiv">
+    A więc teraz jest czas, aby zaczać uniezależniać testy. Funkcja <span class="code">makePathFinder</span> poniżej pokazuje, jak to zrobiłem.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">MinPathTest</span> {
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> String ANY = <span style="font-weight: bold">null</span>;
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> assertMinPath(String graph,
+                             Integer length, String path) {
+    PathFinder pf = makePathFinder(graph);
+    <span style="font-weight: bold">if</span> (length != <span style="font-weight: bold">null</span>)
+      assertEquals((<span style="font-weight: bold">int</span>) length, pf.minLength(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+    <span style="font-weight: bold">if</span> (path != <span style="font-weight: bold">null</span>)
+      assertEquals(path, pf.minPath(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>));
+  }
+
+  <span style="font-weight: bold">private</span> PathFinder makePathFinder(String graph) {
+    PathFinder pf = <span style="font-weight: bold">new</span> PathFinder();
+    Pattern edgePattern =
+            Pattern.compile(<span style="font-style: italic">&quot;(\\D+)(\\d+)(\\D+)&quot;</span>);
+    Matcher matcher = edgePattern.matcher(graph);
+    <span style="font-weight: bold">if</span> (matcher.matches()) {
+      String start = matcher.group(1);
+      <span style="font-weight: bold">int</span> length = Integer.parseInt(matcher.group(2));
+      String end = matcher.group(3);
+      pf.addEdge(start, end, length);
+    }
+    <span style="font-weight: bold">return</span> pf;
+  }
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> degenerateCases() <span style="font-weight: bold">throws</span> Exception {
+    assertMinPath(<span style="font-style: italic">&quot;&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);   <span style="font-style: italic">//empty graph</span>
+    assertMinPath(<span style="font-style: italic">&quot;A&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);  <span style="font-style: italic">//one node</span>
+    assertMinPath(<span style="font-style: italic">&quot;B1C&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);<span style="font-style: italic">//no start or end</span>
+    assertMinPath(<span style="font-style: italic">&quot;A1C&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);<span style="font-style: italic">//no end</span>
+    assertMinPath(<span style="font-style: italic">&quot;B1Z&quot;</span>, 0, <span style="font-style: italic">&quot;{}&quot;</span>);<span style="font-style: italic">//no start</span>
+  }
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> oneEdge() <span style="font-weight: bold">throws</span> Exception {
+    assertMinPath(<span style="font-style: italic">&quot;A1Z&quot;</span>, 1, ANY);
+  }
+}
+
+<span style="font-weight: bold">class</span> <span style="font-weight: bold">PathFinder</span> {
+  <span style="font-weight: bold">private</span> List&lt;Edge&gt; edges = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+
+  <span style="font-weight: bold">public</span> PathFinder() {
+  }
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">int</span> minLength(String begin, String end) {
+    <span style="font-weight: bold">int</span> length = 0;
+    <span style="font-weight: bold">for</span> (Edge edge : edges) {
+      <span style="font-weight: bold">if</span> (edge.begin.equals(begin) &amp;&amp; edge.end.equals(end))
+        length += edge.length;
+    }
+    <span style="font-weight: bold">return</span> length;
+  }
+
+  <span style="font-weight: bold">public</span> String minPath(String begin, String end) {
+    <span style="font-weight: bold">return</span> <span style="font-style: italic">&quot;{}&quot;</span>;
+  }
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> addEdge(String start, String end, <span style="font-weight: bold">int</span> length) {
+    edges.add(<span style="font-weight: bold">new</span> Edge(start, end, length));
+  }
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">Edge</span> {
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> String begin;
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> String end;
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> <span style="font-weight: bold">int</span> length;
+
+    <span style="font-weight: bold">public</span> Edge(String begin, String end, <span style="font-weight: bold">int</span> length) {
+      <span style="font-weight: bold">this</span>.begin = begin;
+      <span style="font-weight: bold">this</span>.end = end;
+      <span style="font-weight: bold">this</span>.length = length;
+    }
+  }
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Zauważ, że całe parsowanie dla skomponowanej asercji pozostaje w klasie testowej. Klasa <span class="code">PathFinder</span> nie wie nic o tej śmiesznej składni, której używam w testach. Zauważ także, że aby testy przechodziły, kod produkcyjny musi zakładać, że wykres ma tylko jedną krawędź. To założenie zamierzamy złamać w kolejnych kilku testach. W miedzyczasie powinniśmy pozbyć się tego
+    <span class="code">ANY</span>.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">assertMinPath(<span style="font-style: italic">&quot;A1Z&quot;</span>, 1, <span style="font-style: italic">&quot;{AZ}&quot;</span>);
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Więc zamierzam zbudować listę węzłów w ścieżce. Listę? Aaaa, jest składnia <span class="code">toString</span> dla list. Powinniśmy zmienić ten test i wszystkie inne testy następująco:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> degenerateCases() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;&quot;</span>, 0, <span style="font-style: italic">&quot;[]&quot;</span>);   <span style="font-style: italic">//pusty graf</span>
+  assertMinPath(<span style="font-style: italic">&quot;A&quot;</span>, 0, <span style="font-style: italic">&quot;[]&quot;</span>);  <span style="font-style: italic">//jeden węzeł</span>
+  assertMinPath(<span style="font-style: italic">&quot;B1C&quot;</span>, 0, <span style="font-style: italic">&quot;[]&quot;</span>);<span style="font-style: italic">//nie ma ani początku ani końca</span>
+  assertMinPath(<span style="font-style: italic">&quot;A1C&quot;</span>, 0, <span style="font-style: italic">&quot;[]&quot;</span>);<span style="font-style: italic">//nie ma końca</span>
+  assertMinPath(<span style="font-style: italic">&quot;B1Z&quot;</span>, 0, <span style="font-style: italic">&quot;[]&quot;</span>);<span style="font-style: italic">//nie ma początku</span>
+}
+
+@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> oneEdge() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;A1Z&quot;</span>, 1, <span style="font-style: italic">&quot;[A, Z]&quot;</span>);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Teraz, aby to przechodziło zmienimy funkcję pomocniczą <span class="code">assertMinPath</span> dodając do niej wywołanie
+    <span class="code">toString</span>.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">...
+    <span style="font-weight: bold">if</span> (path != <span style="font-weight: bold">null</span>)
+      assertEquals(path, pf.minPath(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>).toString());
+...
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Dodajemy listę węzłów <span class="code">path</span> do <span class="code">PathFindera</span> i po prostu zwracamy ją w <span class="code">minLength</span>.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">class</span> <span style="font-weight: bold">PathFinder</span> {
+  <span style="font-weight: bold">private</span> List&lt;Edge&gt; edges = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+  ...
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">int</span> minLength(String begin, String end) {
+    <span style="font-weight: bold">int</span> length = 0;
+    <span style="font-weight: bold">for</span> (Edge edge : edges) {
+      <span style="font-weight: bold">if</span> (edge.begin.equals(begin) &amp;&amp; edge.end.equals(end)) {
+        length += edge.length;
+        path.add(edge.begin);
+        path.add(edge.end);
+      }
+    }
+    <span style="font-weight: bold">return</span> length;
+  }
+
+  <span style="font-weight: bold">public</span> List&lt;String&gt; minPath(String begin, String end) {
+    <span style="font-weight: bold">return</span> path;
+  }
+...
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    To działa. Ale nie podoba mi się fakt, że <span class="code">minLength</span> również oblicza ścieżkę. Myślę, że powinniśmy oddzielić obliczenia od raportowania.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">  <span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> assertMinPath(String graph,
+                             Integer length, String path) {
+    PathFinder pf = makePathFinder(graph);
+    <span style="font-weight: bold">if</span> (length != <span style="font-weight: bold">null</span>)
+      assertEquals((<span style="font-weight: bold">int</span>) length, pf.getLength());
+    <span style="font-weight: bold">if</span> (path != <span style="font-weight: bold">null</span>)
+      assertEquals(path, pf.getPath().toString());
+  }
+
+  <span style="font-weight: bold">private</span> PathFinder makePathFinder(String graph) {
+    PathFinder pf = <span style="font-weight: bold">new</span> PathFinder();
+    ...
+    pf.findPath(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>);
+    <span style="font-weight: bold">return</span> pf;
+  }
+
+<span style="font-weight: bold">class</span> <span style="font-weight: bold">PathFinder</span> {
+  <span style="font-weight: bold">private</span> List&lt;Edge&gt; edges = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+  <span style="font-weight: bold">private</span> List&lt;String&gt; path = <span style="font-weight: bold">new</span> ArrayList&lt;&gt;();
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">int</span> length;
+
+  ...
+
+  <span style="font-weight: bold">public</span> <span style="font-weight: bold">int</span> getLength() {
+    <span style="font-weight: bold">return</span> length;
+  }
+
+  <span style="font-weight: bold">public</span> List&lt;String&gt; getPath() {
+    <span style="font-weight: bold">return</span> path;
+  }
+
+...
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    OK, teraz lepiej. Teraz, upewnijmy się, że dostajemy prawidłową długość.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">assertMinPath(<span style="font-style: italic">&quot;A2Z&quot;</span>, 2, <span style="font-style: italic">&quot;[A, Z]&quot;</span>);
+</pre></div>
+
+</div>
+
+
+<div class="paragraphDiv">
+    Taaa, to działa całkiem nieźle. Więc spróbujmy dwóch następujących po sobie krawędzi.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">@Test
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> twoEdges() <span style="font-weight: bold">throws</span> Exception {
+  assertMinPath(<span style="font-style: italic">&quot;A1B,B1Z&quot;</span>, 2, ANY);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    To nie przechodzi, jak należało się spodziewać, dając nam w wyniku długość zero. Aby to przechodziło musimy umieć parsować wiele krawędzi w funkcji pomocniczej <span class="code">makePathFinder</span>. To jest całkiem proste. Tylko podziel graf na przecinkach, i wrzuć dopasowanie wyrażeń regularnych w pętlę.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">private</span> PathFinder makePathFinder(String graph) {
+  PathFinder pf = <span style="font-weight: bold">new</span> PathFinder();
+  Pattern edgePattern = Pattern.compile(<span style="font-style: italic">&quot;(\\D+)(\\d+)(\\D+)&quot;</span>);
+  String[] edges = graph.split(<span style="font-style: italic">&quot;,&quot;</span>);
+  <span style="font-weight: bold">for</span> (String edge : edges) {
+    Matcher matcher = edgePattern.matcher(edge);
+    <span style="font-weight: bold">if</span> (matcher.matches()) {
+      String start = matcher.group(1);
+      <span style="font-weight: bold">int</span> length = Integer.parseInt(matcher.group(2));
+      String end = matcher.group(3);
+      pf.addEdge(start, end, length);
+    }
+  }
+  pf.findPath(<span style="font-style: italic">&quot;A&quot;</span>, <span style="font-style: italic">&quot;Z&quot;</span>);
+  <span style="font-weight: bold">return</span> pf;
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Oczywiście to nadal nie sprawia, że test przechodzi, więc teraz zamierzamy połączyć dwie krawędzie. Załóżmy, że krawędzie są ułożone po kolei, więc wierzchołek A rozpoczyna pierwszą krawędź, i wierzchołek Z kończy drugą krawędź. Przy takim założeniu, możemy ustawić całe połączenia poprzez zmianę warunku <span class="code">&&</span> na <span class="code">||</span> w funkcji <span class="code">findPath</span>:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> findPath(String begin, String end) {
+  length = 0;
+  <span style="font-weight: bold">for</span> (Edge edge : edges) {
+    <span style="font-weight: bold">if</span> (edge.begin.equals(begin) || edge.end.equals(end)) {
+      length += edge.length;
+      path.add(edge.begin);
+      path.add(edge.end);
+    }
+  }
+}
+</pre></div>
+
+</div>
 
 <!---------- -->
 
