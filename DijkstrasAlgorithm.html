@@ -101,7 +101,7 @@
 </div>
 
 <div class="paragraphDiv">
-    To jasne, że mogę sprawić, aby ten test przechodził nie używając niczego więcej niż tego:
+    To jasne, że mogę sprawić, aby ten test przechodził, nie używając niczego więcej niż tego:
 </div>
 
 <div class="paragraphDiv">
@@ -208,7 +208,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Uważam to za interesujące, że już tak dużo namysłu i wysiłku zostało włożone w strukturę tego problemu - dla jednego tylko, ograniczonego przypadku testowego. Ale teraz myślę, że możemy dodać kilka innych ograniczonych przypadków:
+    Uważam to za interesujące, że już tak dużo namysłu i wysiłku zostało włożone w strukturę tego problemu — dla jednego tylko, ograniczonego przypadku testowego. Ale teraz myślę, że możemy dodać kilka innych ograniczonych przypadków:
 </div>
 
 <div class="paragraphDiv">
@@ -231,7 +231,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Myślę, że wszystkie te przypadki testowe są dość ograniczone. Więc przekręćmy koło zębate skomplikowania o jeden ząbęk w górę i stwórzmy test, który zmusi nas do zrobienia czegoś choć trochę bardziej sprytnego.
+    Myślę, że wszystkie te przypadki testowe są dość ograniczone. Więc przekręćmy koło zębate skomplikowania o jeden ząbek w górę i stwórzmy test, który zmusi nas do zrobienia czegoś choć trochę bardziej sprytnego.
 </div>
 
 <div class="paragraphDiv">
@@ -244,7 +244,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Ten test, oczywiście, nie przejdzie. Czuję też pewien dyskomfort, ponieważ testuję dwie rzeczy na raz, długość i ścieżkę, które mogłyby być testowane oddzielnie. Wyjdę teraz na zrzędę, bo poświęciłem tyle czasu na wprowadzenie skomponowanej asercji; i teraz chciałbym ją rozbić znowu.
+    Ten test, oczywiście, nie przejdzie. Czuję też pewien dyskomfort, ponieważ testuję dwie rzeczy naraz, długość i ścieżkę, które mogłyby być testowane oddzielnie. Wyjdę teraz na zrzędę, bo poświęciłem tyle czasu na wprowadzenie skomponowanej asercji; i teraz chciałbym ją rozbić znowu.
     Ale myślę, że jest jeden "sprytny" sposób na obejście tego:
 </div>
 
@@ -269,11 +269,11 @@
 </div>
 
 <div class="paragraphDiv">
-    To pozostawia moją skomponowaną asercję nietkniętą, i pozwala mi pominąć dowolną z tych dwóch komponentów na życzenie. A teraz sprawmy, żeby ten test przchodził.
+    To pozostawia moją skomponowaną asercję nietkniętą, i pozwala mi pominąć dowolną z tych dwóch komponentów na życzenie. A teraz sprawmy, żeby ten test przechodził.
 </div>
 
 <div class="paragraphDiv">
-    Teraz, oczywiście, mógłbym zrobić coś tak ohydnego jak to:
+    Teraz, oczywiście, mógłbym zrobić coś tak ohydnego, jak to:
 </div>
 
 <div class="paragraphDiv">
@@ -305,7 +305,7 @@
 </div>
 
 <div class="paragraphDiv">
-    A więc teraz jest czas, aby zaczać uniezależniać testy. Funkcja <span class="code">makePathFinder</span> poniżej pokazuje, jak to zrobiłem.
+    A więc teraz jest czas, aby zacząć uniezależniać testy. Funkcja <span class="code">makePathFinder</span> poniżej pokazuje, jak to zrobiłem.
 </div>
 
 <div class="paragraphDiv">
@@ -390,7 +390,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Zauważ, że całe parsowanie dla skomponowanej asercji pozostaje w klasie testowej. Klasa <span class="code">PathFinder</span> nie wie nic o tej śmiesznej składni, której używam w testach. Zauważ także, że aby testy przechodziły, kod produkcyjny musi zakładać, że wykres ma tylko jedną krawędź. To założenie zamierzamy złamać w kolejnych kilku testach. W miedzyczasie powinniśmy pozbyć się tego
+    Zauważ, że całe parsowanie dla skomponowanej asercji pozostaje w klasie testowej. Klasa <span class="code">PathFinder</span> nie wie nic o tej śmiesznej składni, której używam w testach. Zauważ także, że aby testy przechodziły, kod produkcyjny musi zakładać, że wykres ma tylko jedną krawędź. To założenie zamierzamy złamać w kolejnych kilku testach. W międzyczasie powinniśmy pozbyć się tego
     <span class="code">ANY</span>.
 </div>
 
@@ -437,7 +437,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Dodaamy listę węzłów <span class="code">path</span> do <span class="code">PathFindera</span> i po prostu zwrócimy ją w <span class="code">minLength</span>.
+    Dodamy listę węzłów <span class="code">path</span> do <span class="code">PathFindera</span> i po prostu zwrócimy ją w <span class="code">minLength</span>.
 </div>
 
 <div class="paragraphDiv">
@@ -531,7 +531,7 @@
 </div>
 
 <div class="paragraphDiv">
-    To nie przechodzi, jak należało się spodziewać, dając nam w wyniku długość zero. Aby to przechodziło musimy umieć parsować wiele krawędzi w funkcji pomocniczej <span class="code">makePathFinder</span>. To jest całkiem proste. Tylko podziel graf na przecinkach, i wrzuć dopasowanie wyrażeń regularnych w pętlę.
+    To nie przechodzi, jak należało się spodziewać, dając nam w wyniku długość zero. Aby to przechodziło, musimy umieć parsować wiele krawędzi w funkcji pomocniczej <span class="code">makePathFinder</span>. To jest całkiem proste. Tylko podziel graf na przecinkach, i wrzuć dopasowanie wyrażeń regularnych w pętlę.
 </div>
 
 <div class="paragraphDiv">
@@ -584,7 +584,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Aby wszystkie te testy przechodziły, potrzebuję implementacji, która w wyniku daje zerową długość i pustą ścieżkę, jeżeli nie istnieje ścieżka pomiędzy A i Z. Ponieważ nie wiem, ile będzie krawędzi (może być zero, jeden, dwie) nie mogę wziąć tylko dwóch. Zamiast tego, mógłbym zrobić analizę przypadków dla zero, jednej lub dwóch krawędzi; jak poniżej:
+    Aby wszystkie te testy przechodziły, potrzebuję implementacji, która w wyniku daje zerową długość i pustą ścieżkę, jeżeli nie istnieje ścieżka pomiędzy A i Z. Ponieważ nie wiem, ile będzie krawędzi (może być zero, jeden, dwie) nie mogę wziąć tylko dwóch. Zamiast tego, mógłbym zrobić analizę przypadków dla zera, jednej lub dwóch krawędzi; jak poniżej:
 </div>
 
 <div class="paragraphDiv">
@@ -614,7 +614,7 @@
 </div>
 
 <div class="paragraphDiv">
-    OK, to działa, ale to jest naprawdę okropne. Nie tylko łamie zasadę <em>ogólności</em>; to jest po prostu ochydne. Co więcej, nie do końca poprawnie tworzy ścieżkę .Na przykład test: <span class="code">assertMinPath("A1B,B1Z", 2, "[A, B, Z]");</span> nie przechodzi poniważ tworzy <span class="code">[A, B, B, Z]</span>. Mógłbym to naprawić przez dodanie jeszcze jednej okropnej instrukcji
+    OK, to działa, ale to jest naprawdę okropne. Nie tylko łamie zasadę <em>ogólności</em>; to jest po prostu ohydne. Co więcej, nie do końca poprawnie tworzy ścieżkę. Na przykład test: <span class="code">assertMinPath("A1B,B1Z", 2, "[A, B, Z]");</span> nie przechodzi, ponieważ tworzy <span class="code">[A, B, B, Z]</span>. Mógłbym to naprawić przez dodanie jeszcze jednej okropnej instrukcji
     <span class="code">if</span>; ale mam lepszy pomysł. Przejdźmy graf od początku do końca.
 </div>
 
@@ -648,8 +648,8 @@
 </div>
 
 <div class="paragraphDiv">
-    OK, to działa. To dziwne, że musieliśmy użyć tymczasowych zmiennych <span class="code">length</span> i <span
-        class="code">path</span>; ale to jedyny sposób, jaki przychodzi mi na myśl, do ignorowania ścieżek, które nie istnieją. Myślę także, że to rozwiązanie pozbawia nas zależności od kolejności.
+    OK, działa. To osobliwe, że musieliśmy użyć tymczasowych zmiennych <span class="code">length</span> i <span
+        class="code">path</span>; ale to jedyny sposób, jaki przychodzi mi na myśl, na ignorowanie ścieżek, które nie istnieją. Myślę także, że to rozwiązanie pozbawia nas zależności od kolejności.
 </div>
 
 <div class="paragraphDiv">
@@ -664,7 +664,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Tak, wszystkie przechodzą. Myślę, że trzy i wiecej krawędzi też zadziała. I także grafy z jedną kompletną scieżką i innymi dyndającymi ścieżkami.
+    Tak, wszystkie przechodzą. Myślę, że trzy i więcej krawędzi też zadziała. I także grafy z jedną kompletną ścieżką i pozostałymi dyndającymi ścieżkami.
 </div>
 
 <div class="paragraphDiv">
@@ -693,11 +693,11 @@
 </div>
 
 <div class="paragraphDiv">
-    Ok. Więc nie możemy po prostu przejść grafu po kolei. To, co w zamian musimy zrobić, to sprawdzić każdą możliwą drogę, która wychodzi z wierzchołka startowego; i całą drogę musimy zapisywać nasze tymczasowe znaleziska, aż dojdziemy do końca.
+    Ok. Więc nie możemy po prostu przejść grafu po kolei. W zamian to, co musimy zrobić, to sprawdzić każdą możliwą drogę, która wychodzi z wierzchołka startowego; i przez całą tę drogę musimy zapisywać nasze tymczasowe znaleziska, aż dojdziemy do końca.
 </div>
 
 <div class="paragraphDiv">
-    Jak zobaczysz poniżej, to wymaga odrobine więcej mrówczego wysiłku. Muszę śledzić wszystkie wierzchołki, i ścieżki i długości połączone z tymi wierzchołkami. Ale, poza tym, algorytm jest prawie taki sam jak do tej pory.
+    Jak zobaczysz poniżej, to wymaga odrobinę mrówczego wysiłku. Muszę śledzić wszystkie wierzchołki, i ścieżki i długości połączone z tymi wierzchołkami. Ale, poza tym, algorytm jest prawie taki sam jak do tej pory.
 </div>
 
 
@@ -819,7 +819,7 @@
 </div>
 
 <div class="paragraphDiv">
-    To przechodzi. Więc teraz potrzebujemy dodać test grafu, który ma równoległe ścieżki. To jest jeden prosty, który powinien nie przechodzić:
+    To przechodzi. Więc teraz potrzebujemy dodać test grafu, który ma równoległe ścieżki. Tu mam jeden prosty, który powinien nie przechodzić:
 </div>
 
 
@@ -834,7 +834,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Aby sprawić, żeby to przechodziło musimy wykryć, czy dwie ścieżki zbiegają się w jednym węźle. To proste. Jeżeli długość na węźle docelowym nie wynosi
+    Aby sprawić, żeby to przechodziło, musimy wykryć, czy dwie ścieżki zbiegają się w jednym węźle. To proste. Jeżeli długość na węźle docelowym nie wynosi
     <span class="code">Integer.MAX_VALUE</span> to oznacza, że inna ścieżka już osiągnęła ten węzeł. Ponieważ szukamy minimum, możemy po prostu ustawić długość na tym węźle na minimalną wartość spośród zbiegających się w tym węźle ścieżek. Wartość <span class="code">Integer.MAX_VALUE</span> wydaje się byc bardzo przydatna dla tego sprawdzenia, ponieważ jest zamiennikiem dla "nieskończonej" długości.
 </div>
 
@@ -859,7 +859,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Prawdopodobnie możemy przyspieszyć troszkę algorytm koncząc poszukiwania, kiedy osiągniemy węzeł końcowy.
+    Prawdopodobnie możemy przyspieszyć troszkę algorytm, kończąc poszukiwania, kiedy osiągniemy węzeł końcowy.
 </div>
 
 <div class="paragraphDiv">
@@ -872,7 +872,7 @@
 </div>
 
 <div class="paragraphDiv">
-    I zapewne możemy przypieszyć algorytm nawet bardziej przez preferowanie przeszukiwania nieodwiedzonych węzłów, które zostały odwiedzone przez najkrótszą ścieżkę.
+    I zapewne możemy przyspieszyć algorytm nawet bardziej przez preferowanie przeszukiwania nieodwiedzonych węzłów, które zostały odwiedzone przez najkrótszą ścieżkę.
 </div>
 
 <div class="paragraphDiv">
@@ -894,15 +894,15 @@
 </div>
 
 <div class="paragraphDiv">
-    To, w każdym możliwym sensie <em>jest</em> algorytm Dijkstry. Ta implementacja nie jest szybka, ponieważ użyłem tam zbiorów i list, i mnóstwa niefektywnych struktur. Przypsieszenie tego zajęłoby całkiem sporo roboty. Co więcej, są tam wbudowane pewne założenia, które należałoby naprawić. Przede wszystkim, jest założenie, że graf wejściowy musi być <a href="https://pl.wikipedia.org/wiki/Graf_skierowany">skierowany</a>; natomiast ogólny algorytm nie wymaga takiego założenia. Na koniec, całości przydałaby się odrobina refaktoringu.
+    To, w każdym możliwym sensie, <em>jest</em> algorytm Dijkstry. Ta implementacja nie jest szybka, ponieważ użyłem zbiorów i list, i mnóstwa nieefektywnych struktur. Przyspieszenie tego zajęłoby całkiem sporo roboty. Co więcej, są tam wbudowane pewne założenia, które należałoby naprawić. Przede wszystkim, jest założenie, że graf wejściowy musi być <a href="https://pl.wikipedia.org/wiki/Graf_skierowany">skierowany</a>; natomiast ogólny algorytm nie wymaga takiego założenia. Na koniec, całości przydałaby się odrobina refaktoringu.
 </div>
 
 <div class="paragraphDiv">
-    Ale celem było zobaczenie ,czy możliwe jest użyć TDD do krok po kroku dojścia do algorytm Dijkstry. Moim zdaniem jest możliwe; chociaż, muszę przyznać, że to podejście było trochę szarpane. Te kilka początkowych testów prowadziły mnie przez rząd niepewnych algorytmów, które nie bardzo chciały ewoluować jeden w drugi. Nie mniej, każdy nowy test ujawniał słabości we wcześniejszych implementacjach, które mogły być naprawiane w stosunkowo prosty sposób.
+    Ale celem było zobaczenie, czy możliwe jest wykorzystanie TDD do dojścia do algorytmu Dijkstry krok po kroku. Moim zdaniem jest możliwe; chociaż, muszę przyznać, że to podejście było trochę szarpane. Te kilka początkowych testów prowadziły mnie przez rząd niepewnych algorytmów, które nie bardzo chciały ewoluować jeden w drugi. Nie mniej, każdy nowy test ujawniał słabości we wcześniejszych implementacjach, które mogły być naprawione w stosunkowo prosty sposób.
 </div>
 
 <div class="paragraphDiv">
-    Czy jest lepsza sekwencja testów, która prowadzi bardziej wprost do algorytm Dijkstry, bez tej niepewnej szarpaniny? Być może; ale jeśli tak, nie znalazłem ich.
+    Czy jest lepsza sekwencja testów, która prowadzi bardziej wprost do algorytmu Dijkstry, bez tej niepewnej szarpaniny? Być może; ale jeśli tak, nie znalazłem ich.
 </div>
 
 <div class="paragraphDiv">
