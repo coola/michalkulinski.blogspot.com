@@ -877,11 +877,225 @@
     To, w każdym możliwym sensie <em>jest</em> algorytm Dijkstry. Ta implementacja nie jest szybka, ponieważ użyłem tam zbiorów i list, i mnóstwa niefektywnych struktur. Przypsieszenie tego zajęłoby całkiem sporo roboty. Co więcej, są tam wbudowane pewne założenia, które należałoby naprawić. Przede wszystkim, jest założenie, że graf wejściowy musi być <a href="https://pl.wikipedia.org/wiki/Graf_skierowany">skierowany</a>; natomiast ogólny algorytm nie wymaga takiego założenia. Na koniec, całości przydałaby się odrobina refaktoringu.
 </div>
 
-<!---------- -->
+<div class="paragraphDiv">
+    Ale celem było zobaczenie ,czy możliwe jest użyć TDD do krok po kroku dojścia do algorytm Dijkstry. Moim zdaniem jest możliwe; chociaż, muszę przyznać, że to podejście było trochę szarpane. Te kilka początkowych testów prowadziły mnie przez rząd niepewnych algorytmów, które nie bardzo chciały ewoluować jeden w drugi. Nie mniej, każdy nowy test ujawniał słabości we wcześniejszych implementacjach, które mogły być naprawiane w stosunkowo prosty sposób.
+</div>
 
 <div class="paragraphDiv">
+    Czy jest lepsza sekwencja testów, która prowadzi bardziej wprost do algorytm Dijkstry, bez tej niepewnej szarpaniny? Być może; ale jeśli tak, nie znalazłem ich.
+</div>
+
+<div class="paragraphDiv">
+    Mimo wszystko, to było zabawne ćwiczenie. Dziękuję uczestnikowi SCNA za zaproponowanie tego.
+</div>
+
+<div class="paragraphDiv">
+    Końcowy kod, który nadal potrzebuje troszeczkę posprzątania (pozostawiam czytelnikowi jako ćwiczenie ;-)
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">package</span> dijkstrasAlg<span style="font-weight: bold">;</span>
+
+<span style="font-weight: bold">import</span> <span style="color: #555555">org.junit.Test</span><span style="font-weight: bold">;</span>
+
+<span style="font-weight: bold">import</span> <span style="color: #555555">java.util.*</span><span style="font-weight: bold">;</span>
+<span style="font-weight: bold">import</span> <span style="color: #555555">java.util.regex.Matcher</span><span style="font-weight: bold">;</span>
+<span style="font-weight: bold">import</span> <span style="color: #555555">java.util.regex.Pattern</span><span style="font-weight: bold">;</span>
+
+<span style="font-weight: bold">import</span> <span style="color: #555555">static</span> org<span style="font-weight: bold">.</span><span style="color: #008080">junit</span><span style="font-weight: bold">.</span><span style="color: #008080">Assert</span><span style="font-weight: bold">.</span><span style="color: #008080">assertEquals</span><span style="font-weight: bold">;</span>
+
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">class</span> <span style="color: #445588; font-weight: bold">MinPathTest</span> <span style="font-weight: bold">{</span>
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> String ANY <span style="font-weight: bold">=</span> <span style="font-weight: bold">null;</span>
+
+  <span style="font-weight: bold">private</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">assertMinPath</span><span style="font-weight: bold">(</span>String graph<span style="font-weight: bold">,</span>
+                             Integer length<span style="font-weight: bold">,</span> String path<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    PathFinder pf <span style="font-weight: bold">=</span> makePathFinder<span style="font-weight: bold">(</span>graph<span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">if</span> <span style="font-weight: bold">(</span>length <span style="font-weight: bold">!=</span> <span style="font-weight: bold">null)</span>
+      assertEquals<span style="font-weight: bold">((</span><span style="color: #445588; font-weight: bold">int</span><span style="font-weight: bold">)</span> length<span style="font-weight: bold">,</span> pf<span style="font-weight: bold">.</span><span style="color: #008080">getLength</span><span style="font-weight: bold">());</span>
+    <span style="font-weight: bold">if</span> <span style="font-weight: bold">(</span>path <span style="font-weight: bold">!=</span> <span style="font-weight: bold">null)</span>
+      assertEquals<span style="font-weight: bold">(</span>path<span style="font-weight: bold">,</span> pf<span style="font-weight: bold">.</span><span style="color: #008080">getPath</span><span style="font-weight: bold">().</span><span style="color: #008080">toString</span><span style="font-weight: bold">());</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> PathFinder <span style="color: #990000; font-weight: bold">makePathFinder</span><span style="font-weight: bold">(</span>String graph<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    PathFinder pf <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> PathFinder<span style="font-weight: bold">();</span>
+    Pattern edgePattern <span style="font-weight: bold">=</span>
+            Pattern<span style="font-weight: bold">.</span><span style="color: #008080">compile</span><span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;(\\D+)(\\d+)(\\D+)&quot;</span><span style="font-weight: bold">);</span>
+    String<span style="font-weight: bold">[]</span> edges <span style="font-weight: bold">=</span> graph<span style="font-weight: bold">.</span><span style="color: #008080">split</span><span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;,&quot;</span><span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">for</span> <span style="font-weight: bold">(</span>String edge <span style="font-weight: bold">:</span> edges<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+      Matcher matcher <span style="font-weight: bold">=</span> edgePattern<span style="font-weight: bold">.</span><span style="color: #008080">matcher</span><span style="font-weight: bold">(</span>edge<span style="font-weight: bold">);</span>
+      <span style="font-weight: bold">if</span> <span style="font-weight: bold">(</span>matcher<span style="font-weight: bold">.</span><span style="color: #008080">matches</span><span style="font-weight: bold">())</span> <span style="font-weight: bold">{</span>
+        String start <span style="font-weight: bold">=</span> matcher<span style="font-weight: bold">.</span><span style="color: #008080">group</span><span style="font-weight: bold">(</span><span style="color: #009999">1</span><span style="font-weight: bold">);</span>
+        <span style="color: #445588; font-weight: bold">int</span> length <span style="font-weight: bold">=</span> Integer<span style="font-weight: bold">.</span><span style="color: #008080">parseInt</span><span style="font-weight: bold">(</span>matcher<span style="font-weight: bold">.</span><span style="color: #008080">group</span><span style="font-weight: bold">(</span><span style="color: #009999">2</span><span style="font-weight: bold">));</span>
+        String end <span style="font-weight: bold">=</span> matcher<span style="font-weight: bold">.</span><span style="color: #008080">group</span><span style="font-weight: bold">(</span><span style="color: #009999">3</span><span style="font-weight: bold">);</span>
+        pf<span style="font-weight: bold">.</span><span style="color: #008080">addEdge</span><span style="font-weight: bold">(</span>start<span style="font-weight: bold">,</span> end<span style="font-weight: bold">,</span> length<span style="font-weight: bold">);</span>
+      <span style="font-weight: bold">}</span>
+    <span style="font-weight: bold">}</span>
+    pf<span style="font-weight: bold">.</span><span style="color: #008080">findPath</span><span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A&quot;</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;Z&quot;</span><span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">return</span> pf<span style="font-weight: bold">;</span>
+  <span style="font-weight: bold">}</span>
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">degenerateCases</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">throws</span> Exception <span style="font-weight: bold">{</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">0</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[]&quot;</span><span style="font-weight: bold">);</span>   <span style="color: #999988; font-style: italic">//empty graph</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">0</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[]&quot;</span><span style="font-weight: bold">);</span>  <span style="color: #999988; font-style: italic">//one node</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;B1C&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">0</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[]&quot;</span><span style="font-weight: bold">);</span><span style="color: #999988; font-style: italic">//no start or end</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1C&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">0</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[]&quot;</span><span style="font-weight: bold">);</span><span style="color: #999988; font-style: italic">//no end</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;B1Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">0</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[]&quot;</span><span style="font-weight: bold">);</span><span style="color: #999988; font-style: italic">//no start</span>
+  <span style="font-weight: bold">}</span>
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">oneEdge</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">throws</span> Exception <span style="font-weight: bold">{</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">1</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, Z]&quot;</span><span style="font-weight: bold">);</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A2Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">2</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, Z]&quot;</span><span style="font-weight: bold">);</span>
+  <span style="font-weight: bold">}</span>
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">twoEdges</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">throws</span> Exception <span style="font-weight: bold">{</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1B,B1Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">2</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, B, Z]&quot;</span><span style="font-weight: bold">);</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;B1Z,A1B&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">2</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, B, Z]&quot;</span><span style="font-weight: bold">);</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1X,Y1Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">0</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[]&quot;</span><span style="font-weight: bold">);</span>
+  <span style="font-weight: bold">}</span>
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">threeEdges</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">throws</span> Exception <span style="font-weight: bold">{</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A2B,B3C,C4Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">9</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, B, C, Z]&quot;</span><span style="font-weight: bold">);</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;B3C,C4Z,A2B&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">9</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, B, C, Z]&quot;</span><span style="font-weight: bold">);</span>
+  <span style="font-weight: bold">}</span>
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">OnlyOnePath</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">throws</span> Exception <span style="font-weight: bold">{</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1B,B2C,C3Z,B4D,D6E&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">6</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, B, C, Z]&quot;</span><span style="font-weight: bold">);</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1B,B2C,C3D,C3Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">6</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, B, C, Z]&quot;</span><span style="font-weight: bold">);</span>
+  <span style="font-weight: bold">}</span>
+
+  @Test
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">parallelPaths</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">throws</span> Exception <span style="font-weight: bold">{</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1B,B2Z,A1Z&quot;</span><span style="font-weight: bold">,</span> <span style="color: #009999">1</span><span style="font-weight: bold">,</span> <span style="color: #bb8844">&quot;[A, Z]&quot;</span><span style="font-weight: bold">);</span>
+    assertMinPath<span style="font-weight: bold">(</span><span style="color: #bb8844">&quot;A1B,A1C,A2D,C5E,B8E,C1F,D3F,F2G,G3Z,E2G&quot;</span><span style="font-weight: bold">,</span>
+                   <span style="color: #009999">7</span><span style="font-weight: bold">,</span><span style="color: #bb8844">&quot;[A, C, F, G, Z]&quot;</span><span style="font-weight: bold">);</span>
+  <span style="font-weight: bold">}</span>
+<span style="font-weight: bold">}</span>
+
+<span style="font-weight: bold">class</span> <span style="color: #445588; font-weight: bold">PathFinder</span> <span style="font-weight: bold">{</span>
+  <span style="font-weight: bold">private</span> List<span style="font-weight: bold">&lt;</span>Edge<span style="font-weight: bold">&gt;</span> edges <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> ArrayList<span style="font-weight: bold">&lt;&gt;();</span>
+  <span style="font-weight: bold">private</span> Set<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;</span> nodeNames <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> HashSet<span style="font-weight: bold">&lt;&gt;();</span>
+  <span style="font-weight: bold">private</span> Map<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">,</span> Node<span style="font-weight: bold">&gt;</span> nodes <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> HashMap<span style="font-weight: bold">&lt;&gt;();</span>
+  <span style="font-weight: bold">private</span> Node endNode<span style="font-weight: bold">;</span>
+
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">findPath</span><span style="font-weight: bold">(</span>String begin<span style="font-weight: bold">,</span> String end<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    List<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;</span> unvisited <span style="font-weight: bold">=</span> initializeSearch<span style="font-weight: bold">(</span>begin<span style="font-weight: bold">,</span> end<span style="font-weight: bold">);</span>
+
+    <span style="font-weight: bold">for</span> <span style="font-weight: bold">(</span>String node <span style="font-weight: bold">=</span> begin<span style="font-weight: bold">;</span>
+	     node <span style="font-weight: bold">!=</span> <span style="font-weight: bold">null</span> <span style="font-weight: bold">&amp;&amp;</span> <span style="font-weight: bold">!</span>node<span style="font-weight: bold">.</span><span style="color: #008080">equals</span><span style="font-weight: bold">(</span>end<span style="font-weight: bold">);</span>
+	     node <span style="font-weight: bold">=</span> getNext<span style="font-weight: bold">(</span>unvisited<span style="font-weight: bold">))</span> <span style="font-weight: bold">{</span>
+      unvisited<span style="font-weight: bold">.</span><span style="color: #008080">remove</span><span style="font-weight: bold">(</span>node<span style="font-weight: bold">);</span>
+      visit<span style="font-weight: bold">(</span>node<span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">}</span>
+
+    setupEndNode<span style="font-weight: bold">(</span>end<span style="font-weight: bold">);</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> List<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;</span> <span style="color: #990000; font-weight: bold">initializeSearch</span><span style="font-weight: bold">(</span>String begin<span style="font-weight: bold">,</span>
+	                                    String end<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    nodeNames<span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(</span>begin<span style="font-weight: bold">);</span>
+    nodeNames<span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(</span>end<span style="font-weight: bold">);</span>
+    List<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;</span> unvisited <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> ArrayList<span style="font-weight: bold">&lt;&gt;(</span>nodeNames<span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">for</span> <span style="font-weight: bold">(</span>String node <span style="font-weight: bold">:</span> unvisited<span style="font-weight: bold">)</span>
+      nodes<span style="font-weight: bold">.</span><span style="color: #008080">put</span><span style="font-weight: bold">(</span>node<span style="font-weight: bold">,</span> <span style="font-weight: bold">new</span> Node<span style="font-weight: bold">(</span>Integer<span style="font-weight: bold">.</span><span style="color: #008080">MAX_VALUE</span><span style="font-weight: bold">));</span>
+
+    nodes<span style="font-weight: bold">.</span><span style="color: #008080">get</span><span style="font-weight: bold">(</span>begin<span style="font-weight: bold">).</span><span style="color: #008080">length</span> <span style="font-weight: bold">=</span> <span style="color: #009999">0</span><span style="font-weight: bold">;</span>
+    <span style="font-weight: bold">return</span> unvisited<span style="font-weight: bold">;</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">visit</span><span style="font-weight: bold">(</span>String node<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    List<span style="font-weight: bold">&lt;</span>Edge<span style="font-weight: bold">&gt;</span> neighbors <span style="font-weight: bold">=</span> findEdges<span style="font-weight: bold">(</span>node<span style="font-weight: bold">);</span>
+    Node curNode <span style="font-weight: bold">=</span> nodes<span style="font-weight: bold">.</span><span style="color: #008080">get</span><span style="font-weight: bold">(</span>node<span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">for</span> <span style="font-weight: bold">(</span>Edge e <span style="font-weight: bold">:</span> neighbors<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+      Node nbr <span style="font-weight: bold">=</span> nodes<span style="font-weight: bold">.</span><span style="color: #008080">get</span><span style="font-weight: bold">(</span>e<span style="font-weight: bold">.</span><span style="color: #008080">end</span><span style="font-weight: bold">);</span>
+
+      <span style="color: #445588; font-weight: bold">int</span> newLength <span style="font-weight: bold">=</span> curNode<span style="font-weight: bold">.</span><span style="color: #008080">length</span> <span style="font-weight: bold">+</span> e<span style="font-weight: bold">.</span><span style="color: #008080">length</span><span style="font-weight: bold">;</span>
+      <span style="font-weight: bold">if</span> <span style="font-weight: bold">(</span>nbr<span style="font-weight: bold">.</span><span style="color: #008080">length</span> <span style="font-weight: bold">&gt;</span> newLength<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+        nbr<span style="font-weight: bold">.</span><span style="color: #008080">length</span> <span style="font-weight: bold">=</span> newLength<span style="font-weight: bold">;</span>
+        nbr<span style="font-weight: bold">.</span><span style="color: #008080">path</span> <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> ArrayList<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;();</span>
+        nbr<span style="font-weight: bold">.</span><span style="color: #008080">path</span><span style="font-weight: bold">.</span><span style="color: #008080">addAll</span><span style="font-weight: bold">(</span>curNode<span style="font-weight: bold">.</span><span style="color: #008080">path</span><span style="font-weight: bold">);</span>
+        nbr<span style="font-weight: bold">.</span><span style="color: #008080">path</span><span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(</span>node<span style="font-weight: bold">);</span>
+      <span style="font-weight: bold">}</span>
+    <span style="font-weight: bold">}</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">setupEndNode</span><span style="font-weight: bold">(</span>String end<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    endNode <span style="font-weight: bold">=</span> nodes<span style="font-weight: bold">.</span><span style="color: #008080">get</span><span style="font-weight: bold">(</span>end<span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">if</span> <span style="font-weight: bold">(</span>endNode<span style="font-weight: bold">.</span><span style="color: #008080">length</span> <span style="font-weight: bold">!=</span> Integer<span style="font-weight: bold">.</span><span style="color: #008080">MAX_VALUE</span><span style="font-weight: bold">)</span>
+      endNode<span style="font-weight: bold">.</span><span style="color: #008080">path</span><span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(</span>end<span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">else</span>
+      endNode<span style="font-weight: bold">.</span><span style="color: #008080">length</span> <span style="font-weight: bold">=</span> <span style="color: #009999">0</span><span style="font-weight: bold">;</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> String <span style="color: #990000; font-weight: bold">getNext</span><span style="font-weight: bold">(</span>List<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;</span> unvisited<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    String minNodeName <span style="font-weight: bold">=</span> <span style="font-weight: bold">null;</span>
+    <span style="color: #445588; font-weight: bold">int</span> minLength <span style="font-weight: bold">=</span> Integer<span style="font-weight: bold">.</span><span style="color: #008080">MAX_VALUE</span><span style="font-weight: bold">;</span>
+
+    <span style="font-weight: bold">for</span> <span style="font-weight: bold">(</span>String name <span style="font-weight: bold">:</span> unvisited<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+      Node candidate <span style="font-weight: bold">=</span> nodes<span style="font-weight: bold">.</span><span style="color: #008080">get</span><span style="font-weight: bold">(</span>name<span style="font-weight: bold">);</span>
+      <span style="font-weight: bold">if</span> <span style="font-weight: bold">(</span>candidate<span style="font-weight: bold">.</span><span style="color: #008080">length</span> <span style="font-weight: bold">&lt;</span> minLength<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+        minLength <span style="font-weight: bold">=</span> candidate<span style="font-weight: bold">.</span><span style="color: #008080">length</span><span style="font-weight: bold">;</span>
+        minNodeName <span style="font-weight: bold">=</span> name<span style="font-weight: bold">;</span>
+      <span style="font-weight: bold">}</span>
+    <span style="font-weight: bold">}</span>
+    <span style="font-weight: bold">return</span> minNodeName<span style="font-weight: bold">;</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> List<span style="font-weight: bold">&lt;</span>Edge<span style="font-weight: bold">&gt;</span> <span style="color: #990000; font-weight: bold">findEdges</span><span style="font-weight: bold">(</span>String begin<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    List<span style="font-weight: bold">&lt;</span>Edge<span style="font-weight: bold">&gt;</span> found <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> ArrayList<span style="font-weight: bold">&lt;&gt;();</span>
+    <span style="font-weight: bold">for</span> <span style="font-weight: bold">(</span>Edge e <span style="font-weight: bold">:</span> edges<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+      <span style="font-weight: bold">if</span> <span style="font-weight: bold">(</span>e<span style="font-weight: bold">.</span><span style="color: #008080">begin</span><span style="font-weight: bold">.</span><span style="color: #008080">equals</span><span style="font-weight: bold">(</span>begin<span style="font-weight: bold">))</span>
+        found<span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(</span>e<span style="font-weight: bold">);</span>
+    <span style="font-weight: bold">}</span>
+    <span style="font-weight: bold">return</span> found<span style="font-weight: bold">;</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">int</span> <span style="color: #990000; font-weight: bold">getLength</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">{</span>
+    <span style="font-weight: bold">return</span> endNode<span style="font-weight: bold">.</span><span style="color: #008080">length</span><span style="font-weight: bold">;</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">public</span> List<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;</span> <span style="color: #990000; font-weight: bold">getPath</span><span style="font-weight: bold">()</span> <span style="font-weight: bold">{</span>
+    <span style="font-weight: bold">return</span> endNode<span style="font-weight: bold">.</span><span style="color: #008080">path</span><span style="font-weight: bold">;</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">void</span> <span style="color: #990000; font-weight: bold">addEdge</span><span style="font-weight: bold">(</span>String start<span style="font-weight: bold">,</span> String end<span style="font-weight: bold">,</span> <span style="color: #445588; font-weight: bold">int</span> length<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+    edges<span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(new</span> Edge<span style="font-weight: bold">(</span>start<span style="font-weight: bold">,</span> end<span style="font-weight: bold">,</span> length<span style="font-weight: bold">));</span>
+    nodeNames<span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(</span>start<span style="font-weight: bold">);</span>
+    nodeNames<span style="font-weight: bold">.</span><span style="color: #008080">add</span><span style="font-weight: bold">(</span>end<span style="font-weight: bold">);</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> <span style="font-weight: bold">class</span> <span style="color: #445588; font-weight: bold">Edge</span> <span style="font-weight: bold">{</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> String begin<span style="font-weight: bold">;</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> String end<span style="font-weight: bold">;</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">final</span> <span style="color: #445588; font-weight: bold">int</span> length<span style="font-weight: bold">;</span>
+
+    <span style="font-weight: bold">public</span> <span style="color: #990000; font-weight: bold">Edge</span><span style="font-weight: bold">(</span>String begin<span style="font-weight: bold">,</span> String end<span style="font-weight: bold">,</span> <span style="color: #445588; font-weight: bold">int</span> length<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+      <span style="font-weight: bold">this.</span><span style="color: #008080">begin</span> <span style="font-weight: bold">=</span> begin<span style="font-weight: bold">;</span>
+      <span style="font-weight: bold">this.</span><span style="color: #008080">end</span> <span style="font-weight: bold">=</span> end<span style="font-weight: bold">;</span>
+      <span style="font-weight: bold">this.</span><span style="color: #008080">length</span> <span style="font-weight: bold">=</span> length<span style="font-weight: bold">;</span>
+    <span style="font-weight: bold">}</span>
+  <span style="font-weight: bold">}</span>
+
+  <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> <span style="font-weight: bold">class</span> <span style="color: #445588; font-weight: bold">Node</span> <span style="font-weight: bold">{</span>
+    <span style="font-weight: bold">public</span> <span style="color: #445588; font-weight: bold">int</span> length<span style="font-weight: bold">;</span>
+    <span style="font-weight: bold">public</span> List<span style="font-weight: bold">&lt;</span>String<span style="font-weight: bold">&gt;</span> path<span style="font-weight: bold">;</span>
+
+    <span style="font-weight: bold">public</span> <span style="color: #990000; font-weight: bold">Node</span><span style="font-weight: bold">(</span><span style="color: #445588; font-weight: bold">int</span> l<span style="font-weight: bold">)</span> <span style="font-weight: bold">{</span>
+      <span style="font-weight: bold">this.</span><span style="color: #008080">length</span> <span style="font-weight: bold">=</span> l<span style="font-weight: bold">;</span>
+      <span style="font-weight: bold">this.</span><span style="color: #008080">path</span> <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> ArrayList<span style="font-weight: bold">&lt;&gt;();</span>
+    <span style="font-weight: bold">}</span>
+  <span style="font-weight: bold">}</span>
+<span style="font-weight: bold">}</span>
+</pre></div>
 
 </div>
+
+<!---------- -->
+
 
 
 <div class="paragraphDiv">
