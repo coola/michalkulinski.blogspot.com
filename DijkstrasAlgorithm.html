@@ -39,8 +39,8 @@
 <br/>
 
 <div class="paragraphDiv">
-    Byłem jednego dnia na <a href="http://scna.softwarecraftsmanship.org/">SCNA</a>, i ktoś zagadał do mnie o TDD i <a
-        href="https://pl.wikipedia.org/wiki/Algorytm_Dijkstry">algorytmie Dijkstry</a>. Zastanawiał się, czy można znaleźć sekwencję testów, która zaprowadzi do algorytmu. To wyglądało mi na fajne, krótkie ćwiczenie, więc zdecydowałem się spróbować.
+    Byłem jednego dnia na <a href="http://scna.softwarecraftsmanship.org/">SCNA</a>, i ktoś zagadnął mnie o TDD i <a
+        href="https://pl.wikipedia.org/wiki/Algorytm_Dijkstry">algorytm Dijkstry</a>. Zastanawiał się, czy można znaleźć sekwencję testów, która zaprowadzi do algorytmu. To wyglądało mi na fajne, krótkie ćwiczenie, więc zdecydowałem się spróbować.
 </div>
 
 <div class="smallGreyText">
@@ -63,7 +63,7 @@
 <br/>
 
 <div class="paragraphDiv">
-    Zacząłem tak, jak zwykle z odpaleniem ograniczonego przypadku testowego.
+    Zacząłem tak, jak zwykle; z odpaleniem ograniczonego przypadku testowego.
 </div>
 
 <div class="paragraphDiv">
@@ -77,7 +77,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Algorytm Dijkstry jest prostym sposobem znajdowania najkrótszej drogi w grafie o krawedziach mających konkretną długość. Podając węzeł startowy i końcowy, algorytm wskaże jaka jest najkrótsza ścieżka i jaka jest jej długość.
+    Algorytm Dijkstry jest prostym sposobem znajdowania najkrótszej drogi w grafie o krawędziach mających konkretną długość. Podając węzeł startowy i końcowy, algorytm wskaże, jaka jest najkrótsza ścieżka i jaka jest jej długość.
 </div>
 
 <div class="paragraphDiv">
@@ -93,11 +93,11 @@
 </div>
 
 <div class="paragraphDiv">
-   Ten pierwszy test zmusił mnie, aby podjąć jakieś decyzje o formacie wyjściowym. Będę prezentował wyjściową ścieżkę jako zbiór węzłów pomiędzy nawiasami klamrowymi. Długość ścieżki, to będzie liczba całkowita za nawiasami klamrowymi.
+   Ten pierwszy test zmusił mnie, abym podjął jakieś decyzje o formacie wyjścia. Będę prezentował wyjściową ścieżkę jako zbiór węzłów pomiędzy nawiasami klamrowymi. Długość ścieżki będzie liczbą całkowitą za nawiasami klamrowymi.
 </div>
 
 <div class="paragraphDiv">
-    Ta notacja jest tylko na potrzeby moich testów. Używam techniki, którą nazywam <i>skomponowanymi asercjami</i>. Lubię komponować moje asercje w zdania, które łatwo się czyta. To zwykle oznacza, że muszę pisać proste translatory, które zamieniają skomponowane asercje na rzeczywiste API systemu poddawanego testom.
+    Ta notacja jest tylko na potrzeby moich testów. Używam techniki, którą nazywam <i>skomponowanymi asercjami</i>. Lubię komponować moje asercje w zdania, które czyta się łatwo. To zwykle oznacza, że muszę pisać proste translatory, które zamieniają skomponowane asercje na rzeczywiste API systemu poddawanego testom.
 </div>
 
 <div class="paragraphDiv">
@@ -113,7 +113,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Popatrzmy wnikliwie na ten przypadek testowy. To wywołanie metody <span class="code">minPath</span> nie jest właściwe. Algorytm Dijkstry znajduje najkrótszą ścieżkę pomiędzy dwoma określonymi węzłami. Więc zakładając, że węzły mają nazwy, test powinien naprawdę wyglądać jakoś tak:
+    Popatrzmy wnikliwie na ten przypadek testowy. Nie jest właściwe takie wywołanie metody <span class="code">minPath</span>. Algorytm Dijkstry znajduje najkrótszą ścieżkę pomiędzy dwoma określonymi węzłami. Więc zakładając, że węzły mają nazwy, test powinien naprawdę wyglądać jakoś tak:
 </div>
 
 <div class="paragraphDiv">
@@ -123,7 +123,7 @@
 </div>
 
 <div class="paragraphDiv">
-    To brzydko wygląda. Możemy zrefaktorować to, aby było odrobinę ładniejsze:
+    To brzydko wygląda. Możemy zrefaktorować to tak, aby było odrobinę ładniejsze:
 </div>
 
 <div class="paragraphDiv">
@@ -140,7 +140,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Zauważ, że metoda <span class="code">assertPath</span> zakłada dla prostoty, że wszystkie przypadki testowe będą używać
+    Zauważ, że metoda <span class="code">assertPath</span> dla prostoty zakłada, że wszystkie przypadki testowe będą używać
     <span class="code">"A"</span> i <span class="code">"Z"</span> jako ich pozycji startowych i końcowych.
 </div>
 
@@ -208,7 +208,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Myślę, że to interesujące, jak dużo namysłu i wysiłku zostało włożone w strukturę tego problemu; dla jednego tylko, ograniczonego przypadku testowego. Ale teraz myślę, że możemy dodać kilka innych ograniczonych przypadków:
+    Uważam to za interesujące, że już tak dużo namysłu i wysiłku zostało włożone w strukturę tego problemu - dla jednego tylko, ograniczonego przypadku testowego. Ale teraz myślę, że możemy dodać kilka innych ograniczonych przypadków:
 </div>
 
 <div class="paragraphDiv">
@@ -225,13 +225,13 @@
 </div>
 
 <div class="paragraphDiv">
-    Ten test zmusił mnie, aby podjąć kolejną decyzję o <i>skomponowanej asercji</i>. Dla naszych testów struktura krawędzi grafu będzie wyglądała tak:
-    <span class="code">&lt;nazwa&gtdługość&lt;nazwa&gt</span>. Więc <span class="code">B1C</span> jest krawędzią o długości 1, która łączy węzeł
+    Te testy zmusiły mnie, aby podjąć kolejną decyzję o <i>skomponowanej asercji</i>. Dla naszych testów struktura krawędzi grafu będzie wyglądała tak:
+    <span class="code">&lt;nazwa&gtdługość&lt;nazwa&gt</span>. Więc <span class="code">B1C</span> jest krawędzią o długości <span class="code">1</span>, która łączy węzeł
     <span class="code">B</span> i <span class="code">C</span>.
 </div>
 
 <div class="paragraphDiv">
-    Myślę, że wszystkie te przypadki testowe są dość ograniczone. Więc przykręćmy koło zębate skomplikowania o jeden ząbęk w górę i stwórzmy test, który zmusi nas do zrobienia czegoś choć trochę sprytnego.
+    Myślę, że wszystkie te przypadki testowe są dość ograniczone. Więc przekręćmy koło zębate skomplikowania o jeden ząbęk w górę i stwórzmy test, który zmusi nas do zrobienia czegoś choć trochę bardziej sprytnego.
 </div>
 
 <div class="paragraphDiv">
@@ -244,7 +244,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Ten test, oczywiście, nie przejdzie. Czuję się też trochę niewygodnie, ponieważ testuję dwie rzeczy na raz, długość i ścieżkę, które mogłyby być testowane oddzielnie. Wyjdę teraz na zrzędę, bo poświęciłem tyle czasu na wprowadzenie skomponowanej asercji; i teraz chciałbym ją rozbić znowu.
+    Ten test, oczywiście, nie przejdzie. Czuję też pewien dyskomfort, ponieważ testuję dwie rzeczy na raz, długość i ścieżkę, które mogłyby być testowane oddzielnie. Wyjdę teraz na zrzędę, bo poświęciłem tyle czasu na wprowadzenie skomponowanej asercji; i teraz chciałbym ją rozbić znowu.
     Ale myślę, że jest jeden "sprytny" sposób na obejście tego:
 </div>
 
@@ -273,7 +273,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Teraz, oczywiście, mógłbym zrobić coś tak ochydnego jak to:
+    Teraz, oczywiście, mógłbym zrobić coś tak ohydnego jak to:
 </div>
 
 <div class="paragraphDiv">
@@ -289,13 +289,13 @@
 
 <div class="paragraphDiv">
     Ale to łamie kilka zasad. Po pierwsze, to łamie zasadę <em>ogólności</em>, która mówi: <em>W miarę, jak testy robią się
-    bardziej konkretne, kod robi się bardziej ogólny</em>. Innymi słowy, kod produkcyjny musi stać się bardziej ogólny, aby spełnić test, który nie przechodzi. Nie możesz dodać wyrażeń do produkcyjnego kodu, które są specificzne dla danego testu. (Mówię o tym dużo więcej w
+    bardziej konkretne, kod robi się bardziej ogólny</em>. Innymi słowy, kod produkcyjny musi stać się bardziej ogólny, aby spełnić test, który nie przechodzi. Do produkcyjnego kodu nie możesz dodawać wyrażeń, które są specyficzne dla danego testu. (Mówię o tym dużo więcej w
     <a href="https://cleancoders.com/episode/clean-code-episode-19-p1/show">Odcinku 19: Zaawansowane TDD</a>, na <a
         href="https://cleancoders.com/">cleancoders.com</a>)
 </div>
 
 <div class="paragraphDiv">
-    Drugą złamaną zasadą jest <a href="https://pl.wikipedia.org/wiki/Zale%C5%BCno%C5%9B%C4%87_oprogramowania">zależność</a> testów. Nie chcemy, aby testy stały się mocno zależne od produkcyjnego kodu. Im więcej zależności, tym bardziej testy stają się kruche. Nie chcemy doprowadzić do sytuacji, gdy pojedyncza zmiana w produkcyjnym kodzie zepsuje dziesiątki czy setki testów.
+    Drugą złamaną zasadą jest <a href="https://pl.wikipedia.org/wiki/Zale%C5%BCno%C5%9B%C4%87_oprogramowania">zależność</a> testów. Nie chcemy, aby testy stały się mocno zależne od produkcyjnego kodu. Im więcej zależności, tym bardziej testy stają się kruche. Nie chcemy doprowadzić do sytuacji, gdy pojedyncza zmiana w kodzie produkcyjnym zepsuje dziesiątki czy setki testów.
 </div>
 
 <div class="paragraphDiv">
@@ -423,7 +423,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Teraz, aby to przechodziło zmienimy funkcję pomocniczą <span class="code">assertMinPath</span> dodając do niej wywołanie
+    Teraz, aby to przechodziło, dodamy w funkcji pomocniczej <span class="code">assertMinPath</span> wywołanie
     <span class="code">toString</span>.
 </div>
 
@@ -437,7 +437,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Dodajemy listę węzłów <span class="code">path</span> do <span class="code">PathFindera</span> i po prostu zwracamy ją w <span class="code">minLength</span>.
+    Dodaamy listę węzłów <span class="code">path</span> do <span class="code">PathFindera</span> i po prostu zwrócimy ją w <span class="code">minLength</span>.
 </div>
 
 <div class="paragraphDiv">
@@ -556,7 +556,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Oczywiście to nadal nie sprawia, że test przechodzi, więc teraz zamierzamy połączyć dwie krawędzie. Załóżmy, że krawędzie są ułożone po kolei, więc wierzchołek A rozpoczyna pierwszą krawędź, i wierzchołek Z kończy drugą krawędź. Przy takim założeniu, możemy ustawić całe połączenia poprzez zmianę warunku <span class="code">&&</span> na <span class="code">||</span> w funkcji <span class="code">findPath</span>:
+    Oczywiście to nadal nie sprawia, że test przechodzi, więc teraz zamierzamy połączyć dwie krawędzie. Załóżmy, że krawędzie są ułożone po kolei, więc wierzchołek A rozpoczyna pierwszą krawędź, i wierzchołek Z kończy drugą krawędź. Przy takim założeniu, możemy ustawić całe połączenie poprzez zmianę warunku <span class="code">&&</span> na <span class="code">||</span> w funkcji <span class="code">findPath</span>:
 </div>
 
 <div class="paragraphDiv">
@@ -575,7 +575,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Podoba C isię ta zmiana? <span class="code">&&</span> na <span class="code">||</span>. Taaak, całkiem sprytnie. To zadziała tylko dla dwóch kolejnych krawędzi. Założenia wznoszą się w niebiosa! I, tak czy inaczej, to nie działa.
+    Podoba Ci się ta zmiana? <span class="code">&&</span> na <span class="code">||</span>. Taaak, całkiem sprytnie. To zadziała tylko dla dwóch kolejnych krawędzi. Założenia wznoszą się w niebiosa! I, tak czy inaczej, to nie działa.
 </div>
 
 <div class="paragraphDiv">
@@ -584,19 +584,39 @@
 </div>
 
 <div class="paragraphDiv">
-    Aby wszystkie te testy przechodziły, potrzebuję implementacji, która w wyniku daje zerową długość i pustą ścieżkę, jeżeli nie istnieje ścieżka pomiędzy A i Z. Ponieważ nie wiem ile będzie krawędzi (może być zero, jeden, dwie) nie mogą wziąć tylko dwóch. Zamiast tego, mógłbym zrobić analizę przypadków dla zero, jednej lub dwóch krawędzi; jak poniżej:
+    Aby wszystkie te testy przechodziły, potrzebuję implementacji, która w wyniku daje zerową długość i pustą ścieżkę, jeżeli nie istnieje ścieżka pomiędzy A i Z. Ponieważ nie wiem, ile będzie krawędzi (może być zero, jeden, dwie) nie mogę wziąć tylko dwóch. Zamiast tego, mógłbym zrobić analizę przypadków dla zero, jednej lub dwóch krawędzi; jak poniżej:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> findPath(String begin, String end) {
+  <span style="font-weight: bold">if</span> (edges.size() == 0)
+    <span style="font-weight: bold">return</span>;
+
+  <span style="font-weight: bold">else</span> if (edges.size() == 1) {
+    Edge edge = edges.get(0);
+    <span style="font-weight: bold">if</span> (edge.begin.equals(begin) &amp;&amp; edge.end.equals(end)) {
+      path.add(edge.begin);
+      path.add(edge.end);
+      length += edge.length;
+    }
+  } <span style="font-weight: bold">else</span> {
+    <span style="font-weight: bold">for</span> (Edge edge : edges) {
+      <span style="font-weight: bold">if</span> (edge.begin.equals(begin) || edge.end.equals(end)) {
+        path.add(edge.begin);
+        path.add(edge.end);
+        length += edge.length;
+      }
+    }
+  }
+}
+</pre></div>
+
 </div>
 
 <div class="paragraphDiv">
     OK, to działa, ale to jest naprawdę okropne. Nie tylko łamie zasadę <em>ogólności</em>; to jest po prostu ochydne. Co więcej, nie do końca poprawnie tworzy ścieżkę .Na przykład test: <span class="code">assertMinPath("A1B,B1Z", 2, "[A, B, Z]");</span> nie przechodzi poniważ tworzy <span class="code">[A, B, B, Z]</span>. Mógłbym to naprawić przez dodanie jeszcze jednej okropnej instrukcji
     <span class="code">if</span>; ale mam lepszy pomysł. Przejdźmy graf od początku do końca.
 </div>
-
-<div class="paragraphDiv">
-
-</div>
-
-
 
 <div class="paragraphDiv">
     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> findPath(String begin, String end) {
@@ -1119,6 +1139,12 @@
     </div>
     <hr/>
 </div>
+
+<div class="paragraphDiv">
+    [Kod źródłowy jest dostępny <a href="https://github.com/coola/dijkstrasAlgorithm">tutaj</a>. - przyp. tłum.]
+</div>
+
+
 
 
 </body>
