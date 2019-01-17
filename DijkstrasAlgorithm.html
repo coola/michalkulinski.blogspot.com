@@ -798,6 +798,85 @@
 
 </div>
 
+<div class="paragraphDiv">
+    To przechodzi. Więc teraz potrzebujemy dodać test grafu, który ma równoległe ścieżki. To jest jeden prosty, który powinien nie przechodzić:
+</div>
+
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">assertMinPath(<span style="font-style: italic">&quot;A1B,B2Z,A1Z&quot;</span>, 1, <span style="font-style: italic">&quot;[A, Z]&quot;</span>);
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    I nie przechodzi
+</div>
+
+<div class="paragraphDiv">
+    Aby sprawić, żeby to przechodziło musimy wykryć, czy dwie ścieżki zbiegają się w jednym węźle. To proste. Jeżeli długość na węźle docelowym nie wynosi
+    <span class="code">Integer.MAX_VALUE</span> to oznacza, że inna ścieżka już osiągnęła ten węzeł. Ponieważ szukamy minimum, możemy po prostu ustawić długość na tym węźle na minimalną wartość spośród zbiegających się w tym węźle ścieżek. Wartość <span class="code">Integer.MAX_VALUE</span> wydaje się byc bardzo przydatna dla tego sprawdzenia, ponieważ jest zamiennikiem dla "nieskończonej" długości.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">private</span> <span style="font-weight: bold">void</span> visit(String node) {
+  List&lt;Edge&gt; neighbors = findEdges(node);
+  Node curNode = nodes.get(node);
+  <span style="font-weight: bold">for</span> (Edge e : neighbors) {
+    Node nbr = nodes.get(e.end);
+
+    <span style="font-weight: bold">int</span> newLength = curNode.length + e.length;
+    <span style="font-weight: bold">if</span> (nbr.length &gt; newLength) {
+      nbr.length = newLength;
+      nbr.path = <span style="font-weight: bold">new</span> ArrayList&lt;String&gt;();
+      nbr.path.addAll(curNode.path);
+      nbr.path.add(node);
+    }
+  }
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Prawdopodobnie możemy przyspieszyć troszkę algorytm koncząc poszukiwania, kiedy osiągniemy węzeł końcowy.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">for</span> (String node = begin; node != <span style="font-weight: bold">null</span> &amp;&amp; !node.equals(end); node = getNext(unvisited)) {
+  unvisited.remove(node);
+  visit(node);
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    I zapewne możemy przypieszyć algorytm nawet bardziej przez preferowanie przeszukiwania nieodwiedzonych węzłów, które zostały odwiedzone przez najkrótszą ścieżkę.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">private</span> String getNext(List&lt;String&gt; unvisited) {
+  String minNodeName = <span style="font-weight: bold">null</span>;
+  <span style="font-weight: bold">int</span> minLength = Integer.MAX_VALUE;
+
+  <span style="font-weight: bold">for</span> (String name : unvisited) {
+    Node candidate = nodes.get(name);
+    <span style="font-weight: bold">if</span> (candidate.length &lt; minLength) {
+      minLength = candidate.length;
+      minNodeName = name;
+    }
+  }
+  <span style="font-weight: bold">return</span> minNodeName;
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    To, w każdym możliwym sensie <em>jest</em> algorytm Dijkstry. Ta implementacja nie jest szybka, ponieważ użyłem tam zbiorów i list, i mnóstwa niefektywnych struktur. Przypsieszenie tego zajęłoby całkiem sporo roboty. Co więcej, są tam wbudowane pewne założenia, które należałoby naprawić. Przede wszystkim, jest założenie, że graf wejściowy musi być <a href="https://pl.wikipedia.org/wiki/Graf_skierowany">skierowany</a>; natomiast ogólny algorytm nie wymaga takiego założenia. Na koniec, całości przydałaby się odrobina refaktoringu.
+</div>
+
 <!---------- -->
 
 <div class="paragraphDiv">
