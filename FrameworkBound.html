@@ -20,17 +20,6 @@
             margin: 1em 0.1em 1em 0.1em;
         }
 
-        .cite {
-            padding: 0 1em 0 1em;
-            margin: 1em;
-            border-left: solid;
-            border-color: #eef2f5;
-        }
-
-        .code {
-            font-family: monospace;
-        }
-
     </style>
 
 </head>
@@ -41,7 +30,6 @@
 <div class="paragraphDiv">
     Frameworki to potężne narzędzia. Bez nich bylibyśmy zgubieni. Ale istnieje koszt używania frameworków.
 </div>
-
 
 <div class="smallGreyText">
     <hr/>
@@ -63,28 +51,28 @@
 <br/>
 
 <div class="paragraphDiv">
-    Pomyśl o Rails, czy Springu, czy JSF czy Hibernate. Pomyśl o tym, jak pisałbyś systemy webowe bez tych frameworków do pomocy. To wyobrażenie jest przygnębiające. Byłoby wtedy za dużo małych, upierdliwych szczegółów, z którymi musiałbyś sobie radzić. To byłoby jak zbudowanie obwodu pamięci mnemonicznej przy użyciu kamiennych noży i niedźwiedziej skóry[1].
+    Pomyśl o Rails, czy Springu, czy JSF czy Hibernate. Pomyśl o tym, jak pisałbyś systemy webowe bez pomocy tych frameworków. To wyobrażenie jest przygnębiające. Byłoby wtedy za dużo małych, upierdliwych szczegółów, z którymi musiałbyś sobie radzić. To byłoby jak zbudowanie obwodu pamięci mnemonicznej przy użyciu kamiennych noży i niedźwiedziej skóry[1].
 </div>
 
 <div class="paragraphDiv">
-    A więc łączymy nasz kod z tymi frameworkami ściśle w oczekiwaniu tych wszystkich obiecanych zysków. Popełniamy błąd, który popełniło już tak wielu programistów przed nami. Przylepiamy się do frameworka.
+    A więc radośnie łączymy nasz kod ściśle z frameworkami w oczekiwaniu tych wszystkich obiecanych zysków. Popełniamy przy tym błąd, który popełniło już tak wielu programistów przed nami. Związujemy się z frameworkiem.
 </div>
 
 <div class="paragraphDiv">
-    Użycie frameworka wymaga znaczacego zaangażowania. Akceptując framework w swoim kodzie, tracisz kontrolę nad szczegółami, którymi zarządza framework. Oczywiście wydaje się to być dobre; i zwykle jest. Jednakże, pułapka czycha tuż za rogiem; i jest ciężko spostrzec ją w porę. Zanim się zorientujesz, jesteś zaangażowany we wszelkiego rodzaju nienaturalne działania, dziedzicząc z klas bazowych frameworku, rezygnując z coraz większej ilości kontroli przepływu sterowania, kłaniając się coraz głębiej konwencjom frameworku, jego dziwactwom i ekscentryzmom.
+    Użycie frameworku wymaga znaczącego zaangażowania. Akceptując framework w swoim kodzie, tracisz kontrolę nad szczegółami, którymi zarządza framework. Oczywiście wydaje się to być dobre; i zwykle jest. Jednakże pułapka czyha tuż za rogiem; i jest ciężko spostrzec ją w porę. Zanim się zorientujesz, jesteś zaangażowany we wszelkiego rodzaju nienaturalne działania, dziedzicząc z klas bazowych frameworku, rezygnując z coraz większej ilości kontroli przepływu sterowania, kłaniając się coraz głębiej konwencjom frameworku, jego dziwactwom i ekscentryzmom.
 </div>
 
 <div class="paragraphDiv">
-    I pomimo Twojego ogromnego zaangażowania jaki zrobiłeś w kierunku frameworku, framework nie odwzajemnił się żadnym zaangażowaniem w Towim kierunku. Framework łatwo ewoluuje w każdym kierunku, jaki tylko zadowala jego autora. A kiedy to robi, zdajesz sobie sprawę, że będziesz musiał podążać za nim grzecznie jak wierny szczeniak.
+    I pomimo Twojego ogromnego zaangażowania zrobionego w kierunku frameworku, framework nie odwzajemnił Ci się żadnym zaangażowaniem w Twoim kierunku. Framework łatwo ewoluuje w każdym kierunku, jaki tylko zadowala jego autora. A kiedy to robi, zdajesz sobie sprawę, że będziesz musiał podążać za nim grzecznie jak wierny szczeniak.
 </div>
 
 <div class="paragraphDiv">
-    Przyklejenie do frameworku jest zbyt częstym wydarzeniem pośród zespołów programistycznych. Zaczynają z dzikim entuzjazmem i chętnie wiążą swój kod z frameworkiem, tylko po to, żeby dużo później, wraz ze wzrostem projektu, przekonać się, że framework staje się im na drodze.
+    Przywiązywanie się do frameworku zachodzi zbyt często wśród członków zespołów programistycznych. Oni zaczynają z dzikim entuzjazmem i chętnie wiążą swój kod z frameworkiem, tylko po to, żeby dużo później, wraz ze wzrostem projektu, przekonać się, że framework staje im na drodze.
 </div>
 
 <div class="paragraphDiv">
     To nie powinno być zaskakujące. Frameworki są pisane przez ludzi do rozwiązania konkretnych problemów, które <em>tylko
-    ci</em> ludzie mają. Te problemy mogą być Twoje, <em>ale one nie są Twoje</em>. Ty masz inne problemy. W momencie, gdy Twoje problemy się pokrywają framework może być niesamowicie pomocny. W momencie, gdy Twoje problemy są inne, framework może być ogromnym utrudnieniem.
+    ci</em> ludzie mają. Te problemy mogą być Twoje, <em>ale one nie są Twoje</em>. Ty masz inne problemy. W momencie, gdy Twoje problemy pokrywają się, framework może być niesamowicie pomocny. W momencie, gdy Twoje problemy są inne, framework może być ogromnym utrudnieniem.
 </div>
 
 <div class="paragraphDiv">
@@ -92,15 +80,54 @@
         TANSTAAFL!</a>
 </div>
 
+<h3>Autorzy Frameworków</h3>
+
 <div class="paragraphDiv">
-    ### Warto Zapamiętać O Autorach Frameworków, że frameworki są pisane przez ludzi, a ludzie mają swoje własne motywy. Jednym z takich motywów może być sprawienie, abyś używał ich frameworku. Jako autor frameworków w przeszłosci, mogę Ci powiedzieć, że im więcej ludzi używa twoich frameworków, tym masz <em>o sobie</em> lepsze mniemanie.
+    Frameworki są pisane przez ludzi, a ludzie mają swoje własne motywy. Jednym z takich motywów może być sprawienie, abyś używał ich frameworku. Jako autor frameworków w przeszłości, mogę Ci powiedzieć, że im więcej ludzi używa twoich frameworków, tym masz <em>o sobie</em> lepsze mniemanie. Duża część mojego dowartościowania samego siebie była związana z akceptacją moich frameworków przez innych ludzi.
+</div>
+
+<div class="paragraphDiv">
+    Tutaj nie chcę wchodzić zbyt głęboko w psychoanalizę autorów frameworków. Autorzy frameworków nie są złymi ludźmi. W rzeczywistości, w przeważającej części, są bohaterami. Wielu bezinteresownie wypuszcza swój kod dla społeczności open source. Gdyby nie ci ludzie, nasze programistyczne żywota byłyby znacznie mniej przyjemne i produktywne.
+</div>
+
+<div class="paragraphDiv">
+    Przedstawiłem tę kwestię autorów, ponieważ pomaga mi ona zrozumieć pewną mechanikę zależności pomiędzy autorami a użytkownikami frameworków.
+</div>
+
+<div class="paragraphDiv">
+    Autorzy frameworków pokonają znaczne odległości, żeby tylko udało im się zagonić Cię do ich zagrody. Będą pisać artykuły i przemawiać na konferencjach. Dostarczą przykłady pokazujące, w jaki sposób możesz połączyć się ściśle, bardzo ściśle z ich kodem. Pokażą wszystkie korzyści, jakie ma takie ścisłe połączenie. Oni są przekonani, że ich kod pomoże Ci, i będą ciężko pracować, żeby Cię o tym przekonać.
+</div>
+
+<div class="paragraphDiv">
+    To jest zupełnie normalne i w żaden sposób niehonorowe. Po prostu chcą Cię mieć w swojej zagrodzie.
+</div>
+
+<div class="paragraphDiv">
+    Jednakże, kiedy już będziesz w ich zagrodzie, ich zainteresowanie Tobą zmienia się w pewien sposób. To jest zdjęcie jednego z popularnych autorów frameworków mówiącego jego użytkownikom, co myśli o niektórych ich obawach.
+    <a href="https://www.flickr.com/photos/planetargon/127984254/">(Tylko dla dorosłych)</a>
+</div>
+
+<h3>Na Odległość Wyciągniętych Ramion</h3>
+
+<div class="paragraphDiv">
+    Przez te wszystkie lata, nabyłem zdrowego sceptyzmu dotyczącego frameworków. Mimo że przyznaję, że mogą być ekstremalnie użyteczne i zaoszczędzić ogrom czasu; również zdaję sobie sprawę, że to kosztuje. Czasami te koszty rzeczywiście mogą być bardzo wysokie.
+</div>
+
+<div class="paragraphDiv">
+    Więc, moją strategią jest trzymać frameworki takie, jak Spring, Hibernate, czy Rails na odległość wyciągniętych ramion; za granicami architektonicznymi. Najwięcej korzyści mam z nich korzystając z nich w taki sposób; i dzięki temu mam nad nimi bezlitosną przewagę.
+</div>
+
+
+<div class="paragraphDiv">
+    Ale nie pozwalam tym frameworkom podchodzić zbyt blisko. Nie oddaje im mojej niezależności. I pozwalam mackom ich kodu grzebać w wysokopoziomowych zasadach moich systemów. Mogą dotykać moich drugoplanowych podsystemów; ale trzymam je z dala od kluczowej logiki biznesowej. Wysokopoziomowe zasady moich systemów nigdy nie powinny być dotykane przez frameworki.
+</div>
+
+<div class="paragraphDiv">
+    [1] Star Trek: The City on the Edge of Forever, Harlan Ellison, 1967 <br/>
+    [2] <a href="https://michalkulinski.blogspot.com/2019/01/przeprosiny.html">Przeprosiny</a>
 </div>
 
 <!---------- -->
-
-<div class="paragraphDiv">
-
-</div>
 
 
 <div class="paragraphDiv">
