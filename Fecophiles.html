@@ -39,12 +39,13 @@
 <br/>
 
 <div class="paragraphDiv">
-    Dostałem dzisiaj ciekawego maila. Zawierał poniższy tekst opisujący jak ktoś wysłał maila do swoich
-    współprawcowników o refaktoringu, który zrobił:
+    Dostałem dzisiaj ciekawego maila. Zawierał poniższy tekst opisujący, jak ktoś wysłał maila do swoich
+    współpracowników o refaktoringu, który zrobił:
 </div>
 
-<div class="paragraphDiv">
-    Po tym jak wysłałem ten email do moich kolegów, spotkałem się z następującą reakcją; 1 członek zespołu uważał, że to
+<div class="paragraphDiv cite">
+    Po tym, jak wysłałem ten e-mail do moich kolegów, spotkałem się z następującą reakcją; 1 członek zespołu uważał, że
+    to
     było lepsze niż poprzednio i 2 osoby uważały, że to było im trudniej zrozumieć. Z tych 2 osób, które uważały to za
     gorsze; 1 uważa, że powinienem cofnąć swoje zmiany, a druga jest w stanie znieść te zmiany, żebym już tylko się
     zamknął :-)
@@ -71,7 +72,7 @@
 <br/>
 
 <div class="paragraphDiv">
-    Tu jest list, który im wysłał, pokazując kod przed i po refaktoringu.
+    Tu jest e-mail, który im wysłał, pokazujący kod przed refaktoringiem i po refaktoringu.
 </div>
 
 
@@ -154,33 +155,33 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
 </div>
 
 <div class="paragraphDiv">
-    Pozwól mi wyrazić się jasno. Pierwszy kod to gówno. Duże gówno. Mam na myśli naprawdę śmierdzącą, rozwodnioną i
+    Pozwól mi wyrazić się jasno. Pierwszy kod to gówno. Wielkie gówno. Mam na myśli naprawdę śmierdzącą, rozwodnioną i
     brązową kupę kupy. Wygląda, jakby wyszła z naprawdę chorego psa.
 </div>
 
 <div class="paragraphDiv">
-    Byłem zdumiony, ze ktokolwiek mógłby uważać, że to gówno było lepsze od całkiem niezłego refaktoringu. Wydaje się,
+    Byłem zdumiony, że ktokolwiek mógłby uważać, że to gówno było lepsze od całkiem niezłego refaktoringu. Wydaje się,
     że niektórzy ludzie po prostu lubią wąchać kupę. Nazywam ich <em>Fekofilami</em>.
 </div>
 
 <div class="paragraphDiv">
-    Pomyślałem sobie, że może mają coś nie w porządku z nosami. Koniec końców, jeżeli na codzień żyjesz w gównie, po
-    jakimś czasie możesz juz po prostu tego nie czuć. Więc zdecydowałem się wepchnąć ich nosy w tę śmierdzącą kupę
-    poprzez prześledzenie tego zapachu w każdym z jego intensywnych i gryzących detali. Więc, wysłałem taki list
-    spowrotem do mojego przyjaciela.
+    Pomyślałem sobie, że może mają coś nie w porządku z nosami. Koniec końców, jeżeli na co dzień żyjesz w gównie, po
+    jakimś czasie możesz już po prostu tego nie czuć. Więc zdecydowałem się wepchnąć ich nosy w tę śmierdzącą kupę
+    poprzez prześledzenie tego zapachu w każdym z jego intensywnych i gryzących detali. Więc, wysłałem z powrotem do
+    mojego przyjaciela następujący e-mail.
 </div>
 
-<hl/>
+<hr/>
 
 <div class="paragraphDiv">
-    Przejdźmy się przez cały ten poprzedni kod naprawdę obwąchując go dookoła!
+    Przejdźmy przez cały ten poprzedni kod, naprawdę obwąchując go dookoła!
 </div>
 
 <div class="paragraphDiv">
     <ol>
-        <li>Zaczynamy poprzez zaincjowanie zmiennej <span class="code">ltsCode</span> nullem. W porządku.</li>
-        <li>Wtedy napotykamy <a href="https://en.wikipedia.org/wiki/Double_negative">podwójne zaprzeczenie</a> (jeżeli
-            nie null/pusty) i <a href="https://en.wikipedia.org/wiki/Indirection">dwukierunkowość</a>(<span
+        <li>Zaczynamy poprzez zainicjowanie zmiennej <span class="code">ltsCode</span> nullem. W porządku.</li>
+        <li>Wtedy napotykamy <a href="https://en.wikipedia.org/wiki/Double_negative">podwójne zaprzeczenie</a> (jeśli
+            nie null/pusty) i <a href="https://en.wikipedia.org/wiki/Indirection">dwukierunkowość</a> (<span
                     class="code">item.ParentItemNo</span>).
             Potrzeba komentarza, żeby to zrozumieć. Wydaje się, że jeżeli
             <span class="code">ParentItemNo</span> elementu będzie nullem lub puste, to znaczy, że element nie ma
@@ -195,9 +196,9 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
                 class="code">PzT</span>.
         </li>
         <li>Ignorujemy zakomentowany kod.</li>
-        <li>Ustawiamy zmienną isNfoOrDisc na interesujące wyrażenie. Co dziwne, nie widzę jakiegokolwiek miejsca, w
+        <li>Ustawiamy zmienną isNfoOrDisc na interesujące wyrażenie. Co dziwne, nie widzę żadnego miejsca, w
             którym ta zmienna byłaby używana.
-            <em>Była</em> używana w zakomentowanym kodzie, więc może ktoś po prostu zapomniał zakomentować także
+            Kiedyś <em>była</em> używana w zakomentowanym kodzie, więc może ktoś po prostu zapomniał zakomentować także
             zmiennej, co?
         </li>
         <li>Zaprzeczenie w wyrażeniu if (łatwo przegapić ten fakt).</li>
@@ -210,31 +211,33 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
             <span class="code">if</span>. &ltA fe!&gt
         </li>
         <li>Jeszcze więcej zakomentowanego kodu. Fuj.</li>
-        <li>Aaa! A teraz klauzula <span class="code">else</span> "rodzica Nie nfo lub nie kontynuowanego" wyrażenia
+        <li>Aaa! A teraz klauzula <span class="code">else</span> "rodzica Nie nfo lub niekontynuowanego" wyrażenia
             <span class="code">if</span>, którego zaprzeczenie wyrażenia boolean sprawdzaliśmy wcześniej. Czy
             programista nie wie, jak działa
             <span class="code">if/else</span>? Dlaczego do diabła on sprawdza
-            <a href="https://pl.wikipedia.org/wiki/Tautologia_(logika)">tautologię</a>? My już WIEMY, w klauzuli <span
-                    class="code">else</span>, że rodzic jest nfo lub nie jest kontynuowany. Do licha.
+            <a href="https://pl.wikipedia.org/wiki/Tautologia_(logika)">tautologię</a>? Przecież, w klauzuli <span
+                    class="code">else</span>, my już WIEMY, że rodzic jest nfo lub nie jest kontynuowany. Do licha.
         </li>
         <li>No i w klauzuli <span class="code">else</span> ustawiamy <span class="code">ltsCode</span> na null. Czekaj,
             czekaj ... Nie ustawialiśmy go kiedyś wcześniej już na null?
         </li>
-        <li>(uff, uff, uff) ok, doszliśmy do <span class="code">else</span>. Co my tu mamy? To jest else z podwójnego
-            przeczenia wyrażenia if z punktu 2. wcześniej. Aaa, więc to tu mamy element bez rodzica. Ten komentarz
-            //parent jest dziwny. Czy to oznacza, że element jest rodzicem? Skąd to mamy wiedzieć? Wszystko co wiem, to
-            to, że element nie posiada nie nullowego lub pustego numeru elementu rodzica. A wieć co jest z komentarzem
-            //parent? To kłamstwo, albo jakiś kiepski żart. Wydaje mi się, że komentarze powinny być wykomentowane.
-            (wrrrr)
+        <li>(uff, uff, uff) ok, doszliśmy do <span class="code">else</span>. Co my tu mamy? To jest <span class="code">else</span> z podwójnego
+            przeczenia wyrażenia <span class="code">if</span> z punktu 2. wcześniej. Aaa, więc to tu mamy element bez rodzica. Ten komentarz
+            <span class="code">//parent</span> jest dziwny. Czy to oznacza, że element jest rodzicem? Skąd to mamy wiedzieć? Wszystko, co wiem, to
+            to, że element nie posiada nie nullowego lub pustego numeru elementu rodzica. A więc co jest z komentarzem
+            <span class="code">//parent</span>? To kłamstwo albo jakiś kiepski żart. Wydaje mi się, że komentarze powinny być wykomentowane.
+            (wrrrr).
+
         </li>
         <li>Ustawiamy <span class="code">ltsCode</span> na null. Hmmmm. zobaczmy. Jaką miało wartość <span class="code">ltsCode</span>,
-            zanim ustawiliśmy je na null? Dlatego, że wydaje mi się, że juz jest nullem! Czy jest jakaś ścieżka wśród
+            zanim ustawiliśmy je na null? Wszak, wydaje mi się, że już jest nullem! Czy jest jakaś ścieżka wśród
             tego okropnego programistycznego gniazda węży, która mogłaby ustawić
             <span class="code">ltsCode</span> na cokolwiek różnego od nulla? Nie ma!
         </li>
-        <li>a teraz ostateczny cios! Kolejne wyrażenie <span class="code">if</span>, które sprawdza czy element jest nfo
+        <li>a teraz ostateczny cios! Kolejne wyrażenie <span class="code">if</span>, które sprawdza, czy element jest
+            nfo
             czy nie kontynowany. I co to wyrażenie
-            <span class="code">if</span> robi jeżeli tak jest? Ano, ustawia <span class="code">ltsCode</span> na ...
+            <span class="code">if</span> robi, jeżeli tak jest? Ano, ustawia <span class="code">ltsCode</span> na ...
             NULL. Oczywiście! NULL. Genialne!
         </li>
     </ol>
@@ -242,13 +245,13 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
 
 
 <div class="paragraphDiv">
-    Podsumowując. Ten kod to śmietnik. W pełnym tego słowa znaczeniu, bezdyskusyjny, prawdziwy burdel. Jest pełen
+    Podsumowując. Ten kod to śmietnik. W całym znaczeniu tego słowa, bezdyskusyjny, prawdziwy burdel. Jest pełen
     niedokładnych i dwuznacznych komentarzy, niepotrzebnych zmiennych, bezcelowych wyrażeń
     <span class="code">if</span> i naprawdę zawiłej logiki. A jaki był cel? Cel był taki:
 </div>
 
 <div class="paragraphDiv cite">
-    zwróć PzT jeżeli element istnieje i ma rodzica, który nie jest nfo lub jest niekontynoowany. W przeciwnym razie
+    zwróć PzT, jeżeli element istnieje i ma rodzica, który nie jest nfo lub jest niekontynuowany. W przeciwnym razie
     zwróć nulla.
 </div>
 
@@ -279,12 +282,12 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
     Wstydzę się każdego, kto uważa, że oryginalny kod jest łatwiejszy do zrozumienia.
 </div>
 
-<hl/>
+<hr/>
 
 <div class="paragraphDiv">
-    Nie wiem czy to do nich doszło. Ale nawet, jeśli w po raz pierwszy uświadomili sobie, że w ich domu śmierdzi, to
+    Nie wiem, czy to do nich doszło. Ale nawet, jeśli po raz pierwszy uświadomili sobie, że w ich domu śmierdzi, to
     jest to kropla w morzu. Jest jeszcze wielu, wielu fekofili
-    na tym świecie, którzy muszą zrobić krok w tył i wziąć głeboki oddech nosem.
+    na tym świecie, którzy muszą cofnąć się krok w tył i wziąć głęboki wdech nosem.
 </div>
 
 <!---------- -->
