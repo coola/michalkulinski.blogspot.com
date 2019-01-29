@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <style scoped="scoped" type="text/css">
+        .paragraphDiv {
+            margin: 0 1em 0.5em 1em;
+        }
+
+        img {
+            margin: 10px;
+        }
+
+        .smallGreyText {
+            text-align: center;
+            color: #999999;
+            font-size: 0.6em;
+            margin: 1em 0.1em 1em 0.1em;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<br/>
+
+<div class="paragraphDiv">
+    Dostałem dzisiaj ciekawego maila. Zawierał poniższy tekst opisujący jak ktoś wysłał maila do swoich współprawcowników o refaktoringu, który zrobił:
+</div>
+
+<div class="paragraphDiv">
+    Po tym jak wysłałem ten email do moich kolegów, spotkałem się z następującą reakcją; 1 członek zespołu uważał, że to było lepsze niż poprzednio i 2 osoby uważały, że to było im trudniej zrozumieć. Z tych 2 osób, które uważały to za gorsze; 1 uważa, że powinienem cofnąć swoje zmiany, a druga jest w stanie znieść te zmiany, żebym już tylko się zamknął :-)
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 20 stycznia 2012 ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2012/01/20/Fecophiles.html">https://blog.cleancoder.com/uncle-bob/2012/01/20/Fecophiles.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+<br/>
+
+<div class="paragraphDiv">
+    Tu jest list, który on im wysłał, pokazując im kod wcześniej i później po refaktoringu.
+</div>
+
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">Temat: FW: Refaktoring miesiąca
+
+
+Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii kodu?
+
+------- przed zmianami ------
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">static</span> string GetLtsCode(IventoryBinItem item)
+{
+    string ltsCode = <span style="font-weight: bold">null</span>;
+    <span style="font-weight: bold">if</span> (!string.IsNullOrEmpty(item.ParentItemNo)) <span style="font-style: italic">//child item</span>
+    {
+
+        ltsCode = <span style="font-style: italic">&quot;PzT&quot;</span>;
+        var isNfoOrDisc = item.IsNfoItem || item.IsDiscontinuedItem;
+        <span style="font-style: italic">//if (isNfoOrDisc &amp;&amp; item.ParentIsNfoOrDiscontinuedItem ||</span>
+        <span style="font-style: italic">//    !isNfoOrDisc &amp;&amp; !item.ParentIsNfoOrDiscontinuedItem)</span>
+        <span style="font-weight: bold">if</span> (!item.ParentIsNfoOrDiscontinuedItem)
+        {
+            ltsCode = <span style="font-style: italic">&quot;PzT&quot;</span>;
+        }
+        <span style="font-style: italic">//else if (item.ParentIsNfoOrDiscontinuedItem &amp;&amp; !isNfoOrDisc)</span>
+        <span style="font-weight: bold">else</span> if (item.ParentIsNfoOrDiscontinuedItem) <span style="font-style: italic">//always capture demand for children of nfo (april19 change)</span>
+        <span style="font-style: italic">//and childitem is not, then mark it as regular, otehrwise both PzT</span>
+        {
+            ltsCode = <span style="font-weight: bold">null</span>;
+        }
+    }
+    <span style="font-weight: bold">else</span> <span style="font-style: italic">//parent</span>
+    {
+        ltsCode = <span style="font-weight: bold">null</span>;
+        <span style="font-weight: bold">if</span> (item.IsNfoItem || item.IsDiscontinuedItem)
+        {
+            <span style="font-style: italic">//april 19 change</span>
+            <span style="font-style: italic">//ltsCode = &quot;PzT&quot;;</span>
+            ltsCode = <span style="font-weight: bold">null</span>;
+        }
+
+    }
+
+    <span style="font-weight: bold">return</span> ltsCode;
+}
+-----------------
+
+---- po zmianach ------
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">static</span> string GetLtsCode(IventoryBinItem item)
+{
+    bool isPzT = item != <span style="font-weight: bold">null</span>
+              &amp;&amp; !item.ParentItemNo.IsNullEmptyOrWhiteSpace()
+              &amp;&amp; !item.ParentIsNfoOrDiscontinuedItem;
+    <span style="font-weight: bold">return</span> isPzT ? <span style="font-style: italic">&quot;PzT&quot;</span> : <span style="font-weight: bold">null</span>;
+}
+------------------
+
+---- I później, po małym refaktoringu ----
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">static</span> string GetLtsCode(IventoryBinItem item)
+{
+    <span style="font-weight: bold">return</span> IsPzT(item) ? <span style="font-style: italic">&quot;PzT&quot;</span> : <span style="font-weight: bold">null</span>;
+}
+
+<span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> bool IsPzT(IventoryBinItem item)
+{
+    <span style="font-weight: bold">return</span> item != <span style="font-weight: bold">null</span>
+       &amp;&amp; !item.ParentItemNo.IsNullEmptyOrWhiteSpace()
+       &amp;&amp; !item.ParentIsNfoOrDiscontinuedItem;
+}
+------------------
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Pozwól mi wyrazić się jasno. Pierwszy kod to gówno. Duże gówno. Mam na myśli naprawdę śmierdzącą, rozwodnioną i brązową kupę kupy. Wygląda, jakby wyszła z naprawdę chorego psa.
+</div>
+
+<div class="paragraphDiv">
+    Byłem zdumiony, ze ktokolwiek mógłby uważać, że to gówno było lepsze od całkiem niezłego refaktoringu. Wydaje się, że niektórzy ludzie po prostu lubią wąchać kupę. Nazywam ich <em>Fekofilami</em>.
+</div>
+
+<div class="paragraphDiv">
+    Pomyślałem sobie, że może mają coś nie w porządku z nosami. Koniec końców, jeżeli na codzień żyjesz w gównie, po jakimś czasie możesz juz po prostu tego nie czuć. Więc zdecydowałem się wepchnąć ich nosy w tę śmierdzącą kupę poprzez wniknięcie w ten zapach w każdym z jego intensywnych i gryzących detali.
+</div>
+
+<!---------- -->
+
+
+<div class="paragraphDiv">
+
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 20 stycznia 2012 ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2012/01/20/Fecophiles.html">https://blog.cleancoder.com/uncle-bob/2012/01/20/Fecophiles.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+
+
+
+
+</body>
+
+</html>
