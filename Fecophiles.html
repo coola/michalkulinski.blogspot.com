@@ -20,6 +20,10 @@
             margin: 1em 0.1em 1em 0.1em;
         }
 
+        .code {
+            font-family: monospace;
+        }
+
     </style>
 
 </head>
@@ -28,17 +32,22 @@
 <br/>
 
 <div class="paragraphDiv">
-    Dostałem dzisiaj ciekawego maila. Zawierał poniższy tekst opisujący jak ktoś wysłał maila do swoich współprawcowników o refaktoringu, który zrobił:
+    Dostałem dzisiaj ciekawego maila. Zawierał poniższy tekst opisujący jak ktoś wysłał maila do swoich
+    współprawcowników o refaktoringu, który zrobił:
 </div>
 
 <div class="paragraphDiv">
-    Po tym jak wysłałem ten email do moich kolegów, spotkałem się z następującą reakcją; 1 członek zespołu uważał, że to było lepsze niż poprzednio i 2 osoby uważały, że to było im trudniej zrozumieć. Z tych 2 osób, które uważały to za gorsze; 1 uważa, że powinienem cofnąć swoje zmiany, a druga jest w stanie znieść te zmiany, żebym już tylko się zamknął :-)
+    Po tym jak wysłałem ten email do moich kolegów, spotkałem się z następującą reakcją; 1 członek zespołu uważał, że to
+    było lepsze niż poprzednio i 2 osoby uważały, że to było im trudniej zrozumieć. Z tych 2 osób, które uważały to za
+    gorsze; 1 uważa, że powinienem cofnąć swoje zmiany, a druga jest w stanie znieść te zmiany, żebym już tylko się
+    zamknął :-)
 </div>
 
 <div class="smallGreyText">
     <hr/>
     <div>
-        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 20 stycznia 2012 ze strony:
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 20 stycznia 2012
+        ze strony:
     </div>
     <br/>
 
@@ -55,12 +64,14 @@
 <br/>
 
 <div class="paragraphDiv">
-    Tu jest list, który on im wysłał, pokazując im kod wcześniej i później po refaktoringu.
+    Tu jest list, który im wysłał, pokazując kod przed i po refaktoringu.
 </div>
 
 
 <div class="paragraphDiv">
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">Temat: FW: Refaktoring miesiąca
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+            style="margin: 0; line-height: 125%">Temat: FW: Refaktoring miesiąca
 
 
 Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii kodu?
@@ -69,7 +80,8 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
 <span style="font-weight: bold">public</span> <span style="font-weight: bold">static</span> string GetLtsCode(IventoryBinItem item)
 {
     string ltsCode = <span style="font-weight: bold">null</span>;
-    <span style="font-weight: bold">if</span> (!string.IsNullOrEmpty(item.ParentItemNo)) <span style="font-style: italic">//child item</span>
+    <span style="font-weight: bold">if</span> (!string.IsNullOrEmpty(item.ParentItemNo)) <span
+                style="font-style: italic">//child item</span>
     {
 
         ltsCode = <span style="font-style: italic">&quot;PzT&quot;</span>;
@@ -81,7 +93,8 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
             ltsCode = <span style="font-style: italic">&quot;PzT&quot;</span>;
         }
         <span style="font-style: italic">//else if (item.ParentIsNfoOrDiscontinuedItem &amp;&amp; !isNfoOrDisc)</span>
-        <span style="font-weight: bold">else</span> if (item.ParentIsNfoOrDiscontinuedItem) <span style="font-style: italic">//always capture demand for children of nfo (april19 change)</span>
+        <span style="font-weight: bold">else</span> if (item.ParentIsNfoOrDiscontinuedItem) <span
+                style="font-style: italic">//always capture demand for children of nfo (april19 change)</span>
         <span style="font-style: italic">//and childitem is not, then mark it as regular, otehrwise both PzT</span>
         {
             ltsCode = <span style="font-weight: bold">null</span>;
@@ -109,14 +122,16 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
     bool isPzT = item != <span style="font-weight: bold">null</span>
               &amp;&amp; !item.ParentItemNo.IsNullEmptyOrWhiteSpace()
               &amp;&amp; !item.ParentIsNfoOrDiscontinuedItem;
-    <span style="font-weight: bold">return</span> isPzT ? <span style="font-style: italic">&quot;PzT&quot;</span> : <span style="font-weight: bold">null</span>;
+    <span style="font-weight: bold">return</span> isPzT ? <span
+                style="font-style: italic">&quot;PzT&quot;</span> : <span style="font-weight: bold">null</span>;
 }
 ------------------
 
 ---- I później, po małym refaktoringu ----
 <span style="font-weight: bold">public</span> <span style="font-weight: bold">static</span> string GetLtsCode(IventoryBinItem item)
 {
-    <span style="font-weight: bold">return</span> IsPzT(item) ? <span style="font-style: italic">&quot;PzT&quot;</span> : <span style="font-weight: bold">null</span>;
+    <span style="font-weight: bold">return</span> IsPzT(item) ? <span style="font-style: italic">&quot;PzT&quot;</span> : <span
+                style="font-weight: bold">null</span>;
 }
 
 <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> bool IsPzT(IventoryBinItem item)
@@ -126,20 +141,78 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
        &amp;&amp; !item.ParentIsNfoOrDiscontinuedItem;
 }
 ------------------
-</pre></div>
+</pre>
+    </div>
 
 </div>
 
 <div class="paragraphDiv">
-    Pozwól mi wyrazić się jasno. Pierwszy kod to gówno. Duże gówno. Mam na myśli naprawdę śmierdzącą, rozwodnioną i brązową kupę kupy. Wygląda, jakby wyszła z naprawdę chorego psa.
+    Pozwól mi wyrazić się jasno. Pierwszy kod to gówno. Duże gówno. Mam na myśli naprawdę śmierdzącą, rozwodnioną i
+    brązową kupę kupy. Wygląda, jakby wyszła z naprawdę chorego psa.
 </div>
 
 <div class="paragraphDiv">
-    Byłem zdumiony, ze ktokolwiek mógłby uważać, że to gówno było lepsze od całkiem niezłego refaktoringu. Wydaje się, że niektórzy ludzie po prostu lubią wąchać kupę. Nazywam ich <em>Fekofilami</em>.
+    Byłem zdumiony, ze ktokolwiek mógłby uważać, że to gówno było lepsze od całkiem niezłego refaktoringu. Wydaje się,
+    że niektórzy ludzie po prostu lubią wąchać kupę. Nazywam ich <em>Fekofilami</em>.
 </div>
 
 <div class="paragraphDiv">
-    Pomyślałem sobie, że może mają coś nie w porządku z nosami. Koniec końców, jeżeli na codzień żyjesz w gównie, po jakimś czasie możesz juz po prostu tego nie czuć. Więc zdecydowałem się wepchnąć ich nosy w tę śmierdzącą kupę poprzez wniknięcie w ten zapach w każdym z jego intensywnych i gryzących detali.
+    Pomyślałem sobie, że może mają coś nie w porządku z nosami. Koniec końców, jeżeli na codzień żyjesz w gównie, po
+    jakimś czasie możesz juz po prostu tego nie czuć. Więc zdecydowałem się wepchnąć ich nosy w tę śmierdzącą kupę
+    poprzez prześledzenie tego zapachu w każdym z jego intensywnych i gryzących detali. Więc, wysłałem taki list
+    spowrotem do mojego przyjaciela.
+</div>
+
+<hl/>
+
+<div class="paragraphDiv">
+    Przejdźmy się przez cały ten poprzedni kod naprawdę obwąchując go dookoła!
+</div>
+
+<div class="paragraphDiv">
+    <ol>
+        <li>Zaczynamy poprzez zaincjowanie zmiennej <span class="code">ltsCode</span> nullem. W porządku.</li>
+        <li>Wtedy napotykamy <a href="https://en.wikipedia.org/wiki/Double_negative">podwójne zaprzeczenie</a> (jeżeli
+            nie null/pusty) i <a href="https://en.wikipedia.org/wiki/Indirection">dwukierunkowość</a>(<span
+                    class="code">item.ParentItemNo</span>).
+            Potrzeba komentarza, żeby to zrozumieć. Wydaje się, że jeżeli
+            <span class="code">ParentItemNo</span> elementu będzie nullem lub puste, to znaczy, że element nie ma
+            rodzica. Jeżeli dodamy zaprzeczenie, wyrażenie
+            <span class="code">if</span> zdaje się mówić: "jeżeli to jest dziecko". Komentarz stara się o tym
+            powiedzieć, ale gramatyka kodu jest zła. Byłoby ładniej, gdyby wyrażenie
+            <span class="code">if</span> miało postać <span class="code">if(isChild(item))</span> lub <span
+                    class="code">if(item.isChild())</span>.
+        </li>
+        <li>W ciele wyrażenia <span class="code">if</span> jesteśmy dzieckiem, więc ustawiamy <span
+                class="code">ltsCode</span> na <span
+                class="code">PzT</span>.
+        </li>
+        <li>Ignorujemy zakomentowany kod.</li>
+        <li>Ustawiamy zmienną isNfoOrDisc na interesujące wyrażenie. Co dziwne, nie widzę jakiegokolwiek miejsca, w
+            którym ta zmienna byłaby używana.
+            <em>Była</em> używana w zakomentowanym kodzie, więc może ktoś po prostu zapomniał zakomentować także
+            zmiennej, co?
+        </li>
+        <li>Zaprzeczenie w wyrażeniu if (łatwo przegapić ten fakt).</li>
+        <li>Wyrażenie <span class="code">if</span> sprawdza, czy rodzic nie jest nfo lub nie jest już kontynuowany.
+            Jeżeli tak, ustaw
+            <span class="code">ltsCode</span> na <span class="code">PzT</span>. Ale przecież <span
+                    class="code">ltsCode</span>
+            jest <em>już ustawione</em> na <span class="code">PzT</span>. Może ktoś zapomniał zakomentować całego tego
+            wyrażenia
+            <span class="code">if</span>. &ltA fe!&gt
+        </li>
+        <li>Jeszcze więcej zakomentowanego kodu. Fuj.</li>
+        <li>Aaa! A teraz klauzula <span class="code">else</span> "rodzica Nie nfo lub nie kontynuowanego" wyrażenia
+            <span class="code">if</span>, którego zaprzeczenie wyrażenia boolean sprawdzaliśmy wcześniej. Czy
+            programista nie wie, jak działa
+            <span class="code">if/else</span>? Dlaczego do diabła on sprawdza
+            <a href="https://pl.wikipedia.org/wiki/Tautologia_(logika)">tautologię</a>? My już WIEMY, w klauzuli <span
+                    class="code">else</span>, że rodzic jest nfo lub nie jest kontynuowany. Do licha.
+        </li>
+        <li>No i w klauzuli <span class="code">else</span> ustawiamy <span class="code">ltsCode</span> na null. Czekaj, czekaj ... Nie ustawialiśmy go kiedyś wcześniej już na null?</li>
+        <li>(uff, uff, uff) ok, doszliśmy do elsa. </li>
+    </ol>
 </div>
 
 <!---------- -->
@@ -152,7 +225,8 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
 <div class="smallGreyText">
     <hr/>
     <div>
-        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 20 stycznia 2012 ze strony:
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 20 stycznia 2012
+        ze strony:
     </div>
     <br/>
 
@@ -166,8 +240,6 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
     </div>
     <hr/>
 </div>
-
-
 
 
 </body>
