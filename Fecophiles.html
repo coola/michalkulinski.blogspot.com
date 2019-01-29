@@ -13,6 +13,13 @@
             margin: 10px;
         }
 
+        .cite {
+            padding: 1em;
+            margin: 1em;
+            border-left: solid;
+            border-color: #eef2f5;
+        }
+
         .smallGreyText {
             text-align: center;
             color: #999999;
@@ -210,9 +217,74 @@ Cos pominąłem? Czy właśnie udało mi się zejść z 31 linii kodu do 2 linii
             <a href="https://pl.wikipedia.org/wiki/Tautologia_(logika)">tautologię</a>? My już WIEMY, w klauzuli <span
                     class="code">else</span>, że rodzic jest nfo lub nie jest kontynuowany. Do licha.
         </li>
-        <li>No i w klauzuli <span class="code">else</span> ustawiamy <span class="code">ltsCode</span> na null. Czekaj, czekaj ... Nie ustawialiśmy go kiedyś wcześniej już na null?</li>
-        <li>(uff, uff, uff) ok, doszliśmy do elsa. </li>
+        <li>No i w klauzuli <span class="code">else</span> ustawiamy <span class="code">ltsCode</span> na null. Czekaj,
+            czekaj ... Nie ustawialiśmy go kiedyś wcześniej już na null?
+        </li>
+        <li>(uff, uff, uff) ok, doszliśmy do <span class="code">else</span>. Co my tu mamy? To jest else z podwójnego
+            przeczenia wyrażenia if z punktu 2. wcześniej. Aaa, więc to tu mamy element bez rodzica. Ten komentarz
+            //parent jest dziwny. Czy to oznacza, że element jest rodzicem? Skąd to mamy wiedzieć? Wszystko co wiem, to
+            to, że element nie posiada nie nullowego lub pustego numeru elementu rodzica. A wieć co jest z komentarzem
+            //parent? To kłamstwo, albo jakiś kiepski żart. Wydaje mi się, że komentarze powinny być wykomentowane.
+            (wrrrr)
+        </li>
+        <li>Ustawiamy <span class="code">ltsCode</span> na null. Hmmmm. zobaczmy. Jaką miało wartość <span class="code">ltsCode</span>,
+            zanim ustawiliśmy je na null? Dlatego, że wydaje mi się, że juz jest nullem! Czy jest jakaś ścieżka wśród
+            tego okropnego programistycznego gniazda węży, która mogłaby ustawić
+            <span class="code">ltsCode</span> na cokolwiek różnego od nulla? Nie ma!
+        </li>
+        <li>a teraz ostateczny cios! Kolejne wyrażenie <span class="code">if</span>, które sprawdza czy element jest nfo
+            czy nie kontynowany. I co to wyrażenie
+            <span class="code">if</span> robi jeżeli tak jest? Ano, ustawia <span class="code">ltsCode</span> na ...
+            NULL. Oczywiście! NULL. Genialne!
+        </li>
     </ol>
+</div>
+
+
+<div class="paragraphDiv">
+    Podsumowując. Ten kod to śmietnik. W pełnym tego słowa znaczeniu, bezdyskusyjny, prawdziwy burdel. Jest pełen
+    niedokładnych i dwuznacznych komentarzy, niepotrzebnych zmiennych, bezcelowych wyrażeń
+    <span class="code">if</span> i naprawdę zawiłej logiki. A jaki był cel? Cel był taki:
+</div>
+
+<div class="paragraphDiv cite">
+    zwróć PzT jeżeli element istnieje i ma rodzica, który nie jest nfo lub jest niekontynoowany. W przeciwnym razie
+    zwróć nulla.
+</div>
+
+<div class="paragraphDiv">
+    LUB, ujmując to w prostym kodzie
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+            style="margin: 0; line-height: 125%"> <span style="font-weight: bold">public</span> <span
+            style="font-weight: bold">static</span> string GetLtsCode(IventoryBinItem item) {
+  <span style="font-weight: bold">return</span> IsPzT(item) ? <span style="font-style: italic">&quot;PzT&quot;</span> : <span
+                style="font-weight: bold">null</span>;
+ }
+
+ <span style="font-weight: bold">private</span> <span style="font-weight: bold">static</span> bool IsPzT(IventoryBinItem item) {
+  <span style="font-weight: bold">return</span> item != <span style="font-weight: bold">null</span>
+    &amp;&amp; item.HasParent()
+    &amp;&amp; item.ParentIsNotnfoOrDiscontinuedItem;
+ }
+</pre>
+    </div>
+
+</div>
+
+<div class="paragraphDiv">
+    Wstydzę się każdego, kto uważa, że oryginalny kod jest łatwiejszy do zrozumienia.
+</div>
+
+<hl/>
+
+<div class="paragraphDiv">
+    Nie wiem czy to do nich doszło. Ale nawet, jeśli w po raz pierwszy uświadomili sobie, że w ich domu śmierdzi, to
+    jest to kropla w morzu. Jest jeszcze wielu, wielu fekofili
+    na tym świecie, którzy muszą zrobić krok w tył i wziąć głeboki oddech nosem.
 </div>
 
 <!---------- -->
