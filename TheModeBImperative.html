@@ -110,7 +110,8 @@
 </div>
 
 <div class="paragraphDiv">
-    Emulowanie bebechów PDP-8 staje się niezłym wyzwaniem odkąd Lua ma tylko jeden typ numeryczny: zmiennoprzecinkowy. Tworzenie 12 bitowej logiki przy użyciu li tylko matematyki zmiennoprzecinkowej, jest, hmmm, <em>interesujące</em>. Z drugiej strony, miałem niezłą frajdę z oglądania FOCAL(FORmula CALculator: języka podobnego do Basica) odpalonego na moim PDP-8, dokonującego obliczeń zmiennoprzecinkowych, używając operacji logicznych, które to z kolei wymyśliłem przy użyciu matematyki zmiennoprzecinkowej LUA. &ltuśmiech&gt Powinieneś był zobaczyć, jak te światełka mrugały!
+    Emulowanie bebechów PDP-8 staje się niezłym wyzwaniem odkąd Lua ma tylko jeden typ numeryczny: zmiennoprzecinkowy. Tworzenie 12 bitowej logiki przy użyciu li tylko matematyki zmiennoprzecinkowej, jest, hmmm, <em>interesujące</em>. Z drugiej strony, miałem niezłą frajdę z oglądania FOCAL(FORmula CALculator: języka podobnego do Basica) odpalonego na moim PDP-8, dokonującego obliczeń zmiennoprzecinkowych, używając operacji logicznych, które to z kolei wymyśliłem przy użyciu matematyki zmiennoprzecinkowej LUA.
+    <span class="code">&ltuśmiech&gt</span> Powinieneś był zobaczyć, jak te światełka mrugały!
 </div>
 
 <div class="paragraphDiv">
@@ -132,15 +133,71 @@
 </div>
 
 <div class="paragraphDiv">
-    Proces developmentu pędził jak szalony. Edytor Lua w Codea dla iPada jest potężyny i intuicyjny (chociaż nie ma refaktoringów &ltchlip&gt).
+    Proces developmentu pędził jak szalony. Edytor Lua w Codea dla iPada jest potężyny i intuicyjny (chociaż nie ma refaktoringów
+    <span class="code">&ltchlip&gt</span>). Pętla edycji/stestowania trwała, może, 10 sekund. Mogłem dodać linie, czy dwie, odpalić appkę, zobaczyć efekt, wskoczyć z powrotem do edytora ot tak. To była przyjemne udogodnienie i miałem przy tym niezłą zabawę.
+</div>
+
+<div class="paragraphDiv">
+    Oczywiście napisałem testy do trudniejszych kawałków. Napisałem mały framework testowy, tylko do tego celu, i dodałem przycisk
+    <span class="code">TEST</span> na panelu przednim emulatora, aby ułatwić sobie odpalanie tych testów. Kod emulacji sam w sobie byłby prawie niemożliwy do napisania, gdybym nie miał tych testów. I, oczywiście, korzystałem z dyscypliny TDD przy pisaniu tego kodu. Koniec końców powstało ponad 100 testów dla najróżniejszych instrukcji i zachowań komputera PDP-8.
+</div>
+
+<div class="paragraphDiv">
+    Dla GUI, z drugiej strony (i było tam mnóstwo kodu GUI), testy były niepotrzebne(<span class="code">&ltoch&gt</span>). Moje oczy były testami. Wiedziałem, co chcę zobaczyć, więc rozkręciłem 10-sekundową pętlę edytuj/stestuj. Pisanie testów w stylu TDD byłoby okropnie trudne, i stałyby się całkowitą stratą czasu.
+</div>
+
+<div class="paragraphDiv">
+    Z drugiej strony, to był nadal <em>rytm</em> TDD. Wiedziałem, co chcę zobaczyć na ekranie. To był mój test. Po prostu zmodyfikowałem kod zanim test został spełniony. A więc nawet jeśli nie pisałem testów, czułem się tak, jakbym pisał -
+    <em>czułem się, jak podczas TDD</em>.
+</div>
+
+<div class="paragraphDiv">
+    Oczywiście to prawda, że nie miałem zautomatyzowanych testów regresji dla mojego GUI. Z drugiej strony upewnienie się czy wszystko działa było absurdalnie proste. W ten sposób brak zautomatyzowanych testów GUI nie wpłynął na czas trwania mojej pętli.
+</div>
+
+<div class="paragraphDiv">
+    Oczywiście, bez narzędzi do refaktoringu kod zrobił się trochę zabałaganiony. Zrefaktorowałem to, czego nie mogłem znieść; ale rozmiar zabałagacenia jest większy niżbym chciał. Uda mi się sprzątnąć ten kod; ale dużo wolniej pracuje się bez dobrych narzędzi do refaktoringu.
+</div>
+
+<div class="paragraphDiv">
+    Tym nie mnie, na potrzeby tego artykułu, nazwijmy ten styl programowania: <span class="code">TRYB-B</span>. <span
+        class="code">TRYB-B</span> jest stylem, który pozwala Ci jednocześnie edytować coś na ekranie i widzieć na tym ekranie skutki, lub test, który przechodzi, w ciągu kilku sekund. To development o prędkości światła, który nie wymaga listingów, ołówków, czasu kompilacji, czasu poświęconego na ustawienie, lub żadnego innego utrudnienia. Czas pomiędzy edytowaniem kodu, a oglądaniem go działającego jest dużo mniejszy niż jedna minuta.
+</div>
+
+<div class="paragraphDiv">
+<h2>TRYB-A</h2>
+</div>
+
+<div class="paragraphDiv">
+    Mając działający Emulator PDP-8, i mając te wszystkie stare narzędzia takie, jak edytor taśmy papierowej, i działający assembler Pal-3, zabrałem się za pisanie prostego programu. Ten program pozwoliłby użytkownikoi wpisać prostą formułę na klawiaturze, i wtedy wyświetliłby wynik. Dla przykładu, jeśli użytkownik wpisałby:
+    <span class="code">25+32</span>, komputer wyświetliłby
+    <span class="code">57</span>.
+</div>
+
+<div class="paragraphDiv">
+    Na PDP-8 to nie jest trywialny program. Zamieściłem go poniżej dla tych z Was, którzy chcieliby zobaczyć, jak biedni programiści PDP-8 musieli to pisać.
+</div>
+
+
+<div class="paragraphDiv">
+    Proces był taki sam jak proces, którego używałem w późnych latach 70-tych XX. wieku kiedy pracowałem nad assemblerowymi programami w na Teradyne M365 (18-bitowy kuzyn PDP-8). Mieliśmy taśmę magnetyczną, zamiast taśmy papierowej; i komputer był troszkę potężniejszy obliczeniowo niż PDP-8. Ale proces pozostawał taki sam. A leciało to tak:
+</div>
+
+<div class="paragraphDiv">
+    Załóżmy, że jesteś w środku pisania tego programu poniżej. Już trochę napisałeś, i chcesz coś jeszcze dodać. Pamiętaj, ten komputer posiada słowa o długości tylko
+    <span class="code">4K</span>. Nie może przechowywać wiele w swojej pamięci. Pamiętaj o tym, że jedynym magazynem pamięci masowej, którym dysponujesz jest papierowa taśma. Także twój kod źródłowy jest na tym samym długim pasku tej samej papierowej taśmy.
 </div>
 
 <!---------- -->
 
-
 <div class="paragraphDiv">
-
+    <ol>
+        <li>
+            Zapisujesz zmiany jakie chcesz wprowadzić do programu na aktualnym listingu.
+        </li>
+    </ol>
 </div>
+
 
 <div class="smallGreyText">
     <hr/>
