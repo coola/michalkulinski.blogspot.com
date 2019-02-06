@@ -95,6 +95,46 @@
     Usiadłem przy klawiaturze bluetooth mojego 600 dolarowego, ćwierćkilogramowego, obudowanego w fajny pokrowiec iPada, otoczony podręcznikami programowania, i poznaczonymi listingami programu nad którym pracowałem. Uświadomiłem sobie wtedy, że pracuję nad kodem napisanym pół wieku temu, stworzonym przez mężczyzn i kobiety (prawdopodobnie w wiekszości przez kobiety w tamtych czasach), którzy zakasywali rękawy, aby sprawić, żeby ich głupiutka maszyna działała. Maszyna, która ważyła 225 kg, była rozmiaru lodówki i kosztowała 20'000$ w roku 1967.
 </div>
 
+<div class="paragraphDiv">
+    Czy ktokolwiek z tych ludzi mógłby kiedykolwiek przypuszczać, że ich kod będzie odpalany na podręcznym tablecie i będzie używany do szkolenia programistów w dwudziestym pierwszym wieku? Niektórzy - wielu - może jeszcze żyć. Ciekawe co pomyśleliby, gdyby wiedzieli.
+
+    TODO pdp8InKitchen.jpg
+</div>
+
+<div class="paragraphDiv">
+    Mój emulator napisany jest w <a href="https://www.lua.org/about.html">Lua</a>, przy użyciu frameworku <a href="http://twolivesleft.com/Codea/">Codea</a> dla iPada. Jest to niezwykle wygodny język dla developmentu na iPada. Lua jest (wystarczająco) szybki, i Codea ma wspaniałe kontrolki graficzne, i prosty, acz nadal bardzo skuteczny framework do tworzenia wysoce interaktywnych programów pełnych animacji.
+</div>
+
+<div class="paragraphDiv">
+    To załatwiło animację (i generowanie dźwięku) na przednim panelu, dalekopis, i czytnik/dziurkacz papieru za jednym zamachem.
+</div>
+
+<div class="paragraphDiv">
+    Emulowanie bebechów PDP-8 staje się niezłym wyzwaniem odkąd Lua ma tylko jeden typ numeryczny: zmiennoprzecinkowy. Tworzenie 12 bitowej logiki przy użyciu li tylko matematyki zmiennoprzecinkowej, jest, hmmm, <em>interesujące</em>. Z drugiej strony, miałem niezłą frajdę z oglądania FOCAL(FORmula CALculator: języka podobnego do Basica) odpalonego na moim PDP-8, dokonującego obliczeń zmiennoprzecinkowych, używając operacji logicznych, które to z kolei wymyśliłem przy użyciu matematyki zmiennoprzecinkowej LUA. &ltuśmiech&gt Powinieneś był zobaczyć, jak te światełka mrugały!
+</div>
+
+<div class="paragraphDiv">
+    Prędkość uruchomieniowa to około 4000 instrukcji na sekundę. Mimo, że to tylko 1/7 prędkości PDP-8/S, było to całkiem imponujące jak na iPada wykonywującego język "interpretowanego byte-codu" taki jak Lua, emulującego 12-bitową logikę przy użyciu obliczeń zmiennoprzecionkowych! Nie spodziewałem się takiej szybkości. W zasadzie odpala cały ten stary software firmy
+    <a href="https://pl.wikipedia.org/wiki/Digital_Equipment_Corporation">DEC</a> z sensowną prędkością. Nawet <span
+        class="code">FOCAL</span> działa wystarczająco szybko do obliczania pierwiastków kwadratowych w coś koło pół sekundy.
+</div>
+
+<div class="paragraphDiv">
+    I, znowu, te mruganie światełek podczas kompilacji jest bardzo przyjemne. Tylko popatrz, a od razu odkryjesz, czym były inspirowane filmy science-fiction z lat 50-tych XX. wieku.
+</div>
+
+<div class="paragraphDiv">
+<h2>TRYB-B</h2>
+</div>
+
+<div class="paragraphDiv">
+    Sprawienie, aby kompilator działał było naprawdę bardzo łatwe. Prawdopodobnie spędziłem nad tym w całości 30 godzin; i to włącznie z uczeniem się Codea i Lua.
+</div>
+
+<div class="paragraphDiv">
+    Proces developmentu pędził jak szalony. Edytor Lua w Codea dla iPada jest potężyny i intuicyjny (chociaż nie ma refaktoringów &ltchlip&gt).
+</div>
+
 <!---------- -->
 
 
