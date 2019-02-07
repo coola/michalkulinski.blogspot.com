@@ -188,16 +188,54 @@
     <span class="code">4K</span>. Nie może przechowywać wiele w swojej pamięci. Pamiętaj o tym, że jedynym magazynem pamięci masowej, którym dysponujesz jest papierowa taśma. Także twój kod źródłowy jest na tym samym długim pasku tej samej papierowej taśmy.
 </div>
 
-<!---------- -->
-
 <div class="paragraphDiv">
     <ol>
         <li>
-            Zapisujesz zmiany jakie chcesz wprowadzić do programu na aktualnym listingu.
+            Zapisujesz zmiany jakie chcesz wprowadzić do programu na aktualnym listingu. Będziesz miał zmiany na wielu stronach, więc wepnij spinacze biurowe na każdą ze stron, jeśli listing jest długi.
         </li>
+        <li>Załaduj edytor z taśmy papierowej. To zajmie kilka minut, więc zrób sobię kawę.</li>
+        <li>Ustaw przełączniki na panelu przednim na <span class="code">6003</span>: dla kompresji spacji, i użyj czytnika/dziurkacza wysokiej prędkości. Uruchom edytor (poprzez ustawienie <span class="code">0200</span> na rejestrach PC i naciśnięcie klawisza
+            <span class="code">RUN</span>)</li>
+        <li>Włóż papierową taśmę z twoim kodem źródłowym do czytnika</li>
+        <li>Wczytaj jedną "stronę" kodu z papierowej taśmy używając komendy <span class="code">R</span>. (50 linii lub mniej. 1 minuta lub więcej).</li>
+        <li>Idź do tej strony w twoim listingu i nanieś poprawki używając komend <span class="code">I</span>, <span
+                class="code">C</span> i <span class="code">D</span>. Pamiętaj, że nie masz ekranu, więc edytujesz linia po linii, używając numerów linii. Zaplanuj spędzić nad tym trochę czasu.</li>
+        <li>Wydrukuj aktualną stronę używając komendy <span class="code">L</span>. Upewnij się, że wszystkie zmiany są poprawne.</li>
+        <li>Wydziurkuj aktualną stronę na papierową taśmę używając komendy P. (minuta lub więcej).</li>
+        <li>Wydziurkuj aktualną stronę i następnie ją wczytaj używając komendy <span class="code">N</span> i jeżeli to nie była ostatnia strona idź do punktu 6.</li>
+        <li>Wyjmij nową taśmę z kodem źródłowym z dziurkacza i oznacz ją tytułem i numerem wersji. <em>Nigdy nie
+            zapomnij o numerze wersji!</em></li>
+        <li>Załaduj assembler do pamieci za papierowej taśmy (10 minut lub więcej).</li>
+        <li>Ustaw przełącznik na panelu przednim na <span class="code">2002</span>: to konfiguracja "przejście pierwsze, wyjście na drukarkę".</li>
+        <li>Załaduj źródłową taśmę do czytnika</li>
+        <li>Załaduj <span class="code">0200</span> do rejestru PC, i wciśnij <span class="code">RUN</span>.</li>
+        <li>Kompilacja przejście pierwsze wczyta całą taśmę z kodem źródłowym i wydrukuje tablicę symboli. (10 minut albo więcej).</li>
+        <li>Gdy komputer się zatrzyma, ustaw na panelu przednim przełączniki na <span class="code">4003</span>: konfiguracja "przejście drugie, wyjście na dziurkacz".</li>
+        <li>Załaduj twój kod źródłowy do czytnika</li>
+        <li>Wciśnij <span class="code">RUN</span>. Kompilacja przejście drugie wczyta całą twoją taśmę źródłową i wydziurkuje twoją binarną papierową taśmę. (15 minut albo więcej). Błędy w kodzie źródłowym wydrukują się podczas tego przejścia.</li>
+        <li>Gdy komputer się zatrzyma, jeśli były jakieś błędy, wyrzuć papierową taśmę, która była przed chwilą dziurkowana i przejdź do punktu 1. Jeśli nie było wyjmij taśmę binarną z dziurkacza i oznacz ją tytułem i numerem wersji. (Nie muszę Ci już przypominać o numerze wersji, prawda?)</li>
+        <li>Ustaw przełączniki na panelu przednim na <span class="code">6002</span>: to konfiguracja "przejście trzecie, wyjście na drukarkę".</li>
+        <li>Włóż twoją źródłową taśmę do czytnika</li>
+        <li>Wciśnij <span class="code">RUN</span>. Kompilacja przejścia trzeciego wczyta całą taśmę z kodem źródłowym i wydrukuje listing programu. Będziesz potrzebował jej do debuugowania, więc nie zlekceważ tego. (30 minut albo więcej ponieważ drukarka jest bardzo wolna). Upewnij się, że masz wystarczająco dużo papieru w drukarce!</li>
+        <li>Oderwij listing i go sprawdź.</li>
+        <li>Włóż swoją taśmę binarną do czytnika.</li>
+        <li>Ustaw rejestry PC na <span class="code">7777</span> (adres ładowarki binarnej, która zwykle jest przechowywana w pamięci rdzenia) i naciśnij <span class="code">RUN</span>. Jeżeli w pamięci, z jakiegoś powodu, nie ma ładowarki binarnej, musisz przestawić się w tryb ładowarki
+            <span class="code">RIM</span> i wczytać przed tym krokiem ładowarkę binarną z papierowej taśmy .</li>
+        <li>Gdy komputer się zatrzyma, twój program jest wczytany do pamięci. Uruchom go i zobacz jak działa.</li>
     </ol>
 </div>
 
+<div class="paragraphDiv">
+    Ten proces jest bardzo skrócony. Jest tam jeszcze mnóstwo drobniejszych kroków, ale myślę, że masz już pełny obraz.
+</div>
+
+<div class="paragraphDiv">
+    To jest <span class="code">TRYB-A</span>. To jest bardzo delikatny, podatny na błędy proces, którego przeprowadzenie zajmuje godzinę lub więcej. Może być jeszcze więcej dla większych programów. Bardzo mały program robi z tej pętli około 15 minut. Program, który pisałem, urósł do około 20-30 minut lub więcej, i oszukiwałem pozwalając mojemu teletekstowi działać z prędkością 10 razy więcej niż normalnie.
+</div>
+
+<!---------- -->
+<div class="paragraphDiv">
+</div>
 
 <div class="smallGreyText">
     <hr/>
