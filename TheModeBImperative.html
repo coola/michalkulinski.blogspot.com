@@ -76,7 +76,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Chciałem być wierny maszynie i jej środowisku. Panel Przedni jest przyzwoitą abstrakcyjną reprezentacją oryginalnego PDP-8, i światełka zapalają się odpowiednio, i z prawidłowymi danymi. (chociaż nie mogłem się oprzeć i zrobiłem światełka wrażliwe na dotyk, tak jak w ECP-18)
+    Chciałem być wierny maszynie i jej środowisku. Panel przedni jest przyzwoitą abstrakcyjną reprezentacją oryginalnego PDP-8, i światełka zapalają się odpowiednio, i z prawidłowymi danymi. (chociaż nie mogłem się oprzeć i zrobiłem światełka wrażliwe na dotyk, tak jak w ECP-18)
 
     TODO : pdp8i_frontpanel.jpg
 </div>
@@ -92,17 +92,17 @@
 </div>
 
 <div class="paragraphDiv">
-    Usiadłem przy klawiaturze bluetooth mojego 600 dolarowego, ćwierćkilogramowego, obudowanego w fajny pokrowiec iPada, otoczony podręcznikami programowania, i poznaczonymi listingami programu, nad którym pracowałem. Uświadomiłem sobie wtedy, że pracuję nad kodem napisanym pół wieku temu, stworzonym przez mężczyzn i kobiety (prawdopodobnie w większości przez kobiety w tamtych czasach), którzy zakasywali rękawy, aby sprawić, żeby ich głupiutka maszyna działała. Maszyna, która ważyła 225 kg, była rozmiaru lodówki i kosztowała 20'000$ w roku 1967.
+    Usiadłem przy bezprzewodowej klawiaturze mojego 600-dolarowego, ćwierćkilogramowego, obudowanego w fajny pokrowiec iPada, otoczony podręcznikami programowania i poznaczonymi listingami programu, nad którym pracowałem. Uświadomiłem sobie wtedy, że pracuję nad kodem napisanym pół wieku temu, stworzonym przez mężczyzn i kobiety (prawdopodobnie w większości przez kobiety w tamtych czasach), którzy zakasywali rękawy, aby sprawić, żeby ich śmieszna maszyna działała. Maszyna, która ważyła 225 kg, była rozmiaru lodówki i kosztowała 20'000$ w roku 1967.
 </div>
 
 <div class="paragraphDiv">
-    Czy ktokolwiek z tych ludzi mógłby kiedykolwiek przypuszczać, że ich kod będzie odpalany na podręcznym tablecie i będzie używany do szkolenia programistów w dwudziestym pierwszym wieku? Niektórzy - wielu - może jeszcze żyć. Ciekawe co pomyśleliby, gdyby wiedzieli.
+    Czy ktokolwiek z tych ludzi mógłby kiedykolwiek przypuszczać, że ich kod będzie odpalany na podręcznym tablecie i będzie używany do szkolenia programistów w dwudziestym pierwszym wieku? Niektórzy - wielu - mogą jeszcze żyć. Ciekawe co pomyśleliby, gdyby wiedzieli.
 
     TODO pdp8InKitchen.jpg
 </div>
 
 <div class="paragraphDiv">
-    Mój emulator napisany jest w <a href="https://www.lua.org/about.html">Lua</a>, przy użyciu frameworku <a href="http://twolivesleft.com/Codea/">Codea</a> dla iPada. Jest to niezwykle wygodny język dla developmentu na iPada. Lua jest (wystarczająco) szybki, i Codea ma wspaniałe kontrolki graficzne, i prosty, acz nadal bardzo skuteczny framework do tworzenia wysoce interaktywnych programów pełnych animacji.
+    Mój emulator napisany jest w <a href="https://www.lua.org/about.html">Lua</a>, przy użyciu frameworku <a href="http://twolivesleft.com/Codea/">Codea</a> dla iPada. Lua to niezwykle wygodny język dla developmentu na iPada. Jest (wystarczająco) szybki, i Codea zawiera wspaniałe kontrolki graficzne, i prosty, acz nadal bardzo skuteczny framework do tworzenia wysoce interaktywnych programów pełnych animacji.
 </div>
 
 <div class="paragraphDiv">
@@ -134,7 +134,7 @@
 
 <div class="paragraphDiv">
     Proces developmentu pędził jak szalony. Edytor Lua w Codea dla iPada jest potężyny i intuicyjny (chociaż nie ma refaktoringów
-    <span class="code">&ltchlip&gt</span>). Pętla edycji/stestowania trwała, może, 10 sekund. Mogłem dodać linie, czy dwie, odpalić appkę, zobaczyć efekt, wskoczyć z powrotem do edytora ot tak. To była przyjemne udogodnienie i miałem przy tym niezłą zabawę.
+    <span class="code">&ltchlip&gt</span>). Pętla edycji/testowania trwała, może, 10 sekund. Mogłem dodać linie, czy dwie, odpalić appkę, zobaczyć efekt, wskoczyć z powrotem do edytora ot tak. To była przyjemne udogodnienie i miałem przy tym niezłą zabawę.
 </div>
 
 <div class="paragraphDiv">
@@ -143,7 +143,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Dla GUI, z drugiej strony (i było tam mnóstwo kodu GUI), testy były niepotrzebne (<span class="code">&ltoch&gt</span>). Moje oczy były testami. Wiedziałem, co chcę zobaczyć, więc rozkręciłem 10-sekundową pętlę edytuj/stestuj. Pisanie testów w stylu TDD byłoby okropnie trudne, i stałyby się całkowitą stratą czasu.
+    Dla GUI, z drugiej strony (i było tam mnóstwo kodu GUI), testy były niepotrzebne (<span class="code">&ltoch&gt</span>). Moje oczy były testami. Wiedziałem, co chcę zobaczyć, więc rozkręciłem 10-sekundową pętlę edytuj/testuj. Pisanie testów w stylu TDD byłoby okropnie trudne, i stałoby się całkowitą stratą czasu.
 </div>
 
 <div class="paragraphDiv">
@@ -156,12 +156,12 @@
 </div>
 
 <div class="paragraphDiv">
-    Oczywiście, bez narzędzi do refaktoringu kod zrobił się trochę zabałaganiony. Zrefaktorowałem to, czego nie mogłem znieść; ale rozmiar zabałagacenia jest większy, niżbym chciał. Uda mi się sprzątnąć ten kod; ale dużo wolniej pracuje się bez dobrych narzędzi do refaktoringu.
+    Oczywiście, bez narzędzi do refaktoringu kod zrobił się trochę zabałaganiony. Zrefaktorowałem to, czego nie mogłem znieść; ale rozmiar zabałagacenia jest większy, niżbym chciał. Uda mi się później posprzątać ten kod; ale dużo wolniej pracuje się bez dobrych narzędzi do refaktoringu.
 </div>
 
 <div class="paragraphDiv">
-    Tym nie mnie, na potrzeby tego artykułu, nazwijmy ten styl programowania: <span class="code">TRYB-B</span>. <span
-        class="code">TRYB-B</span> jest stylem, który pozwala Ci jednocześnie edytować coś na ekranie i widzieć na tym ekranie skutki, lub test, który przechodzi, w ciągu kilku sekund. To development o prędkości światła, który nie wymaga listingów, ołówków, czasu kompilacji, czasu poświęconego na ustawienie, lub żadnego innego utrudnienia. Czas pomiędzy edytowaniem kodu a oglądaniem go działającego jest dużo mniejszy niż jedna minuta.
+    Tym nie mniej, na potrzeby tego artykułu, nazwijmy ten styl programowania: <span class="code">TRYB-B</span>. <span
+        class="code">TRYB-B</span> jest stylem, który pozwala Ci jednocześnie edytować coś na ekranie i widzieć na tym ekranie skutki, lub test, który przechodzi, w ciągu kilku sekund. To development o prędkości światła, który nie wymaga listingów, ołówków, czasu kompilacji, czasu poświęconego na ustawienie, lub żadnego innego utrudnienia. Czas pomiędzy edytowaniem kodu a oglądaniem go działającym jest dużo mniejszy niż jedna minuta.
 </div>
 
 <div class="paragraphDiv">
@@ -169,22 +169,22 @@
 </div>
 
 <div class="paragraphDiv">
-    Mając działający Emulator PDP-8, i mając te wszystkie stare narzędzia takie, jak edytor taśmy papierowej, i działający assembler Pal-3, zabrałem się za pisanie prostego programu. Ten program pozwoliłby użytkownikowi wpisać prostą formułę na klawiaturze, i wtedy wyświetliłby wynik. Dla przykładu, jeśli użytkownik wpisałby:
+    Mając działający Emulator PDP-8, i mając te wszystkie stare narzędzia takie, jak edytor taśmy papierowej, i działający assembler PAL-III, zabrałem się za pisanie prostego programu. Ten program pozwoliłby użytkownikowi wpisać prostą formułę na klawiaturze, i wtedy wyświetliłby wynik. Dla przykładu, jeśli użytkownik wpisałby:
     <span class="code">25+32</span>, komputer wyświetliłby
     <span class="code">57</span>.
 </div>
 
 <div class="paragraphDiv">
-    Na PDP-8 to nie jest trywialny program. Zamieściłem go poniżej dla tych z Was, którzy chcieliby zobaczyć, jak biedni programiści PDP-8 musieli to pisać.
+    Na PDP-8 nie jest to trywialny program. Zamieściłem go poniżej dla tych z Was, którzy chcieliby zobaczyć, jak biedni programiści PDP-8 musieli to pisać.
 </div>
 
 
 <div class="paragraphDiv">
-    Proces był taki sam jak proces, którego używałem w późnych latach 70-tych XX. wieku, kiedy pracowałem nad assemblerowymi programami w na Teradyne M365 (18-bitowy kuzyn PDP-8). Mieliśmy taśmę magnetyczną, zamiast taśmy papierowej; i komputer był troszkę potężniejszy obliczeniowo niż PDP-8. Ale proces pozostawał taki sam. A leciało to tak:
+    Proces był taki sam, jak proces, którego używałem w późnych latach 70-tych XX. wieku, kiedy pracowałem nad assemblerowymi programami na Teradyne M365 (18-bitowy kuzyn PDP-8). Mieliśmy taśmę magnetyczną, zamiast taśmy papierowej; i komputer był troszkę potężniejszy obliczeniowo niż PDP-8. Ale proces pozostawał taki sam. A leciało to tak:
 </div>
 
 <div class="paragraphDiv">
-    Załóżmy, że jesteś w środku pisania tego programu poniżej. Już trochę napisałeś, i chcesz coś jeszcze dodać. Pamiętaj, ten komputer posiada słowa o długości tylko
+    Załóżmy, że jesteś w środku pisania tego programu z samego dołu. Już trochę napisałeś, i chcesz coś jeszcze dodać. Pamiętaj, ten komputer posiada słowa o długości tylko
     <span class="code">4K</span>. Nie może przechowywać wiele w swojej pamięci. Pamiętaj o tym, że jedynym magazynem pamięci masowej, którym dysponujesz, jest papierowa taśma. Także twój kod źródłowy jest na tym samym długim pasku tej samej papierowej taśmy.
 </div>
 
@@ -201,26 +201,26 @@
         <li>Idź do tej strony w twoim listingu i nanieś poprawki, używając komend <span class="code">I</span>, <span
                 class="code">C</span> i <span class="code">D</span>. Pamiętaj, że nie masz ekranu, więc edytujesz linia po linii, używając numerów linii. Zaplanuj spędzić nad tym trochę czasu.</li>
         <li>Wydrukuj aktualną stronę, używając komendy <span class="code">L</span>. Upewnij się, że wszystkie zmiany są poprawne.</li>
-        <li>Wydziurkuj aktualną stronę na papierową taśmę, używając komendy P. (minuta lub więcej).</li>
+        <li>Wydziurkuj aktualną stronę na papierowej taśmie, używając komendy <span class="code">P</span>. (minuta lub więcej).</li>
         <li>Wydziurkuj aktualną stronę i następnie ją wczytaj, używając komendy <span class="code">N</span> i jeżeli to nie była ostatnia strona, idź do punktu 6.</li>
         <li>Wyjmij nową taśmę z kodem źródłowym z dziurkacza i oznacz ją tytułem i numerem wersji. <em>Nigdy nie
             zapomnij o numerze wersji!</em></li>
         <li>Załaduj assembler do pamięci z papierowej taśmy (10 minut lub więcej).</li>
         <li>Ustaw przełącznik na panelu przednim na <span class="code">2002</span>: to konfiguracja "przejście pierwsze, wyjście na drukarkę".</li>
-        <li>Załaduj źródłową taśmę do czytnika</li>
+        <li>Załaduj źródłową taśmę do czytnika.</li>
         <li>Załaduj <span class="code">0200</span> do rejestru PC, i wciśnij <span class="code">RUN</span>.</li>
         <li>Kompilacja przejście pierwsze wczyta całą taśmę z kodem źródłowym i wydrukuje tablicę symboli. (10 minut albo więcej).</li>
         <li>Gdy komputer się zatrzyma, ustaw na panelu przednim przełączniki na <span class="code">4003</span>: konfiguracja "przejście drugie, wyjście na dziurkacz".</li>
-        <li>Załaduj twój kod źródłowy do czytnika</li>
+        <li>Załaduj twój kod źródłowy do czytnika.</li>
         <li>Wciśnij <span class="code">RUN</span>. Kompilacja przejście drugie wczyta całą twoją taśmę źródłową i wydziurkuje twoją binarną papierową taśmę. (15 minut albo więcej). Błędy w kodzie źródłowym wydrukują się podczas tego przejścia.</li>
         <li>Gdy komputer się zatrzyma, jeśli były jakieś błędy, wyrzuć papierową taśmę, która była przed chwilą dziurkowana i przejdź do punktu 1. Jeśli nie było, wyjmij taśmę binarną z dziurkacza i oznacz ją tytułem i numerem wersji. (Nie muszę Ci już przypominać o numerze wersji, prawda?)</li>
         <li>Ustaw przełączniki na panelu przednim na <span class="code">6002</span>: to konfiguracja "przejście trzecie, wyjście na drukarkę".</li>
-        <li>Włóż twoją źródłową taśmę do czytnika</li>
+        <li>Włóż twoją źródłową taśmę do czytnika.</li>
         <li>Wciśnij <span class="code">RUN</span>. Kompilacja przejścia trzeciego wczyta całą taśmę z kodem źródłowym i wydrukuje listing programu. Będziesz potrzebował jej do debbugowania, więc nie zlekceważ tego. (30 minut albo więcej, ponieważ drukarka jest bardzo wolna). Upewnij się, że masz wystarczająco dużo papieru w drukarce!</li>
         <li>Oderwij listing i go sprawdź.</li>
         <li>Włóż swoją taśmę binarną do czytnika.</li>
         <li>Ustaw rejestry PC na <span class="code">7777</span> (adres ładowarki binarnej, która zwykle jest przechowywana w pamięci rdzenia) i naciśnij <span class="code">RUN</span>. Jeżeli w pamięci, z jakiegoś powodu, nie ma ładowarki binarnej, musisz przestawić się w tryb ładowarki
-            <span class="code">RIM</span> i wczytać przed tym krokiem ładowarkę binarną z papierowej taśmy .</li>
+            <span class="code">RIM</span> i wczytać ładowarkę binarną z papierowej taśmy przed tym krokiem.</li>
         <li>Gdy komputer się zatrzyma, twój program jest wczytany do pamięci. Uruchom go i zobacz, jak działa.</li>
     </ol>
 </div>
@@ -230,11 +230,11 @@
 </div>
 
 <div class="paragraphDiv">
-    To jest <span class="code">TRYB-A</span>. To jest bardzo delikatny, podatny na błędy proces, którego przeprowadzenie zajmuje godzinę lub więcej. Może być jeszcze więcej dla większych programów. Bardzo mały program robi z tej pętli około 15 minut. Program, który pisałem, urósł do około 20-30 minut lub więcej, i oszukiwałem, pozwalając mojemu dalekopisowi działać z prędkością 10 razy większą niż normalna prędkość.
+    To jest <span class="code">TRYB-A</span>. To jest bardzo delikatny, podatny na błędy proces, którego przeprowadzenie zajmuje godzinę lub więcej. Może być jeszcze dłużej dla większych programów. Bardzo mały program robi z tej pętli około 15 minut. Program, który pisałem, urósł do około 20-30 minut lub więcej, i oszukiwałem, pozwalając mojemu dalekopisowi działać z prędkością 10 razy większą niż normalna prędkość.
 </div>
 
 <div class="paragraphDiv">
-    Żeby zmusić mój mały śmieszny program do działania, szedłem tą pętlą siedem razy. Zabrało mi to około tygodnia, i łącznie około pięciu godzin. Wiele z tego było
+    Żeby zmusić mój mały, śmieszny program do działania, szedłem tą pętlą siedem razy. Zajęło mi to około tydzień, i łącznie około pięć godzin. Wiele z tego było
     <em>pisaniem kodu z użyciem ołówka</em>, ponieważ bez edytora na ekranie, nie było możliwości ominąć ręcznego pisania, i używania gumki do ścierania bez przerwy.
 </div>
 
@@ -251,7 +251,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Nazwijmy tę rozwagę i ostrożność: zachowaniem <span class="code">TRYBU-A</span>
+    Nazwijmy tę rozwagę i ostrożność: zachowanie w <span class="code">TRYBIE-A</span>.
 </div>
 
 <div class="paragraphDiv">
@@ -261,11 +261,11 @@
 <div class="paragraphDiv">
     <span class="code">TRYB-A</span> jest o wiele wolniejszy niż <span class="code">TRYB-B</span>. Czas pętli jest niemożliwie długi, zakres funkcjonalności, którą udaje Ci się stworzyć w ciągu każdej pętli, jest śmiesznie mały. Dla przykładu, podczas mojej pierwszej pętli w tym procesie napisałem i zdebbugowałem podprogram, który wczytywał linię tekstu z klawiatury, zakończonej znakiem CR (<a
         href="https://pl.wikipedia.org/wiki/CRLF">
-    Carriage Return - Powrót Karetki</a>... Tak, dalekopis miał "karetkę", lub raczej "głowicę drukującą", która mogła "powrócić".)
+    Carriage Return - Powrót Karetki</a>... Tak, dalekopis miał "karetkę", lub raczej "głowicę drukującą", którą można było zmusić do "powrotu".)
 </div>
 
 <div class="paragraphDiv">
-    <span class="code">TRYB-B</span> z kolei jest szybki! Naprawdę, naprawdę szybki. Czas pętli jest bardzo krótki, i możesz zrobić o wiele więcej w każdej pętli. Dla przykładu zabrało mi tylko kilka pętli, żeby zrobić poprawnie animację przechodzenia papierowej taśmy przez czytnik i dziurkacz. Każda maszynowa instrukcja PDP-8 zabrała mi pętlę lub dwie. Sprawienie, aby przesuwał się papier w
+    <span class="code">TRYB-B</span> z kolei jest szybki! Naprawdę, naprawdę szybki. Czas pętli jest bardzo krótki, i możesz zrobić o wiele więcej w każdej pętli. Dla przykładu zajęło mi tylko kilka pętli, żeby zrobić poprawnie animację przechodzenia papierowej taśmy przez czytnik i dziurkacz. Każda maszynowa instrukcja PDP-8 zajęła mi pętlę lub dwie. Sprawienie, aby przesuwał się papier w
     <a href="https://pl.wikipedia.org/wiki/Dalekopis">TTY</a>, zajęło mi dwie lub trzy pętle.
 </div>
 
@@ -283,14 +283,15 @@
 </div>
 
 <div class="paragraphDiv">
-    Więc dlaczego jeszcze tak wielu programistów wciąż pracuje w TRYBIE-A? Robią to, wiecie. Wrzucają jedną kupę śmieci do na drugą, i framework na framework, aż ich czas pętli rośnie z sekund do minut i dłużej. Wstrzykują tak wiele zależności, że ich buildy stają się kruche i podatne na błędy. Tworzą tak wiele niewyizolowanych zewnętrznych zależności, że mogliby równie dobrze używać papierowej taśmy. Jak ktokolwiek może robić
-    <em>cokolwiek</em>, co może zwiększyć czas trwania jego pętli? Dlaczego nikt nie <em>broni czasu swoich pętli z narażeniem
+    Więc dlaczego jeszcze tak wielu programistów wciąż pracuje w TRYBIE-A? Robią to, wiecie. Wrzucają jedną kupę śmieci na drugą, i framework na framework, aż ich czas pętli rośnie z sekund do minut i dłużej. Wstrzykują tak wiele zależności, że ich buildy stają się kruche i podatne na błędy. Tworzą tak wiele niewyizolowanych zewnętrznych zależności, że mogliby równie dobrze używać papierowej taśmy. Jak ktokolwiek może robić
+    <em>cokolwiek</em>, co może zwiększyć czas trwania tej pętli? Dlaczego nikt nie <em>broni czasu swoich pętli z narażeniem
     życia</em>?
 </div>
 
 <div class="paragraphDiv">
-    Czy unikanie <span class="code">TRYBU-A</span> nie jest naszą moralną powinnością? Czy nie powinniśmy robić wszystkiego, co tylko możliwe, aby utrzymać nasze cykle rozwoju oprogramowania w
-    <span class="code">TRYBIE-B</span>?
+    Czy unikanie <span class="code">TRYBU-A</span> nie jest naszą moralną powinnością? Czy nie powinniśmy robić <em>wszystkiego,
+    co tylko możliwe</em>, aby utrzymać nasze cykle rozwoju oprogramowania w
+    <span class="code">TRYBIE-B</span>? Czy <span class="code">TRYB-B</span> nie jest <em>koniecznością</em>?
 </div>
 
 <div class="paragraphDiv">
@@ -298,7 +299,7 @@
 </div>
 
 <div class="paragraphDiv cite">
-    Sekretem pozostawania w <span class="code">TRYBIE-B</span> jest użycie zachowania <span class="code">TRYBU-A</span>.
+    Sekretem pozostawania w <span class="code">TRYBIE-B</span> jest wykorzystanie zachowania w <span class="code">TRYBIE-A</span>.
 </div>
 
 <div class="paragraphDiv">
@@ -306,12 +307,12 @@
 </div>
 
 <div class="paragraphDiv">
-    Właśnie odkryłem, kto napisał assembler PAL III na PDP-8. Czapki z głów. Był to <a
+    Właśnie odkryłem, kto napisał assembler PAL-III na PDP-8. Czapki z głów. Był to <a
         href="http://en.wikipedia.org/wiki/Edward_Yourdon">Ed Yourdon</a>.
 </div>
 
 <div class="paragraphDiv">
-    Program dla PDP-8, który przyjmuje dwie liczby i pojedynczy operator, i wyświetla wynik.
+    Program dla PDP-8, który przyjmuje dwie liczby rozdzielone pojedynczym operatorem i wyświetla wynik:
 </div>
 
 <div class="paragraphDiv">
