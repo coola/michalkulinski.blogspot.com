@@ -283,11 +283,315 @@
 </div>
 
 <div class="paragraphDiv">
-    Więc dlaczego jeszcze tak wielu programistów wciąż pracuje w TRYBIE-A? Robią to, wiecie. Wrzucają jedną kupę śmieci do na drugą, i framework na framework, aż ich czas pętli rośnie z sekund do minut i dłużej?
+    Więc dlaczego jeszcze tak wielu programistów wciąż pracuje w TRYBIE-A? Robią to, wiecie. Wrzucają jedną kupę śmieci do na drugą, i framework na framework, aż ich czas pętli rośnie z sekund do minut i dłużej. Wstrzykują tak wiele zależności, że ich buildy stają się kruche i podatne na błędy. Tworzą tak wiele niewyizolowanych zewnętrznych zależności, że mogliby równie dobrze używać papierowej taśmy. Jak ktokolwiek może robić
+    <em>cokolwiek</em>, co może zwiększyć czas trwania jego pętli? Dlaczego nikt nie <em>broni czasu swoich pętli z narażeniem
+    życia</em>?
+</div>
+
+<div class="paragraphDiv">
+    Czy unikanie <span class="code">TRYBU-A</span> nie jest naszą moralną powinnością? Czy nie powinniśmy robić wszystkiego, co tylko możliwe, aby utrzymać nasze cykle rozwoju oprogramowania w
+    <span class="code">TRYBIE-B</span>?
+</div>
+
+<div class="paragraphDiv">
+    Czy chcesz poznać sekret pozostawania w <span class="code">TRYBIE-B</span>? Wiem, co to jest. Powiem Ci.
+</div>
+
+<div class="paragraphDiv cite">
+    Sekretem pozostawania w <span class="code">TRYBIE-B</span> jest użycie zachowania <span class="code">TRYBU-A</span>
+</div>
+
+<div class="paragraphDiv">
+    <h2>A NIECH MNIE BIJĄ KULE METODOLOGII STRUKTURALNEJ!</h2>
+</div>
+
+<div class="paragraphDiv">
+    Właśnie odkryłem kto napisał assembler PAL III na PDP-8. Czapki z głów. Był to <a
+        href="http://en.wikipedia.org/wiki/Edward_Yourdon">Ed Yourdon</a>.
+</div>
+
+<div class="paragraphDiv">
+    Program dla PDP-8, który przyjmuje dwie liczby i pojedynczy operator, i wyświetla wynik.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">           *20
+0020  7563  MCR,    -215
+0021  0212  KLF,    212
+0022  7540  MSPC,   -240
+0023  7520  MZERO,  -260
+0024  7766  M10,    -12
+0025  0276  PROMPT, 276 /&gt;
+0026  0215  KCR,    215
+0027  7525  MPLUS,  -253
+0030  7523  MMINUS, -255
+0031  0277  QMARK,  277
+0032  0260  KZERO,  260
+
+            /WORKING STORAGE
+0033  0000  REM,    0
+
+            /CALL SUBROUTINE IN ARG
+0034  0000  CALL,   0
+0035  3046          DCA AC
+0036  1434          TAD I CALL
+0037  3047          DCA CALLEE
+0040  1034          TAD CALL
+0041  7001          IAC
+0042  3447          DCA I CALLEE
+0043  2047          ISZ CALLEE
+0044  1046          TAD AC
+0045  5447          JMP I CALLEE
+0046  0000  AC,     0
+0047  0000  CALLEE, 0
+
+----------------
+
+            *200
+            /CALC A+B OR A-B
+            /MAIN LOOP: PROMPT, GET CMD, PRINT RESLT
+
+0200  6046          TLS
+0201  7200  IDLE,   CLA
+0202  1026          TAD KCR
+0203  4034          JMS CALL
+0204  0425          PRTCHAR
+0205  7200          CLA
+0206  1025          TAD PROMPT
+0207  4034          JMS CALL
+0210  0425          PRTCHAR
+0211  4034          JMS CALL
+0212  0400          RDBUF
+0213  2000          BUF
+0214  4034          JMS CALL
+0215  0462          SKPSPC
+0216  2000          BUF
+0217  3222          DCA .+3
+0220  4034          JMS CALL
+0221  0477          GETNUM
+0222  0000          0
+0223  3261          DCA A
+0224  1622          TAD I .-2
+0225  3263          DCA OP
+0226  1222          TAD .-4
+0227  7001          IAC
+0230  3233          DCA .+3
+0231  4034          JMS CALL
+0232  0477          GETNUM
+0233  0000          0
+0234  3262          DCA B
+0235  1263          TAD OP
+0236  1027          TAD MPLUS
+0237  7650          SNA CLA
+0240  5254          JMP ADD
+0241  1263          TAD OP
+0242  1030          TAD MMINUS
+0243  7650          SNA CLA
+0244  5251          JMP SUB
+0245  1031          TAD QMARK
+0246  4034          JMS CALL
+0247  0425          PRTCHAR
+0250  5201          JMP IDLE
+
+0251  1262  SUB,    TAD B
+0252  7041          CIA
+0253  7410          SKP
+0254  1262  ADD,    TAD B
+0255  1261          TAD A
+0256  4034          JMS CALL
+0257  0600          PRTNUM
+0260  5201          JMP IDLE
+
+0261  0000  A,      0
+0262  0000  B,      0
+0263  0000  OP,     0
+
+----------------
+
+            *400
+            /READ A BUFFER UP TO A CR
+0400  0000  RDBUF,  0
+0401  7200          CLA
+0402  1600          TAD I RDBUF
+0403  2200          ISZ RDBUF
+0404  3215          DCA BUFPTR
+0405  4216  RDNXT,  JMS RDCHAR
+0406  3615          DCA I BUFPTR
+0407  1615          TAD I BUFPTR
+0410  1020          TAD MCR
+0411  7450          SNA
+0412  5600          JMP I RDBUF
+0413  2215          ISZ BUFPTR
+0414  5205          JMP RDNXT
+0415  0000  BUFPTR, 0
+
+            /READ ONE CHAR
+0416  0000  RDCHAR, 0
+0417  7200          CLA
+0420  6031          KSF
+0421  5220          JMP .-1
+0422  6036          KRB
+0423  4225          JMS PRTCHAR
+0424  5616          JMP     I RDCHAR
+
+            /PRINT ONE CHAR
+0425  0000  PRTCHAR,0
+0426  6041          TSF
+0427  5226          JMP .-1
+0430  6046          TLS
+0431  3245          DCA CH
+0432  1245          TAD CH
+0433  1020          TAD MCR
+0434  7440          SZA
+0435  5242          JMP RETCHR
+0436  1021          TAD KLF
+0437  6041          TSF
+0440  5237          JMP .-1
+0441  6046          TLS
+0442  7200  RETCHR, CLA
+0443  1245          TAD CH
+0444  5625          JMP I PRTCHAR
+0445  0000  CH,     0
+
+
+            /PRT A BUFFER
+0446  0000  PRTBUF, 0
+0447  7200          CLA
+0450  1646          TAD I PRTBUF
+0451  2246          ISZ PRTBUF
+0452  3215          DCA BUFPTR
+0453  1615  PRTNXT, TAD I BUFPTR
+0454  4225          JMS PRTCHAR
+0455  2215          ISZ BUFPTR
+0456  1020          TAD MCR
+0457  7640          SZA CLA
+0460  5253          JMP PRTNXT
+0461  5646          JMP I PRTBUF
+
+----------------
+
+            /SKIP SPACES AC= FIRST NON-SPACE
+0462  0000  SKPSPC, 0
+0463  7200          CLA
+0464  1662          TAD I SKPSPC
+0465  2262          ISZ SKPSPC
+0466  3215          DCA BUFPTR
+
+0467  1615  NXTCHR, TAD I BUFPTR
+0470  2215          ISZ BUFPTR
+0471  1022          TAD MSPC
+0472  7650          SNA CLA
+0473  5267          JMP NXTCHR
+0474  7240          CLA CMA
+0475  1215          TAD BUFPTR
+0476  5662          JMP I SKPSPC
+
+            /GET DECIMAL NUMBER
+0477  0000  GETNUM, 0
+0500  7200          CLA
+0501  3335          DCA NUMBER
+0502  1677          TAD I GETNUM
+0503  3215          DCA BUFPTR
+
+0504  1615  NXTDIG, TAD I BUFPTR
+0505  1023          TAD MZERO
+0506  3334          DCA DIGIT
+0507  1334          TAD DIGIT
+0510  7710          SPA CLA
+0511  5327          JMP NONUM
+0512  1024          TAD M10
+0513  1334          TAD DIGIT
+0514  7700          SMA CLA
+0515  5327          JMP NONUM
+0516  1335          TAD NUMBER
+0517  7100          CLL
+0520  7006          RTL
+0521  1335          TAD NUMBER
+0522  7004          RAL
+0523  1334          TAD DIGIT
+0524  3335          DCA NUMBER
+0525  2215          ISZ BUFPTR
+0526  5304          JMP NXTDIG
+0527  1215  NONUM,  TAD BUFPTR
+0530  3677          DCA I GETNUM
+0531  2277          ISZ GETNUM
+0532  1335          TAD NUMBER
+0533  5677          JMP I GETNUM
+0534  0000  DIGIT,  0
+0535  0000  NUMBER, 0
+
+----------------
+
+            /DIVIDE AC BY ARG
+            /Q IN AC, R IN REM
+0536  0000  DIV,    0
+0537  3033          DCA REM
+0540  1736          TAD I DIV
+0541  2336          ISZ DIV
+0542  7041          CIA
+0543  3361          DCA MDVSOR
+0544  3362          DCA QUOTNT
+0545  1033          TAD REM
+0546  1361  DIVLUP, TAD MDVSOR
+0547  7510          SPA
+0550  5353          JMP DIVDUN
+0551  2362          ISZ QUOTNT
+0552  5346          JMP DIVLUP
+0553  7041  DIVDUN, CIA
+0554  1361          TAD MDVSOR
+0555  7041          CIA
+0556  3033          DCA REM
+0557  1362          TAD QUOTNT
+0560  5736          JMP I DIV
+0561  0000  MDVSOR, 0
+0562  0000  QUOTNT, 0
+
+----------------
+
+                    *600
+                    /PRINT NUMBER IN DECIMAL
+                    DECIMAL
+0600  0000  PRTNUM, 0
+0601  4034          JMS CALL
+0602  0536          DIV
+0603  1750          1000
+0604  4225          JMS PRTDIG
+0605  7200          CLA
+0606  1033          TAD REM
+0607  4034          JMS CALL
+0610  0536          DIV
+0611  0144          100
+0612  4225          JMS PRTDIG
+0613  7200          CLA
+0614  1033          TAD REM
+0615  4034          JMS CALL
+0616  0536          DIV
+0617  0012          10
+0620  4225          JMS PRTDIG
+0621  7200          CLA
+0622  1033          TAD REM
+0623  4225          JMS PRTDIG
+0624  5600          JMP I PRTNUM
+
+            /PRINT A DIGIT IN AC
+                    OCTAL
+0625  0000  PRTDIG, 0
+0626  1032          TAD KZERO
+0627  4034          JMS CALL
+0630  0425          PRTCHAR
+0631  5625          JMP I PRTDIG
+
+----------------
+
+            *2000
+2000  0000  BUF,0
+</pre></div>
+
 </div>
 
 <!---------- -->
 <div class="paragraphDiv">
+    
 </div>
 
 <div class="smallGreyText">
