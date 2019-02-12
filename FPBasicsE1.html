@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <style scoped="scoped" type="text/css">
+        .paragraphDiv {
+            margin: 0 1em 0.5em 1em;
+        }
+
+        img {
+            margin: 10px;
+        }
+
+        .cite {
+            padding: 1em;
+            margin: 1em;
+            border-left: solid;
+            border-color: #eef2f5;
+        }
+
+        .smallGreyText {
+            text-align: center;
+            color: #999999;
+            font-size: 0.6em;
+            margin: 1em 0.1em 1em 0.1em;
+        }
+
+        .code {
+            font-family: monospace;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<br/>
+
+<div class="paragraphDiv">
+    <h4>O czym jest programowanie funkcyjne?</h4>
+</div>
+
+<div class="paragraphDiv">
+    Zakładam, że słyszałeś już kiedyś o programowaniu funkcyjnym. No cóź, któż nie słyszał? Wszyscy o tym gadają. Wychodzi tak dużo nowych funkcyjnych języków jak Scala, F# i Clojure. Ludzie rozmawiają też o starszych językach jak Erlang, Haskell, ML i innych.
+</div>
+
+<div class="paragraphDiv">
+    A więc, o co w tym wszystkim chodzi? Dlaczego programowanie funkcyjne jest Następną Wielką Rzeczą™? I co jest w tym takiego pociągającego?
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 22 grudnia 2012
+        ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2012/12/22/FPBE1-Whats-it-all-about.html">https://blog.cleancoder.com/uncle-bob/2012/12/22/FPBE1-Whats-it-all-about.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+<br/>
+
+<div class="paragraphDiv">
+    Po pierwsze prawie na pewno programowanie funkcyjne jest następną wielką rzeczą. Są ku temu dobre, solidne powody i poznamy je w tym artykule. Ale najpierw, aby zrozumieć te powody, musimy poznać czym programowanie funkcyjne jest. Wkurzyę wielu ludzi moim kolejnym stwierdzeniem, ponieważ zamierzam uciec się do skrajnego minimalizmu. Ograniczę programowanie funkcyjne do jego najgłębszej istoty; i to nie jest do końca w porządku, bo temat jest bogaty i obszerny i pełen fantastycznych pomysłów. Ogarniemy te pomysły w przyszłych artykułach. Zobaczysz niektóre z nich już tutaj. Ale na razie, zdefiniuję programowanie funkcyjne w taki sposób:
+</div>
+
+<div class="paragraphDiv">
+    Programowanie funcyjne jest programowaniem bez instrukcji przypisania.
+</div>
+
+<div class="paragraphDiv">
+    O nie! A jednak to zrobiłem. Teraz programiści funkcyjni zbierają się przeciwko mnie trzymając w rękach widły i pochodnie. Chcą mojej głowy za wypowiedzenie tej minimalistycznej
+    <a href="https://pl.wikipedia.org/wiki/Blu%C5%BAnierstwo">blasfemii</a>. Tymczasem wszyscy goście, którzy mieli nadzieję nauczyć się czegoś o programowaniu funkcyjnym naprawdę przestali czytać z powodu powyższego zdania, które jest tak rażąco głupie. To znaczy: jak na w ogóle można programować bez instrukcji przypisania? Najlepszym sposobem pokazania tego jest przykład. Spójrzmy na bardzo prosty program w Javie: Kwadraty liczb całkowitych:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">Squint</span> {
+  <span style="font-weight: bold">public</span>  <span style="font-weight: bold">static</span>  <span style="font-weight: bold">void</span>  main(String  args[])  {
+    <span style="font-weight: bold">for</span>  (<span style="font-weight: bold">int</span>  i=1;  i&lt;=25;  i++)
+      System.out.println(i*i);}
+}
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Któż z nas nie napisał tego, lub czegoś bardzo podobnego? Ja chyba pisałem to setki razy. To jest zwykle drugi program, który piszę w języku, którego się uczę i trzeci czy czwarty w kolejności, gdy uczę młodych programistów pisać programy. Każdy zna stare, dobre kwadraty liczb całkowitych!
+</div>
+
+<div class="paragraphDiv">
+    Ale przyjrzyjmy się temu uważnie. To jest tylko zwykła pętla ze zmienną nazwaną <span class="code">i</span>, która liczy od 1 do 25. Każde przejście pętli sprawia, że zmienna
+    <span class="code">i</span> przybiera nową wartość. To jest przypisanie. Nowa wartość jest przypisywana do zmiennej <span class="code">i</span> podczas każdego przejścia pętli. Gdybyś mógł podejrzeć jakość pamięć komputera i dojrzeć miejsce w pamięci, które przechowuje wartość zmiennej <span class="code">i</span>, zauważyłbyś, że ta wartość zmienia się podczas każdej iteracji przejścia pętli.
+</div>
+
+<div class="paragraphDiv">
+    Jeżeli poprzedni paragraf wydawał się rozwodzić się nad oczywistością, to powiem, że całe artykuły naukowe napisano w tym temacie. Pojęcia równoważności, wartości i stanu mogą się wydawać nam oczywiste; ale w rzeczywistości są one same w sobie zagadnieniami bardzo obszernymi. Ale zbaczam za bardzo.
+</div>
+
+<div class="paragraphDiv">
+    Teraz spójrzmy na funkcyjny odpowiednik programu kwadratów liczb całkowitych. Użyjemy do tego Clojure; choć pomysły, które przerobimy działają tak samo w każdym innym języku funkcyjnym.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(take 25 (squares-of (integers)))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Tak, dobrze czytasz; i tak to jest program, który wyśietla prawidłowe wartości. Jeśli chcesz zobaczyć wyniki, oto one:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(1 4 9 16 25 36 49 64 ... 576 625)
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    W tym programie użyto trzech słów. Każde z tych słów odnosi się do funkcji. <em>Nawiasy z lewej strony tych wyrazów
+    znaczą po prostu: zawołaj tę funkcję i potraktuj wszystko po prawej stronie aż do prawego nawiasu jako jej
+    parametry</em>.
+</div>
+
+<!---------- -->
+<div class="paragraphDiv">
+    
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 22 grudnia 2012
+        ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2012/12/22/FPBE1-Whats-it-all-about.html">https://blog.cleancoder.com/uncle-bob/2012/12/22/FPBE1-Whats-it-all-about.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+
+
+</body>
+
+</html>
