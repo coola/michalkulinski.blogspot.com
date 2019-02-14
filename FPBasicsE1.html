@@ -134,13 +134,131 @@
 
 <div class="paragraphDiv">
     Funkcja <span class="code">tak</span> przyjmuje dwa argumenty, liczbę całkowitą <span class="code">n</span> i listę <span class="code">l</span>.
-    Zwraca pierwsze <span class="code">n</span> elementów listy <span class="code">l</span>.
+    Zwraca pierwsze <span class="code">n</span> elementów listy <span class="code">l</span>. Funkcja <span class="code">squares-of</span> pobiera listę liczb całkowitych i zwraca listę ich kwadratów. Funkcja <span class="code">integers</span> zwraca listę kolejnych liczb całkowitych zaczynając od 1. To wszystko. Program po prostu pobiera pierwszych 25 elementów listy kwadratów kolejnych liczb całkowitych zaczynając od 1.
+</div>
+
+<div class="paragraphDiv">
+    Spójrz na tę linijkę jeszcze raz; ponieważ zrobiłem tam coś bardzo ważnego. Wziąłem trzy odzielny definicje funkcji i połączyłem je w pojedyncze zdanie. To się nazywa: (jesteś gotowy na słowo klucz?)
+</div>
+
+<div class="paragraphDiv cite">
+    <a href="https://en.wikipedia.org/wiki/Referential_transparency">Przejrzystość referencyjna</a>
+</div>
+
+<div class="paragraphDiv">
+    [w tle: Fanfary, serpentyny, konfetti, tłumy szeleją]
+</div>
+
+<div class="paragraphDiv">
+    Przejrzystość referencyjna znaczy po prostu, że w danym zdaniu, możesz zmieniać kolejność słów razem z ich definicjami, i nie zmienia się jednocześnie znaczenie tego zdania. Lub, co ważne dla naszych zastosowań, to oznacza, że możesz zastąpić każde wywołanie funkcji wartością, którą ta funkcja zwraca. Zobaczmy to w akcji.
+</div>
+
+<div class="paragraphDiv">
+    Wywołanie funkcji <span class="code">(integers)</span> zwraca <span class="code">(1 2 3 4 5 6 ...)</span> No dobra, pewnie nasuwają Ci się od razu pytania, prawda? To znaczy, jak wielka ma to być lista? Prawdziwa odpowiedź na to pytanie jest taka, że lista ma być tak duża jak jest potrzeba, żeby była; ale nie myślmy o tym teraz. Powrócimy do tego w następnym artykule. Na ten moment przyjmijmy, że <span class="code">(integers)</span> zwraca
+    <span class="code">(1 2 3 4 5 6 ...)</span>; bo zwraca!
+</div>
+
+<div class="paragraphDiv">
+    Teraz w naszym programie możemy zastąpić wywołanie funkcji <span class="code">(integers)</span> jej wartością. Program po prostu staje się:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(take 25 (squares-of (1 2 3 4 5 6 ...)))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    A tak, zrobiłem to przy użyciu copy paste'a; i to też jest ważny punkt. Przejrzystość Referencyjna jest tym samym co kopiowanie wartości funkcji i wklejanie jej nad wywołaniem tej funkcji.
+</div>
+
+<div class="paragraphDiv">
+    Teraz zróbmy następny krok. Wywołanie funkcji: <span class="code">(squares-of (1 2 3 4 5 6 ...))</span> po prostu zwraca listę kwadratów liczb z listy jej argumentów. Więc ona zwraca: <span class="code">(1 4 9 16 25 36 49 64 ...)</span>. Jeżeli zamienimy wywołanie tej funkcji z jej wartością program stanie się:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(take 25 (1 4 9 16 25 36 49 64 ...))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    I oczywiście wartość wywołania tej funkcji to po prostu:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(1 4 9 16 25 36 49 64 ... 576 625)
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    A teraz popatrzmy na ten program jeszcze raz:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(take 25 (squares-of (integers)))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Zauważ, że nie ma zmiennych. W rzeczywistości nie ma nic innego, tylko trzy funkcje i jedną zmienną. Spróbuj napisać kwadraty liczb całkowitych w Javie nie używając ani jednej zmiennej. Oh, jest prawdopodobnie sposób, zeby to zrobić, ale z pewnością nie jest to naturalne i czytałoby się tego tak przyjemnie, jak mój program wyżej.
+</div>
+
+<div class="paragraphDiv">
+    Co ważniejsze, jeżeli mógłbyś zajrzeć do pamięci komputeraz i spojrzeć na miejsca w pamięci używane przez mój program, odkryłbyś, że te miejsca zostałyby zainicjalizowane w momencie użycia ich przez program; ale ich wartości pozostałyby niezmienne, przez resztę czasu wykonania programu. Innymi słowy, żadne nowe wartości nie zostałyby przypisane do tych miejsc.
+</div>
+
+<div class="paragraphDiv">
+    W rzeczy samej, to jest konieczny warunek dla Przejrzystości Referencyjnej, który opiera się na fakcie, że za każdym razem, kiedy wywołujesz konkretną funkcję, dostajesz taki sam wynik. Fakt, że pamięć mojego komputera nie zmienia się podczas uruchomenia mojego programu oznacza, że wywołanie funkcji <span class="code">(f 1)</span> zwraca zawszę tę samą wartość niezależnie od tego ile razu była wywołana. A to oznacza, że mogę zamienić <span class="code">(f 1)</span>, kiedykolwiek się pojawi, jej wartością.
+</div>
+
+<div class="paragraphDiv">
+    Albo mówiąc jeszcze inaczej: Przejrzystość Referencyjna oznacza, że żadna funkcja nie może mieć skutków ubocznych. I oczywiście to oznacza, że żadna zmienna, raz zainicjowana, nie może nigdy zmienić swojej wartości; wszak przypisanie jest sednem skutku ubocznego.
+</div>
+
+<div class="paragraphDiv">
+    A więc dlaczego to jest takie ważne? Co jest takiego wspaniałego w Przejrzystości Referencyjnej? Wiedząc, że jest możliwe pisanie programów bez przypisań, dlaczego jest to ważne?
+</div>
+
+<div class="paragraphDiv">
+    Prawie na pewno czytasz ten tekst na ekranie. A jesli nie; komputer znajduje się niedaleko. Jak wiele ma rdzeni? Piszę ten artykuł na MacBooku Pro z 4 rzeczywistymi rdzeniami (Mówią, że ma 8, ale nie polegałbym bardzo na tym całym "nonsensie
+    <a href="https://pl.wikipedia.org/wiki/Hyper-threading">hyper-threading</a>". Ma cztery). Mój poprzedni laptop miał dwa rdzenie. I ten poprzednio miał tylko jeden. Jedyny wniosek, jaki z tego mogę wysnuć to, że mój następny laptop będzie miał 8 pradziwych rdzeni; i nastepny następny mógłby mieć już nawet 16.
+</div>
+
+<div class="paragraphDiv">
+    Biedni ci inżynierowie hardware'u, którzy nieśli nas na plecach przez ostatnie cztery dziesięciolecia, osiągnęli w końcu prędkość światła. Zegary komputerów po prostu nie będą poruszać się już znacząco szybciej. Po tym jak prędkość podwajała się co 18 miesięcy przez okres dluższy niż większość programistów żyje (oprócz mnie), gwałtowny wzrost prędkości komputerów zatrzymał się, nie wznosząc się jak dotychczas.
+</div>
+
+<div class="paragraphDiv">
+    A więc Ci inżynierowie sprzętu, w pogoni za zaoferowaniem nam coraz wiekszej i większej ilości cykli na sekundę, zaczęli dodawać coraz więcej i więcej procesorów do naszych układów; i nie widać końca do ilu procesorów doprowadzi nas ten marsz ku przyszłości.
+</div>
+
+<div class="paragraphDiv">
+    A więc pozwól, że zapytam Ciebie, O zdolny i kompetentny programisto: Jak zapewnisz sobie przewagę w wykorzystaniu cykli dostępnego Ci procesora, kiedy Twój komputer bedzie miał 4096 rdzeni w środku? Jak zarządzisz wywołaniami swoich funkcji, jeżeli będą one wszystkie działać na 16384 procesorach na tej samej szynie pamięci? Jak zbudujesz responsywne i przygotowane na zmiany strony internetowe, kiedy Twoje modele, kontrolery i widoki będą musiały współdzielić 65536 procesorów?
+</div>
+
+<div class="paragraphDiv">
+    Mówiąc szczerze, my programiści ledwo umiemy sprawić by dwa wątki w Javie współpracowały ze sobą. Wątki to kaszka z mleczkiem dla niemowlaka w porównaniu ze schabowym z zmieniakami prawdziwej walki procesorów na szynie pamięci. Przez ostatnie ponad pół wieku programistom udał się zaobserwować, że procesy odpalone na komputerze są współbieżne, nie jednoczesne. A więc, chłopcy i dzewczęta, witamy w fantastycznym świecie jednoczesności. A teraz jak sobie z tym dacie radę?
+</div>
+
+<div class="paragraphDiv">
+    Odpowiedź na to pytanie jest prosta: <em>Porzućcie wszelkie przypisanie, wy, którzy <a
+        href="https://pl.wikipedia.org/wiki/Boska_komedia">
+    tu</a> wchodzicie</em>.
+</div>
+
+<div class="paragraphDiv">
+    To jasne, że jeżeli wartość w miejsu w pamięci, raz zainicjowana, nie zmienia się podczas wykonywania programu, nie ma nic o co te 131072 procesorów mogłoby rywalizować. Nie potrzebujesz
+    <a href="https://pl.wikipedia.org/wiki/Semafor_(informatyka)">semaforów</a>, jeśli nie masz skutków ubocznych! Nie masz problemów współbieżnych aktualizacji (przepraszam: Jednoczesnych Aktualizacji) jeśli nie masz aktualizacji!
+</div>
+
+<div class="paragraphDiv">
+    Więc to jest ta wielka sprawa w językach funkcyjnych; i to jest naprawdę cholernie duża sprawa. W naszym kierunku pędzi pociąg towarowy, załadowany jest po brzegi rdzeniami; i lepiej żebyś był gotowy do czasu jego przyjazdu.
 </div>
 
 <!---------- -->
-<div class="paragraphDiv">
-    
-</div>
 
 <div class="smallGreyText">
     <hr/>
