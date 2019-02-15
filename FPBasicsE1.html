@@ -43,7 +43,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Zakładam, że słyszałeś już kiedyś o programowaniu funkcyjnym. No cóż, któż nie słyszał? Wszyscy o tym gadają. Wychodzi tak dużo nowych funkcyjnych języków jak Scala, F# i Clojure. Ludzie rozmawiają też o starszych językach jak Erlang, Haskell, ML i innych.
+    Zakładam, że słyszałeś już kiedyś o programowaniu funkcyjnym. No cóż, któż nie słyszał? Wszyscy o tym gadają. Wychodzi dużo nowych języków funkcyjnych  takich, jak Scala, F# i Clojure. Ludzie rozmawiają też o starszych językach jak Erlang, Haskell, ML i innych.
 </div>
 
 <div class="paragraphDiv">
@@ -71,23 +71,24 @@
 <br/>
 
 <div class="paragraphDiv">
-    Po pierwsze prawie na pewno programowanie funkcyjne jest następną wielką rzeczą. Są ku temu dobre, solidne powody i poznamy je w tym artykule. Ale najpierw, aby zrozumieć te powody, musimy poznać, czym programowanie funkcyjne jest. Wkurzę wielu ludzi moim kolejnym stwierdzeniem, ponieważ zamierzam uciec się do skrajnego minimalizmu. Ograniczę programowanie funkcyjne do jego najgłębszej istoty; i to nie jest do końca w porządku, bo temat jest bogaty i obszerny i pełen fantastycznych pomysłów. Ogarniemy te pomysły w przyszłych artykułach. Zobaczysz niektóre z nich już tutaj. Ale na razie, zdefiniuję programowanie funkcyjne w taki sposób:
+    Po pierwsze, prawie na pewno programowanie funkcyjne jest następną wielką rzeczą. Są ku temu dobre, solidne powody i poznamy je w tym artykule. Ale najpierw, aby zrozumieć te powody, musimy poznać, czym programowanie funkcyjne jest. Wkurzę wielu ludzi moim kolejnym stwierdzeniem, ponieważ zamierzam uciec się do skrajnego minimalizmu. Ograniczę programowanie funkcyjne do jego najgłębszej istoty; i to nie jest do końca w porządku, bo temat jest bogaty, obszerny i pełen fantastycznych pomysłów. Ogarniemy te pomysły w przyszłych artykułach. Zobaczysz niektóre z nich już tutaj. Ale na razie, zdefiniuję programowanie funkcyjne w taki sposób:
 </div>
 
-<div class="paragraphDiv">
+<div class="paragraphDiv cite">
     Programowanie funkcyjne jest programowaniem bez instrukcji przypisania.
 </div>
 
 <div class="paragraphDiv">
     O nie! A jednak to zrobiłem. Teraz programiści funkcyjni zbierają się przeciwko mnie, trzymając w rękach widły i pochodnie. Chcą mojej głowy za wypowiedzenie tej minimalistycznej
-    <a href="https://pl.wikipedia.org/wiki/Blu%C5%BAnierstwo">blasfemii</a>. Tymczasem wszyscy goście, którzy mieli nadzieję nauczyć się czegoś o programowaniu funkcyjnym naprawdę przestali czytać z powodu powyższego zdania, które jest tak rażąco głupie. To znaczy: jak na w ogóle można programować bez instrukcji przypisania? Najlepszym sposobem pokazania tego jest przykład. Spójrzmy na bardzo prosty program w Javie: Kwadraty liczb całkowitych:
+    <a href="https://pl.wikipedia.org/wiki/Blu%C5%BAnierstwo">blasfemii</a>. Tymczasem wszyscy goście, którzy mieli nadzieję nauczyć się czegoś o programowaniu funkcyjnym, naprawdę przestali czytać z powodu powyższego zdania, które jest tak rażąco głupie. To znaczy: jak w ogóle można programować bez instrukcji przypisania? Najlepszym sposobem pokazania tego jest przykład. Spójrzmy na bardzo prosty program w Javie: Kwadraty liczb całkowitych.
 </div>
 
 <div class="paragraphDiv">
     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">public</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">Squint</span> {
-  <span style="font-weight: bold">public</span>  <span style="font-weight: bold">static</span>  <span style="font-weight: bold">void</span>  main(String  args[])  {
+  <span style="font-weight: bold">public</span>  <span style="font-weight: bold">static</span>  <span style="font-weight: bold">void</span>  main(String  args[]) {
     <span style="font-weight: bold">for</span>  (<span style="font-weight: bold">int</span>  i=1;  i&lt;=25;  i++)
-      System.out.println(i*i);}
+      System.out.println(i*i)
+  }
 }
 </pre></div>
 
@@ -99,11 +100,11 @@
 
 <div class="paragraphDiv">
     Ale przyjrzyjmy się temu uważnie. To jest tylko zwykła pętla ze zmienną nazwaną <span class="code">i</span>, która liczy od 1 do 25. Każde przejście pętli sprawia, że zmienna
-    <span class="code">i</span> przybiera nową wartość. To jest przypisanie. Nowa wartość jest przypisywana do zmiennej <span class="code">i</span> podczas każdego przejścia pętli. Gdybyś mógł podejrzeć jakość pamięć komputera i dojrzeć miejsce w pamięci, które przechowuje wartość zmiennej <span class="code">i</span>, zauważyłbyś, że ta wartość zmienia się podczas każdej iteracji przejścia pętli.
+    <span class="code">i</span> przybiera nową wartość. To jest przypisanie. Nowa wartość jest przypisywana do zmiennej <span class="code">i</span> podczas każdego przejścia pętli. Gdybyś mógł jakoś podejrzeć pamięć komputera i dojrzeć miejsce w pamięci, które przechowuje wartość zmiennej <span class="code">i</span>, zauważyłbyś, że ta wartość zmienia się podczas każdej iteracji przejścia pętli.
 </div>
 
 <div class="paragraphDiv">
-    Jeżeli poprzedni paragraf wydawał się rozwodzić się nad oczywistością, to powiem, że całe artykuły naukowe napisano na ten temat. Pojęcia równoważności, wartości i stanu mogą się wydawać nam oczywiste; ale w rzeczywistości są one same w sobie zagadnieniami bardzo obszernymi. Ale zbaczam za bardzo.
+    Jeżeli poprzedni paragraf wydawał się rozwodzić się nad oczywistością, to tylko powiem, że całe artykuły naukowe napisano na ten temat. Pojęcia równoważności, wartości i stanu mogą wydawać się nam oczywiste; ale w rzeczywistości są one same w sobie zagadnieniami bardzo obszernymi. Ale zbaczam za bardzo.
 </div>
 
 <div class="paragraphDiv">
@@ -117,7 +118,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Tak, dobrze czytasz; i tak to jest program, który wyświetla prawidłowe wartości. Jeśli chcesz zobaczyć wyniki, oto one:
+    Tak, dobrze czytasz; powiem więcej: to jest program, który wyświetla prawidłowe wartości. Jeśli chcesz zobaczyć wyniki, oto one:
 </div>
 
 <div class="paragraphDiv">
@@ -128,12 +129,12 @@
 
 <div class="paragraphDiv">
     W tym programie użyto trzech słów. Każde z tych słów odnosi się do funkcji. <em>Nawiasy z lewej strony tych wyrazów
-    znaczą po prostu: zawołaj tę funkcję i potraktuj wszystko po prawej stronie aż do prawego nawiasu jako jej
+    znaczą po prostu: zawołaj tę funkcję i potraktuj wszystko po prawej stronie, aż do prawego nawiasu, jako jej
     parametry</em>.
 </div>
 
 <div class="paragraphDiv">
-    Funkcja <span class="code">tak</span> przyjmuje dwa argumenty, liczbę całkowitą <span class="code">n</span> i listę <span class="code">l</span>.
+    Funkcja <span class="code">take</span> przyjmuje dwa argumenty, liczbę całkowitą <span class="code">n</span> i listę <span class="code">l</span>.
     Zwraca pierwsze <span class="code">n</span> elementów listy <span class="code">l</span>. Funkcja <span class="code">squares-of</span> pobiera listę liczb całkowitych i zwraca listę ich kwadratów. Funkcja <span class="code">integers</span> zwraca listę kolejnych liczb całkowitych, zaczynając od 1. To wszystko. Program po prostu pobiera pierwszych 25 elementów listy kwadratów kolejnych liczb całkowitych, zaczynając od 1.
 </div>
 
@@ -150,11 +151,11 @@
 </div>
 
 <div class="paragraphDiv">
-    Przejrzystość referencyjna znaczy po prostu, że w danym zdaniu, możesz zmieniać kolejność słów razem z ich definicjami, i nie zmienia się jednocześnie znaczenie tego zdania. Lub, co ważne dla naszych zastosowań, to oznacza, że możesz zastąpić każde wywołanie funkcji wartością, którą ta funkcja zwraca. Zobaczmy to w akcji.
+    Przejrzystość referencyjna znaczy po prostu, że w danym zdaniu, możesz zmieniać kolejność słów razem z ich definicjami, i nie zmienia się jednocześnie znaczenie tego zdania. Lub, co ważne dla naszych zastosowań, oznacza to, że możesz zastąpić każde wywołanie funkcji wartością, którą ta funkcja zwraca. Zobaczmy to w akcji.
 </div>
 
 <div class="paragraphDiv">
-    Wywołanie funkcji <span class="code">(integers)</span> zwraca <span class="code">(1 2 3 4 5 6 ...)</span> No dobra, pewnie nasuwają Ci się od razu pytania, prawda? To znaczy, jak wielka ma to być lista? Prawdziwa odpowiedź na to pytanie jest taka, że lista ma być tak duża, jak jest potrzeba, żeby była; ale nie myślmy o tym teraz. Powrócimy do tego w następnym artykule. Na ten moment przyjmijmy, że <span class="code">(integers)</span> zwraca
+    Wywołanie funkcji <span class="code">(integers)</span> zwraca <span class="code">(1 2 3 4 5 6 ...)</span> No dobra, pewnie nasuwają Ci się od razu pytania, prawda? To znaczy, jak wielka ma to być lista? Prawdziwa odpowiedź na to pytanie jest taka, że lista ma być taka duża, jak jest potrzeba, żeby była; ale nie myślmy o tym teraz. Powrócimy do tego w następnym artykule. Na ten moment przyjmijmy, że <span class="code">(integers)</span> zwraca
     <span class="code">(1 2 3 4 5 6 ...)</span>; bo zwraca!
 </div>
 
@@ -169,11 +170,11 @@
 </div>
 
 <div class="paragraphDiv">
-    A tak, zrobiłem to przy użyciu copy paste'a; i to też jest ważny punkt. Przejrzystość Referencyjna jest tym samym co kopiowanie wartości funkcji i wklejanie jej nad wywołaniem tej funkcji.
+    A tak, zrobiłem to przy użyciu copy paste'a; i to też jest ważny punkt. Przejrzystość Referencyjna jest tym samym co kopiowanie wartości funkcji i wklejanie jej ponad wywołaniem tej funkcji.
 </div>
 
 <div class="paragraphDiv">
-    Teraz zróbmy następny krok. Wywołanie funkcji: <span class="code">(squares-of (1 2 3 4 5 6 ...))</span> po prostu zwraca listę kwadratów liczb z listy jej argumentów. Więc ona zwraca: <span class="code">(1 4 9 16 25 36 49 64 ...)</span>. Jeżeli zamienimy wywołanie tej funkcji z jej wartością program stanie się:
+    Teraz zróbmy następny krok. Wywołanie funkcji: <span class="code">(squares-of (1 2 3 4 5 6 ...))</span> po prostu zwraca listę kwadratów liczb z listy jej argumentów. Więc ona zwraca: <span class="code">(1 4 9 16 25 36 49 64 ...)</span>. Jeżeli zamienimy wywołanie tej funkcji z jej wartością, program stanie się:
 </div>
 
 <div class="paragraphDiv">
@@ -203,15 +204,15 @@
 </div>
 
 <div class="paragraphDiv">
-    Zauważ, że nie ma zmiennych. W rzeczywistości nie ma nic innego, tylko trzy funkcje i jedną zmienną. Spróbuj napisać kwadraty liczb całkowitych w Javie, nie używając ani jednej zmiennej. Oh, jest prawdopodobnie sposób, żeby to zrobić, ale z pewnością nie jest to naturalne i czytałoby się tego tak przyjemnie, jak mój program wyżej.
+    Zauważ, że nie ma zmiennych. W rzeczywistości nie ma tam nic innego, tylko trzy funkcje i jedna stała. Spróbuj napisać kwadraty liczb całkowitych w Javie, nie używając ani jednej zmiennej. Oh, jest prawdopodobnie sposób, żeby to zrobić, ale z pewnością nie jest to naturalne i nie czytałoby się tego tak przyjemnie, jak mój program wyżej.
 </div>
 
 <div class="paragraphDiv">
-    Co ważniejsze, jeżeli mógłbyś zajrzeć do pamięci komputera i spojrzeć na miejsca w pamięci używane przez mój program, odkryłbyś, że te miejsca zostałyby zainicjowane w momencie użycia ich przez program; ale ich wartości pozostałyby niezmienne, przez resztę czasu wykonania programu. Innymi słowy, żadne nowe wartości nie zostałyby przypisane do tych miejsc.
+    Co ważniejsze, jeżeli mógłbyś zajrzeć do pamięci komputera i spojrzeć na miejsca w pamięci używane przez mój program, odkryłbyś, że te miejsca zostałyby zainicjowane w momencie użycia ich przez program; ale ich wartości pozostałyby niezmienne przez resztę czasu wykonania programu. Innymi słowy, żadne nowe wartości nie zostałyby przypisane do tych miejsc.
 </div>
 
 <div class="paragraphDiv">
-    W rzeczy samej to jest konieczny warunek dla Przejrzystości Referencyjnej, który opiera się na fakcie, że za każdym razem, kiedy wywołujesz konkretną funkcję, dostajesz taki sam wynik. Fakt, że pamięć mojego komputera nie zmienia się podczas uruchomienia mojego programu, oznacza, że wywołanie funkcji <span class="code">(f 1)</span> zwraca zawsze tę samą wartość, niezależnie od tego, ile razu była wywołana. A to oznacza, że mogę zamienić <span class="code">(f 1)</span>, kiedykolwiek się pojawi, jej wartością.
+    W rzeczy samej to jest konieczny warunek dla Przejrzystości Referencyjnej, który opiera się na fakcie, że za każdym razem, kiedy wywołujesz konkretną funkcję, dostajesz taki sam wynik. Fakt, że pamięć mojego komputera nie zmienia się podczas uruchomienia mojego programu, oznacza, że wywołanie funkcji <span class="code">(f 1)</span> zwraca zawsze tę samą wartość, niezależnie od tego, ile razu była wywołana. A to oznacza, że mogę podmienić <span class="code">(f 1)</span> jej wartością, kiedykolwiek się pojawi.
 </div>
 
 <div class="paragraphDiv">
@@ -219,7 +220,7 @@
 </div>
 
 <div class="paragraphDiv">
-    A więc dlaczego to jest takie ważne? Co jest takiego wspaniałego w Przejrzystości Referencyjnej? Wiedząc, że jest możliwe pisanie programów bez przypisań, dlaczego jest to ważne?
+    A więc dlaczego to jest takie ważne? Co jest takiego wspaniałego w Przejrzystości Referencyjnej? Gdy wiemy, że jest możliwe pisanie programów bez przypisań, dlaczego to takie ważne?
 </div>
 
 <div class="paragraphDiv">
@@ -228,11 +229,11 @@
 </div>
 
 <div class="paragraphDiv">
-    Biedni ci inżynierowie hardware'u, którzy nieśli nas na plecach przez ostatnie cztery dziesięciolecia, osiągnęli w końcu prędkość światła. Zegary komputerów po prostu nie będą poruszać się już znacząco szybciej. Po tym, jak prędkość podwajała się co 18 miesięcy, przez okres dłuższy niż większość programistów żyje (oprócz mnie), gwałtowny wzrost prędkości komputerów zatrzymał się, nie wznosząc się jak dotychczas.
+    Biedni inżynierowie hardware'u, którzy nieśli nas na plecach przez ostatnie cztery dziesięciolecia, osiągnęli w końcu prędkość światła. Zegary komputerów po prostu nie będą poruszały się już znacząco szybciej. Po tym, jak ta prędkość podwajała się co 18 miesięcy, przez okres dłuższy niż większość programistów żyje (oprócz mnie), gwałtowny wzrost prędkości komputerów zatrzymał się, jak dotychczas nie ruszając się znowu.
 </div>
 
 <div class="paragraphDiv">
-    A więc Ci inżynierowie sprzętu, w pogoni za zaoferowaniem nam coraz większej i większej ilości cykli na sekundę, zaczęli dodawać coraz więcej i więcej procesorów do naszych układów; i nie widać końca do ilu procesorów doprowadzi nas ten marsz ku przyszłości.
+    A więc Ci inżynierowie sprzętu, w pogoni za zaoferowaniem nam coraz większej i większej ilości cykli na sekundę, zaczęli dodawać coraz więcej i więcej procesorów do naszych układów; i nie widać odpowiedzi na pytanie: do ilu procesorów w jednym układzie doprowadzi nas ten marsz ku przyszłości.
 </div>
 
 <div class="paragraphDiv">
@@ -240,7 +241,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Mówiąc szczerze, my programiści ledwo umiemy sprawić, by dwa wątki w Javie współpracowały ze sobą. Wątki to kaszka z mleczkiem dla niemowlaka w porównaniu ze schabowym z ziemniakami prawdziwej walki procesorów na szynie pamięci. Przez ostatnie ponad pół wieku programistom udał się zaobserwować, że procesy odpalone na komputerze są współbieżne, a nie jednoczesne. A więc chłopcy i dziewczęta, witamy w fantastycznym świecie jednoczesności. A teraz jak sobie z tym dacie radę?
+    Mówiąc szczerze, my programiści ledwo umiemy sprawić, by dwa wątki w Javie współpracowały ze sobą. Wątki to kaszka z mleczkiem dla niemowlaka w porównaniu ze schabowym z ziemniakami rzeczywistej rywalizacji procesorów na szynie pamięci. Przez ostatnie ponad pół wieku programistom udał się zaobserwować, że procesy odpalone na komputerze są współbieżne, a nie jednoczesne. A więc chłopcy i dziewczęta, witamy w fantastycznym świecie jednoczesności! A teraz jak sobie z tym dacie radę?
 </div>
 
 <div class="paragraphDiv">
@@ -250,12 +251,12 @@
 </div>
 
 <div class="paragraphDiv">
-    To jasne, że jeżeli wartość w miejscu w pamięci, raz zainicjowana, nie zmienia się podczas wykonywania programu, nie ma nic, o co te 131072 procesorów mogłoby rywalizować. Nie potrzebujesz
-    <a href="https://pl.wikipedia.org/wiki/Semafor_(informatyka)">semaforów</a>, jeśli nie masz skutków ubocznych! Nie masz problemów współbieżnych aktualizacji (przepraszam: Jednoczesnych Aktualizacji), jeśli nie masz aktualizacji!
+    To jasne, że jeżeli wartość w miejscu w pamięci, raz zainicjowana, nie zmienia się podczas wykonywania programu, to nie ma niczego, o co te 131072 procesorów mogłoby rywalizować. Nie potrzebujesz
+    <a href="https://pl.wikipedia.org/wiki/Semafor_(informatyka)">semaforów</a>, jeśli nie masz skutków ubocznych! Nie masz problemów współbieżnych aktualizacji (przepraszam: Jednoczesnych Aktualizacji), jeśli w ogóle nie masz aktualizacji!
 </div>
 
 <div class="paragraphDiv">
-    Więc to jest ta wielka sprawa w językach funkcyjnych; i to jest naprawdę cholernie duża sprawa. W naszym kierunku pędzi pociąg towarowy, załadowany jest po brzegi rdzeniami; i lepiej, żebyś był gotowy do czasu jego przyjazdu.
+    Więc to jest ta wielka sprawa w językach funkcyjnych; i to jest naprawdę cholernie wielka sprawa. W naszym kierunku pędzi pociąg towarowy, załadowany po brzegi rdzeniami; i lepiej, żebyś był gotowy do czasu jego przyjazdu.
 </div>
 
 <!---------- -->
