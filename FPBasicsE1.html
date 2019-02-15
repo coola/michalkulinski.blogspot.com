@@ -43,7 +43,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Zakładam, że słyszałeś już kiedyś o programowaniu funkcyjnym. No cóź, któż nie słyszał? Wszyscy o tym gadają. Wychodzi tak dużo nowych funkcyjnych języków jak Scala, F# i Clojure. Ludzie rozmawiają też o starszych językach jak Erlang, Haskell, ML i innych.
+    Zakładam, że słyszałeś już kiedyś o programowaniu funkcyjnym. No cóż, któż nie słyszał? Wszyscy o tym gadają. Wychodzi tak dużo nowych funkcyjnych języków jak Scala, F# i Clojure. Ludzie rozmawiają też o starszych językach jak Erlang, Haskell, ML i innych.
 </div>
 
 <div class="paragraphDiv">
@@ -71,15 +71,15 @@
 <br/>
 
 <div class="paragraphDiv">
-    Po pierwsze prawie na pewno programowanie funkcyjne jest następną wielką rzeczą. Są ku temu dobre, solidne powody i poznamy je w tym artykule. Ale najpierw, aby zrozumieć te powody, musimy poznać czym programowanie funkcyjne jest. Wkurzyę wielu ludzi moim kolejnym stwierdzeniem, ponieważ zamierzam uciec się do skrajnego minimalizmu. Ograniczę programowanie funkcyjne do jego najgłębszej istoty; i to nie jest do końca w porządku, bo temat jest bogaty i obszerny i pełen fantastycznych pomysłów. Ogarniemy te pomysły w przyszłych artykułach. Zobaczysz niektóre z nich już tutaj. Ale na razie, zdefiniuję programowanie funkcyjne w taki sposób:
+    Po pierwsze prawie na pewno programowanie funkcyjne jest następną wielką rzeczą. Są ku temu dobre, solidne powody i poznamy je w tym artykule. Ale najpierw, aby zrozumieć te powody, musimy poznać, czym programowanie funkcyjne jest. Wkurzę wielu ludzi moim kolejnym stwierdzeniem, ponieważ zamierzam uciec się do skrajnego minimalizmu. Ograniczę programowanie funkcyjne do jego najgłębszej istoty; i to nie jest do końca w porządku, bo temat jest bogaty i obszerny i pełen fantastycznych pomysłów. Ogarniemy te pomysły w przyszłych artykułach. Zobaczysz niektóre z nich już tutaj. Ale na razie, zdefiniuję programowanie funkcyjne w taki sposób:
 </div>
 
 <div class="paragraphDiv">
-    Programowanie funcyjne jest programowaniem bez instrukcji przypisania.
+    Programowanie funkcyjne jest programowaniem bez instrukcji przypisania.
 </div>
 
 <div class="paragraphDiv">
-    O nie! A jednak to zrobiłem. Teraz programiści funkcyjni zbierają się przeciwko mnie trzymając w rękach widły i pochodnie. Chcą mojej głowy za wypowiedzenie tej minimalistycznej
+    O nie! A jednak to zrobiłem. Teraz programiści funkcyjni zbierają się przeciwko mnie, trzymając w rękach widły i pochodnie. Chcą mojej głowy za wypowiedzenie tej minimalistycznej
     <a href="https://pl.wikipedia.org/wiki/Blu%C5%BAnierstwo">blasfemii</a>. Tymczasem wszyscy goście, którzy mieli nadzieję nauczyć się czegoś o programowaniu funkcyjnym naprawdę przestali czytać z powodu powyższego zdania, które jest tak rażąco głupie. To znaczy: jak na w ogóle można programować bez instrukcji przypisania? Najlepszym sposobem pokazania tego jest przykład. Spójrzmy na bardzo prosty program w Javie: Kwadraty liczb całkowitych:
 </div>
 
@@ -94,7 +94,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Któż z nas nie napisał tego, lub czegoś bardzo podobnego? Ja chyba pisałem to setki razy. To jest zwykle drugi program, który piszę w języku, którego się uczę i trzeci czy czwarty w kolejności, gdy uczę młodych programistów pisać programy. Każdy zna stare, dobre kwadraty liczb całkowitych!
+    Któż z nas nie napisał tego lub czegoś bardzo podobnego? Ja chyba pisałem to setki razy. To jest zwykle drugi program, który piszę w języku, którego się uczę i trzeci czy czwarty w kolejności, gdy uczę młodych programistów pisać programy. Każdy zna stare, dobre kwadraty liczb całkowitych!
 </div>
 
 <div class="paragraphDiv">
@@ -103,11 +103,11 @@
 </div>
 
 <div class="paragraphDiv">
-    Jeżeli poprzedni paragraf wydawał się rozwodzić się nad oczywistością, to powiem, że całe artykuły naukowe napisano w tym temacie. Pojęcia równoważności, wartości i stanu mogą się wydawać nam oczywiste; ale w rzeczywistości są one same w sobie zagadnieniami bardzo obszernymi. Ale zbaczam za bardzo.
+    Jeżeli poprzedni paragraf wydawał się rozwodzić się nad oczywistością, to powiem, że całe artykuły naukowe napisano na ten temat. Pojęcia równoważności, wartości i stanu mogą się wydawać nam oczywiste; ale w rzeczywistości są one same w sobie zagadnieniami bardzo obszernymi. Ale zbaczam za bardzo.
 </div>
 
 <div class="paragraphDiv">
-    Teraz spójrzmy na funkcyjny odpowiednik programu kwadratów liczb całkowitych. Użyjemy do tego Clojure; choć pomysły, które przerobimy działają tak samo w każdym innym języku funkcyjnym.
+    Teraz spójrzmy na funkcyjny odpowiednik programu kwadratów liczb całkowitych. Użyjemy do tego Clojure; choć pomysły, które przerobimy, działają tak samo w każdym innym języku funkcyjnym.
 </div>
 
 <div class="paragraphDiv">
@@ -117,7 +117,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Tak, dobrze czytasz; i tak to jest program, który wyśietla prawidłowe wartości. Jeśli chcesz zobaczyć wyniki, oto one:
+    Tak, dobrze czytasz; i tak to jest program, który wyświetla prawidłowe wartości. Jeśli chcesz zobaczyć wyniki, oto one:
 </div>
 
 <div class="paragraphDiv">
@@ -134,11 +134,11 @@
 
 <div class="paragraphDiv">
     Funkcja <span class="code">tak</span> przyjmuje dwa argumenty, liczbę całkowitą <span class="code">n</span> i listę <span class="code">l</span>.
-    Zwraca pierwsze <span class="code">n</span> elementów listy <span class="code">l</span>. Funkcja <span class="code">squares-of</span> pobiera listę liczb całkowitych i zwraca listę ich kwadratów. Funkcja <span class="code">integers</span> zwraca listę kolejnych liczb całkowitych zaczynając od 1. To wszystko. Program po prostu pobiera pierwszych 25 elementów listy kwadratów kolejnych liczb całkowitych zaczynając od 1.
+    Zwraca pierwsze <span class="code">n</span> elementów listy <span class="code">l</span>. Funkcja <span class="code">squares-of</span> pobiera listę liczb całkowitych i zwraca listę ich kwadratów. Funkcja <span class="code">integers</span> zwraca listę kolejnych liczb całkowitych, zaczynając od 1. To wszystko. Program po prostu pobiera pierwszych 25 elementów listy kwadratów kolejnych liczb całkowitych, zaczynając od 1.
 </div>
 
 <div class="paragraphDiv">
-    Spójrz na tę linijkę jeszcze raz; ponieważ zrobiłem tam coś bardzo ważnego. Wziąłem trzy odzielny definicje funkcji i połączyłem je w pojedyncze zdanie. To się nazywa: (jesteś gotowy na słowo klucz?)
+    Spójrz na tę linijkę jeszcze raz; ponieważ zrobiłem tam coś bardzo ważnego. Wziąłem trzy oddzielne definicje funkcji i połączyłem je w pojedyncze zdanie. To się nazywa: (jesteś gotowy na słowo klucz?)
 </div>
 
 <div class="paragraphDiv cite">
@@ -146,7 +146,7 @@
 </div>
 
 <div class="paragraphDiv">
-    [w tle: Fanfary, serpentyny, konfetti, tłumy szeleją]
+    [w tle: Fanfary, serpentyny, konfetti, tłumy szaleją]
 </div>
 
 <div class="paragraphDiv">
@@ -154,7 +154,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Wywołanie funkcji <span class="code">(integers)</span> zwraca <span class="code">(1 2 3 4 5 6 ...)</span> No dobra, pewnie nasuwają Ci się od razu pytania, prawda? To znaczy, jak wielka ma to być lista? Prawdziwa odpowiedź na to pytanie jest taka, że lista ma być tak duża jak jest potrzeba, żeby była; ale nie myślmy o tym teraz. Powrócimy do tego w następnym artykule. Na ten moment przyjmijmy, że <span class="code">(integers)</span> zwraca
+    Wywołanie funkcji <span class="code">(integers)</span> zwraca <span class="code">(1 2 3 4 5 6 ...)</span> No dobra, pewnie nasuwają Ci się od razu pytania, prawda? To znaczy, jak wielka ma to być lista? Prawdziwa odpowiedź na to pytanie jest taka, że lista ma być tak duża, jak jest potrzeba, żeby była; ale nie myślmy o tym teraz. Powrócimy do tego w następnym artykule. Na ten moment przyjmijmy, że <span class="code">(integers)</span> zwraca
     <span class="code">(1 2 3 4 5 6 ...)</span>; bo zwraca!
 </div>
 
@@ -203,15 +203,15 @@
 </div>
 
 <div class="paragraphDiv">
-    Zauważ, że nie ma zmiennych. W rzeczywistości nie ma nic innego, tylko trzy funkcje i jedną zmienną. Spróbuj napisać kwadraty liczb całkowitych w Javie nie używając ani jednej zmiennej. Oh, jest prawdopodobnie sposób, zeby to zrobić, ale z pewnością nie jest to naturalne i czytałoby się tego tak przyjemnie, jak mój program wyżej.
+    Zauważ, że nie ma zmiennych. W rzeczywistości nie ma nic innego, tylko trzy funkcje i jedną zmienną. Spróbuj napisać kwadraty liczb całkowitych w Javie, nie używając ani jednej zmiennej. Oh, jest prawdopodobnie sposób, żeby to zrobić, ale z pewnością nie jest to naturalne i czytałoby się tego tak przyjemnie, jak mój program wyżej.
 </div>
 
 <div class="paragraphDiv">
-    Co ważniejsze, jeżeli mógłbyś zajrzeć do pamięci komputeraz i spojrzeć na miejsca w pamięci używane przez mój program, odkryłbyś, że te miejsca zostałyby zainicjalizowane w momencie użycia ich przez program; ale ich wartości pozostałyby niezmienne, przez resztę czasu wykonania programu. Innymi słowy, żadne nowe wartości nie zostałyby przypisane do tych miejsc.
+    Co ważniejsze, jeżeli mógłbyś zajrzeć do pamięci komputera i spojrzeć na miejsca w pamięci używane przez mój program, odkryłbyś, że te miejsca zostałyby zainicjowane w momencie użycia ich przez program; ale ich wartości pozostałyby niezmienne, przez resztę czasu wykonania programu. Innymi słowy, żadne nowe wartości nie zostałyby przypisane do tych miejsc.
 </div>
 
 <div class="paragraphDiv">
-    W rzeczy samej, to jest konieczny warunek dla Przejrzystości Referencyjnej, który opiera się na fakcie, że za każdym razem, kiedy wywołujesz konkretną funkcję, dostajesz taki sam wynik. Fakt, że pamięć mojego komputera nie zmienia się podczas uruchomenia mojego programu oznacza, że wywołanie funkcji <span class="code">(f 1)</span> zwraca zawszę tę samą wartość niezależnie od tego ile razu była wywołana. A to oznacza, że mogę zamienić <span class="code">(f 1)</span>, kiedykolwiek się pojawi, jej wartością.
+    W rzeczy samej to jest konieczny warunek dla Przejrzystości Referencyjnej, który opiera się na fakcie, że za każdym razem, kiedy wywołujesz konkretną funkcję, dostajesz taki sam wynik. Fakt, że pamięć mojego komputera nie zmienia się podczas uruchomienia mojego programu, oznacza, że wywołanie funkcji <span class="code">(f 1)</span> zwraca zawsze tę samą wartość, niezależnie od tego, ile razu była wywołana. A to oznacza, że mogę zamienić <span class="code">(f 1)</span>, kiedykolwiek się pojawi, jej wartością.
 </div>
 
 <div class="paragraphDiv">
@@ -223,24 +223,24 @@
 </div>
 
 <div class="paragraphDiv">
-    Prawie na pewno czytasz ten tekst na ekranie. A jesli nie; komputer znajduje się niedaleko. Jak wiele ma rdzeni? Piszę ten artykuł na MacBooku Pro z 4 rzeczywistymi rdzeniami (Mówią, że ma 8, ale nie polegałbym bardzo na tym całym "nonsensie
-    <a href="https://pl.wikipedia.org/wiki/Hyper-threading">hyper-threading</a>". Ma cztery). Mój poprzedni laptop miał dwa rdzenie. I ten poprzednio miał tylko jeden. Jedyny wniosek, jaki z tego mogę wysnuć to, że mój następny laptop będzie miał 8 pradziwych rdzeni; i nastepny następny mógłby mieć już nawet 16.
+    Prawie na pewno czytasz ten tekst na ekranie. A jeśli nie; komputer znajduje się niedaleko. Jak wiele ma rdzeni? Piszę ten artykuł na MacBooku Pro z 4 rzeczywistymi rdzeniami (Mówią, że ma 8, ale nie polegałbym bardzo na tym całym "nonsensie
+    <a href="https://pl.wikipedia.org/wiki/Hyper-threading">hyper-threading</a>". Ma cztery). Mój poprzedni laptop miał dwa rdzenie. I ten poprzednio miał tylko jeden. Jedyny wniosek, jaki z tego mogę wysnuć to, że mój następny laptop będzie miał 8 prawdziwych rdzeni; i następny-następny mógłby mieć już nawet 16.
 </div>
 
 <div class="paragraphDiv">
-    Biedni ci inżynierowie hardware'u, którzy nieśli nas na plecach przez ostatnie cztery dziesięciolecia, osiągnęli w końcu prędkość światła. Zegary komputerów po prostu nie będą poruszać się już znacząco szybciej. Po tym jak prędkość podwajała się co 18 miesięcy przez okres dluższy niż większość programistów żyje (oprócz mnie), gwałtowny wzrost prędkości komputerów zatrzymał się, nie wznosząc się jak dotychczas.
+    Biedni ci inżynierowie hardware'u, którzy nieśli nas na plecach przez ostatnie cztery dziesięciolecia, osiągnęli w końcu prędkość światła. Zegary komputerów po prostu nie będą poruszać się już znacząco szybciej. Po tym, jak prędkość podwajała się co 18 miesięcy, przez okres dłuższy niż większość programistów żyje (oprócz mnie), gwałtowny wzrost prędkości komputerów zatrzymał się, nie wznosząc się jak dotychczas.
 </div>
 
 <div class="paragraphDiv">
-    A więc Ci inżynierowie sprzętu, w pogoni za zaoferowaniem nam coraz wiekszej i większej ilości cykli na sekundę, zaczęli dodawać coraz więcej i więcej procesorów do naszych układów; i nie widać końca do ilu procesorów doprowadzi nas ten marsz ku przyszłości.
+    A więc Ci inżynierowie sprzętu, w pogoni za zaoferowaniem nam coraz większej i większej ilości cykli na sekundę, zaczęli dodawać coraz więcej i więcej procesorów do naszych układów; i nie widać końca do ilu procesorów doprowadzi nas ten marsz ku przyszłości.
 </div>
 
 <div class="paragraphDiv">
-    A więc pozwól, że zapytam Ciebie, O zdolny i kompetentny programisto: Jak zapewnisz sobie przewagę w wykorzystaniu cykli dostępnego Ci procesora, kiedy Twój komputer bedzie miał 4096 rdzeni w środku? Jak zarządzisz wywołaniami swoich funkcji, jeżeli będą one wszystkie działać na 16384 procesorach na tej samej szynie pamięci? Jak zbudujesz responsywne i przygotowane na zmiany strony internetowe, kiedy Twoje modele, kontrolery i widoki będą musiały współdzielić 65536 procesorów?
+    A więc pozwól, że zapytam Ciebie, O zdolny i kompetentny programisto: Jak zapewnisz sobie przewagę w wykorzystaniu cykli dostępnego Ci procesora, kiedy Twój komputer będzie miał 4096 rdzeni w środku? Jak zarządzisz wywołaniami swoich funkcji, jeżeli będą one wszystkie działać na 16384 procesorach na tej samej szynie pamięci? Jak zbudujesz responsywne i przygotowane na zmiany strony internetowe, kiedy Twoje modele, kontrolery i widoki będą musiały współdzielić 65536 procesorów?
 </div>
 
 <div class="paragraphDiv">
-    Mówiąc szczerze, my programiści ledwo umiemy sprawić by dwa wątki w Javie współpracowały ze sobą. Wątki to kaszka z mleczkiem dla niemowlaka w porównaniu ze schabowym z zmieniakami prawdziwej walki procesorów na szynie pamięci. Przez ostatnie ponad pół wieku programistom udał się zaobserwować, że procesy odpalone na komputerze są współbieżne, nie jednoczesne. A więc, chłopcy i dzewczęta, witamy w fantastycznym świecie jednoczesności. A teraz jak sobie z tym dacie radę?
+    Mówiąc szczerze, my programiści ledwo umiemy sprawić, by dwa wątki w Javie współpracowały ze sobą. Wątki to kaszka z mleczkiem dla niemowlaka w porównaniu ze schabowym z ziemniakami prawdziwej walki procesorów na szynie pamięci. Przez ostatnie ponad pół wieku programistom udał się zaobserwować, że procesy odpalone na komputerze są współbieżne, a nie jednoczesne. A więc chłopcy i dziewczęta, witamy w fantastycznym świecie jednoczesności. A teraz jak sobie z tym dacie radę?
 </div>
 
 <div class="paragraphDiv">
@@ -250,12 +250,12 @@
 </div>
 
 <div class="paragraphDiv">
-    To jasne, że jeżeli wartość w miejsu w pamięci, raz zainicjowana, nie zmienia się podczas wykonywania programu, nie ma nic o co te 131072 procesorów mogłoby rywalizować. Nie potrzebujesz
-    <a href="https://pl.wikipedia.org/wiki/Semafor_(informatyka)">semaforów</a>, jeśli nie masz skutków ubocznych! Nie masz problemów współbieżnych aktualizacji (przepraszam: Jednoczesnych Aktualizacji) jeśli nie masz aktualizacji!
+    To jasne, że jeżeli wartość w miejscu w pamięci, raz zainicjowana, nie zmienia się podczas wykonywania programu, nie ma nic, o co te 131072 procesorów mogłoby rywalizować. Nie potrzebujesz
+    <a href="https://pl.wikipedia.org/wiki/Semafor_(informatyka)">semaforów</a>, jeśli nie masz skutków ubocznych! Nie masz problemów współbieżnych aktualizacji (przepraszam: Jednoczesnych Aktualizacji), jeśli nie masz aktualizacji!
 </div>
 
 <div class="paragraphDiv">
-    Więc to jest ta wielka sprawa w językach funkcyjnych; i to jest naprawdę cholernie duża sprawa. W naszym kierunku pędzi pociąg towarowy, załadowany jest po brzegi rdzeniami; i lepiej żebyś był gotowy do czasu jego przyjazdu.
+    Więc to jest ta wielka sprawa w językach funkcyjnych; i to jest naprawdę cholernie duża sprawa. W naszym kierunku pędzi pociąg towarowy, załadowany jest po brzegi rdzeniami; i lepiej, żebyś był gotowy do czasu jego przyjazdu.
 </div>
 
 <!---------- -->
