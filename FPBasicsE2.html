@@ -100,13 +100,60 @@
 </div>
 
 <div class="paragraphDiv">
+    Rozważ $\frac{d(x^2)}{dx}$: równa się $2x$. Zauważ, że $2x$ jest funkcją. Więc argument wejściowy i wyjściowa wartość są funkcjami.
+</div>
+
+<div class="paragraphDiv">
+    Czekaj. Jak nazwiesz coś, co przyjmuje argumenty i zwraca wartość? Nazwiesz to funkcją. A więc $\frac{dy}{dx}$ jest funkcją, która przyjmuje funkcję i zwraca funkcję.
+</div>
+
+<div class="paragraphDiv">
+    Co by było gdybyśmy mieli taki język programowania komputerów? Co by było gdybyśmy mogli pisać funkcje, które przyjmują funkcje jako argumenty, operować na nich, bez rozwiązywania ich, i potem zwracać nowe funkcje jak wynik? Jak byś taki język mógł nazwać? Jakie inne słowo mogłoby być lepsze niż: funkcyjny?
+</div>
+
+<div class="paragraphDiv">
+    I już widzę tych purystów języków funkcjonalnych wściekłych na mnie, za to, że to kompletnie nieodpowiedni sposób definicji języka funkcyjnego. Ale to jest jeden krok do przodu &ndash; i to bardzo ważny krok.
+</div>
+
+<div class="paragraphDiv">
+    A więc, co to znaczy przesłąć funkcję jako argument do innej funkcji? Spójrzy jeszcze raz na program kwadraty liczb całkowitych. Pamiętasz, to było po prostu:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(take 25 (squares-of (integers)))
+</pre></div>
 
 </div>
 
+<div class="paragraphDiv">
+    Zróbmy z tego funkcję, dodając nazwę i definicję argumentu:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>squint [n]
+  (take n (squares-of (integers))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Jestem pewny, że ogarniasz składnię sam. To nic trudnego.
+</div>
+
+<div class="paragraphDiv">
+    Mając definicję <span class="code">squint</span>, możemy wyświetlić 25 kwadratów liczb całkowitych przy użyciu:
+</div>
+
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(println (squint 25))
+</pre></div>
+
+</div>
 <!---------- -->
 
 <div class="paragraphDiv">
-
+    Jak dotąd, to nic innego, jak proste wywołania funkcji i definicje.
 </div>
 
 <div class="smallGreyText">
