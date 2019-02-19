@@ -43,9 +43,15 @@
           });
     </script>
 
+
+
+    <!--
     <script type="text/javascript"
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
+     -->
+
+    <script>setTimeout(function(){ location.reload(); }, 3000);</script>
 
 </head>
 <body>
@@ -150,11 +156,60 @@
 </pre></div>
 
 </div>
-<!---------- -->
 
 <div class="paragraphDiv">
-    Jak dotąd, to nic innego, jak proste wywołania funkcji i definicje.
+Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale czym jest ta funkcja <span class="code">squares-of</span>. Jak jest zdefiniowana?
 </div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>square [n] (* n n))
+
+(<span style="font-weight: bold">defn </span>squares-of [list]
+  (map square list))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Teraz zaczyna się robić trochę bardziej interesująco! Nie jest niespodzianką, że funkcja <span class="code">square</span> po prostu mnoży argument przez jego samego. To definicja <span class="code">squares-of</span> jest interesująca, ponieważ przesyła funkcję <span class="code">square</span> jako argument do funkcji o nazwie <span class="code">map</span>.
+</div>
+
+<div class="paragraphDiv">
+    Funkcja <span class="code">map</span> jest jedną z podstaw programowania funkcyjnego. Pobiera dwa argumenty: funkcję $f$ i listę $l$; i zwraca nową listę wywołując funkcję $f$ na każdym elemencie listy $l$.
+</div>
+
+<div class="paragraphDiv">
+    Przesyłanie funkcji jako argument to nie jest coś, co programiści Javy robią często. Z drugiej strony nie jest to zupełnie obcy pomysł. Każdy programista Javy, który uczył się
+    <a href="https://pl.wikipedia.org/wiki/Polecenie_(wzorzec_projektowy)">Wzorca Polecenie</a>, lub uzywał Listenerów w
+    <a href="https://en.wikipedia.org/wiki/Swing_(Java)">
+        Swingu</a>, zrozumie, co tu się dzieje.
+</div>
+
+<div class="paragraphDiv">
+    Co więcej, obecnie coraz więcej języków programowania zaczęło wykorzystować pomysł funkcji przekazywanych jako argumenty. Ta funkcjonalność jest czasem nazywana "bloki" lub "lambdy". Jest bardzo częstym elementem języka Ruby; stało się ostatnio ważną częścią C#. Chodzą słuchy, że ta funkcjonalność zostanie dodana w Javie niedługo.<a id="1a" href="#1">[1]</a>
+</div>
+
+<div class="paragraphDiv">
+
+</div>
+
+<!---------- -->
+
+
+<div class="paragraphDiv">
+
+</div>
+
+
+
+
+
+<div class="paragraphDiv">
+    <div id="1"><a href="#1a">[1]</a> - Została dodana dopiero 18 marca 2014 roku wraz z 8. wersją Javy. [przyp. tłum.]</div>
+</div>
+
+
+
 
 <div class="smallGreyText">
     <hr/>
