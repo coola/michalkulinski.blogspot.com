@@ -180,7 +180,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 
 <div class="paragraphDiv">
     Przesyłanie funkcji jako argument to nie jest coś, co programiści Javy robią często. Z drugiej strony nie jest to zupełnie obcy pomysł. Każdy programista Javy, który uczył się
-    <a href="https://pl.wikipedia.org/wiki/Polecenie_(wzorzec_projektowy)">Wzorca Polecenie</a>, lub uzywał Listenerów w
+    <a href="https://pl.wikipedia.org/wiki/Polecenie_(wzorzec_projektowy)">Wzorca Polecenie</a>, lub używał Listenerów w
     <a href="https://en.wikipedia.org/wiki/Swing_(Java)">
         Swingu</a>, zrozumie, co tu się dzieje.
 </div>
@@ -190,7 +190,60 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
+    Więc może nie będziemy musieli uczyć się nowego języka. Może nasze stare języki będą stawały się coraz bardziej i bardziej funkcyjne i będziemy mogli używać tych funkcyjnych funkcjonalności, jak tylko staną się on coraz bardziej dostępne.
+</div>
 
+<div class="paragraphDiv">
+    Ta droga prowadzi do szaleństwa, płaczu i zgrzytania zębami! Język z funkcjonalnościami funkcyjnymi nie jest językiem funkcyjnym; i program napisany z kilkoma lambdami tu i tam, nie jest funkcyjnym programem.
+</div>
+
+<div class="paragraphDiv">
+    Żeby przekonać się dlaczego to prawda, musimy spojrzeć na funkcję <span class="code">integers</span>.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>integers []
+      (integers-starting-at 1))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    OK, to nie jest za trudne. Funkcja <span class="code">integers-starting-at</span> po prostu przyjmuje liczbę całkowitą jako argument i zwraca listę wszystkich liczb całkowitych zaczynając od tego, co jest w argumencie.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>integers-starting-at [n]
+      (cons n (lazy-seq (integers-starting-at (inc n)))))
+</pre></div>
+
+</div>
+
+
+<div class="paragraphDiv">
+    To wymaga słówka wyjaśnienia. Ale nie bój się, to jest właściwie całkiem proste.
+</div>
+
+<div class="paragraphDiv">
+    Na początku jest funkcja <span class="code">cons</span>; która jest skrótem dla "zbuduj listę" (construct list). Funkcja <span class="code">cons</span> przyjmuje dwa argumenty, element, i listę. Zwraca nową listę jako starą listę z dołożonym z przodu elementem. Czyli <span class="code">(cons 2 [3 4])</span> zwraca
+    <span class="code">[2 3 4]</span>.
+</div>
+
+
+<div class="paragraphDiv">
+    Teraz z kolei wszyscy ludzie od Clojure są wkurzeni na mnie, bo to nie jest tak do końca. Z drugiej strony różnica jest czymś, czym nie musimy się teraz przejmować. Na tą chwilę zapamiętaj tylko to: <span class="code">cons</span> tworzy listę poprzez dołożenie jego pierwszego elementu do drugiego; który to drugi musi być listą.
+</div>
+
+<div class="paragraphDiv">
+    Teraz możesz sobie pomyśleć, że <span class="code">cons</span> po prostu przyczepia ten element z przodu listy; ale to nie jest tak. W rzeczywistości, to nie jest nawet bliskie prawdy. Widzisz, <span class="code">cons</span> w żaden sposób nie zmienia listy z drugiego argumentu. Zamiast tego zwraca całkiem nową listę złożoną z zawartości listy z drugiego argumentu i elementu dodanego na początku.
+</div>
+
+<div class="paragraphDiv">
+    O kurcza, teraz to już ludzie od Clojure są na mnie naprawdę źli; ponieważ to znowu nie do końca prawda. I pewnie masz mnie za wariata, bo co za głupek kopiowałby całą zawartość jednej listy do drugiej listy tylko po to żeby wrzucić jeden element na początek?
+</div>
+
+<div class="paragraphDiv">
+    OK, więc, tak <span class="code">cons</span>
 </div>
 
 <!---------- -->
@@ -201,7 +254,16 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 <div class="paragraphDiv">
