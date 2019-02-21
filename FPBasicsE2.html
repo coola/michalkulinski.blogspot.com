@@ -50,9 +50,9 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
      -->
-
+    <!--
     <script>setTimeout(function(){ location.reload(); }, 3000);</script>
-
+    -->
 </head>
 <body>
 
@@ -243,7 +243,18 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    OK, więc, tak <span class="code">cons</span>
+    OK, więc, tak <span class="code">cons</span> w zasadzie <em>rzeczywiście</em> wkłada element na początek listy, i nie, nie kopiuje starej listy do nowej listy. Zdrugiej strony, robi to w taki sposób, że możesz udawać, że listy wejściowa i wyjściowa są zupełnie inne. Praktycznie rzecz biorąc wyjście <span class="code">cons</span> jest całkowicie nową listą - nawet, jeśli tak nie jest.
+</div>
+
+
+<div class="paragraphDiv">
+    Zbity z tropu? Nie martw się, w rzeczywistości to nie jest takie trudne do zrozumienia. Rozważ listę <span class="code">[1 2 3]</span>. Jeżeli zaimplementujemy ją jako
+    <a href="https://pl.wikipedia.org/wiki/Lista">listę jednokierunkową</a>, będzie wyglądała tak: <span class="code">1->2->3</span>. Teraz odpalmy <span class="code">cons</span> z 0 na początku. To daje nam
+    <span class="code">0->1->2->3</span>. Zauważ jednak, że stara lista nadal istnieje w nowej liście. To jest tajemnica! Stara lista pozostaje niezmienionaw nowej liście. Więc możemy stworzyć pozory, że <span class="code">cons</span> zwróci całkiem nową listę, pozostawiając stara listę niezmienioną.
+</div>
+
+<div class="paragraphDiv">
+    To jest wskazówka do tego, co te wszystkie języki funkcyjne robią. 
 </div>
 
 <!---------- -->
