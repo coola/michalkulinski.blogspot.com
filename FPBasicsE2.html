@@ -199,7 +199,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 
 <div class="paragraphDiv">
     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>integers []
-      (integers-starting-at 1))
+  (integers-starting-at 1))
 </pre></div>
 
 </div>
@@ -210,7 +210,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 
 <div class="paragraphDiv">
     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>integers-starting-at [n]
-      (cons n (lazy-seq (integers-starting-at (inc n)))))
+  (cons n (lazy-seq (integers-starting-at (inc n)))))
 </pre></div>
 
 </div>
@@ -261,7 +261,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 
 <div class="paragraphDiv">
     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>integers-starting-at [n]
-      (cons n (lazy-seq (integers-starting-at (inc n)))))
+  (cons n (lazy-seq (integers-starting-at (inc n)))))
 </pre></div>
 
 </div>
@@ -284,16 +284,86 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    A więc czym jest leniwa sekwencja? Leniowa sekwencja jest listą, której elementy są obliczane tylko wtedy, kiedy są potrzebne, i nie wcześniej.
+    A więc czym jest leniwa sekwencja? Leniwa sekwencja jest listą, której elementy są obliczane tylko wtedy, kiedy są potrzebne, i nie wcześniej. Za każdym razem, kiedy prosisz leniwą sekwencję o następny element w liście, ona po prostu wywołuje funkcję, która jest powiązana z aktualnym elementem.
 </div>
 
-<!---------- -->
+<div class="paragraphDiv">
+    Funkcja <span class="code">map</span> też zwraca leniwą sekwencję. Tu jest przykład implementacji:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>map [f l]
+  (<span style="font-weight: bold">if </span>(empty? l)
+    []
+    (cons (f (first l)) (lazy-seq (map f (rest l))))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Funkcja <span class="code">first</span> po prostu zwraca pierwszy element listy będącej jej argumentem. Funkcja <span class="code">rest</span> po prostu zwraca listę z argumentu minus jej pierwszy element; czyli resztę listy. Więc <span class="code">map</span> jest po prostu rekurencyjną funkcją, która odpala funkcję <span class="code">f</span> na każdym elemencie listy <span class="code">l</span>, tworząc nową leniwą sekwencję wyników.
+</div>
+
+<div class="paragraphDiv">
+    Została nam jeszcze jedna rzecz, zanim złożymy wszystko razem: funkcja <span class="code">take</span>. Po tym wszystkim, co do tej pory razem prześliśmy, ta będzie naprawdę bardzo prosta.
+</div>
 
 
 <div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>take [n l]
+  (<span style="font-weight: bold">if </span>(zero? n)
+    []
+    (cons (first l) (take (dec n) (rest l)))))
+</pre></div>
 
 </div>
 
+<div class="paragraphDiv">
+    Jak widzisz, funkcja <span class="code">take</span> zwraca listę złożoną z pierwszych <span class="code">n</span> elementów listy <span class="code">l</span>.
+</div>
+
+<div class="paragraphDiv">
+    A teraz, poćwiczmy trochę Przejrzystość Referencyjną, i rozkodujmy (ręcznie) wartość wywołania:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(squint 2)
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Najpierw podmieńmy <span class="code">squint</span> jej definicją.
+</div>
+
+<div class="paragraphDiv">
+    Potem podmieńmy <span class="code">take</span> jej definicją. To jest trochę zawiłe, bo musimy użyć rekurencji.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">if </span>(zero? 2)
+  []
+  (cons (first (squares-of (integers)))
+    (<span style="font-weight: bold">if </span>(zero? (dec 2))
+      []
+      (cons (first (rest (squares-of (integers))))
+        (<span style="font-weight: bold">if </span>(zero? (dec (dec 2)))
+          []
+          ...)))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Zatrzymałem się na trzecim wyrażeniu <span class="code">if</span>, ponieważ <span class="code">(dec (dec 2))</span> wynosi zero. W rzeczywistości, znamy wartość logiczną tych <span class="code">if</span>-ów, więc możemy usunąć je wszystkie:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons (first (squares-of (integers)))
+  (cons (first (rest (squares-of (integers))))
+    []))
+</pre></div>
+</div>
 
 <br/>
 <br/>
