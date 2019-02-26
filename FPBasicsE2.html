@@ -44,15 +44,11 @@
     </script>
 
 
-
-    <!--
     <script type="text/javascript"
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
-     -->
-    <!--
-    <script>setTimeout(function(){ location.reload(); }, 3000);</script>
-    -->
+
+
 </head>
 <body>
 
@@ -254,8 +250,32 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    To jest wskazówka do tego, co te wszystkie języki funkcyjne robią. 
+    To wskazuje na to, co wszystkie prawdziwe języki funkcyjne robią. One pozwalają Ci tworzyć coś, co wydaje Ci się być całkowicie nowymi strukturami danych, podczas gdy one zachowują stare struktury danych nietknięte; i robią to bez kopiowania. W kręgach funkcyjnych to jest znane jako trwałość; i struktury danych, które zachowują się w ten sposób są znane jako
+    <a href="https://pl.wikipedia.org/wiki/Trwa%C5%82a_struktura_danych">trwałe struktury danych</a>. Takie struktury danych zarządzają cały czas swoją historią. Nic nigdy nie zostaje wyedytowane lub skasowane w ich wnętrzu. Jednak mają one wiele różnych "punktów-wejścia", każdy z nich zapewnia inny widok na dane. Pomyśl o tym jak o systemie zarządzania kodem źródłowym. Chociaż kasujesz i edytujesz linie kodu; nic nigdy nie kasuje się ani nie edytuje w repozytorium kodu źródłowego. Cała historia jest zachowana. Po prostu masz rózne punkty wejścia do kodu źródłowego, które pozwalają Ci widzieć różne migawki z przeszłości.
 </div>
+
+
+<div class="paragraphDiv">
+    A więc wróćmy do naszego programu. Spójrzmy na <span class="code">integers-starting-at</span>
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>integers-starting-at [n]
+      (cons n (lazy-seq (integers-starting-at (inc n)))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Co funkcja <span class="code">cons</span> dodaje z przodu i do przodu czego to jest dodawane? Podczas pierwszego przejścia
+    <span class="code">n</span> będzie <span class="code">1</span>, więc <span class="code">cons</span> zwróci listę, która rozpoczyna się od <span class="code">1</span>. To ma ogromny sens, ponieważ naszym celem jest wyświetlenie kwadratu z <span class="code">1</span>.
+</div>
+
+<div class="paragraphDiv">
+    OK, ale co jest to coś, do którego <span class="code">cons</span> dokłada <span class="code">1</span>? To jasne, że <span class="code">1</span> jest dodawana na początku listy zwracanej przez funkcję <span class="code">lazy-seq</span>.
+</div>
+
+<div class="paragraphDiv"></div>
 
 <!---------- -->
 
