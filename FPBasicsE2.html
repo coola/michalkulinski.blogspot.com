@@ -275,7 +275,17 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
     OK, ale co jest to coś, do którego <span class="code">cons</span> dokłada <span class="code">1</span>? To jasne, że <span class="code">1</span> jest dodawana na początku listy zwracanej przez funkcję <span class="code">lazy-seq</span>.
 </div>
 
-<div class="paragraphDiv"></div>
+<div class="paragraphDiv">
+    Tutaj zaczyna się magia. Widzisz, <span class="code">lazy-seq</span> jest funkcją, która zwraca tzw. leniwą sekwencję. Leniwa sekwencja to zwykła lista - ale z niespodzianką. Zamiast listy jednokierunkowej z wartościami takimi, jak <span class="code">1->2->3</span>, leniwa sekwencja jest wartością połączoną z funkcją: <span class="code">1->f</span>. Ta funkcja, kiedy jest wywołana, zwraca następną wartość połączoną z inną funkcją: <span class="code">2->f</span>. I z jaką funkcją te wartości są połączone? Popatrz dobrze! To argument funkcji <span class="code">lazy-seq</span>.
+</div>
+
+<div class="paragraphDiv">
+    Tym argumentem funkcji <span class="code">lazy-seq</span> jest rekurencyjne wywołanie funkcji <span class="code">integers-starting-at</span> z argumentem wartości funkcji <span class="code">(inc n)</span>. Funkcja <span class="code">inc</span> po prostu zwraca jej argument powiększony o <span class="code">1</span>.
+</div>
+
+<div class="paragraphDiv">
+    A więc czym jest leniwa sekwencja? Leniowa sekwencja jest listą, której elementy są obliczane tylko wtedy, kiedy są potrzebne, i nie wcześniej.
+</div>
 
 <!---------- -->
 
