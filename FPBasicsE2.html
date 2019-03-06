@@ -288,6 +288,10 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
+    Stąd, leniwa sekwencja nie ma rozmiaru. Możesz wciąż i wciąż pytać o więcej elementów w nieskończoność; i wciąż te elementy nie zostaną obliczone dopóki to nie będzie potrzebne.
+</div>
+
+<div class="paragraphDiv">
     Funkcja <span class="code">map</span> też zwraca leniwą sekwencję. Tu jest przykład implementacji:
 </div>
 
@@ -363,6 +367,71 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
   (cons (first (rest (squares-of (integers))))
     []))
 </pre></div>
+</div>
+
+<div class="paragraphDiv">
+    To jasne, że mając tylko dwa wywołania funkcji <span class="code">cons</span>, to zwróci listę z dwoma elementami w środku. Możemy trochę posprzątać zamieniając <span class="code">integers</span> z ich definicjami.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons (first (squares-of (integers-starting-at 1)))
+ (cons (first (rest (squares-of (integers-starting-at 1))))
+   []))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Ponieważ wywołanie <span class="code">(squares-of (integers-starting-at 1))</span> występuje dwa razy, obliczmy je raz i zamieńmy wywołania z ich wartościami. Zaczniemy zamianę od <span class="code">squares-of</span>:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(map square (integers-starting-at 1)
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    A potem <span class="code">integers-starting-at</span>:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(map square (cons 1 (lazy-seq (integers-starting-at 2)))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Teraz zamieńmy <span class="code">map</span>. Ponieważ <span class="code">map</span> zaczyna się z <span class="code">(if (empty? l) ...)</span>, i ponieważ <span class="code">(cons 1...)</span> gwarantuje, że lista nie będzie pusta, możemy pominąć wyrażenie <span class="code">if</span> i użyć tylko ciała funkcji.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons (square (first (cons 1 (lazy-seq...))))
+  (map square (rest (lazy-seq (integers-starting-at 2)))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Ten wywołanie do <span class="code">first</span> może być łatwo zredukowane:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons (square 1)
+  (map square (rest (lazy-seq (integers-starting-at 2)))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    A teraz odrobinę więcej magii. Wywołanie funkcji <span class="code">rest</span> zwraca "resztę" listy poprzez wywołanie funkcji przesłanej do <span class="code">lazy-seq</span>
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons (square 1)
+  (map square (integers-starting-at 2)))
+</pre></div>
+
 </div>
 
 <br/>
