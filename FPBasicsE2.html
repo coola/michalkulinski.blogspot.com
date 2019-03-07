@@ -434,6 +434,113 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 
 </div>
 
+<div class="paragraphDiv">
+    Możemy powtórzyć tę analizę dla <span class="code">(map square (integers-starting-at 2))</span>:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons (square 1)
+  (cons (square 2)
+    (map square (integers-starting-at 3)))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    I teraz możemy zredukować funkcję <span class="code">squares</span>
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons 1
+  (cons 4
+    (map square (integers-starting-at 3)))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Zostawiliśmy naszą poprzednią analizę dla całej funkcji w następującym stanie:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons (first (squares-of (integers-starting-at 1)))
+  (cons (first (rest (squares-of (integers-starting-at 1))))
+    []))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Teraz możemy wstrzyknąć naszą wartość dla <span class="code">(squares-of (integers-starting-at 1))</span>.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons
+  (first (cons 1
+            (cons 4
+            (map square (integers-starting-at 3))))
+  (cons
+    (first (rest (cons 1
+                    (cons 4
+                    (map square (integers-starting-at 3)))))
+    []))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Pierwsze <span class="code">first</span> jest łatwo zredukować. <span class="code">(first (cons x 1))</span> to po prostu <span class="code">x</span>; więc możemy zignorować drugi argument funkcji <span class="code">cons</span>.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons
+  1
+  (cons
+    (first (rest (cons 1
+                       (cons 4
+                       (map square (integers-starting-at 3)))))
+    []))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Te <span class="code">(first (rest...))</span> jest także łatwo obliczyć.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(cons
+  1
+  (cons 4 []))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    I wynik tego, to oczywiście <span class="code">[1 4]</span>.
+</div>
+
+<div class="paragraphDiv">
+    Zauważyłeś, co stało się z tym <span class="code">(integers-starting-at 3)</span>? Nigdy nie zostało obliczone. Dlaczego? Ponieważ oryginalna <span class="code">(take 2...)</span> potrzebowała tylko 2 wartości, więc trzecia nigdy nie była potrzebna.
+</div>
+
+<div class="paragraphDiv">
+    I to prowadzi do ważnego odkrycia. Większość z nas pisze programy, które przepychają dane przez całość programu. Ale <span class="code">(take 25 (squares-of (integers)))</span> jest pętlą, która <em>ciągnie</em> dane z całości programu. To jest gruntowna różnica, i coś, nad czym póżniej zamierzamy spędzić dużo więcej czasu.
+</div>
+
+<div class="paragraphDiv">
+    Do tego momentu wszyscy ludzie od Clojure, wszyscy ludzie od programowania funkcyjnego, i wszyscy ludzie od matematki są już na mnie porządnie wściekli; ponieważ tak bardzo uprościłem. I to jest prawda; jest ogrom rzeczy, po których tylko się prześlizgąłem i na które machnąłem ręką. Nadal, to co powiedziałem Ci jest istotnie poprawne. Jest to także całkiem niezła prezentacja potęgi traktowania funkcji jak danych, które mogą być przesyłane i zwracane z funkcji.
+</div>
+
+<div class="paragraphDiv">
+    I to prowadzi nas do sedna tego epizodu. Teraz już możemy odpowiedzieć na pytanie postawione pod tytułem. Nazywamy ten styl programowania funkcyjnym, ponieważ to wszystko jest o traktowaniu funkcji jak cząstek danych, którymi manipuluje się w taki sam sposób jak znakami czy liczbami. Ludzie od programowania funkcyjnego odnoszą się do nich jako do <em><a
+        href="https://pl.wikipedia.org/wiki/Typ_pierwszoklasowy"></a>typów pierwszoklasowych</em>. Język funkcyjny jest językiem, który używa funckji jako typów pierwszoklasowych, promuje przejrzystość referencyjną poprzez usuwanie przypisań, i zachowuje historię danych poprzez trwałe struktury danych.
+</div>
+
+<div class="paragraphDiv">
+    Jak nauczymy się w następnych odcinkach, ta definicja nie jest ani pełna, ani w pełni właściwa; ale na tę chwilę... wystarczy.
+</div>
+
 <br/>
 <br/>
 <br/>
