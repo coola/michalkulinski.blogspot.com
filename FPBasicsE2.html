@@ -59,7 +59,7 @@
 </div>
 
 <div class="paragraphDiv">
-    W <a href="https://michalkulinski.blogspot.com/2019/02/podstawy-programowania-funkcyjnego-epizod-1.html">poprzednim odcinku</a> opowiedziałem Ci, o co chodzi z tym całym zgiełkiem wokół programowania funkcyjnego. Pamiętasz: Przejrzystość Referencyjną i pociąg towarowy z wieloma rdzeniami? Skoro jest tu, i czytasz odcinek 2., zakładam, że moje argumenty przekonały Cię i chcesz dowiedzieć się czegoś więcej.
+    W <a href="https://michalkulinski.blogspot.com/2019/02/podstawy-programowania-funkcyjnego-epizod-1.html">poprzednim odcinku</a> opowiedziałem Ci, o co chodzi z tym całym zgiełkiem wokół programowania funkcyjnego. Pamiętasz? Przejrzystość Referencyjna i pociąg towarowy z wieloma rdzeniami? Skoro jesteś tu, i czytasz odcinek 2., zakładam, że moje argumenty przekonały Cię i chcesz dowiedzieć się czegoś więcej.
 </div>
 
 
@@ -93,16 +93,16 @@
 
 <div class="paragraphDiv">
     Wkurzę pewnie w tej chwili wszystkich matematycznych perfekcjonistów; ponieważ zamierzam użyć analogii z <a
-        href="https://pl.wikipedia.org/wiki/Rachunek_r%C3%B3%C5%BCniczkowy_i_ca%C5%82kowy">rachunkiem różniczkowym</a>. Nie będę się tym przejmował za bardzo, bo po prostu ukradłem ten pomysł z Wikipedii.
+        href="https://pl.wikipedia.org/wiki/Rachunek_r%C3%B3%C5%BCniczkowy_i_ca%C5%82kowy">rachunkiem różniczkowym</a>. Nie będę się tym przejmował za bardzo, ponieważ po prostu ukradłem ten pomysł z Wikipedii.
 </div>
 
 <div class="paragraphDiv">
-    Czy wiesz, co znaczy $\frac{dy}{dx}$? W szczególności, w wyrażeniu $\frac{dy}{dx}$ czym jest $y$? Oczywiście $y$ jest funkcją. $\frac{dy}{dx}$ jest
+    Czy wiesz, co znaczy $\frac{dy}{dx}$? W szczególności, w wyrażeniu $\frac{dy}{dx}$ czym jest $y$? Oczywiście $y$ jest funkcją. Wyrażenie $\frac{dy}{dx}$ jest
     <a href="https://pl.wikipedia.org/wiki/Pochodna_funkcji">pochodną</a> tej funkcji. Czyli $\frac{dy}{dx}$ przyjmuje funkcję jako swój argument wejściowy i zwraca pochodną tej funkcji jako wynik. Mam rację?
 </div>
 
 <div class="paragraphDiv">
-    Rozważ $\frac{d(x^2)}{dx}$: równa się $2x$. Zauważ, że $2x$ jest funkcją. Więc argument wejściowy i wyjściowa wartość są funkcjami.
+    Rozważ $\frac{d(x^2)}{dx}$: to równa się $2x$. Zauważ, że $2x$ jest funkcją. Więc argument wejściowy i wyjściowa wartość są obie funkcjami.
 </div>
 
 <div class="paragraphDiv">
@@ -110,15 +110,15 @@
 </div>
 
 <div class="paragraphDiv">
-    Co by było, gdybyśmy mieli taki język programowania komputerów? Co by było, gdybyśmy mogli pisać funkcje, które przyjmują funkcje jako argumenty, operować na nich, bez rozwiązywania ich, i potem zwracać nowe funkcje jak wynik? Jak byś taki język mógł nazwać? Jakie inne słowo mogłoby być lepsze niż: funkcyjny?
+    Co by było, gdybyśmy mieli taki język programowania komputerów? Co by było, gdybyśmy mogli pisać funkcje, które przyjmują funkcje jako argumenty, operować na nich, bez rozwiązywania ich, i potem zwracać nowe funkcje jak wynik? Jak byś nazwał taki język? Jakie inne słowo mogłoby być lepsze niż: funkcyjny?
 </div>
 
 <div class="paragraphDiv">
-    I już widzę tych purystów języków funkcjonalnych wściekłych na mnie, za to, że to kompletnie nieodpowiedni sposób definicji języka funkcyjnego. Ale to jest jeden krok do przodu &ndash; i to bardzo ważny krok.
+    I już widzę tych wściekłych na mnie purystów języków funkcjonalnych, wściekłych za to, że to kompletnie nieodpowiedni sposób definicji języka funkcyjnego. Ale to jest jeden krok do przodu &ndash; i to bardzo ważny krok.
 </div>
 
 <div class="paragraphDiv">
-    A więc, co to znaczy przesłać funkcję jako argument do innej funkcji? Spójrzmy jeszcze raz na program kwadraty liczb całkowitych. Pamiętasz, to było po prostu:
+    A więc, co to znaczy przesłać funkcję jako argument do innej funkcji? Spójrzmy jeszcze raz na program "kwadraty liczb całkowitych". Pamiętasz? To było po prostu:
 </div>
 
 <div class="paragraphDiv">
@@ -171,7 +171,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    Funkcja <span class="code">map</span> jest jedną z podstaw programowania funkcyjnego. Pobiera dwa argumenty: funkcję $f$ i listę $l$; i zwraca nową listę, wywołując funkcję $f$ na każdym elemencie listy $l$.
+    Funkcja <span class="code">map</span> jest jedną z podstaw programowania funkcyjnego. Pobiera dwa argumenty: funkcję <span class="code">f</span> i listę <span class="code">l</span>; i zwraca nową listę, wywołując funkcję <span class="code">f</span> na każdym elemencie listy <span class="code">l</span>.
 </div>
 
 <div class="paragraphDiv">
@@ -182,7 +182,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    Co więcej, obecnie coraz więcej języków programowania zaczęło wykorzystywać pomysł funkcji przekazywanych jako argumenty. Ta funkcjonalność jest czasem nazywana "bloki" lub "lambdy". Jest bardzo częstym elementem języka Ruby; stało się ostatnio ważną częścią C#. Chodzą słuchy, że ta funkcjonalność zostanie dodana w Javie niedługo.<a id="1a" href="#1">[1]</a>
+    Co więcej, obecnie coraz więcej języków programowania zaczęło wykorzystywać pomysł funkcji przekazywanych jako argumenty. Ta funkcjonalność jest czasem nazywana "bloki" lub "lambdy". Jest bardzo częstym elementem języka Ruby; stała się ostatnio ważną częścią C#. Chodzą słuchy, że ta funkcjonalność zostanie dodana w Javie niedługo.<a id="1a" href="#1">[1]</a>
 </div>
 
 <div class="paragraphDiv">
@@ -190,7 +190,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    Ta droga prowadzi do szaleństwa, płaczu i zgrzytania zębami! Język z funkcjonalnościami funkcyjnymi nie jest językiem funkcyjnym; i program napisany z kilkoma lambdami tu i tam, nie jest funkcyjnym programem.
+    Ta droga prowadzi do szaleństwa, płaczu i zgrzytania zębami! Język z elementami funkcyjnymi nie jest językiem funkcyjnym; i program napisany z kilkoma lambdami tu i tam, nie jest funkcyjnym programem.
 </div>
 
 <div class="paragraphDiv">
@@ -205,7 +205,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    OK, to nie jest za trudne. Funkcja <span class="code">integers-starting-at</span> po prostu przyjmuje liczbę całkowitą jako argument i zwraca listę wszystkich liczb całkowitych, zaczynając od tego, co jest w argumencie.
+    OK, to nic trudnego. Funkcja <span class="code">integers-starting-at</span> po prostu przyjmuje liczbę całkowitą jako argument i zwraca listę wszystkich liczb całkowitych, zaczynając od tego, co jest w argumencie.
 </div>
 
 <div class="paragraphDiv">
@@ -217,17 +217,17 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 
 
 <div class="paragraphDiv">
-    To wymaga słówka wyjaśnienia. Ale nie bój się, to jest właściwie całkiem proste.
+    Ten przykład wymaga słówka wyjaśnienia. Ale nie bój się, to jest właściwie całkiem proste.
 </div>
 
 <div class="paragraphDiv">
-    Na początku jest funkcja <span class="code">cons</span>; która jest skrótem dla "zbuduj listę" (construct list). Funkcja <span class="code">cons</span> przyjmuje dwa argumenty, element, i listę. Zwraca nową listę jako starą listę z dołożonym z przodu elementem. Czyli <span class="code">(cons 2 [3 4])</span> zwraca
+    Na początku jest funkcja <span class="code">cons</span>; która jest skrótem dla "zbuduj listę" (construct list). Funkcja <span class="code">cons</span> przyjmuje dwa argumenty: element, i listę. Zwraca nową listę jako starą listę z dołożonym z przodu elementem. Czyli <span class="code">(cons 2 [3 4])</span> zwraca
     <span class="code">[2 3 4]</span>.
 </div>
 
 
 <div class="paragraphDiv">
-    Teraz z kolei wszyscy ludzie od Clojure są wkurzeni na mnie, bo to nie jest tak do końca. Z drugiej strony różnica jest czymś, czym nie musimy się teraz przejmować. Na tę chwilę zapamiętaj tylko to: <span class="code">cons</span> tworzy listę poprzez dołożenie jego pierwszego elementu do drugiego; który to drugi musi być listą.
+    Teraz z kolei wszyscy ludzie od Clojure są wkurzeni na mnie, bo to nie jest do końca tak. Z drugiej strony różnica jest czymś, czym nie musimy się teraz przejmować. Na tę chwilę zapamiętaj tylko to: funkcja <span class="code">cons</span> tworzy listę poprzez dołożenie jej pierwszego argumentu do drugiego; który to drugi musi być listą.
 </div>
 
 <div class="paragraphDiv">
@@ -239,19 +239,19 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    OK, więc tak, <span class="code">cons</span> w zasadzie <em>rzeczywiście</em> wkłada element na początek listy, i nie, nie kopiuje starej listy do nowej listy. Z drugiej strony, robi to w taki sposób, że możesz udawać, że listy wejściowa i wyjściowa są zupełnie inne. Praktycznie rzecz biorąc, wyjście <span class="code">cons</span> jest całkowicie nową listą - nawet, jeśli tak nie jest.
+    OK, więc tak, <span class="code">cons</span> w zasadzie <em>rzeczywiście</em> wkłada element na początek listy, i nie, nie kopiuje starej listy do nowej listy. Z drugiej strony, robi to w taki sposób, że możesz <em>udawać</em>, że listy wejściowa i wyjściowa są zupełnie inne. Praktycznie rzecz biorąc, wyjście <span class="code">cons</span> jest całkowicie nową listą - nawet, jeśli tak nie jest.
 </div>
 
 
 <div class="paragraphDiv">
     Zbity z tropu? Nie martw się, w rzeczywistości to nie jest takie trudne do zrozumienia. Rozważ listę <span class="code">[1 2 3]</span>. Jeżeli zaimplementujemy ją jako
     <a href="https://pl.wikipedia.org/wiki/Lista">listę jednokierunkową</a>, będzie wyglądała tak: <span class="code">1->2->3</span>. Teraz odpalmy <span class="code">cons</span> z 0 na początku. To daje nam
-    <span class="code">0->1->2->3</span>. Zauważ jednak, że stara lista nadal istnieje w nowej liście. To jest tajemnica! Stara lista pozostaje niezmieniona w nowej liście. Więc możemy stworzyć pozory, że <span class="code">cons</span> zwróci całkiem nową listę, pozostawiając starą listę niezmienioną.
+    <span class="code">0->1->2->3</span>. Zauważ jednak, że stara lista nadal istnieje w nowej liście. To jest ta tajemnica! Stara lista pozostaje niezmieniona w nowej liście. Więc możemy stworzyć pozory, że <span class="code">cons</span> zwróci całkiem nową listę, pozostawiając starą listę niezmienioną.
 </div>
 
 <div class="paragraphDiv">
-    To wskazuje na to, co wszystkie prawdziwe języki funkcyjne robią. One pozwalają Ci tworzyć coś, co wydaje Ci się być całkowicie nowymi strukturami danych, podczas gdy one zachowują stare struktury danych nietknięte; i robią to bez kopiowania. W kręgach funkcyjnych to jest znane jako trwałość; i struktury danych, które zachowują się w ten sposób, są znane jako
-    <a href="https://pl.wikipedia.org/wiki/Trwa%C5%82a_struktura_danych">trwałe struktury danych</a>. Takie struktury danych zarządzają cały czas swoją historią. Nic nigdy nie zostaje wyedytowane lub skasowane w ich wnętrzu. Jednak mają one wiele różnych "punktów-wejścia", każdy z nich zapewnia inny widok na dane. Pomyśl o tym jak o systemie zarządzania kodem źródłowym. Chociaż kasujesz i edytujesz linie kodu; nic nigdy nie kasuje się ani nie edytuje w repozytorium kodu źródłowego. Cała historia jest zachowana. Po prostu masz różne punkty wejścia do kodu źródłowego, które pozwalają Ci widzieć różne migawki z przeszłości.
+    To jest wskazówka do wyjaśnienia tego, co wszystkie prawdziwe języki funkcyjne tak naprawdę robią. One pozwalają Ci tworzyć coś, co wydaje Ci się być całkowicie nowymi strukturami danych, podczas gdy zachowują stare struktury danych nietknięte; i robią to bez kopiowania. W kręgach funkcyjnych to jest znane jako trwałość; co więcej, struktury danych, które zachowują się w ten sposób, są znane jako
+    <a href="https://pl.wikipedia.org/wiki/Trwa%C5%82a_struktura_danych">trwałe struktury danych</a>. Takie struktury danych zarządzają cały czas swoją historią. Nic nigdy nie zostaje wyedytowane lub skasowane w ich wnętrzu. Jednak mają one wiele różnych "punktów-wejścia" i każdy z nich zapewnia inny widok na dane. Pomyśl o tym, jak o systemie zarządzania kodem źródłowym. Chociaż kasujesz i edytujesz linie kodu, nic nigdy nie kasuje się ani nie edytuje w repozytorium kodu źródłowego. Cała historia jest zachowana. Po prostu masz różne punkty wejścia do kodu źródłowego, które pozwalają Ci widzieć różne migawki z przeszłości.
 </div>
 
 
@@ -267,8 +267,8 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    Co funkcja <span class="code">cons</span> dodaje z przodu i do przodu czego to jest dodawane? Podczas pierwszego przejścia
-    <span class="code">n</span> będzie <span class="code">1</span>, więc <span class="code">cons</span> zwróci listę, która rozpoczyna się od <span class="code">1</span>. To ma ogromny sens, ponieważ naszym celem jest wyświetlenie kwadratu z <span class="code">1</span>.
+    Co jest tym, co funkcja <span class="code">cons</span> dodaje z przodu i z przodu czego to jest dodawane? Podczas pierwszego przejścia
+    <span class="code">n</span> będzie <span class="code">1</span>, więc <span class="code">cons</span> zwróci listę, która rozpoczyna się od <span class="code">1</span>. To ma oczywisty sens, ponieważ naszym celem jest wyświetlenie kwadratu z <span class="code">1</span>.
 </div>
 
 <div class="paragraphDiv">
@@ -370,7 +370,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    To jasne, że mając tylko dwa wywołania funkcji <span class="code">cons</span>, to zwróci listę z dwoma elementami w środku. Możemy trochę posprzątać, zamieniając <span class="code">integers</span> z ich definicjami.
+    To jasne, że mając tylko dwa wywołania funkcji <span class="code">cons</span>, ten fragment kodu zwróci listę z dwoma elementami w środku. Możemy trochę posprzątać, zamieniając wywołania funkcji <span class="code">integers</span> z ich definicjami.
 </div>
 
 <div class="paragraphDiv">
@@ -413,7 +413,7 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    Ten wywołanie do <span class="code">first</span> może być łatwo zredukowane:
+    Te wywołanie do <span class="code">first</span> może być łatwo zredukowane:
 </div>
 
 <div class="paragraphDiv">
@@ -525,16 +525,16 @@ Jak dotąd, to nic innego, jak tylko proste wywołania funkcji i definicje. Ale 
 </div>
 
 <div class="paragraphDiv">
-    I to prowadzi do ważnego odkrycia. Większość z nas pisze programy, które przepychają dane przez całość programu. Ale <span class="code">(take 25 (squares-of (integers)))</span> jest pętlą, która <em>ciągnie</em> dane z całości programu. To jest gruntowna różnica, i coś, nad czym później zamierzamy spędzić dużo więcej czasu.
+    I to prowadzi do ważnego odkrycia. Większość z nas pisze programy, które przepychają dane przez całość programu. Ale <span class="code">(take 25 (squares-of (integers)))</span> jest pętlą, która <em>ciągnie</em> dane poprzez całość programu. To jest gruntowna różnica, i coś, nad czym później zamierzamy spędzić dużo więcej czasu.
 </div>
 
 <div class="paragraphDiv">
-    Do tego momentu wszyscy ludzie od Clojure, wszyscy ludzie od programowania funkcyjnego, i wszyscy ludzie od matematyki są już na mnie porządnie wściekli; ponieważ tak bardzo uprościłem. I to jest prawda; jest ogrom rzeczy, po których tylko się prześlizgnąłem i na które machnąłem ręką. Nadal to, co powiedziałem Ci, jest istotnie poprawne. Jest to także całkiem niezła prezentacja potęgi traktowania funkcji jak danych, które mogą być przesyłane i zwracane z funkcji.
+    Do tego momentu wszyscy ludzie od Clojure, wszyscy ludzie od programowania funkcyjnego, i wszyscy ludzie od matematyki są już na mnie porządnie wściekli; ponieważ tak bardzo uprościłem. I to jest prawda; jest ogrom rzeczy, po których tylko się prześlizgnąłem i na które machnąłem ręką. I nadal to, co Ci tu przekazałem, jest w rzeczywistości poprawne. Jest to także całkiem niezła prezentacja potęgi traktowania funkcji jako danych, które mogą być przesyłane i zwracane z funkcji.
 </div>
 
 <div class="paragraphDiv">
     I to prowadzi nas do sedna tego epizodu. Teraz już możemy odpowiedzieć na pytanie postawione pod tytułem. Nazywamy ten styl programowania funkcyjnym, ponieważ to wszystko jest o traktowaniu funkcji jak cząstek danych, którymi manipuluje się w taki sam sposób jak znakami czy liczbami. Ludzie od programowania funkcyjnego odnoszą się do nich jako do <em><a
-        href="https://pl.wikipedia.org/wiki/Typ_pierwszoklasowy"></a>typów pierwszoklasowych</em>. Język funkcyjny jest językiem, który używa funkcji jako typów pierwszoklasowych, promuje przejrzystość referencyjną poprzez usuwanie przypisań, i zachowuje historię danych poprzez trwałe struktury danych.
+        href="https://pl.wikipedia.org/wiki/Typ_pierwszoklasowy">typów pierwszoklasowych</a></em>. Język funkcyjny jest językiem, który używa funkcji jako typów pierwszoklasowych, promuje przejrzystość referencyjną poprzez usuwanie przypisań, i zachowuje historię danych poprzez trwałe struktury danych.
 </div>
 
 <div class="paragraphDiv">
