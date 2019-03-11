@@ -70,7 +70,7 @@
 
 <div class="paragraphDiv">
     Najlepszym sposobem przekonania się o tym jest spróbowanie tego; więc spróbujmy napisac prosty funkcyjny program:
-    <span class="code">Word Wrap</span> (zawijanie tekstu). Wymagania są proste. Mając napis złożony ze słów, odzielonych pojedynczymi spacjami, i mając daną, pożądaną długość wiersza, wstaw znaki końca linii w odpowiednie miejsca w napisie, aby upewnić się, że żadna linia nie jest dłuższa niż zadana długość. Słowa mogą być ucięte w środku tylko, jezeli sa dłuższe niż zadana długość.
+    <span class="code">Word Wrap</span> (zawijanie tekstu). Wymagania są proste. Mając napis złożony ze słów, odzielonych pojedynczymi spacjami, i mając daną, pożądaną długość wiersza, wstaw znaki końca linii w odpowiednie miejsca w napisie, aby upewnić się, że żadna linia nie jest dłuższa niż zadana długość. Słowa mogą być ucięte w środku tylko, jeżeli sa dłuższe niż zadana długość.
 </div>
 
 <div class="paragraphDiv">
@@ -101,20 +101,106 @@
 </div>
 
 <div class="paragraphDiv">
-    To po prostu znaczy, że istnieje fakt, który wywołując <span class="code">(wrap "" 1)</span> zwróci <span class="code">""</span>. Możemy sprawić, żeby to przechodziło definiując funkcję <span class="code">wrap</span> i dając jej jak zwykle najprostszą implementację
+    To po prostu znaczy, że istnieje fakt, który wywołując <span class="code">(wrap "" 1)</span> zwróci <span class="code">""</span>. Możemy sprawić, żeby to przechodziło definiując funkcję <span class="code">wrap</span> i dając jej jak zwykle najprostszą implementację.
 </div>
 
 <div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="font-weight: bold">defn </span>wrap [s n]
+  &quot;&quot;)
+</pre></div>
 
 </div>
 
+<div class="paragraphDiv">
+    Następny test odciąga nas od najprostszej implementacji, ale nie za bardzo:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(wrap &quot;x&quot; 1) =&gt; &quot;x&quot;s
+
+(<span style="font-weight: bold">defn </span>wrap [s n]
+  s)
+</pre></div>
 
 
+</div>
 
+<div class="paragraphDiv">
+    Następny test zmusza nas do obsługi słów, które są za długie
+</div>
 
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(wrap &quot;xx&quot; 1) =&gt; &quot;x\nx&quot;
 
+(<span style="font-weight: bold">defn </span>wrap [s n]
+  (<span style="font-weight: bold">if </span>(&lt;= (length s) n)
+    s
+    (str (subs s 0 n) &quot;\n&quot; (subs s n))))
+</pre></div>
 
+</div>
 
+<div class="paragraphDiv">
+    Instrukcja <span class="code">if</span> jest  w Clojure taka, jak operator <span class="code">?:</span> w
+    <span class="code">C</span> czy w <span class="code">Javie</span>. Zwraca pierwsze wyrażenie, jeżeli wyrażenie logiczne jest prawdziwe; w przeciwnym wypadku zwraca drugie wyrażenie. Funkcja <span class="code">subs</span> prawie samoopisuje się, jest podobna do tej metody <span class="code">subString</span> z <span class="code">Javy</span>. Z kolei metoda <span class="code">str</span> po prostu łączy wszystkie swoje argumenty w jeden napis.
+</div>
+
+<div class="paragraphDiv">
+    Następny test zmusza nas do iteracyjnych powtórzeń, które zrobimy przez rekurencję:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(wrap &quot;xxx&quot; 1) =&gt; &quot;x\nx\nx&quot;
+
+(<span style="font-weight: bold">defn </span>wrap [s n]
+  (<span style="font-weight: bold">if </span>(&lt;= (count s) n)
+    s
+    (str (subs s 0 n) &quot;\n&quot; (wrap (subs s n) n))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Nastepny test sprawdza przypadek, gdy znak tuż po zawinięciu linii jest spacją. Nie chcemy mieć spacji na początku następnej linii, więc pomijamy tę spację.
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(wrap &quot;x x&quot; 1) =&gt; &quot;x\nx&quot;
+
+(<span style="font-weight: bold">defn </span>wrap [s n]
+  (<span style="font-weight: bold">if </span>(&lt;= (count s) n)
+    s
+    (<span style="font-weight: bold">let </span>[trailing-space (= <span style="font-style: italic">\s</span>pace (get s n))
+          new-line-start (<span style="font-weight: bold">if </span>trailing-space (inc n) n)
+          head (subs s 0 n)
+          tail (subs s new-line-start)]
+      (str head &quot;\n&quot; (wrap tail n)))))
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Polecenie <span class="code">let</span> w Clojure po prostu pozwalaa stworzyć lokalne symbole, które trzymają wartości będące użyte w ciele funkcji. To nie są zmienne, ponieważ ich wartość się nie zmienia.
+</div>
+
+<div class="paragraphDiv">
+    Funkcja <span class="code">get</span> zwraca znak na  <span class="code">n</span>-tej pozycji z napisu. Te wyrażenie <span class="code">\space</span> jest stałą w Clojure, oznaczającą właśnie spację.
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 
