@@ -90,7 +90,9 @@
 </div>
 
 <div class="paragraphDiv">
-    Użyjemy cudownego framworku do testowania autorstwa <a href="https://twitter.com/marick">Briana Maricka</a> o nazwie <span class="code"><a href="https://github.com/marick/Midje">Midje</a></span>, i zaczniemy, tworząc pierwszy test.
+    Użyjemy cudownego framworku do testowania autorstwa <a href="https://twitter.com/marick">Briana Maricka</a>
+    o nazwie <span class="code"><a href="https://github.com/marick/Midje">Midje</a></span>,
+    i zaczniemy, tworząc pierwszy test.
 </div>
 
 <div class="paragraphDiv">
@@ -116,7 +118,7 @@
 </div>
 
 <div class="paragraphDiv">
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(wrap &quot;x&quot; 1) =&gt; &quot;x&quot;s
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(wrap &quot;x&quot; 1) =&gt; &quot;x&quot;
 
 (<span style="font-weight: bold">defn </span>wrap [s n]
   s)
@@ -141,8 +143,15 @@
 </div>
 
 <div class="paragraphDiv">
-    Instrukcja <span class="code">if</span> jest  w Clojure taka, jak operator <span class="code">?:</span> w
-    <span class="code">C</span> czy w <span class="code">Javie</span>. Zwraca pierwsze wyrażenie, jeżeli wyrażenie logiczne jest prawdziwe; w przeciwnym wypadku zwraca drugie wyrażenie. Funkcja <span class="code">subs</span> prawie samoopisuje się, jest podobna do tej metody <span class="code">subString</span> z <span class="code">Javy</span>. Z kolei metoda <span class="code">str</span> po prostu łączy wszystkie swoje argumenty w jeden napis.
+    Instrukcja <span class="code">if</span> działa w Clojure tak, jak operator <span class="code">?:</span> w
+    <span class="code">C</span> czy w <span class="code">Javie</span>.
+    Zwraca pierwsze wyrażenie, jeżeli wyrażenie logiczne jest prawdziwe;
+    w przeciwnym wypadku zwraca drugie wyrażenie. Funkcja <span class="code"><a
+        href="https://clojuredocs.org/clojure.core/subs">subs</a></span>
+    prawie samoopisuje się, jest podobna do tej metody
+    <span class="code"><a href="https://docs.oracle.com/javase/9/docs/api/java/lang/String.html#substring-int-int-">
+        subString</a></span> z <span class="code">Javy</span>.
+    Z kolei metoda <span class="code">str</span> po prostu łączy wszystkie swoje argumenty w jeden napis.
 </div>
 
 <div class="paragraphDiv">
@@ -161,7 +170,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Nastepny test sprawdza przypadek, gdy znak tuż po zawinięciu linii jest spacją. Nie chcemy mieć spacji na początku następnej linii, więc pomijamy tę spację.
+    Nastepny test sprawdza przypadek, w którym znak tuż po zawinięciu linii jest spacją. Nie chcemy mieć spacji na początku następnej linii, więc pomijamy tę spację.
 </div>
 
 <div class="paragraphDiv">
