@@ -43,10 +43,9 @@
 </div>
 
 <div class="paragraphDiv">
-    Kiedy tylko zaczynamy używać nowego <a href="https://pl.wikipedia.org/wiki/Paradygmat_programowania">paradygmatu</a>, porównujemy z nim nasze dotychczasowe zasady i nawyki. Pytamy siebie czy te wszystkie zasady i nawyki są poprawne w kontekście tego nowego paradygmatu. Na przykład dajmy na to
-    <a href="https://pl.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a>. Czy nadal jest poprawne w Programowaniu Funkcyjnym? Jeżeli tak, to jak je w tam robić?
+    Kiedy tylko zaczynamy używać nowego <a href="https://pl.wikipedia.org/wiki/Paradygmat_programowania">paradygmatu</a>, porównujemy z nim nasze dotychczasowe zasady i nawyki. Pytamy siebie czy te wszystkie zasady i nawyki są poprawne w kontekście tego nowego paradygmatu. Rozważ, dla przykładu:
+    <a href="https://pl.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a>. Czy nadal jest poprawne w Programowaniu Funkcyjnym? Jeżeli tak, to jak się do tego zabierzesz?
 </div>
-
 
 <div class="smallGreyText">
     <hr/>
@@ -69,30 +68,36 @@
 <br/>
 
 <div class="paragraphDiv">
-    Najlepszym sposobem przekonania się o tym jest spróbowanie tego; więc spróbujmy napisac prosty funkcyjny program:
-    <span class="code">Word Wrap</span> (zawijanie tekstu). Wymagania są proste. Mając napis złożony ze słów, odzielonych pojedynczymi spacjami, i mając daną, pożądaną długość wiersza, wstaw znaki końca linii w odpowiednie miejsca w napisie, aby upewnić się, że żadna linia nie jest dłuższa niż zadana długość. Słowa mogą być ucięte w środku tylko, jeżeli sa dłuższe niż zadana długość.
+    Aby odpowiedzieć sobie na to pytanie spróbujmy napisać prosty funkcyjny program:
+    <span class="code">Word Wrap</span> (zawijanie tekstu). Wymagania są proste.
+    Mając napis złożony ze słów, oddzielonych pojedynczymi spacjami, i mając daną, pożądaną długość wiersza,
+    wstaw znaki końca linii w odpowiednie miejsca w napisie, aby upewnić się, że żadna linia nie jest dłuższa niż zadana długość.
+    Słowa mogą być ucięte tylko, jeżeli są dłuższe niż zadana długość.
 </div>
 
 <div class="paragraphDiv">
-    A więc mając tekst <a href="https://pl.wikipedia.org/wiki/Przemowa_gettysburska">Przemowy gettysburskiej</a> jako napis:
-</div>
-
-<div class="paragraphDiv code">
-    “Four score and seven years ago our fathers brought forth upon this continent a new nation conceived in liberty and dedicated to the proposition that all men are created equal”
+   Weźmy tekst <a href="https://pl.wikipedia.org/wiki/Przemowa_gettysburska">Przemowy gettysburskiej</a> jako przykład napisu:
 </div>
 
 <div class="paragraphDiv">
-    I gdy zwiniemy to, tak aby żadna linia nie była dłuższa niż 10 znaków, rezultat będzie taki:
-</div>
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">“Four score and seven years ago our fathers brought forth upon this continent a new nation conceived in liberty and dedicated to the proposition that all men are created equal”
+</pre></div>
 
-<div class="paragraphDiv code">
-    “Four score\nand seven\nyears ago\nour\nfathers\nbrought\nforth upon\nthis\ncontinent\na new\nnation\nconceived\nin liberty\nand\ndedicated\nto the\npropositio\nn that all\nmen are\ncreated\nequal”
 </div>
 
 <div class="paragraphDiv">
-    Użyjemy cudownego framworku do testowania autorstwa <a href="https://twitter.com/marick">Briana Maricka</a>
-    o nazwie <span class="code"><a href="https://github.com/marick/Midje">Midje</a></span>,
-    i zaczniemy, tworząc pierwszy test.
+    I gdy zawiniemy to tak, aby żadna linia nie była dłuższa niż 10 znaków, rezultat będzie taki:
+</div>
+
+<div class="paragraphDiv">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">“Four score\nand seven\nyears ago\nour\nfathers\nbrought\nforth upon\nthis\ncontinent\na new\nnation\nconceived\nin liberty\nand\ndedicated\nto the\npropositio\nn that all\nmen are\ncreated\nequal”
+</pre></div>
+
+</div>
+
+<div class="paragraphDiv">
+    Użyjmy świetnego frameworku do testowania o nazwie <a href="https://github.com/marick/Midje">Midje</a> autorstwa <a href="https://twitter.com/marick">Briana Maricka</a>,
+    i zacznijmy, tworząc pierwszy test.
 </div>
 
 <div class="paragraphDiv">
@@ -103,7 +108,7 @@
 </div>
 
 <div class="paragraphDiv">
-    To po prostu znaczy, że istnieje fakt, który wywołując <span class="code">(wrap "" 1)</span> zwróci <span class="code">""</span>. Możemy sprawić, żeby to przechodziło definiując funkcję <span class="code">wrap</span> i dając jej jak zwykle najprostszą implementację.
+    Co oznacza, że istnieje przypadek, który wywołując <span class="code">(wrap "" 1)</span> zwróci <span class="code">""</span>. Aby to przechodziło definiujemy funkcję <span class="code">wrap</span> i dajemy jej, jak zwykle, najprostszą implementację.
 </div>
 
 <div class="paragraphDiv">
@@ -114,7 +119,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Następny test odciąga nas od najprostszej implementacji, ale nie za bardzo:
+    Następny test prowadzi nas znowu w okolice najprostszej implementacji:
 </div>
 
 <div class="paragraphDiv">
@@ -128,7 +133,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Następny test zmusza nas do obsługi słów, które są za długie
+    Następny test zmusza nas aby rozbić słowa, które są za długie
 </div>
 
 <div class="paragraphDiv">
@@ -143,19 +148,19 @@
 </div>
 
 <div class="paragraphDiv">
-    Instrukcja <span class="code">if</span> działa w Clojure tak, jak operator <span class="code">?:</span> w
+    Instrukcja <span class="code">if</span> działa w Clojure tak, jak <a href="https://pl.wikipedia.org/wiki/Operator_warunkowy">operator warunkowy <span class="code">?:</span></a> w
     <span class="code">C</span> czy w <span class="code">Javie</span>.
     Zwraca pierwsze wyrażenie, jeżeli wyrażenie logiczne jest prawdziwe;
     w przeciwnym wypadku zwraca drugie wyrażenie. Funkcja <span class="code"><a
         href="https://clojuredocs.org/clojure.core/subs">subs</a></span>
-    prawie samoopisuje się, jest podobna do tej metody
+    prawie samoopisuje się i jest podobna do tej metody
     <span class="code"><a href="https://docs.oracle.com/javase/9/docs/api/java/lang/String.html#substring-int-int-">
-        subString</a></span> z <span class="code">Javy</span>.
-    Z kolei metoda <span class="code">str</span> po prostu łączy wszystkie swoje argumenty w jeden napis.
+        subString</a></span> z Javy.
+    Z kolei funkcja <a href="https://clojuredocs.org/clojure.core/str"><span class="code">str</span></a> po prostu łączy wszystkie swoje argumenty w jeden napis.
 </div>
 
 <div class="paragraphDiv">
-    Następny test zmusza nas do iteracyjnych powtórzeń, które zrobimy przez rekurencję:
+    Następny test zmusza nas do powtarzania tego samego. Użyjemy do tego rekurencji:
 </div>
 
 <div class="paragraphDiv">
@@ -170,7 +175,7 @@
 </div>
 
 <div class="paragraphDiv">
-    Nastepny test sprawdza przypadek, w którym znak tuż po zawinięciu linii jest spacją. Nie chcemy mieć spacji na początku następnej linii, więc pomijamy tę spację.
+    Następny test sprawdza przypadek, w którym znak tuż po zawinięciu linii jest spacją. Nie chcemy mieć spacji na początku następnej linii, więc pomijamy tę spację.
 </div>
 
 <div class="paragraphDiv">
