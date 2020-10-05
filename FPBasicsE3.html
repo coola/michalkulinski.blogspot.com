@@ -203,8 +203,50 @@
 </div>
 
 <div class="paragraphDiv">
-    Następny test wymusza, aby szukać w tył ostatniej spacji przed złamaniem linii.
+    Następny test zmusza nas do szukania w tył ostatniej spacji przed tym, jak będziemy musieli złamać linię. Jeżli nie została znaleziona spacja, to oznacza, że mamy do czynienia z wyrazem dłuższym niż <span class="code">n</span>. W przeciwnym wypadku dzielimy linię na tej spacji. To szukanie wstecz jest robione przy użyciu funkcji <span class="code">.lastIndexOf</span>, którą wołamy bezpośrednio z biblioteki stringów <span class="code">Javy</span>. To właśnie kropka <span class="code">.</span> wskazuje na bezpośrednie odwołanie do <span class="code">Javy</span>.
 </div>
+
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="color: #0066BB; font-weight: bold">wrap</span> <span style="background-color: #fff0f0">&quot;x x&quot;</span> <span style="color: #0000DD; font-weight: bold">2</span>) <span style="color: #996633">=&gt;</span> <span style="background-color: #fff0f0">&quot;x\nx&quot;</span>
+
+(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">wrap</span> [<span style="color: #996633">s</span> <span style="color: #996633">n</span>]
+  (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #007020">&lt;= </span>(<span style="color: #007020">count </span><span style="color: #996633">s</span>) <span style="color: #996633">n</span>)
+    <span style="color: #996633">s</span>
+    (<span style="color: #008800; font-weight: bold">let </span>[<span style="color: #996633">space-before-end</span> (<span style="color: #0066BB; font-weight: bold">.lastIndexOf</span> <span style="color: #996633">s</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #996633">n</span>)
+          <span style="color: #996633">this-line-end</span> (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #007020">neg? </span><span style="color: #996633">space-before-end</span>)
+                            <span style="color: #996633">n</span>
+                            <span style="color: #996633">space-before-end</span>)
+          <span style="color: #996633">trailing-space</span> (<span style="color: #007020">= </span><span style="color: #0044DD">\s</span><span style="color: #996633">pace</span> (<span style="color: #007020">get </span><span style="color: #996633">s</span> <span style="color: #996633">this-line-end</span>))
+          <span style="color: #996633">new-line-start</span> (<span style="color: #008800; font-weight: bold">if </span><span style="color: #996633">trailing-space</span>
+                             (<span style="color: #007020">inc </span><span style="color: #996633">this-line-end</span>)
+                             <span style="color: #996633">this-line-end</span>)
+          <span style="color: #996633">head</span> (<span style="color: #007020">subs </span><span style="color: #996633">s</span> <span style="color: #0000DD; font-weight: bold">0</span> <span style="color: #996633">this-line-end</span>)
+          <span style="color: #996633">tail</span> (<span style="color: #007020">subs </span><span style="color: #996633">s</span> <span style="color: #996633">new-line-start</span>)]
+      (<span style="color: #007020">str </span><span style="color: #996633">head</span> <span style="background-color: #fff0f0">&quot;\n&quot;</span> (<span style="color: #0066BB; font-weight: bold">wrap</span> <span style="color: #996633">tail</span> <span style="color: #996633">n</span>)))))
+</pre></div>
+</div>
+
+<div class="paragraphDiv">Zrobiło się to trochę nieładne, więc zrefaktorujmy to troszkę</div>
+
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">find-start-and-end</span> [<span style="color: #996633">s</span> <span style="color: #996633">n</span>]
+  (<span style="color: #008800; font-weight: bold">let </span>[<span style="color: #996633">space-before-end</span> (<span style="color: #0066BB; font-weight: bold">.lastIndexOf</span> <span style="color: #996633">s</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #996633">n</span>)
+        <span style="color: #996633">line-end</span> (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #007020">neg? </span><span style="color: #996633">space-before-end</span>) <span style="color: #996633">n</span> <span style="color: #996633">space-before-end</span>)
+        <span style="color: #996633">trailing-space</span> (<span style="color: #007020">= </span><span style="color: #0044DD">\s</span><span style="color: #996633">pace</span> (<span style="color: #007020">get </span><span style="color: #996633">s</span> <span style="color: #996633">line-end</span>))
+        <span style="color: #996633">line-start</span> (<span style="color: #008800; font-weight: bold">if </span><span style="color: #996633">trailing-space</span> (<span style="color: #007020">inc </span><span style="color: #996633">line-end</span>) <span style="color: #996633">line-end</span>)]
+    [<span style="color: #996633">line-start</span> <span style="color: #996633">line-end</span>]))
+
+(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">wrap</span> [<span style="color: #996633">s</span> <span style="color: #996633">n</span>]
+  (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #007020">&lt;= </span>(<span style="color: #007020">count </span><span style="color: #996633">s</span>) <span style="color: #996633">n</span>)
+    <span style="color: #996633">s</span>
+    (<span style="color: #008800; font-weight: bold">let </span>[[<span style="color: #996633">start</span> <span style="color: #996633">end</span>] (<span style="color: #0066BB; font-weight: bold">find-start-and-end</span> <span style="color: #996633">s</span> <span style="color: #996633">n</span>)
+          <span style="color: #996633">head</span> (<span style="color: #007020">subs </span><span style="color: #996633">s</span> <span style="color: #0000DD; font-weight: bold">0</span> <span style="color: #996633">end</span>)
+          <span style="color: #996633">tail</span> (<span style="color: #007020">subs </span><span style="color: #996633">s</span> <span style="color: #996633">start</span>)]
+      (<span style="color: #007020">str </span><span style="color: #996633">head</span> <span style="background-color: #fff0f0">&quot;\n&quot;</span> (<span style="color: #0066BB; font-weight: bold">wrap</span> <span style="color: #996633">tail</span> <span style="color: #996633">n</span>)))))
+</pre></div>
+</div>
+
+<div class="paragraphDiv">Możesz być nieprzekonany, że to to wszystkie przypadki testowe. Więc zachęcam Cię do poszukania nowych. Zachęcam Cię do przestudiowania tych sześciu prostych przypadków testowych powoli i dokładnie. Większość ludzi nie piszę ich w ten sposób. Dużo czasu mi zajęło, zanim przekonałem się o wartości dobrze poukładanych, ostrożnie przemyślanych, minimalnych do bólu przypadków testowych.</div>
+
+
 
 <br/>
 <br/>
