@@ -244,25 +244,76 @@
 </pre></div>
 </div>
 
-<div class="paragraphDiv">Możesz być nieprzekonany, że to to wszystkie przypadki testowe. Więc zachęcam Cię do poszukania nowych. Zachęcam Cię do przestudiowania tych sześciu prostych przypadków testowych powoli i dokładnie. Większość ludzi nie piszę ich w ten sposób. Dużo czasu mi zajęło, zanim przekonałem się o wartości dobrze poukładanych, ostrożnie przemyślanych, minimalnych do bólu przypadków testowych.</div>
+<div class="paragraphDiv">Możesz być nieprzekonany, że to to wszystkie przypadki testowe. Więc zachęcam Cię do poszukania nowych. Zachęcam Cię do przestudiowania tych sześciu prostych przypadków testowych powoli i dokładnie. Większość ludzi nie piszę ich w ten sposób. Dużo czasu mi zajęło, zanim representational
+przekonałem się o wartości dobrze poukładanych, ostrożnie przemyślanych, minimalnych do bólu przypadków testowych.</div>
 
+<div class="paragraphDiv">Pomimo tego, wydaje się, przynajmniej w tym przypadku, że zasady TDD nadają się do wykorzystania tak samo w programowaniu funkcyjnym, jak i innych typach programowania. Zatem, gdy zaczynasz z programowaniem funcyjnym nie wylewaj dziecka z kąpielą.<i> Trzymaj się swojej dyscypliny TDD!</i></div>
 
+<div class="paragraphDiv">Niektórzy mogliby zarzucić, ten algorytm nie jest funkcyjny; ale zapewniam Cię, że taki jest. Nie ma żadnych skutków ubocznych. Jest reprezentacyjnie przejrzysty. Używa
+    <a href="https://pl.wikipedia.org/wiki/Trwa%C5%82a_struktura_danych">trwałych struktur danych</a>. Jest funkcyjny.  </div>
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<div class="paragraphDiv">Brakuje mu rzeczywiście jednego przymiotu, który zwykle znajduje się w programach funkcyjnych. Nie jest złożony z zestawu przekształceń.</div>
 
+<div class="paragraphDiv">Rozważ jeszcze raz program do obliczania kwadratów liczb całkowitych.</div>
+<div class="paragraphDiv">
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="color: #007020">take </span><span style="color: #0000DD; font-weight: bold">25</span> (<span style="color: #0066BB; font-weight: bold">squares-of</span> (<span style="color: #0066BB; font-weight: bold">integers</span>))
+</pre></div></div>
+
+<div class="paragraphDiv">Czysta elegancja tego kawałka kodu wynika częściowo z faktu, że jest to właśnie seria przekształceń. Pierwsze przekształcenie to funkcja <span class="code">integers</span>. Przekształca
+    <a href="https://pl.wikipedia.org/wiki/Litera%C5%82_pusty">nic</a> w
+<a href="https://pl.wikipedia.org/wiki/Warto%C5%9Bciowanie_leniwe">leniwą</a> sekwencję liczb całkowitych zaczynających się od 1. Drugie przekształcenie to funkcja <span class="code">squares-of</span>. Przekształca dowolną listę liczb całkowitych w listę ich kwadratów. Ostatnie przekształcenie to funkcja <span class="code">take</span>, która przekształca nieskończoną leniwą sekwencję w sekwencję o dokładnie 25 elementach.</div>
+
+<div class="paragraphDiv">Czy możemy przepisać program do zawijania tekstu do programu, w którym występują tylko serie przekształceń. Jasne. Rozważ to:
+</div>
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">wrap</span> [<span style="color: #996633">s</span> <span style="color: #996633">n</span>]
+  (<span style="color: #007020">join </span><span style="background-color: #fff0f0">&quot;\n&quot;</span>
+        (<span style="color: #0066BB; font-weight: bold">make-lines-up-to</span> <span style="color: #996633">n</span>
+                          (<span style="color: #0066BB; font-weight: bold">break-long-words</span> <span style="color: #996633">n</span> (<span style="color: #0066BB; font-weight: bold">split</span> <span style="color: #996633">s</span> <span style="color: #333333">#</span><span style="background-color: #fff0f0">&quot; &quot;</span>)))))
+</pre></div></div>
+
+<div class="paragraphDiv">Bedziemy czytać ten kawałek kodu w sposób, w jaki czytaliśmy program kwadraty liczb całkowitych; od środka w górę. Najpierw musimny rozbić wejściowy napis w sekwencję słów. Potem rozbijamy wszystkie długie słowa dłuższe niż n na dwa lub więcej słów. Następnie dokładamy te słowa do linii które są nie dłuższe nić n. Na koniec łączymy wszystkie linie razem z <span class="code">"\n"</span>. Proste, prawda?</div>
+
+<div class="paragraphDiv">No cóż, wygląda na prosty, gdy jest napisany w ten sposób. A tutaj implementacja całego programu:</div>
+
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">break-long-words</span> [<span style="color: #996633">n</span> <span style="color: #996633">words</span>]
+  (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #0066BB; font-weight: bold">empty?</span> <span style="color: #996633">words</span>)
+    []
+    (<span style="color: #008800; font-weight: bold">let </span>[<span style="color: #996633">word</span> (<span style="color: #007020">first </span><span style="color: #996633">words</span>)]
+      (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #007020">&gt;= </span><span style="color: #996633">n</span> (<span style="color: #007020">count </span><span style="color: #996633">word</span>))
+        (<span style="color: #007020">cons </span><span style="color: #996633">word</span> (<span style="color: #0066BB; font-weight: bold">break-long-words</span> <span style="color: #996633">n</span> (<span style="color: #007020">rest </span><span style="color: #996633">words</span>)))
+        (<span style="color: #007020">cons </span>(<span style="color: #007020">subs </span><span style="color: #996633">word</span> <span style="color: #0000DD; font-weight: bold">0</span> <span style="color: #996633">n</span>)
+              (<span style="color: #0066BB; font-weight: bold">break-long-words</span>
+                 <span style="color: #996633">n</span>
+                 (<span style="color: #007020">cons </span>(<span style="color: #007020">subs </span><span style="color: #996633">word</span> <span style="color: #996633">n</span>) (<span style="color: #007020">rest </span><span style="color: #996633">words</span>))))))))
+
+(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">make-lines-up-to</span>
+  ([<span style="color: #996633">n</span> <span style="color: #996633">words</span>]
+    (<span style="color: #0066BB; font-weight: bold">make-lines-up-to</span> <span style="color: #996633">n</span> <span style="color: #996633">words</span> [] []))
+  ([<span style="color: #996633">n</span> <span style="color: #996633">words</span> <span style="color: #996633">line</span> <span style="color: #996633">lines</span>]
+    (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #0066BB; font-weight: bold">empty?</span> <span style="color: #996633">words</span>)
+      (<span style="color: #007020">conj </span><span style="color: #996633">lines</span> (<span style="color: #007020">join </span><span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #996633">line</span>))
+      (<span style="color: #008800; font-weight: bold">let </span>[<span style="color: #996633">new-line</span> (<span style="color: #007020">conj </span><span style="color: #996633">line</span> (<span style="color: #007020">first </span><span style="color: #996633">words</span>))]
+        (<span style="color: #008800; font-weight: bold">if </span>(<span style="color: #007020">&gt;= </span><span style="color: #996633">n</span> (<span style="color: #007020">count </span>(<span style="color: #007020">join </span><span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #996633">new-line</span>)))
+          (<span style="color: #0066BB; font-weight: bold">make-lines-up-to</span> <span style="color: #996633">n</span> (<span style="color: #007020">rest </span><span style="color: #996633">words</span>) <span style="color: #996633">new-line</span> <span style="color: #996633">lines</span>)
+          (<span style="color: #0066BB; font-weight: bold">make-lines-up-to</span> <span style="color: #996633">n</span>
+                            <span style="color: #996633">words</span>
+                            []
+                            (<span style="color: #007020">conj </span><span style="color: #996633">lines</span> (<span style="color: #007020">join </span><span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #996633">line</span>))))))))
+
+(<span style="color: #008800; font-weight: bold">defn </span><span style="color: #996633">wrap</span> [<span style="color: #996633">s</span> <span style="color: #996633">n</span>]
+  (<span style="color: #007020">join </span><span style="background-color: #fff0f0">&quot;\n&quot;</span> (<span style="color: #0066BB; font-weight: bold">make-lines-up-to</span>
+                <span style="color: #996633">n</span>
+                (<span style="color: #0066BB; font-weight: bold">break-long-words</span> <span style="color: #996633">n</span> (<span style="color: #0066BB; font-weight: bold">split</span> <span style="color: #996633">s</span> <span style="color: #333333">#</span><span
+style="background-color: #fff0f0">&quot; &quot;</span>)))))
+</pre></div>
+</div>
+
+<div class="paragraphDiv">Jest tam wiele osób, którzy chętnie powiedzą Ci, że nie jestem najlepszym na świecie programistą funkcyjnym. Zapewne mają rację. Z tego względu ten program może być żałośnie niewystarczający jako demonstracja. Nadal, bardzo trudno jest mi uwierzyć, że moje piersze podejście do rozwiązania problemu zawijania tekstu jest gorsze od kodu powyżej. To też nie oznacza, że sekwencje przekształceń są złe. Wręcz przeciwnie, uważam, że są mają w sobie ogromny potencjał i bedziemy rozważać je jeszcze później w szczegółach. Chodzi mi o to, że nie wszystkie programy funkcyjne muszą być sekwencjami przekształceń. Stara zasada "im prościej tym lepiej" nadal aktualna. No i dla algorytmu zawijania tekstu, przynajmniej tak, jak ja to widzę (przyznam niezbyt daleko) rozwiązanie przekształceniowe nie jest najlepsze.   </div>
+
+<div class="paragraphDiv">Tak przy okazji, <i>nie używałem</i> TDD do stworzenia tego rozwiązania przekształceniowego, które widzisz powyżej. Pewnie mógłbym, ale zamiast tego użyłem metody, którą preferuje wielu programistów funkcyjnych.Rozważałem to dłuższą chwilę, aż w końcu użyłem ręcznego testowania w konsoli (zwykle nazywa się to
+    <a href="https://pl.wikipedia.org/wiki/REPL">REPL</a>, Read Evaluate Print Loop czyli Pętla Wczytaj Wykonaj Wyświetl) aby poskładać wszystko w całość. Cały proces zajął mi przynajmniej trzy razy tyle niż TDD, włączając <i>wiele</i> okropnego debbugowania i komend wyświetlających, co spowodowało mnóstwo rekursywnym pętli nieskończonych, które rozwalały stos i wywalały mi konsolę. Czyniąc długą sprawę krótką, to był ból. Nie polecam tego.</div>
+
+<div class="paragraphDiv">Podsumowując: stare zasady nadal działają. Programowanie funkcyjne może być zmianą - ważną zmianą, ale nie zmienia on <i>wszystkiego</i>. Programowanie to nadal programowanie. Dyscyplina to nadal dyscyplina. TDD działa w programowaniu funkcyjnym tak dobrze jak w innych stylach programowania. Być może są jakieś zasady, z których musielibyśmy zrezygnować wdrażając programowanie funkcyjne; ale póki co ja żadnej takiej nie znalazłem.</div>
 
 
 <div class="smallGreyText">
