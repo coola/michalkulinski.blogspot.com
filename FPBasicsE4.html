@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <style scoped="scoped" type="text/css">
+        .paragraphDiv {
+            margin: 0 1em 0.5em 1em;
+        }
+
+        img {
+            margin: 10px;
+        }
+
+        .cite {
+            padding: 1em;
+            margin: 1em;
+            border-left: solid;
+            border-color: #eef2f5;
+        }
+
+        .smallGreyText {
+            text-align: center;
+            color: #999999;
+            font-size: 0.6em;
+            margin: 1em 0.1em 1em 0.1em;
+        }
+
+        .code {
+            font-family: monospace;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<br/>
+
+<div class="paragraphDiv">
+    <h4>Leniwa ewaluacja</h4>
+</div>
+
+<div class="paragraphDiv">
+    Czy pamiętasz mój program obliczający kwadraty liczb całkowitych w Clojure?
+</div>
+
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(<span style="color: #007020">take </span><span style="color: #0000DD; font-weight: bold">25</span> (<span style="color: #0066BB; font-weight: bold">squares-of</span> (<span style="color: #0066BB; font-weight: bold">integers</span>)))
+</pre></div>
+</div>
+
+<div class="paragraphDiv">Czy pamiętasz jak pokazywałem Ci jak ten program wygląda w Javie?</div>
+
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Squint</span> <span style="color: #333333">{</span>
+  <span style="color: #008800; font-weight: bold">public</span>  <span style="color: #008800; font-weight: bold">static</span>  <span style="color: #333399; font-weight: bold">void</span>  <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String  args<span style="color: #333333">[])</span>  <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">for</span>  <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span>  i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">;</span>  i<span style="color: #333333">&lt;=</span><span style="color: #0000DD; font-weight: bold">25</span><span style="color: #333333">;</span>  i<span style="color: #333333">++)</span>
+      System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>i<span style="color: #333333">*</span>i<span style="color: #333333">);}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+</div>
+
+<div class="paragraphDiv">No cóż, nie było to do końca dobre porównanie. Tutaj o wiele bardziej sprawiedliwe porównanie programu napisanego w Javie.</div>
+
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">take<span style="color: #333333">(</span><span style="color: #0000DD; font-weight: bold">25</span><span style="color: #333333">,</span> squaresOf<span style="color: #333333">(</span>integers<span style="color: #333333">()));</span>
+</pre></div>
+</div>
+
+<div class="paragraphDiv">Zauważ, że jedyne, co zrobiłem to przesunąłem nawiasy, dodałem przecinek i użyłem nazw pasujących do konwencji.</div>
+
+<div class="paragraphDiv">Oto nieco szerszy kontekst:</div>
+
+<div class="paragraphDiv"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #555555; font-weight: bold">@Test</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">squaresOfIntegers</span><span style="color: #333333">()</span> <span style="color: #008800; font-weight: bold">throws</span> Exception <span style="color: #333333">{</span>
+  assertEquals<span style="color: #333333">(</span>asList<span style="color: #333333">(</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">,</span> <span style="color: #0000DD; font-weight: bold">4</span><span style="color: #333333">,</span> <span style="color: #0000DD; font-weight: bold">9</span><span style="color: #333333">,</span> <span style="color: #0000DD; font-weight: bold">16</span><span style="color: #333333">,</span> <span style="color: #0000DD; font-weight: bold">25</span><span style="color: #333333">),</span> squint<span style="color: #333333">(</span><span style="color: #0000DD; font-weight: bold">5</span><span style="color: #333333">));</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">private</span> List<span style="color: #333333">&lt;</span>Integer<span style="color: #333333">&gt;</span> <span style="color: #0066BB; font-weight: bold">squint</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> n<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+  <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0066BB; font-weight: bold">take</span><span style="color: #333333">(</span>n<span style="color: #333333">,</span> squaresOf<span style="color: #333333">(</span>integers<span style="color: #333333">()));</span>
+<span style="color: #333333">}</span>
+</pre></div>
+</div>
+
+<div class="paragraphDiv">Czy potrafisz napisać taki program w Javie? Dam Ci wskazówkę: trzeba użyć leniwej ewaluacji tak samo jak w programie w Clojure. O to chodzi. </div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Poniższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 27 maja 2013
+        ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2013/01/29/FPBE4-Lazy-Evaluation.html">https://blog.cleancoder.com/uncle-bob/2013/01/29/FPBE4-Lazy-Evaluation.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+<br/>
+
+<div class="paragraphDiv">
+
+</div>
+
+<div class="smallGreyText">
+    <hr/>
+    <div>
+        Powyższy tekst jest luźnym tłumaczeniem wpisu bloga Roberta Cecila "Wujka Boba" Martina z dnia 27 maja 2013
+        ze strony:
+    </div>
+    <br/>
+
+    <div>
+        <a href="https://blog.cleancoder.com/uncle-bob/2013/01/29/FPBE4-Lazy-Evaluation.html">https://blog.cleancoder.com/uncle-bob/2013/01/29/FPBE4-Lazy-Evaluation.html</a>
+    </div>
+    <br/>
+
+    <div>
+        Proszę o komentarze, jeżeli ta luźność jest zbyt daleko posunięta.
+    </div>
+    <hr/>
+</div>
+
+
+
+</body>
+
+</html>
