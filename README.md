@@ -1,6 +1,6 @@
 # Blog Archive
 
-To jest dump mojego bloga na GitHub.
+To jest dump mojego bloga z polskimi tłumaczeniami z bloga wujka Boba Martina na GitHub.
 
 ## Articles
 
